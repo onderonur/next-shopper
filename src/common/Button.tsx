@@ -42,9 +42,9 @@ function Button({
 
   const content = (
     <div className="flex items-center gap-2">
-      {iconAlignment === 'left' && icon && <span>{icon}</span>}
+      {iconAlignment === 'left' && icon}
       {children && <span>{children}</span>}
-      {iconAlignment === 'right' && icon && <span>{icon}</span>}
+      {iconAlignment === 'right' && icon}
     </div>
   );
 

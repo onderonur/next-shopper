@@ -25,8 +25,12 @@ export const createQuery =
     getQueryKey: (args?: Args) => Maybe<Key>;
     queryFn: QueryFunction<Data, Key>;
   }) =>
-  (args?: Args): UseQueryOptions<Data, QueryError, Data, Key> => {
+  (
+    options?: { args?: Args } & UseQueryOptions<Data, QueryError, Data, Key>,
+  ): UseQueryOptions<Data, QueryError, Data, Key> => {
+    const { args, ...rest } = options ?? {};
     return {
+      ...rest,
       queryKey: config.getQueryKey(args) ?? undefined,
       queryFn: config.queryFn,
     };

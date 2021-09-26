@@ -17,14 +17,17 @@ import { QueryParams, routes } from '@src/routing/routes';
 type ProductListViewQueryParams = QueryParams<typeof routes['search']>;
 
 function ProductListView() {
-  const { routeParams, setQueryParams } = useRouteParams<
+  const { isReady, routeParams, setQueryParams } = useRouteParams<
     {},
     ProductListViewQueryParams
   >();
   const category = routeParams.get('category');
   const sorting = routeParams.get('sorting') ?? productSorting.priceAsc.id;
   const query = { category, sorting };
-  const { data: products, isLoading } = useProducts(query);
+  const { data: products, isLoading } = useProducts({
+    args: query,
+    enabled: isReady,
+  });
 
   const productFilter = (
     <ProductFilter

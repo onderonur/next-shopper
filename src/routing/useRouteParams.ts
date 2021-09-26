@@ -20,6 +20,10 @@ export const useRouteParams = <
   );
 
   return {
+    // Pages that are statically optimized by Automatic Static Optimization will be hydrated
+    // without their route parameters provided, i.e query will be an empty object ({}).
+    // https://nextjs.org/docs/routing/dynamic-routes#caveats
+    isReady: router.isReady,
     routeParams: parseRouteParams<P & Q>(router.query),
     setQueryParams,
   };

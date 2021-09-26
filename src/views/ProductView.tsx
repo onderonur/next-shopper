@@ -30,7 +30,7 @@ function ProductView() {
     data: product,
     isLoading,
     error,
-  } = useProduct(isNil(productId) ? undefined : { productId });
+  } = useProduct({ args: isNil(productId) ? undefined : { productId } });
 
   return (
     <>
@@ -74,7 +74,7 @@ export const getServerSideProps: GetServerSideProps<ProductViewProps> = async (
     parseRouteParams<ProductViewPathParams>(ctx.query).get('productId'),
   );
   await queryClient.prefetchQuery(
-    productQuery(isNil(productId) ? undefined : { productId }),
+    productQuery({ args: isNil(productId) ? undefined : { productId } }),
   );
 
   return {

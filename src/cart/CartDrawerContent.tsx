@@ -14,11 +14,7 @@ function CartDrawerContent() {
       <CartItemList className="flex-grow overflow-y-auto" />
       <CartTotalPrice />
       {cartItems.length > 0 && (
-        <Button
-          href={routes.checkout({ params: { falan: 'saafd' } })}
-          variant="primary"
-          className="my-2"
-        >
+        <Button href={routes.checkout({})} variant="primary" className="my-2">
           Proceed to Checkout
         </Button>
       )}

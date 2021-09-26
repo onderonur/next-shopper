@@ -7,6 +7,7 @@ import Head from 'next/head';
 import React from 'react';
 import ConfirmProvider from '@src/common/ConfirmContext';
 import ThemeProvider from '@src/styling/ThemeProvider';
+import { ReactQueryDevtools } from 'react-query/devtools';
 import '@src/styling/global.css';
 import '@src/styling/scrollbar.css';
 
@@ -21,6 +22,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <BaseQueryClientProvider dehydratedState={pageProps.dehydratedState}>
         <BaseDefaultSeo />
+        <ReactQueryDevtools />
         <ThemeProvider>
           <PageProgressBar />
           <ConfirmProvider>

@@ -1,0 +1,15 @@
+::-webkit-scrollbar {
+  @apply h-3 w-3;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-background-dark;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply rounded-lg bg-scrollbar-thumb border-2 border-solid border-background-dark;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply rounded-lg bg-scrollbar-thumbHover;
+}

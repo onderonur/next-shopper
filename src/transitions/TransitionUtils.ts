@@ -1,0 +1,1 @@
+export const TRANSITION_DURATION_IN_MS = 300;

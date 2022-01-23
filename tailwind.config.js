@@ -5,11 +5,10 @@ const primaryColor = colors.purple;
 const secondaryColor = colors.teal;
 const successColor = colors.green;
 const errorColor = colors.red;
-const gray = colors.blueGray;
+const gray = colors.slate;
 
 module.exports = {
-  purge: ['./pages/**/*.{js,ts,jsx,tsx}', './src/**/*.{js,ts,jsx,tsx}'],
-  darkMode: false, // or 'media' or 'class'
+  content: ['./pages/**/*.{js,ts,jsx,tsx}', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       colors: {

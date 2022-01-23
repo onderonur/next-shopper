@@ -13,13 +13,16 @@ function ClearCartButton() {
   return (
     <Button
       variant="transparent"
-      onClick={() => {
-        askConfirm({
+      onClick={async () => {
+        const isConfirmed = await askConfirm({
           title: 'Clear cart?',
           body: 'Are you sure to clear your cart?',
           confirmText: 'Clear',
-          onConfirm: clearCart,
         });
+
+        if (isConfirmed) {
+          clearCart();
+        }
       }}
     >
       Clear cart

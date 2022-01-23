@@ -10,7 +10,10 @@ import {
 export const createQueryClient = () => {
   return new QueryClient({
     defaultOptions: {
-      queries: { refetchOnWindowFocus: false, retry: false },
+      queries: {
+        refetchOnWindowFocus: false,
+        retry: false,
+      },
     },
   });
 };

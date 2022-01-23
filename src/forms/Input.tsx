@@ -18,13 +18,15 @@ function Input<FieldValues>({
   const {
     field,
     fieldState: { error },
-  } = useController({ name, control });
+  } = useController<FieldValues>({ name, control });
 
   return (
     <FormItem label={label} error={error}>
       <input
         {...rest}
         {...field}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        value={field.value as any}
         onBlur={(e) => {
           onBlur?.(e);
           field.onBlur();

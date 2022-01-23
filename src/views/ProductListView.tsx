@@ -66,7 +66,7 @@ function ProductListView() {
           </div>
           <Panel>
             <List
-              className="grid grid-cols-autofill-44 gap-4"
+              className="grid grid-cols-autofill-44 gap-x-4 gap-y-20"
               items={products}
               isLoading={isLoading}
               getItemKey={(product) => product.id.toString()}

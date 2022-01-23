@@ -4,7 +4,6 @@ import NextLink from '@src/routing/NextLink';
 import Price from '@src/common/Price';
 import AddToCartButton from '@src/cart/AddToCartButton';
 import { Product } from './ProductsTypes';
-import div from '@src/common/Container';
 import { routes } from '@src/routing/routes';
 
 interface ProductDetailProps {

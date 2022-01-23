@@ -1,16 +1,17 @@
 import Backdrop from '@src/common/Backdrop';
 import Button from '@src/common/Button';
+import { useRouterEvent } from '@src/routing/useRouterEvent';
 import FadeIn from '@src/transitions/FadeIn';
 import classNames from 'classnames';
 import React, { useEffect, useState } from 'react';
 import { Maybe } from './CommonTypes';
 
 export type ConfirmModalProps = React.PropsWithChildren<{
-  isOpen: Maybe<boolean>;
+  isOpen?: Maybe<boolean>;
   title?: string;
   confirmText?: string;
   onConfirm?: VoidFunction;
-  onClose: VoidFunction;
+  onClose?: VoidFunction;
 }>;
 
 function ConfirmModal({
@@ -29,6 +30,8 @@ function ConfirmModal({
   }, [isOpen]);
 
   const startExiting = () => setIsVisible(false);
+
+  useRouterEvent('routeChangeStart', onClose);
 
   // When some event like clicking the "Cancel" button,
   // or click on backdrop etc occurs, "isVisible" state will be "false" first.

@@ -1,16 +1,17 @@
 import NumberFormat, { NumberFormatPropsBase } from 'react-number-format';
 import { Control, FieldPath, useController } from 'react-hook-form';
 import FormItem from './FormItem';
-import BaseInput from './BaseInput';
+import BaseInput, { BaseInputProps } from './BaseInput';
 
 type NumberInputProps<FieldValues> = Pick<
-  NumberFormatPropsBase,
-  'format' | 'mask' | 'placeholder' | 'onFocus' | 'onBlur'
-> & {
-  label: string;
-  name: FieldPath<FieldValues>;
-  control: Control<FieldValues>;
-};
+  NumberFormatPropsBase<typeof BaseInput>,
+  'format' | 'mask'
+> &
+  Pick<BaseInputProps, 'placeholder' | 'onFocus' | 'onBlur'> & {
+    label: string;
+    name: FieldPath<FieldValues>;
+    control: Control<FieldValues>;
+  };
 
 function NumberInput<FieldValues>({
   label,
@@ -22,13 +23,15 @@ function NumberInput<FieldValues>({
   const {
     field,
     fieldState: { error },
-  } = useController({ name, control });
+  } = useController<FieldValues>({ name, control });
 
   return (
     <FormItem label={label} error={error}>
-      <NumberFormat
+      <NumberFormat<typeof BaseInput>
         {...field}
         {...rest}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        value={field.value as any}
         onBlur={(e) => {
           onBlur?.(e);
           field.onBlur();

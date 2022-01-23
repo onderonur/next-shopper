@@ -1,4 +1,4 @@
-type BaseInputProps = React.ComponentProps<'input'>;
+export type BaseInputProps = React.ComponentProps<'input'>;
 
 function BaseInput(props: BaseInputProps) {
   return (

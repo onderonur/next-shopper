@@ -22,7 +22,7 @@ const handleErrors =
         message = err.message ?? message;
       }
       const errorResponse: ApiErrorResponse = { statusCode, message };
-      return res.status(statusCode).json(errorResponse);
+      return res.status(errorResponse.statusCode).json(errorResponse);
     }
   };
 

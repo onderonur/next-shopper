@@ -22,7 +22,7 @@ function Button({
   ...rest
 }: ButtonProps) {
   const buttonClassName = classNames(
-    'font-semibold uppercase border-2 flex justify-center items-center transform active:scale-90',
+    'font-semibold uppercase border-2 flex justify-center items-center transform active:scale-95 transition ease-in-out',
     disabled
       ? 'bg-disabled-main text-disabled-dark cursor-not-allowed'
       : variant === 'default'

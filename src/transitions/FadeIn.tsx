@@ -1,41 +1,28 @@
 import React from 'react';
-import { CSSTransition } from 'react-transition-group';
-import { TRANSITION_DURATION_IN_MS } from './TransitionUtils';
+import { TRANSITION_DURATION_IN_SECONDS } from './TransitionUtils';
+import { AnimatePresence, motion } from 'framer-motion';
+import classNames from 'classnames';
 
 type FadeInProps = React.PropsWithChildren<{
   isIn: boolean;
-  onExited?: VoidFunction;
+  className?: string;
 }>;
 
-function FadeIn({ isIn, children, onExited }: FadeInProps) {
+function FadeIn({ isIn, className, children }: FadeInProps) {
   return (
-    <>
-      <CSSTransition
-        in={isIn}
-        timeout={TRANSITION_DURATION_IN_MS}
-        classNames="fade-in"
-        onExited={onExited}
-        unmountOnExit
-      >
-        <div className="flex justify-center items-center">{children}</div>
-      </CSSTransition>
-      <style jsx>{`
-        .fade-in-enter {
-          opacity: 0;
-        }
-        .fade-in-enter-active {
-          opacity: 1;
-          transition: opacity ease-in-out ${TRANSITION_DURATION_IN_MS}ms;
-        }
-        .fade-in-exit {
-          opacity: 1;
-        }
-        .fade-in-exit-active {
-          opacity: 0;
-          transition: opacity ease-in-out ${TRANSITION_DURATION_IN_MS}ms;
-        }
-      `}</style>
-    </>
+    <AnimatePresence>
+      {isIn ? (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: TRANSITION_DURATION_IN_SECONDS }}
+          className={classNames('flex justify-center items-center', className)}
+        >
+          {children}
+        </motion.div>
+      ) : null}
+    </AnimatePresence>
   );
 }
 

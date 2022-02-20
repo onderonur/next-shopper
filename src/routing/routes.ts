@@ -8,7 +8,7 @@ interface CreateRouteArgs {
   query?: unknown;
 }
 
-export type CreateRouteResult<T extends CreateRouteArgs> = (args: T) => {
+type CreateRouteResult<T extends CreateRouteArgs> = (args: T) => {
   pathname: string;
   query: ParsedUrlQuery;
 };

@@ -1,43 +1,30 @@
-import { CSSTransition } from 'react-transition-group';
-import { TRANSITION_DURATION_IN_MS } from './TransitionUtils';
+import React from 'react';
+import { TRANSITION_DURATION_IN_SECONDS } from './TransitionUtils';
+import { motion } from 'framer-motion';
 
 export type SlideProps = React.PropsWithChildren<{
+  className?: string;
   from?: 'left' | 'right';
   isIn: boolean;
 }>;
+function Slide({ className, from = 'left', isIn, children }: SlideProps) {
+  const outTransform = { x: from === 'left' ? '-100%' : '100%' };
 
-function Slide({ from = 'left', isIn, children }: SlideProps) {
-  const outTransform =
-    from === 'left' ? 'translateX(-100%)' : 'translateX(100%)';
-
-  return (
-    <>
-      <CSSTransition
-        in={isIn}
-        timeout={TRANSITION_DURATION_IN_MS}
-        classNames="slide"
-        unmountOnExit
-      >
-        <div>{children}</div>
-      </CSSTransition>
-      <style jsx>{`
-        .slide-enter {
-          transform: ${outTransform};
-        }
-        .slide-enter-active {
-          transform: translateX(0);
-          transition: transform ease-in-out ${TRANSITION_DURATION_IN_MS}ms;
-        }
-        .slide-exit {
-          transform: translateX(0);
-        }
-        .slide-exit-active {
-          transform: ${outTransform};
-          transition: transform ease-in-out ${TRANSITION_DURATION_IN_MS}ms;
-        }
-      `}</style>
-    </>
-  );
+  // AnimatePresence is not working when it's nested into another one.
+  // (Or at least I couldn't make it work yet.)
+  // So, because that we use Slide only inside a Backdrop (FadeIn),
+  // we don't use a AnimatePresence here.
+  return isIn ? (
+    <motion.div
+      className={className}
+      initial={outTransform}
+      animate={{ x: 0 }}
+      exit={outTransform}
+      transition={{ duration: TRANSITION_DURATION_IN_SECONDS }}
+    >
+      {children}
+    </motion.div>
+  ) : null;
 }
 
 export default Slide;

@@ -48,18 +48,16 @@ function ProductView() {
             : undefined
         }
       />
-      <div>
-        <PageHeader title={product?.title} />
-        <Loading isLoading={isLoading}>
-          <ErrorMessage error={error}>
-            {product && (
-              <Panel>
-                <ProductDetail product={product} />
-              </Panel>
-            )}
-          </ErrorMessage>
-        </Loading>
-      </div>
+      <PageHeader title={product?.title} />
+      <Loading isLoading={isLoading}>
+        <ErrorMessage error={error}>
+          {product && (
+            <Panel>
+              <ProductDetail product={product} />
+            </Panel>
+          )}
+        </ErrorMessage>
+      </Loading>
     </>
   );
 }

@@ -14,6 +14,7 @@ function CartItemList({ className }: CartItemListProps) {
   return (
     <List
       className={className}
+      isAnimated
       getItemKey={(cartItem) => cartItem.info.id.toString()}
       emptyMessage={
         <div className="flex flex-col justify-center items-center text-secondary-main">

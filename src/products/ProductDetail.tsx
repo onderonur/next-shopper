@@ -12,7 +12,7 @@ interface ProductDetailProps {
 
 function ProductDetail({ product }: ProductDetailProps) {
   return (
-    <div className="sm:flex gap-6">
+    <div className="flex flex-col sm:flex-row gap-6">
       <div className="flex-1">
         <BaseImage
           src={product.image}
@@ -25,7 +25,7 @@ function ProductDetail({ product }: ProductDetailProps) {
       </div>
       <div className="flex-1">
         <h1 className="font-bold text-2xl text-center">{product.title}</h1>
-        <div className="text-5xl my-4 text-center">
+        <div className="text-4xl my-4 text-center">
           <Price className="text-primary-dark" value={product.price} />
         </div>
         <AddToCartButton product={product} />

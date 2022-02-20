@@ -56,7 +56,7 @@ function ProductListView() {
           <div className="sticky top-24">{productFilter}</div>
         </Section>
         <Section title="Products" titleAs="h1" hideTitle className="flex-1">
-          <div className="md:hidden flex justify-end">
+          <div className="md:hidden flex justify-end mb-2">
             <Button variant="transparent" icon={<FilterIcon />} onClick={open}>
               Filter
             </Button>
@@ -64,7 +64,7 @@ function ProductListView() {
               {productFilter}
             </Drawer>
           </div>
-          <Panel>
+          <Panel className="md:mt-8">
             <List
               className="grid grid-cols-autofill-44 gap-x-4 gap-y-20"
               items={products}

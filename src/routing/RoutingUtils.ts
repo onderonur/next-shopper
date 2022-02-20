@@ -31,7 +31,7 @@ export const pruneQueryParams = (query: any): ParsedUrlQuery => {
   }
   Object.keys(query).forEach((key) => {
     const value = query[key];
-    if (isNil(value) || (typeof value === 'string' && !value)) {
+    if (isNil(value) || value === '') {
       return;
     }
     filteredQuery[key] = value;

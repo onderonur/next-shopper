@@ -1,9 +1,11 @@
 import { Maybe } from './CommonTypes';
 import { createMockArray } from './CommonUtils';
 import Loading from './Loading';
+import { AnimatePresence, motion } from 'framer-motion';
 
 type ListProps<Item> = Pick<React.ComponentProps<'ul'>, 'role'> & {
   className?: string;
+  isAnimated?: boolean;
   items: Maybe<Item[]>;
   isLoading?: boolean;
   emptyMessage?: React.ReactNode;
@@ -16,6 +18,7 @@ type ListProps<Item> = Pick<React.ComponentProps<'ul'>, 'role'> & {
 function List<Item>({
   role,
   className,
+  isAnimated,
   items,
   isLoading,
   emptyMessage,
@@ -30,35 +33,44 @@ function List<Item>({
 
   const listItemClassName = 'px-1';
 
-  const content = (
-    <ul role={role} className={className}>
-      {isLoading
-        ? createMockArray(skeletonCount ?? 0).map((_, i) => {
-            if (!itemSkeleton) {
-              return null;
-            }
+  const listContent = isLoading
+    ? createMockArray(skeletonCount ?? 0).map((_, i) => {
+        if (!itemSkeleton) {
+          return null;
+        }
 
-            return (
-              <li key={i.toString()} className={listItemClassName}>
-                {itemSkeleton}
-              </li>
-            );
-          })
-        : items?.map((item, i) => {
-            return (
-              <li key={getItemKey(item, i)} className={listItemClassName}>
-                {renderItem(item)}
-              </li>
-            );
-          })}
-    </ul>
+        return (
+          <li key={i.toString()} className={listItemClassName}>
+            {itemSkeleton}
+          </li>
+        );
+      })
+    : items?.map((item, i) => {
+        return (
+          <motion.li
+            key={getItemKey(item, i)}
+            className={listItemClassName}
+            layout={isAnimated}
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+          >
+            {renderItem(item)}
+          </motion.li>
+        );
+      });
+
+  return (
+    <Loading isLoading={isLoading && (!skeletonCount || !itemSkeleton)}>
+      <motion.ul layout={isAnimated} role={role} className={className}>
+        {isAnimated ? (
+          <AnimatePresence>{listContent}</AnimatePresence>
+        ) : (
+          listContent
+        )}
+      </motion.ul>
+    </Loading>
   );
-
-  if (!skeletonCount || !itemSkeleton) {
-    return <Loading isLoading={isLoading}>{content}</Loading>;
-  }
-
-  return <>{content}</>;
 }
 
 export default List;

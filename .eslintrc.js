@@ -1,5 +1,5 @@
 module.exports = {
-  plugins: ['prettier', '@typescript-eslint'],
+  plugins: ['prettier', '@typescript-eslint', 'deprecation'],
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
@@ -7,8 +7,20 @@ module.exports = {
     'next',
   ],
   parser: '@typescript-eslint/parser',
+  // For eslint-plugin-deprecation:
+  // https://stackoverflow.com/a/64488474/10876256
+  overrides: [
+    {
+      files: ['*.ts', '*.tsx'],
+      parserOptions: {
+        // for eslint-plugin-deprecation
+        project: ['./tsconfig.json'],
+      },
+    },
+  ],
   rules: {
     'prettier/prettier': 'warn',
+    'deprecation/deprecation': 'warn',
     curly: 'warn',
     'no-console': 'warn',
     'no-alert': 'warn',

@@ -9,6 +9,7 @@ This is a simple e-commerce web application built with [Next.js](https://nextjs.
 * Data: [Fake Store API](https://fakestoreapi.com/)
 * Forms: [React Hook Form](https://react-hook-form.com/)
 * Styling: [Tailwind CSS](https://tailwindcss.com/)
+* Animations: [Framer Motion](https://www.framer.com/motion/)
 * SEO: [Next SEO](https://github.com/garmeeh/next-seo)
 * Linting: [ESLint](https://eslint.org/)
 * Code Formatting: [Prettier](https://prettier.io/)

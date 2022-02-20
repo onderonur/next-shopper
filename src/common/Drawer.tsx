@@ -22,17 +22,21 @@ function Drawer({
   onClose,
 }: DrawerProps) {
   return (
-    <Backdrop isOpen={isOpen} onClose={onClose}>
+    <Backdrop<HTMLDivElement> isOpen={isOpen} onClick={onClose}>
       {({ focusRef, contentClassName }) => (
-        <Slide from={from} isIn={isOpen}>
+        <Slide
+          from={from}
+          isIn={isOpen}
+          className={classNames(
+            'h-full w-full max-w-xs fixed',
+            from === 'left' && 'left-0',
+            from === 'right' && 'right-0',
+            contentClassName,
+          )}
+        >
           <Section
             ref={focusRef}
-            className={classNames(
-              'h-screen w-full max-w-xs fixed flex flex-col',
-              from === 'left' && 'left-0',
-              from === 'right' && 'right-0',
-              contentClassName,
-            )}
+            className="h-full flex flex-col"
             title={title}
             titleAs="h2"
             headerClassName="py-2 px-4 shadow-sm"

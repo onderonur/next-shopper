@@ -11,10 +11,8 @@ function Panel({ title, className, isLoading, children, actions }: PanelProps) {
   return (
     <div className={className}>
       {(title || actions) && (
-        <div className="flex items-center">
-          <div className="font-semibold text-lg text-text-light mb-1">
-            {title}
-          </div>
+        <div className="flex items-end mb-1">
+          <div className="font-semibold text-lg text-text-light">{title}</div>
           <div className="flex-grow" />
           {actions}
         </div>

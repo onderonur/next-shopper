@@ -2,13 +2,12 @@ import { createHandler } from '@src/api/ApiUtils';
 import { Product } from '@src/products/ProductsTypes';
 import { StatusCodes } from 'http-status-codes';
 import createHttpError from 'http-errors';
-import { isNil, parseNumber } from '@src/common/CommonUtils';
 
 export default createHandler<{ GET: Product }>({
   GET: (req, res) => {
-    const productId = parseNumber(req.query.productId);
+    const productId = Number(req.query.productId);
 
-    if (isNil(productId)) {
+    if (!productId) {
       throw new createHttpError.BadRequest();
     }
 

@@ -17,7 +17,9 @@ const ErrorContent = ({ statusCode, message }: ErrorContentProps) => {
           {message}
         </span>
       </div>
-      <Button href="/">Back to Home</Button>
+      <Button aria-label="Back to Home" href="/">
+        Back to Home
+      </Button>
     </div>
   );
 };

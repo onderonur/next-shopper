@@ -13,6 +13,7 @@ function AddToCartButton({ className, product }: AddToCartButtonProps) {
 
   return (
     <Button
+      aria-label="Add to Cart"
       variant="primary"
       className={classNames('w-full', className)}
       onClick={() => addProduct(product)}

@@ -1,10 +1,8 @@
 import ProductCard from '@src/products/ProductCard';
 import { useRouteParams } from '@src/routing/useRouteParams';
 import Panel from '@src/common/Panel';
-import { useProducts } from '@src/products/useProducts';
 import AppLayout from '@src/app-layout/AppLayout';
 import List from '@src/common/List';
-import ProductCardSkeleton from '@src/products/ProductCardSkeleton';
 import BaseSeo from '@src/seo/BaseSeo';
 import { productSorting } from '@src/products/ProductsUtils';
 import Button from '@src/common/Button';
@@ -13,6 +11,10 @@ import ProductFilter from '@src/products/ProductFilter';
 import Drawer, { useDrawer } from '@src/common/Drawer';
 import Section from '@src/common/Section';
 import { QueryParams, routes } from '@src/routing/routes';
+import { useQuery } from 'react-query';
+import { productsAPI } from '@src/products/productsAPI';
+import ListItem from '@src/common/ListItem';
+import ProductCardSkeleton from '@src/products/ProductCardSkeleton';
 
 type ProductListViewQueryParams = QueryParams<typeof routes['search']>;
 
@@ -24,10 +26,12 @@ function ProductListView() {
   const category = routeParams.get('category');
   const sorting = routeParams.get('sorting') ?? productSorting.priceAsc.id;
   const query = { category, sorting };
-  const { data: products, isLoading } = useProducts({
-    args: query,
-    enabled: isReady,
-  });
+  const { data: products, isLoading } = useQuery(
+    productsAPI.fetchManyProducts({
+      args: query,
+      enabled: isReady,
+    }),
+  );
 
   const productFilter = (
     <ProductFilter
@@ -57,7 +61,12 @@ function ProductListView() {
         </Section>
         <Section title="Products" titleAs="h1" hideTitle className="flex-1">
           <div className="md:hidden flex justify-end mb-2">
-            <Button variant="transparent" icon={<FilterIcon />} onClick={open}>
+            <Button
+              aria-label="Open Filters Drawer"
+              variant="transparent"
+              icon={<FilterIcon />}
+              onClick={open}
+            >
               Filter
             </Button>
             <Drawer title="Product Filter" isOpen={isOpen} onClose={close}>
@@ -66,13 +75,17 @@ function ProductListView() {
           </div>
           <Panel className="md:mt-8">
             <List
-              className="grid grid-cols-autofill-44 gap-x-4 gap-y-20"
-              items={products}
+              className="grid grid-cols-autofill-44 gap-4"
               isLoading={isLoading}
-              getItemKey={(product) => product.id.toString()}
-              renderItem={(product) => <ProductCard product={product} />}
+              items={products}
               skeletonCount={8}
               itemSkeleton={<ProductCardSkeleton />}
+              getItemKey={(product) => product.id.toString()}
+              renderItem={(product) => (
+                <ListItem>
+                  <ProductCard product={product} />
+                </ListItem>
+              )}
             />
           </Panel>
         </Section>

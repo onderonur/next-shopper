@@ -21,22 +21,23 @@ function ProductDetail({ product }: ProductDetailProps) {
           width={10}
           objectFit="contain"
           layout="responsive"
+          priority
         />
       </div>
-      <div className="flex-1">
-        <h1 className="font-bold text-2xl text-center">{product.title}</h1>
-        <div className="text-4xl my-4 text-center">
-          <Price className="text-primary-dark" value={product.price} />
+      <div className="flex-1 flex flex-col items-center gap-4">
+        <div className="text-center">
+          <h1 className="font-bold text-2xl mb-1">{product.title}</h1>
+          <div className="text-4xl">
+            <Price className="text-primary-dark" value={product.price} />
+          </div>
         </div>
-        <AddToCartButton product={product} />
-        <p className="my-6">{product.description}</p>
-        <div className="my-4 text-center mx-auto max-w-xs">
-          <NextLink
-            href={routes.search({ query: { category: product.category } })}
-          >
-            <Chip variant="secondary">{product.category}</Chip>
-          </NextLink>
-        </div>
+        <AddToCartButton className="max-w-xs" product={product} />
+        <p>{product.description}</p>
+        <NextLink
+          href={routes.search({ query: { category: product.category } })}
+        >
+          <Chip variant="secondary">{product.category}</Chip>
+        </NextLink>
       </div>
     </div>
   );

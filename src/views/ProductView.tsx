@@ -4,17 +4,16 @@ import { createQueryClient } from '@src/query-client/QueryClientUtils';
 import ErrorMessage from '@src/error-handling/ErrorMessage';
 import ProductDetail from '@src/products/ProductDetail';
 import { parseRouteParams } from '@src/routing/RoutingUtils';
-import { productQuery, useProduct } from '@src/products/useProduct';
 import AppLayout from '@src/app-layout/AppLayout';
 import Loading from '@src/common/Loading';
-import { isNil, parseNumber } from '@src/common/CommonUtils';
-import { useNumber } from '@src/common/useNumber';
 import { useRouteParams } from '@src/routing/useRouteParams';
 import BaseSeo from '@src/seo/BaseSeo';
 import Panel from '@src/common/Panel';
 import React from 'react';
 import PageHeader from '@src/common/PageHeader';
 import { PathParams, routes } from '@src/routing/routes';
+import { useQuery } from 'react-query';
+import { productsAPI } from '@src/products/productsAPI';
 
 type ProductViewPathParams = PathParams<typeof routes['product']>;
 
@@ -25,12 +24,12 @@ interface ProductViewProps {
 
 function ProductView() {
   const { routeParams } = useRouteParams<ProductViewPathParams>();
-  const productId = useNumber(routeParams.get('productId'));
+  const productId = Number(routeParams.get('productId'));
   const {
     data: product,
     isLoading,
     error,
-  } = useProduct({ args: isNil(productId) ? undefined : { productId } });
+  } = useQuery(productsAPI.fetchOneProduct({ args: { productId } }));
 
   return (
     <>
@@ -68,11 +67,13 @@ export const getServerSideProps: GetServerSideProps<ProductViewProps> = async (
   // Using hydration:
   // https://react-query.tanstack.com/guides/ssr#using-hydration
   const queryClient = createQueryClient();
-  const productId = parseNumber(
+  const productId = Number(
     parseRouteParams<ProductViewPathParams>(ctx.query).get('productId'),
   );
   await queryClient.prefetchQuery(
-    productQuery({ args: isNil(productId) ? undefined : { productId } }),
+    productsAPI.fetchOneProduct({
+      args: { productId },
+    }),
   );
 
   return {

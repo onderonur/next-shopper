@@ -18,6 +18,7 @@ function ImageLink({ href, imageSrc, title }: ImageLinkProps) {
         layout="fill"
         objectFit="cover"
         className="transition duration-700 transform group-hover:scale-110"
+        priority
       />
       <div className="absolute inset-0 flex justify-center items-center">
         <div className="p-6 bg-black bg-opacity-50 rounded-md">

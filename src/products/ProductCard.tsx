@@ -12,7 +12,7 @@ interface ProductCardProps {
 
 function ProductCard({ product }: ProductCardProps) {
   return (
-    <article className="flex flex-col h-full group">
+    <article className="flex flex-col h-full group border-2 p-2 rounded-md">
       <div className="relative cursor-pointer">
         <NextLink href={routes.product({ params: { productId: product.id } })}>
           <div className="p-2 ">
@@ -30,10 +30,12 @@ function ProductCard({ product }: ProductCardProps) {
         </NextLink>
       </div>
       <div className="mt-2 flex flex-col items-center">
-        <div className="text-lg">
+        <div className="text-md">
           <Price className="text-primary-dark" value={product.price} />
         </div>
-        <h2 className="font-bold flex-grow text-center">{product.title}</h2>
+        <h2 className="font-bold text-sm flex-grow text-center">
+          {product.title}
+        </h2>
         <NextLink
           href={routes.search({ query: { category: product.category } })}
           className="mt-2"
@@ -42,7 +44,7 @@ function ProductCard({ product }: ProductCardProps) {
         </NextLink>
       </div>
       <div className="flex-grow" />
-      <div className="mt-2">
+      <div className="mt-4">
         <AddToCartButton product={product} />
       </div>
     </article>

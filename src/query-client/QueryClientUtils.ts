@@ -1,4 +1,3 @@
-import { Maybe } from '@src/common/CommonTypes';
 import { ApiRequestError } from '@src/error-handling/ErrorHandlingTypes';
 import {
   QueryClient,
@@ -18,23 +17,35 @@ export const createQueryClient = () => {
   });
 };
 
-export const createQuery =
-  <
-    Key extends QueryKey,
+export const createQuery = <
+  Key extends QueryKey,
+  Data,
+  Args = undefined,
+  QueryError extends ApiRequestError = ApiRequestError,
+>(config: {
+  getQueryKey: (args: Args) => Key;
+  queryFn: (
+    ...customCtx: [Args, ...Parameters<QueryFunction<Data, Key>>]
+  ) => ReturnType<QueryFunction<Data, Key>>;
+}) => {
+  type CreatedQueryOptions = { args: Args } & UseQueryOptions<
     Data,
-    Args = undefined,
-    QueryError extends ApiRequestError = ApiRequestError,
-  >(config: {
-    getQueryKey: (args?: Args) => Maybe<Key>;
-    queryFn: QueryFunction<Data, Key>;
-  }) =>
-  (
-    options?: { args?: Args } & UseQueryOptions<Data, QueryError, Data, Key>,
+    QueryError,
+    Data,
+    Key
+  >;
+
+  return (
+    // If Args is undefined, options parameter is optional.
+    ...options: Args extends undefined
+      ? [CreatedQueryOptions?]
+      : [CreatedQueryOptions]
   ): UseQueryOptions<Data, QueryError, Data, Key> => {
-    const { args, ...rest } = options ?? {};
+    const { args, ...rest } = options[0] ?? {};
     return {
       ...rest,
-      queryKey: config.getQueryKey(args) ?? undefined,
-      queryFn: config.queryFn,
+      queryKey: config.getQueryKey(args as Args),
+      queryFn: (ctx) => config.queryFn(args as Args, ctx),
     };
   };
+};

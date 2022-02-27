@@ -14,7 +14,12 @@ function CartDrawerContent() {
       <CartItemList className="flex-grow overflow-y-auto" />
       <CartTotalPrice />
       {cartItems.length > 0 && (
-        <Button href={routes.checkout({})} variant="primary" className="my-2">
+        <Button
+          aria-label="Proceed to Checkout"
+          href={routes.checkout()}
+          variant="primary"
+          className="my-2"
+        >
           Proceed to Checkout
         </Button>
       )}

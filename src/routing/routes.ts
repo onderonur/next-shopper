@@ -8,38 +8,41 @@ interface CreateRouteArgs {
   query?: unknown;
 }
 
-type CreateRouteResult<T extends CreateRouteArgs> = (args: T) => {
+// https://stackoverflow.com/a/55247867/10876256
+type RequiredKeys<T> = {
+  [K in keyof T]-?: {} extends { [P in K]: T[K] } ? never : K;
+}[keyof T];
+type HasRequiredField<T> = RequiredKeys<T> extends never ? false : true;
+
+type CreateRouteResult<RouteArgs extends CreateRouteArgs> = (
+  // args parameter is optional when both of params and query fields are optional
+  ...args: HasRequiredField<RouteArgs> extends true ? [RouteArgs] : [RouteArgs?]
+) => {
   pathname: string;
   query: ParsedUrlQuery;
 };
 
-function createRoute<T extends CreateRouteArgs>(
-  pathname: string | ((pathParams: T['params']) => string),
-): CreateRouteResult<T> {
-  return (args: T) => {
+function createRoute<RouteArgs extends CreateRouteArgs>(
+  pathname: (pathParams: RouteArgs['params']) => string,
+): CreateRouteResult<RouteArgs> {
+  return (...args) => {
+    const [routeArgs] = args;
     return {
-      pathname: typeof pathname === 'string' ? pathname : pathname(args.params),
-      query: pruneQueryParams(args.query),
+      pathname: pathname(routeArgs?.params),
+      query: pruneQueryParams(routeArgs?.query),
     };
   };
 }
 
-export type PathParams<T extends AnyFunction> = Parameters<T>[0] extends {
-  params?: unknown;
-}
-  ? Parameters<T>[0]['params']
-  : undefined;
-export type QueryParams<T extends AnyFunction> = Parameters<T>[0] extends {
-  query?: unknown;
-}
-  ? Parameters<T>[0]['query']
-  : undefined;
+type RouteParams<T extends AnyFunction> = NonNullable<Parameters<T>[0]>;
+export type PathParams<T extends AnyFunction> = RouteParams<T>['params'];
+export type QueryParams<T extends AnyFunction> = RouteParams<T>['query'];
 
 export const routes = {
-  home: createRoute('/'),
-  search: createRoute<{ query?: GetManyProductsArgs }>('/search'),
+  home: createRoute(() => '/'),
+  search: createRoute<{ query?: GetManyProductsArgs }>(() => '/search'),
   product: createRoute<{ params: { productId: Id } }>(
     (params) => `/products/${params.productId}`,
   ),
-  checkout: createRoute('/checkout'),
+  checkout: createRoute(() => '/checkout'),
 };

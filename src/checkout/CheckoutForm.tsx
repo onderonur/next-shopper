@@ -101,7 +101,9 @@ function CheckoutForm({ error, onSubmit }: CheckoutFormProps) {
         />
       </div>
       <div className="my-2 flex justify-end">
-        <SubmitButton formState={formState}>Checkout</SubmitButton>
+        <SubmitButton aria-label="Complete Checkout" formState={formState}>
+          Checkout
+        </SubmitButton>
       </div>
     </Form>
   );

@@ -12,6 +12,7 @@ function ClearCartButton() {
 
   return (
     <Button
+      aria-label="Clear Cart"
       variant="transparent"
       onClick={async () => {
         const isConfirmed = await askConfirm({
@@ -25,7 +26,7 @@ function ClearCartButton() {
         }
       }}
     >
-      Clear cart
+      Clear Cart
     </Button>
   );
 }

@@ -15,6 +15,7 @@ function CartItemActionButtons({ cartItem }: CartItemActionButtonsProps) {
   return (
     <div className="flex justify-between items-center">
       <Button
+        aria-label={`Remove "${product.title}" From Cart`}
         className="h-8 w-8 text-sm rounded-md"
         variant="secondary"
         icon={<DeleteIcon />}
@@ -22,6 +23,7 @@ function CartItemActionButtons({ cartItem }: CartItemActionButtonsProps) {
       />
       <div className="flex items-center">
         <Button
+          aria-label={`Decrease "${product.title}" Count in Cart`}
           className="h-8 w-8 text-sm rounded-l-md rounded-r-none"
           variant="primary"
           icon={<MinusIcon />}
@@ -31,6 +33,7 @@ function CartItemActionButtons({ cartItem }: CartItemActionButtonsProps) {
           {cartItem.count}
         </div>
         <Button
+          aria-label={`Increase "${product.title}" in cart`}
           className="h-8 w-8 text-sm rounded-r-md rounded-l-none"
           variant="primary"
           icon={<PlusIcon />}

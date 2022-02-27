@@ -42,6 +42,7 @@ function Drawer({
             headerClassName="py-2 px-4 shadow-sm"
             headerActions={
               <Button
+                aria-label="Close Drawer"
                 variant="transparent"
                 icon={<CloseIcon />}
                 onClick={onClose}

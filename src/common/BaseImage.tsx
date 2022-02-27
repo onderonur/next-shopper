@@ -1,6 +1,8 @@
 import Image, { ImageProps } from 'next/image';
+import { Omit } from './CommonTypes';
 
-type BaseImageProps = ImageProps;
+type BaseImageProps = Omit<ImageProps, 'alt'> &
+  Required<Pick<ImageProps, 'alt'>>;
 
 function BaseImage({
   // We set image as `unoptimized` to not exceed the

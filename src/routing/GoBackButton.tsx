@@ -7,6 +7,7 @@ function GoBackButton() {
 
   return (
     <Button
+      aria-label="Go Back"
       circle
       variant="transparent"
       icon={<ArrowLeftIcon />}

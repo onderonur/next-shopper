@@ -13,7 +13,12 @@ function CartInfo() {
   return (
     <>
       <Badge value={productCount}>
-        <Button className="text-lg" icon={<CartIcon />} onClick={open}>
+        <Button
+          aria-label="Open Cart Info"
+          className="text-lg"
+          icon={<CartIcon />}
+          onClick={open}
+        >
           <Price value={totalPrice} />
         </Button>
       </Badge>

@@ -48,10 +48,15 @@ function ConfirmModal({
             <h2 className="font-semibold text-lg">{title}</h2>
             <div>{children}</div>
             <div className="flex justify-end gap-2 mt-2">
-              <Button variant="transparent" onClick={onClose}>
+              <Button
+                aria-label="Cancel"
+                variant="transparent"
+                onClick={onClose}
+              >
                 Cancel
               </Button>
               <Button
+                aria-label="Confirm text"
                 variant="primary"
                 onClick={() => {
                   onConfirm?.();

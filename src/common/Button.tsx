@@ -7,6 +7,7 @@ export type ButtonProps = React.ComponentProps<'button'> &
     icon?: React.ReactNode;
     iconAlignment?: 'left' | 'right';
     circle?: boolean;
+    'aria-label': string;
   };
 
 function Button({
@@ -54,6 +55,7 @@ function Button({
         className={buttonClassName}
         href={href}
         isExternalUrl={isExternalUrl}
+        aria-label={rest['aria-label']}
       >
         {content}
       </NextLink>

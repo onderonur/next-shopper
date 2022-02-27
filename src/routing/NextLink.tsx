@@ -4,6 +4,7 @@ export type NextLinkProps = React.PropsWithChildren<
   LinkProps & {
     className?: string;
     isExternalUrl?: boolean;
+    'aria-label'?: string;
   }
 >;
 
@@ -21,6 +22,7 @@ function NextLink({
         className={className}
         target={isExternalUrl ? '_blank' : undefined}
         rel={isExternalUrl ? 'noopener noreferrer' : undefined}
+        aria-label={rest['aria-label']}
       >
         {children}
       </a>

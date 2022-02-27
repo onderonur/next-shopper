@@ -1,4 +1,5 @@
 import List from './List';
+import ListItem from './ListItem';
 import RadioButton from './RadioButton';
 import RadioButtonSkeleton from './RadioButtonSkeleton';
 
@@ -20,25 +21,27 @@ function RadioGroup<Option, Value>({
   onChange,
 }: RadioGroupSelectProps<Option, Value>) {
   return (
-    <List
+    <List<Option>
       role="radiogroup"
-      items={options}
-      getItemKey={(option, i) => i.toString()}
       isLoading={isLoading}
       skeletonCount={4}
       itemSkeleton={<RadioButtonSkeleton />}
+      items={options}
+      getItemKey={(option, i) => `${getOptionValue(option)}_${i}`}
       renderItem={(option) => {
         const optionValue = getOptionValue(option);
         const isChecked = value === optionValue;
         return (
-          <RadioButton
-            isChecked={isChecked}
-            value={optionValue}
-            label={getOptionLabel(option)}
-            onChange={(newValue) => {
-              onChange(newValue);
-            }}
-          />
+          <ListItem role="radio" aria-checked={isChecked}>
+            <RadioButton
+              isChecked={isChecked}
+              value={optionValue}
+              label={getOptionLabel(option)}
+              onChange={(newValue) => {
+                onChange(newValue);
+              }}
+            />
+          </ListItem>
         );
       }}
     />

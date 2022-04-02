@@ -7,7 +7,7 @@ import 'react-credit-cards/es/styles-compiled.css';
 import {
   DoCheckoutArgs,
   doCheckoutArgsSchema,
-} from '@src/api/checkout/checkoutService';
+} from '@src/checkout/checkoutService';
 import ErrorMessage from '@src/error-handling/ErrorMessage';
 import { Maybe } from '@src/common/CommonTypes';
 import { useFocusedField } from '@src/forms/useFocusedField';

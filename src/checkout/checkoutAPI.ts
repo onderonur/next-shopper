@@ -1,5 +1,5 @@
 import { httpClient } from '@src/http-client/httpClient';
-import { DoCheckoutArgs } from '@src/api/checkout/checkoutService';
+import { DoCheckoutArgs } from '@src/checkout/checkoutService';
 
 export const checkoutAPI = {
   doCheckout: async (args: DoCheckoutArgs) => {

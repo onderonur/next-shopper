@@ -14,6 +14,7 @@ import BaseSeo from '@src/seo/BaseSeo';
 import { useQuery } from 'react-query';
 import { categoriesAPI } from '@src/categories/categoriesAPI';
 import ListItem from '@src/common/ListItem';
+import { createMockArray } from '@src/common/CommonUtils';
 
 function HomeView() {
   const {
@@ -41,25 +42,29 @@ function HomeView() {
         <main className="p-4 flex-grow">
           <ErrorMessage error={error}>
             <Container maxWidth="xl">
-              <List
-                className="grid lg:grid-cols-2 gap-4"
-                isLoading={isLoading}
-                items={categories}
-                skeletonCount={4}
-                itemSkeleton={<ImageLinkSkeleton />}
-                getItemKey={(category) => category.name}
-                renderItem={(category) => (
-                  <ListItem>
-                    <ImageLink
-                      href={routes.search({
-                        query: { category: category.name },
-                      })}
-                      imageSrc={category.image}
-                      title={category.name}
-                    />
-                  </ListItem>
-                )}
-              />
+              <List className="grid lg:grid-cols-2 gap-4">
+                {isLoading
+                  ? createMockArray(4).map((i) => {
+                      return (
+                        <ListItem key={i}>
+                          <ImageLinkSkeleton />
+                        </ListItem>
+                      );
+                    })
+                  : categories?.map((category) => {
+                      return (
+                        <ListItem key={category.name}>
+                          <ImageLink
+                            href={routes.search({
+                              query: { category: category.name },
+                            })}
+                            imageSrc={category.image}
+                            title={category.name}
+                          />
+                        </ListItem>
+                      );
+                    })}
+              </List>
             </Container>
           </ErrorMessage>
         </main>

@@ -1,3 +1,4 @@
+import { createMockArray } from './CommonUtils';
 import List from './List';
 import ListItem from './ListItem';
 import RadioButton from './RadioButton';
@@ -15,36 +16,42 @@ interface RadioGroupSelectProps<Option, Value> {
 function RadioGroup<Option, Value>({
   isLoading,
   options,
-  getOptionLabel,
-  getOptionValue,
   value,
   onChange,
+  getOptionLabel,
+  getOptionValue,
 }: RadioGroupSelectProps<Option, Value>) {
   return (
-    <List<Option>
-      role="radiogroup"
-      isLoading={isLoading}
-      skeletonCount={4}
-      itemSkeleton={<RadioButtonSkeleton />}
-      items={options}
-      getItemKey={(option, i) => `${getOptionValue(option)}_${i}`}
-      renderItem={(option) => {
-        const optionValue = getOptionValue(option);
-        const isChecked = value === optionValue;
-        return (
-          <ListItem role="radio" aria-checked={isChecked}>
-            <RadioButton
-              isChecked={isChecked}
-              value={optionValue}
-              label={getOptionLabel(option)}
-              onChange={(newValue) => {
-                onChange(newValue);
-              }}
-            />
-          </ListItem>
-        );
-      }}
-    />
+    <List role="radiogroup">
+      {isLoading
+        ? createMockArray(4).map((i) => {
+            return (
+              <ListItem key={i}>
+                <RadioButtonSkeleton />
+              </ListItem>
+            );
+          })
+        : options.map((option, i) => {
+            const optionValue = getOptionValue(option);
+            const isChecked = value === optionValue;
+            return (
+              <ListItem
+                key={`${getOptionValue(option)}_${i}`}
+                role="radio"
+                aria-checked={isChecked}
+              >
+                <RadioButton
+                  isChecked={isChecked}
+                  value={optionValue}
+                  label={getOptionLabel(option)}
+                  onChange={(newValue) => {
+                    onChange(newValue);
+                  }}
+                />
+              </ListItem>
+            );
+          })}
+    </List>
   );
 }
 

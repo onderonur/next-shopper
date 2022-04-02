@@ -1,4 +1,4 @@
-import { GetManyProductsArgs } from '@src/api/products/productsService';
+import { GetManyProductsArgs } from '@src/products/productsService';
 import { AnyFunction, Id } from '@src/common/CommonTypes';
 import { pruneQueryParams } from './RoutingUtils';
 import { ParsedUrlQuery } from 'querystring';

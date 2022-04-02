@@ -1,4 +1,4 @@
-import { DoCheckoutArgs } from '@src/api/checkout/checkoutService';
+import { DoCheckoutArgs } from '@src/checkout/checkoutService';
 import AppLayout from '@src/app-layout/AppLayout';
 import { useCartContext } from '@src/cart/CartContext';
 import CartItemList from '@src/cart/CartItemList';

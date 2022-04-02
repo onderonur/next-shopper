@@ -15,6 +15,7 @@ import { useQuery } from 'react-query';
 import { productsAPI } from '@src/products/productsAPI';
 import ListItem from '@src/common/ListItem';
 import ProductCardSkeleton from '@src/products/ProductCardSkeleton';
+import { createMockArray } from '@src/common/CommonUtils';
 
 type ProductListViewQueryParams = QueryParams<typeof routes['search']>;
 
@@ -74,19 +75,23 @@ function ProductListView() {
             </Drawer>
           </div>
           <Panel className="md:mt-8">
-            <List
-              className="grid grid-cols-autofill-44 gap-4"
-              isLoading={isLoading}
-              items={products}
-              skeletonCount={8}
-              itemSkeleton={<ProductCardSkeleton />}
-              getItemKey={(product) => product.id.toString()}
-              renderItem={(product) => (
-                <ListItem>
-                  <ProductCard product={product} />
-                </ListItem>
-              )}
-            />
+            <List className="grid grid-cols-autofill-44 gap-4">
+              {isLoading
+                ? createMockArray(8).map((i) => {
+                    return (
+                      <ListItem key={i}>
+                        <ProductCardSkeleton />
+                      </ListItem>
+                    );
+                  })
+                : products?.map((product) => {
+                    return (
+                      <ListItem key={product.id}>
+                        <ProductCard product={product} />
+                      </ListItem>
+                    );
+                  })}
+            </List>
           </Panel>
         </Section>
       </div>

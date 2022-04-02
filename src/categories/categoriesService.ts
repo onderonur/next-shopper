@@ -1,4 +1,4 @@
-import dbJson from '@src/api/db/db.json';
+import dbJson from '@src/db/db.json';
 
 export const categoriesService = {
   getManyCategories: () => {

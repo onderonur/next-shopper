@@ -1,4 +1,4 @@
-import dbJson from '@src/api/db/db.json';
+import dbJson from '@src/db/db.json';
 import createHttpError from 'http-errors';
 import { Id } from '@src/common/CommonTypes';
 import { productSorting } from '@src/products/ProductsUtils';

@@ -1,7 +1,7 @@
 import 'react-credit-cards/es/styles-compiled.css';
 import { Control, useWatch } from 'react-hook-form';
 import CreditCards, { Focused } from 'react-credit-cards';
-import { DoCheckoutArgs } from '@src/api/checkout/checkoutService';
+import { DoCheckoutArgs } from '@src/checkout/checkoutService';
 import { Maybe } from '@src/common/CommonTypes';
 
 export interface CheckoutFormCreditCardProps {

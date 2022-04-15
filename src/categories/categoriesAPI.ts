@@ -5,8 +5,8 @@ import { createQuery } from '@src/query-client/QueryClientUtils';
 import { Category } from './CategoriesTypes';
 
 export const categoriesAPI = {
-  fetchManyCategories: createQuery<'categories', Category[]>({
-    getQueryKey: () => 'categories',
+  fetchManyCategories: createQuery<['categories'], Category[]>({
+    getQueryKey: () => ['categories'],
     queryFn: async () => {
       if (IS_SERVER) {
         return services.categoriesService.getManyCategories();

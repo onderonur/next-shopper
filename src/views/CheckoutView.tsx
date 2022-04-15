@@ -1,4 +1,3 @@
-import { DoCheckoutArgs } from '@src/checkout/checkoutService';
 import AppLayout from '@src/app-layout/AppLayout';
 import { useCartContext } from '@src/cart/CartContext';
 import CartItemList from '@src/cart/CartItemList';
@@ -7,6 +6,7 @@ import ClearCartButton from '@src/cart/ClearCartButton';
 import { checkoutAPI } from '@src/checkout/checkoutAPI';
 import CheckoutForm from '@src/checkout/CheckoutForm';
 import CheckoutSuccessMessage from '@src/checkout/CheckoutSuccessMessage';
+import { DoCheckoutArgs } from '@src/checkout/CheckoutUtils';
 import Container from '@src/common/Container';
 import PageHeader from '@src/common/PageHeader';
 import Panel from '@src/common/Panel';

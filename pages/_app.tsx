@@ -5,11 +5,11 @@ import CartProvider from '@src/cart/CartContext';
 import BaseDefaultSeo from '@src/seo/BaseDefaultSeo';
 import Head from 'next/head';
 import React from 'react';
-import ConfirmProvider from '@src/common/ConfirmContext';
 import ThemeProvider from '@src/styling/ThemeProvider';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import '@src/styling/global.css';
 import '@src/styling/scrollbar.css';
+import ModalRootProvider from '@src/common/ModalRootContext';
 
 function MyApp({ Component, pageProps }: AppProps) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -25,13 +25,13 @@ function MyApp({ Component, pageProps }: AppProps) {
         <ReactQueryDevtools />
         <ThemeProvider>
           <PageProgressBar />
-          <ConfirmProvider>
+          <ModalRootProvider>
             <CartProvider>
               <Layout>
                 <Component {...pageProps} />
               </Layout>
             </CartProvider>
-          </ConfirmProvider>
+          </ModalRootProvider>
         </ThemeProvider>
       </BaseQueryClientProvider>
     </>

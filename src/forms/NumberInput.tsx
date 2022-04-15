@@ -36,7 +36,9 @@ function NumberInput<FieldValues>({
           onBlur?.(e);
           field.onBlur();
         }}
-        customInput={BaseInput}
+        // TODO: Fix typing
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        customInput={BaseInput as any}
       />
     </FormItem>
   );

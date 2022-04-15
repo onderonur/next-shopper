@@ -1,6 +1,5 @@
-import { QueryClientProvider } from 'react-query';
+import { DehydratedState, Hydrate, QueryClientProvider } from 'react-query';
 import { useState } from 'react';
-import { DehydratedState, Hydrate } from 'react-query/hydration';
 import { createQueryClient } from './QueryClientUtils';
 
 type BaseQueryClientProviderProps = React.PropsWithChildren<{

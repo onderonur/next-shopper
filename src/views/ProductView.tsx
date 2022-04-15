@@ -1,5 +1,5 @@
 import { GetServerSideProps } from 'next';
-import { dehydrate, DehydratedState } from 'react-query/hydration';
+import { dehydrate, DehydratedState } from 'react-query';
 import { createQueryClient } from '@src/query-client/QueryClientUtils';
 import ErrorMessage from '@src/error-handling/ErrorMessage';
 import ProductDetail from '@src/products/ProductDetail';

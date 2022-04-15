@@ -3,7 +3,7 @@ import Container from '@src/common/Container';
 import Hero from '@src/landing/Hero';
 import { GetServerSideProps } from 'next';
 import { createQueryClient } from '@src/query-client/QueryClientUtils';
-import { dehydrate } from 'react-query/hydration';
+import { dehydrate } from 'react-query';
 import ErrorMessage from '@src/error-handling/ErrorMessage';
 import ImageLink from '@src/landing/ImageLink';
 import ImageLinkSkeleton from '@src/landing/ImageLinkSkeleton';

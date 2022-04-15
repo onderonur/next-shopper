@@ -5,7 +5,7 @@ import { FieldError, FieldErrors } from 'react-hook-form';
 // https://react-hook-form.com/advanced-usage/#CustomHookwithResolver
 export const useYupValidationResolver = (validationSchema: Yup.AnySchema) =>
   useCallback(
-    async (data) => {
+    async (data: unknown) => {
       try {
         const values = await validationSchema.validate(data, {
           abortEarly: false,

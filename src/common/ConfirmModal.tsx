@@ -2,32 +2,31 @@ import Backdrop from '@src/common/Backdrop';
 import Button from '@src/common/Button';
 import { useRouterEvent } from '@src/routing/useRouterEvent';
 import classNames from 'classnames';
-import React from 'react';
-import { Maybe } from './CommonTypes';
+import React, { useCallback } from 'react';
+import { useModalContext } from './ModalContext';
 
-export type ConfirmModalProps = React.PropsWithChildren<{
-  isOpen?: Maybe<boolean>;
-  title?: string;
+export type ConfirmModalProps = {
+  title: string;
+  body: React.ReactNode;
   confirmText?: string;
-  onConfirm?: VoidFunction;
-  onClose?: VoidFunction;
-}>;
+};
 
-function ConfirmModal({
-  isOpen,
-  title,
-  confirmText = 'OK',
-  children,
-  onConfirm,
-  onClose,
-}: ConfirmModalProps) {
-  useRouterEvent('routeChangeStart', onClose);
+export type ConfirmModalData = { isConfirmed: boolean };
+
+function ConfirmModal({ title, confirmText = 'OK', body }: ConfirmModalProps) {
+  const { isOpen, hide } = useModalContext<ConfirmModalData>();
+
+  const handleClose = useCallback(() => {
+    hide({ isConfirmed: false });
+  }, [hide]);
+
+  useRouterEvent('routeChangeStart', handleClose);
 
   return (
     <Backdrop<HTMLDivElement>
       className="flex justify-center items-center"
       isOpen={isOpen}
-      onClick={onClose}
+      onClick={handleClose}
     >
       {({ focusRef, contentClassName }) => {
         return (
@@ -41,17 +40,17 @@ function ConfirmModal({
             tabIndex={-1}
             onKeyDown={(e) => {
               if (e.key === 'Escape') {
-                onClose?.();
+                handleClose();
               }
             }}
           >
             <h2 className="font-semibold text-lg">{title}</h2>
-            <div>{children}</div>
+            <div>{body}</div>
             <div className="flex justify-end gap-2 mt-2">
               <Button
                 aria-label="Cancel"
                 variant="transparent"
-                onClick={onClose}
+                onClick={handleClose}
               >
                 Cancel
               </Button>
@@ -59,8 +58,7 @@ function ConfirmModal({
                 aria-label="Confirm text"
                 variant="primary"
                 onClick={() => {
-                  onConfirm?.();
-                  onClose?.();
+                  hide({ isConfirmed: true });
                 }}
               >
                 {confirmText}

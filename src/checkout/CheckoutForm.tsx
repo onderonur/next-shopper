@@ -4,10 +4,6 @@ import SubmitButton from '@src/forms/SubmitButton';
 import { useYupValidationResolver } from '@src/forms/useYupValidationResolver';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import 'react-credit-cards/es/styles-compiled.css';
-import {
-  DoCheckoutArgs,
-  doCheckoutArgsSchema,
-} from '@src/checkout/checkoutService';
 import ErrorMessage from '@src/error-handling/ErrorMessage';
 import { Maybe } from '@src/common/CommonTypes';
 import { useFocusedField } from '@src/forms/useFocusedField';
@@ -16,6 +12,7 @@ import Form from '@src/forms/Form';
 import CheckoutFormCreditCard, {
   CheckoutFormCreditCardProps,
 } from './CheckoutFormCreditCard';
+import { DoCheckoutArgs, doCheckoutArgsSchema } from './CheckoutUtils';
 
 const cardExpiryLimit = (val: string, max: string) => {
   if (val.length === 1 && val[0] > max[0]) {

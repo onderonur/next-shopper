@@ -1,4 +1,3 @@
-import Input from '@src/forms/Input';
 import NumberInput from '@src/forms/NumberInput';
 import SubmitButton from '@src/forms/SubmitButton';
 import { useYupValidationResolver } from '@src/forms/useYupValidationResolver';
@@ -9,10 +8,10 @@ import { Maybe } from '@src/common/CommonTypes';
 import { useFocusedField } from '@src/forms/useFocusedField';
 import { ApiRequestError } from '@src/error-handling/ErrorHandlingTypes';
 import Form from '@src/forms/Form';
-import CheckoutFormCreditCard, {
-  CheckoutFormCreditCardProps,
-} from './CheckoutFormCreditCard';
+import CheckoutFormCreditCard from './CheckoutFormCreditCard';
 import { DoCheckoutArgs, doCheckoutArgsSchema } from './CheckoutUtils';
+import FormItem from '@src/forms/FormItem';
+import Input from '@src/forms/Input';
 
 const cardExpiryLimit = (val: string, max: string) => {
   if (val.length === 1 && val[0] > max[0]) {
@@ -48,54 +47,51 @@ interface CheckoutFormProps {
 
 function CheckoutForm({ error, onSubmit }: CheckoutFormProps) {
   const resolver = useYupValidationResolver(doCheckoutArgsSchema);
-  const { control, formState, handleSubmit } = useForm<DoCheckoutArgs>({
+  const { register, formState, handleSubmit, watch } = useForm<DoCheckoutArgs>({
     resolver,
     defaultValues,
   });
 
-  const { focusedField, focusHandlers } =
-    useFocusedField<CheckoutFormCreditCardProps['focusedField']>();
+  const { focusedField, focusHandlers } = useFocusedField<DoCheckoutArgs>();
+
+  const values = watch();
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <div className="mb-4">
-        <CheckoutFormCreditCard control={control} focusedField={focusedField} />
+        <CheckoutFormCreditCard values={values} focusedField={focusedField} />
       </div>
       <ErrorMessage error={error} />
-      <Input
-        label="Name Surname"
-        name="nameSurname"
-        control={control}
-        placeholder="Name Surname"
-        {...focusHandlers('name')}
-      />
-      <NumberInput
-        label="Card Number"
-        name="cardNumber"
-        control={control}
-        format="#### #### #### ####"
-        mask="_"
-        placeholder="0000 0000 0000 0000"
-        {...focusHandlers('number')}
-      />
-      <div className="flex justify-between gap-4">
-        <NumberInput
-          label="Expiration Date"
-          name="expiry"
-          control={control}
-          format={cardExpiryFormat}
-          placeholder="MM/YY"
-          {...focusHandlers('expiry')}
+      <FormItem label="Name Surname" error={formState.errors.nameSurname}>
+        <Input
+          placeholder="Name Surname"
+          {...focusHandlers(register('nameSurname'))}
         />
+      </FormItem>
+      <FormItem label="Card Number" error={formState.errors.cardNumber}>
         <NumberInput
-          label="CVC"
-          name="cvc"
-          control={control}
+          format="#### #### #### ####"
           mask="_"
-          format="###"
-          placeholder="000"
-          {...focusHandlers('cvc')}
+          placeholder="0000 0000 0000 0000"
+          {...focusHandlers(register('cardNumber'))}
         />
+      </FormItem>
+      <div className="flex justify-between gap-4">
+        <FormItem label="Expiration Date" error={formState.errors.expiry}>
+          <NumberInput
+            format={cardExpiryFormat}
+            placeholder="MM/YY"
+            {...focusHandlers(register('expiry'))}
+          />
+        </FormItem>
+        <FormItem label="CVC" error={formState.errors.cvc}>
+          <NumberInput
+            mask="_"
+            format="###"
+            placeholder="000"
+            {...focusHandlers(register('cvc'))}
+          />
+        </FormItem>
       </div>
       <div className="my-2 flex justify-end">
         <SubmitButton aria-label="Complete Checkout" formState={formState}>

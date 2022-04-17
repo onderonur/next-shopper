@@ -1,6 +1,6 @@
-import { createMockArray } from './CommonUtils';
-import List from './List';
-import ListItem from './ListItem';
+import { createMockArray } from '@src/common/CommonUtils';
+import List from '@src/common/List';
+import ListItem from '@src/common/ListItem';
 import RadioButton from './RadioButton';
 import RadioButtonSkeleton from './RadioButtonSkeleton';
 

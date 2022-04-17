@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useListContext } from './ListContext';
 
-type ListItemProps = React.ComponentProps<typeof motion.li>;
+type ListItemProps = React.ComponentPropsWithoutRef<typeof motion.li>;
 
 function ListItem(props: ListItemProps) {
   const { isAnimated } = useListContext();

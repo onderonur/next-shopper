@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { CheckIcon } from './Icons';
+import { CheckIcon } from '../common/Icons';
 
 interface RadioButtonProps<Value> {
   isChecked: boolean;

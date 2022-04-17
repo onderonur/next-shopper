@@ -1,8 +1,8 @@
-import RadioGroup from '@src/common/RadioGroup';
 import { Maybe } from '@src/common/CommonTypes';
 import { Category } from './CategoriesTypes';
 import { useQuery } from 'react-query';
 import { categoriesAPI } from './categoriesAPI';
+import RadioGroup from '@src/forms/RadioGroup';
 
 interface CategoriesRadioGroupProps {
   value: Maybe<string>;
@@ -13,11 +13,13 @@ function CategoriesRadioGroup({ value, onChange }: CategoriesRadioGroupProps) {
   const { data, isLoading } = useQuery(categoriesAPI.fetchManyCategories());
 
   return (
-    <RadioGroup<Maybe<Category>, Maybe<string>>
+    <RadioGroup<Category, Maybe<string>>
       isLoading={isLoading}
-      options={[undefined, ...(data ?? [])]}
-      getOptionLabel={(option) => (option ? option.name : 'all')}
-      getOptionValue={(option) => option?.name ?? undefined}
+      options={[{ name: 'all', image: '' }, ...(data ?? [])]}
+      getOptionLabel={(option) => option.name}
+      getOptionValue={(option) =>
+        option.name === 'all' ? undefined : option.name
+      }
       value={value}
       onChange={(newValue) => onChange(newValue)}
     />

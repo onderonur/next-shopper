@@ -1,7 +1,7 @@
 import NextLink, { NextLinkProps } from '@src/routing/NextLink';
 import classNames from 'classnames';
 
-export type ButtonProps = React.ComponentProps<'button'> &
+export type ButtonProps = React.ComponentPropsWithoutRef<'button'> &
   Partial<Pick<NextLinkProps, 'href' | 'isExternalUrl'>> & {
     variant?: 'default' | 'primary' | 'secondary' | 'transparent';
     icon?: React.ReactNode;

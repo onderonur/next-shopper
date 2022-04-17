@@ -1,12 +1,7 @@
-type FormProps = React.PropsWithChildren<{}> &
-  Pick<React.ComponentProps<'form'>, 'onSubmit'>;
+type FormProps = React.ComponentPropsWithoutRef<'form'>;
 
-function Form({ children, onSubmit }: FormProps) {
-  return (
-    <form autoComplete="off" onSubmit={onSubmit}>
-      {children}
-    </form>
-  );
+function Form(props: FormProps) {
+  return <form autoComplete="off" {...props} />;
 }
 
 export default Form;

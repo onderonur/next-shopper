@@ -1,5 +1,5 @@
-import RadioGroup from '@src/common/RadioGroup';
 import { Maybe } from '@src/common/CommonTypes';
+import RadioGroup from '@src/forms/RadioGroup';
 import { ProductSorting } from './ProductsTypes';
 import { productSorting } from './ProductsUtils';
 

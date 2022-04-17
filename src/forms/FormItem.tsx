@@ -1,9 +1,10 @@
-import { UseControllerReturn } from 'react-hook-form';
+import { Maybe } from '@src/common/CommonTypes';
+import { FieldError } from 'react-hook-form';
 import FormItemLabel from './FormItemLabel';
 
 type FormItemProps = React.PropsWithChildren<{
   label: string;
-  error?: UseControllerReturn['fieldState']['error'];
+  error?: Maybe<FieldError>;
 }>;
 
 function FormItem({ label, error, children }: FormItemProps) {

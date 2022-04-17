@@ -1,40 +1,17 @@
-import { Control, FieldPath, useController } from 'react-hook-form';
-import FormItem from './FormItem';
+import React from 'react';
 
-type InputProps<FieldValues> = React.ComponentProps<'input'> & {
-  label: string;
-  name: FieldPath<FieldValues>;
-  control: Control<FieldValues>;
-};
+export type InputProps = React.ComponentPropsWithRef<'input'>;
 
-function Input<FieldValues>({
-  label,
-  name,
-  control,
-  onBlur,
-  ...rest
-}: InputProps<FieldValues>) {
-  // https://react-hook-form.com/api/usecontroller
-  const {
-    field,
-    fieldState: { error },
-  } = useController<FieldValues>({ name, control });
-
-  return (
-    <FormItem label={label} error={error}>
+const Input = React.forwardRef<React.ComponentRef<'input'>, InputProps>(
+  function Input(props, ref) {
+    return (
       <input
-        {...rest}
-        {...field}
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        value={field.value as any}
-        onBlur={(e) => {
-          onBlur?.(e);
-          field.onBlur();
-        }}
+        ref={ref}
+        {...props}
         className="border-2 rounded-md px-2 py-1 text-lg w-full"
       />
-    </FormItem>
-  );
-}
+    );
+  },
+);
 
 export default Input;

@@ -1,8 +1,8 @@
 import { httpClient } from '@src/http-client/httpClient';
-import { DoCheckoutArgs } from './CheckoutUtils';
+import { CompleteCheckoutArgs } from './CheckoutUtils';
 
 export const checkoutAPI = {
-  doCheckout: async (args: DoCheckoutArgs) => {
+  completeCheckout: async (args: CompleteCheckoutArgs) => {
     await httpClient.post(`/api/checkout`, args);
   },
 };

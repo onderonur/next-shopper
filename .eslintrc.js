@@ -24,12 +24,12 @@ module.exports = {
     curly: 'warn',
     'no-console': 'warn',
     'no-alert': 'warn',
-    'no-shadow': 'warn',
     'prefer-destructuring': 'warn',
     'prefer-const': 'warn',
     'object-shorthand': 'warn',
     curly: 'warn',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/ban-types': 'off',
+    '@typescript-eslint/no-shadow': 'warn',
   },
 };

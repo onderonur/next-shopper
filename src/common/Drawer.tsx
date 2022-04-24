@@ -56,7 +56,7 @@ function Drawer({
               }
             }}
           >
-            <div className="p-4 h-full">
+            <div className="p-4 h-full overflow-auto">
               <div className="relative h-full">{children}</div>
             </div>
           </Section>

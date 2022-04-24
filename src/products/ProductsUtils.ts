@@ -1,4 +1,53 @@
-export const productSorting = {
-  priceAsc: { id: 'price-asc', name: 'Price low to high' },
-  priceDesc: { id: 'price-desc', name: 'Price high to low' },
-};
+import { Maybe } from '@src/common/CommonTypes';
+import { ProductFilterSelectedOption } from './ProductsTypes';
+
+export enum ProductSorting {
+  PRICE_ASC = 'price-asc',
+  PRICE_DESC = 'price-desc',
+}
+
+export enum ProductFilterKey {
+  SORTING = 'sorting',
+  CATEGORIES = 'categories',
+  PRICE_RANGES = 'priceRanges',
+}
+
+function getOneSelectedOptionValue(
+  filterKey: ProductFilterKey,
+  selectedOptions: Maybe<ProductFilterSelectedOption[]>,
+) {
+  return selectedOptions?.find((option) => option.filterKey === filterKey)
+    ?.value;
+}
+
+function getManySelectedOptionValues(
+  filterKey: ProductFilterKey,
+  selectedOptions: Maybe<ProductFilterSelectedOption[]>,
+) {
+  return (
+    selectedOptions
+      ?.filter((option) => option.filterKey === filterKey)
+      .map((option) => option.value) ?? []
+  );
+}
+
+export function getValuesOfSelectedOptions(
+  selectedOptions: Maybe<ProductFilterSelectedOption[]>,
+) {
+  const values = {
+    [ProductFilterKey.SORTING]: getOneSelectedOptionValue(
+      ProductFilterKey.SORTING,
+      selectedOptions,
+    ),
+    [ProductFilterKey.CATEGORIES]: getManySelectedOptionValues(
+      ProductFilterKey.CATEGORIES,
+      selectedOptions,
+    ),
+    [ProductFilterKey.PRICE_RANGES]: getManySelectedOptionValues(
+      ProductFilterKey.PRICE_RANGES,
+      selectedOptions,
+    ),
+  };
+
+  return values;
+}

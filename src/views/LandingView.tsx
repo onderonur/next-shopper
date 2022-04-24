@@ -30,7 +30,7 @@ function HomeView() {
           categories?.length
             ? categories.map((category) => ({
                 url: category.image,
-                alt: category.name,
+                alt: category.title,
               }))
             : undefined
         }
@@ -53,13 +53,13 @@ function HomeView() {
                     })
                   : categories?.map((category) => {
                       return (
-                        <ListItem key={category.name}>
+                        <ListItem key={category.value}>
                           <ImageLink
                             href={routes.search({
-                              query: { category: category.name },
+                              query: { categories: [category.value] },
                             })}
                             imageSrc={category.image}
-                            title={category.name}
+                            title={category.title}
                           />
                         </ListItem>
                       );

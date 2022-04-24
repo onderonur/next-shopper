@@ -1,20 +1,19 @@
-import { Maybe } from '@src/common/CommonTypes';
-import { useRouter } from 'next/dist/client/router';
+import { useRouter } from 'next/router';
 import { useCallback } from 'react';
 import { parseRouteParams, pruneQueryParams } from './RoutingUtils';
-import { ParsedUrlQuery } from 'querystring';
 
-export const useRouteParams = <
-  P extends Maybe<{}>,
-  Q extends Maybe<ParsedUrlQuery> = {},
->() => {
+export const useRouteParams = <RouteParams>() => {
   const router = useRouter();
 
   const setQueryParams = useCallback(
-    (args: Partial<Q>) => {
-      router.push({
-        query: pruneQueryParams(args),
-      });
+    (args: RouteParams) => {
+      router.push(
+        {
+          query: pruneQueryParams(args),
+        },
+        undefined,
+        { shallow: true },
+      );
     },
     [router],
   );
@@ -24,7 +23,7 @@ export const useRouteParams = <
     // without their route parameters provided, i.e query will be an empty object ({}).
     // https://nextjs.org/docs/routing/dynamic-routes#caveats
     isReady: router.isReady,
-    routeParams: parseRouteParams<P & Q>(router.query),
+    routeParams: parseRouteParams<RouteParams>(router.query),
     setQueryParams,
   };
 };

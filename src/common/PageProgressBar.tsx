@@ -1,5 +1,5 @@
 import { useTheme } from '@src/styling/ThemeProvider';
-import { Router } from 'next/dist/client/router';
+import { Router } from 'next/router';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 

@@ -1,7 +1,7 @@
-import { GetManyProductsArgs } from '@src/products/productsService';
 import { AnyFunction, Id } from '@src/common/CommonTypes';
 import { pruneQueryParams } from './RoutingUtils';
 import { ParsedUrlQuery } from 'querystring';
+import { FilterProductsArgs } from '@src/products/ProductsTypes';
 
 interface CreateRouteArgs {
   params?: unknown;
@@ -34,13 +34,14 @@ function createRoute<RouteArgs extends CreateRouteArgs>(
   };
 }
 
-type RouteParams<T extends AnyFunction> = NonNullable<Parameters<T>[0]>;
-export type PathParams<T extends AnyFunction> = RouteParams<T>['params'];
-export type QueryParams<T extends AnyFunction> = RouteParams<T>['query'];
+type RouteArgs<T extends AnyFunction> = NonNullable<Parameters<T>[0]>;
+export type PathParams<T extends AnyFunction> = RouteArgs<T>['params'];
+export type QueryParams<T extends AnyFunction> = RouteArgs<T>['query'];
+export type RouteParams<T extends AnyFunction> = PathParams<T> & QueryParams<T>;
 
 export const routes = {
   home: createRoute(() => '/'),
-  search: createRoute<{ query?: GetManyProductsArgs }>(() => '/search'),
+  search: createRoute<{ query?: FilterProductsArgs }>(() => '/search'),
   product: createRoute<{ params: { productId: Id } }>(
     (params) => `/products/${params.productId}`,
   ),

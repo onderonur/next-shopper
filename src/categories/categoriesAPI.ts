@@ -11,8 +11,8 @@ export const categoriesAPI = {
       if (IS_SERVER) {
         return services.categoriesService.getManyCategories();
       }
-      const response = await httpClient.get<Category[]>('/api/categories');
-      return response.data;
+      const { data } = await httpClient.get<Category[]>('/api/categories');
+      return data;
     },
   }),
 };

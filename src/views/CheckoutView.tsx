@@ -6,7 +6,7 @@ import ClearCartButton from '@src/cart/ClearCartButton';
 import { checkoutAPI } from '@src/checkout/checkoutAPI';
 import CheckoutForm from '@src/checkout/CheckoutForm';
 import CheckoutSuccessMessage from '@src/checkout/CheckoutSuccessMessage';
-import { DoCheckoutArgs } from '@src/checkout/CheckoutUtils';
+import { CompleteCheckoutArgs } from '@src/checkout/CheckoutUtils';
 import Container from '@src/common/Container';
 import PageHeader from '@src/common/PageHeader';
 import Panel from '@src/common/Panel';
@@ -19,24 +19,26 @@ import { useMutation } from 'react-query';
 function CheckoutView() {
   const { cartItems, clearCart } = useCartContext();
 
-  const doCheckoutMutation = useMutation<void, ApiRequestError, DoCheckoutArgs>(
-    {
-      mutationFn: checkoutAPI.doCheckout,
-    },
-  );
+  const completeCheckoutMutation = useMutation<
+    void,
+    ApiRequestError,
+    CompleteCheckoutArgs
+  >({
+    mutationFn: checkoutAPI.completeCheckout,
+  });
 
   useEffect(() => {
-    if (doCheckoutMutation.isSuccess) {
+    if (completeCheckoutMutation.isSuccess) {
       clearCart();
     }
-  }, [clearCart, doCheckoutMutation.isSuccess]);
+  }, [clearCart, completeCheckoutMutation.isSuccess]);
 
   return (
     <>
       <BaseSeo title="Checkout" />
       <PageHeader title="Checkout" />
       <Container maxWidth="sm" className="flex flex-col justify-center gap-4">
-        {doCheckoutMutation.isSuccess ? (
+        {completeCheckoutMutation.isSuccess ? (
           <Section title="Checkout Success" titleAs="h1" hideTitle>
             <Panel>
               <CheckoutSuccessMessage />
@@ -54,9 +56,9 @@ function CheckoutView() {
           <Section title="Payment Method" titleAs="h2" hideTitle>
             <Panel title="Payment Method">
               <CheckoutForm
-                error={doCheckoutMutation.error}
+                error={completeCheckoutMutation.error}
                 onSubmit={async (values) => {
-                  await doCheckoutMutation.mutateAsync(values);
+                  await completeCheckoutMutation.mutateAsync(values);
                 }}
               />
             </Panel>

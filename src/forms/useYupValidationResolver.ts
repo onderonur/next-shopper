@@ -1,38 +1,41 @@
 import { useCallback } from 'react';
 import * as Yup from 'yup';
 import { FieldError, FieldErrors } from 'react-hook-form';
+import { goTry } from 'go-try';
 
 // https://react-hook-form.com/advanced-usage/#CustomHookwithResolver
 export const useYupValidationResolver = (validationSchema: Yup.AnySchema) =>
   useCallback(
-    async (data: unknown) => {
-      try {
-        const values = await validationSchema.validate(data, {
+    async (values: unknown) => {
+      const [error, data] = await goTry(() =>
+        validationSchema.validate(values, {
           abortEarly: false,
-        });
+        }),
+      );
 
-        return {
-          values,
-          errors: {},
-        };
-      } catch (errors) {
+      if (error) {
         return {
           values: {},
-          errors: (errors as Yup.ValidationError).inner.reduce(
+          errors: (error as Yup.ValidationError).inner.reduce(
             (allErrors: FieldErrors, yupError: Yup.ValidationError) => {
-              const error: FieldError = {
+              const fieldError: FieldError = {
                 type: yupError.type ?? 'validation',
                 message: yupError.message,
               };
               return {
                 ...allErrors,
-                [yupError.path as string]: error,
+                [yupError.path as string]: fieldError,
               };
             },
             {},
           ),
         };
       }
+
+      return {
+        values: data,
+        errors: {},
+      };
     },
     [validationSchema],
   );

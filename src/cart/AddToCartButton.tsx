@@ -1,6 +1,5 @@
 import Button from '@src/common/Button';
 import { useCartContext } from './CartContext';
-import classNames from 'classnames';
 import { Product } from '@src/products/ProductsTypes';
 
 interface AddToCartButtonProps {
@@ -15,7 +14,8 @@ function AddToCartButton({ className, product }: AddToCartButtonProps) {
     <Button
       aria-label="Add to Cart"
       variant="primary"
-      className={classNames('w-full', className)}
+      block
+      className={className}
       onClick={() => addProduct(product)}
     >
       Add to Cart

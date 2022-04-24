@@ -37,10 +37,12 @@ function ProductCard({ product }: ProductCardProps) {
           {product.title}
         </h2>
         <NextLink
-          href={routes.search({ query: { category: product.category } })}
+          href={routes.search({
+            query: { categories: [product.category.value] },
+          })}
           className="mt-2"
         >
-          <Chip variant="secondary">{product.category}</Chip>
+          <Chip variant="secondary">{product.category.title}</Chip>
         </NextLink>
       </div>
       <div className="flex-grow" />

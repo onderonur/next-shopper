@@ -25,8 +25,8 @@ function ProductDetail({ product }: ProductDetailProps) {
         />
       </div>
       <div className="flex-1 flex flex-col items-center gap-4">
-        <div className="text-center">
-          <h1 className="font-bold text-2xl mb-1">{product.title}</h1>
+        <div className="text-center flex flex-col gap-2">
+          <h1 className="font-bold text-2xl">{product.title}</h1>
           <div className="text-4xl">
             <Price className="text-primary-dark" value={product.price} />
           </div>
@@ -34,9 +34,11 @@ function ProductDetail({ product }: ProductDetailProps) {
         <AddToCartButton className="max-w-xs" product={product} />
         <p>{product.description}</p>
         <NextLink
-          href={routes.search({ query: { category: product.category } })}
+          href={routes.search({
+            query: { categories: [product.category.value] },
+          })}
         >
-          <Chip variant="secondary">{product.category}</Chip>
+          <Chip variant="secondary">{product.category.title}</Chip>
         </NextLink>
       </div>
     </div>

@@ -2,7 +2,14 @@ import { KeyOf } from '@src/common/CommonTypes';
 import { isNil } from '@src/common/CommonUtils';
 import { ParsedUrlQuery } from 'querystring';
 
-export const parseRouteParams = <RouteParams>(query: ParsedUrlQuery) => {
+export type ParsedRouteParams<RouteParams> = {
+  get: (key: KeyOf<RouteParams>) => string | undefined;
+  getMany: (key: KeyOf<RouteParams>) => string[];
+};
+
+export const parseRouteParams = <RouteParams>(
+  query: ParsedUrlQuery,
+): ParsedRouteParams<RouteParams> => {
   const get = (key: KeyOf<RouteParams>): string | undefined => {
     const value = query[key as string];
     if (Array.isArray(value)) {
@@ -11,12 +18,12 @@ export const parseRouteParams = <RouteParams>(query: ParsedUrlQuery) => {
     return value;
   };
 
-  const getMany = (key: KeyOf<RouteParams>): string[] | undefined => {
+  const getMany = (key: KeyOf<RouteParams>): string[] => {
     const value = query[key as string];
     if (Array.isArray(value)) {
       return value;
     }
-    return typeof value === 'string' ? [value] : value;
+    return typeof value === 'string' ? [value] : [];
   };
 
   return { get, getMany };

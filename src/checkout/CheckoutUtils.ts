@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 import cardValidator from 'card-validator';
 
-export const doCheckoutArgsSchema = Yup.object({
+export const completeCheckoutArgsSchema = Yup.object({
   nameSurname: Yup.string()
     .required()
     .test(
@@ -40,4 +40,6 @@ export const doCheckoutArgsSchema = Yup.object({
     .default(''),
 });
 
-export type DoCheckoutArgs = Yup.TypeOf<typeof doCheckoutArgsSchema>;
+export type CompleteCheckoutArgs = Yup.TypeOf<
+  typeof completeCheckoutArgsSchema
+>;

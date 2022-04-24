@@ -17,6 +17,7 @@ function Container({ maxWidth, className, children }: ContainerProps) {
           'max-w-screen-2xl': maxWidth === '2xl',
         },
         'mx-auto',
+        'w-full',
         className,
       )}
     >

@@ -3,7 +3,7 @@ import { dehydrate, DehydratedState } from 'react-query';
 import { createQueryClient } from '@src/query-client/QueryClientUtils';
 import ErrorMessage from '@src/error-handling/ErrorMessage';
 import ProductDetail from '@src/products/ProductDetail';
-import { parseRouteParams } from '@src/routing/RoutingUtils';
+import { ParsedRouteParams, parseRouteParams } from '@src/routing/RoutingUtils';
 import AppLayout from '@src/app-layout/AppLayout';
 import Loading from '@src/common/Loading';
 import { useRouteParams } from '@src/routing/useRouteParams';
@@ -11,11 +11,15 @@ import BaseSeo from '@src/seo/BaseSeo';
 import Panel from '@src/common/Panel';
 import React from 'react';
 import PageHeader from '@src/common/PageHeader';
-import { PathParams, routes } from '@src/routing/routes';
+import { RouteParams, routes } from '@src/routing/routes';
 import { useQuery } from 'react-query';
 import { productsAPI } from '@src/products/productsAPI';
 
-type ProductViewPathParams = PathParams<typeof routes['product']>;
+type ProductViewRouteParams = RouteParams<typeof routes['product']>;
+
+function getProductId(routeParams: ParsedRouteParams<ProductViewRouteParams>) {
+  return Number(routeParams.get('productId'));
+}
 
 interface ProductViewProps {
   // eslint-disable-next-line react/no-unused-prop-types
@@ -23,8 +27,8 @@ interface ProductViewProps {
 }
 
 function ProductView() {
-  const { routeParams } = useRouteParams<ProductViewPathParams>();
-  const productId = Number(routeParams.get('productId'));
+  const { routeParams } = useRouteParams<ProductViewRouteParams>();
+  const productId = getProductId(routeParams);
   const {
     data: product,
     isLoading,
@@ -67,9 +71,7 @@ export const getServerSideProps: GetServerSideProps<ProductViewProps> = async (
   // Using hydration:
   // https://react-query.tanstack.com/guides/ssr#using-hydration
   const queryClient = createQueryClient();
-  const productId = Number(
-    parseRouteParams<ProductViewPathParams>(ctx.query).get('productId'),
-  );
+  const productId = getProductId(parseRouteParams(ctx.query));
   await queryClient.prefetchQuery(
     productsAPI.fetchOneProduct({
       args: { productId },

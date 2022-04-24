@@ -8,22 +8,29 @@ import {
   MethodName,
 } from './ApiTypes';
 import { services } from './ApiServices';
+import { goTry } from 'go-try';
 
 const handleErrors =
   (fn: NextApiHandler): NextApiHandler =>
   async (req, res) => {
-    try {
-      return await fn(req, res);
-    } catch (err) {
+    const [error, data] = await goTry(async () => {
+      const response = await fn(req, res);
+      return response;
+    });
+
+    if (error) {
       let statusCode = StatusCodes.INTERNAL_SERVER_ERROR;
       let message = 'Something went wrong';
-      if (isHttpError(err)) {
-        statusCode = err.statusCode ?? statusCode;
-        message = err.message ?? message;
+      if (isHttpError(error)) {
+        statusCode = error.statusCode ?? statusCode;
+        message = error.message ?? message;
       }
+
       const errorResponse: ApiErrorResponse = { statusCode, message };
       return res.status(errorResponse.statusCode).json(errorResponse);
     }
+
+    return data;
   };
 
 export const createHandler =

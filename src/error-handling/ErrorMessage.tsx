@@ -12,8 +12,8 @@ function ErrorMessage({ children, error }: ErrorMessageProps) {
   }
 
   let { message } = error ?? {};
-  if (axios.isAxiosError(error)) {
-    message = error.response?.data.message;
+  if (axios.isAxiosError(error) && error.response) {
+    ({ message } = error.response.data as ApiRequestError);
   }
 
   if (!message) {

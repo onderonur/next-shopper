@@ -61,9 +61,6 @@ module.exports = {
           thumbHover: gray[400],
         },
       },
-      gridTemplateColumns: {
-        'autofill-44': `repeat(auto-fill, minmax(${44 * 0.25}rem, 1fr))`,
-      },
       spacing: {
         'app-header': `${20 * 0.25}rem`,
       },

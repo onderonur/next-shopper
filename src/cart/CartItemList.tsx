@@ -17,9 +17,9 @@ function CartItemList({ className }: CartItemListProps) {
       className={className}
       isAnimated
       emptyMessage={
-        <div className="flex flex-col justify-center items-center text-secondary-main">
+        <div className="flex flex-col gap-2 justify-center items-center text-secondary-main">
           <CartIcon size={80} />
-          <div className="text-xl font-semibold mt-2">You cart is empty</div>
+          <div className="text-xl font-semibold">Your cart is empty</div>
         </div>
       }
     >

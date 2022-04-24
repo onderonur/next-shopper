@@ -70,9 +70,12 @@ function Backdrop<Focusable extends HTMLElement>({
       {/* Disabling body scroll when the backdrop is visible */}
       <style jsx global>
         {`
-          body {
-            overflow: ${isOpen ? 'hidden' : 'auto'};
-          }
+          ${isOpen &&
+          `
+            body {
+              overflow: hidden;
+            }          
+          `}
         `}
       </style>
     </>

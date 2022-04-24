@@ -1,5 +1,5 @@
 import { Maybe } from '@src/common/CommonTypes';
-import { RouterEvent, useRouter } from 'next/dist/client/router';
+import { RouterEvent, useRouter } from 'next/router';
 import { useEffect } from 'react';
 
 export const useRouterEvent = (name: RouterEvent, cb: Maybe<VoidFunction>) => {

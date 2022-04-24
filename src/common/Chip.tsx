@@ -1,17 +1,29 @@
 import classNames from 'classnames';
+import Button, { ButtonProps } from './Button';
+import { CloseIcon } from './Icons';
 
 type ChipProps = React.PropsWithChildren<{
   className?: string;
-  variant: 'primary' | 'secondary';
+  textAlign?: 'center' | 'left';
+  variant?: 'primary' | 'secondary';
   filled?: boolean;
+  closeButtonProps?: ButtonProps;
 }>;
 
-function Chip({ className, variant, filled, children }: ChipProps) {
+function Chip({
+  className,
+  textAlign,
+  variant,
+  filled,
+  closeButtonProps,
+  children,
+}: ChipProps) {
   return (
     <div
       className={classNames(
-        'flex justify-center items-center text-center',
+        'flex justify-center items-center gap-1 select-none',
         'border-2 px-2 py-1 rounded-md text-sm',
+        textAlign === 'left' ? 'text-left' : 'text-center',
         variant === 'primary' && [
           'border-primary-main text-primary-dark',
           filled && 'bg-primary-lighter',
@@ -23,7 +35,15 @@ function Chip({ className, variant, filled, children }: ChipProps) {
         className,
       )}
     >
-      {children}
+      <span className="flex-1">{children}</span>
+      {closeButtonProps && (
+        <Button
+          {...closeButtonProps}
+          className={classNames(closeButtonProps.className, 'h-6 w-6')}
+          variant="transparent"
+          icon={<CloseIcon />}
+        />
+      )}
     </div>
   );
 }

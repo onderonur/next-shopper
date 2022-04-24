@@ -1,15 +1,18 @@
 import 'react-credit-cards/es/styles-compiled.css';
 import CreditCards, { Focused } from 'react-credit-cards';
 import { Maybe } from '@src/common/CommonTypes';
-import { DoCheckoutArgs } from './CheckoutUtils';
+import { CompleteCheckoutArgs } from './CheckoutUtils';
 import { FieldPath } from 'react-hook-form';
 
-export interface CheckoutFormCreditCardProps {
-  values: DoCheckoutArgs;
-  focusedField: Maybe<FieldPath<DoCheckoutArgs>>;
+interface CheckoutFormCreditCardProps {
+  values: CompleteCheckoutArgs;
+  focusedField: Maybe<FieldPath<CompleteCheckoutArgs>>;
 }
 
-const focusedFieldByFieldPath: Record<FieldPath<DoCheckoutArgs>, Focused> = {
+const focusedFieldByFieldPath: Record<
+  FieldPath<CompleteCheckoutArgs>,
+  Focused
+> = {
   nameSurname: 'name',
   cardNumber: 'number',
   expiry: 'expiry',
@@ -22,10 +25,10 @@ function CheckoutFormCreditCard({
 }: CheckoutFormCreditCardProps) {
   return (
     <CreditCards
-      name={values.nameSurname ?? ''}
-      number={values.cardNumber?.split(' ').join('') ?? ''}
-      expiry={values.expiry ?? ''}
-      cvc={values.cvc ?? ''}
+      name={values.nameSurname}
+      number={values.cardNumber.split(' ').join('')}
+      expiry={values.expiry}
+      cvc={values.cvc}
       focused={focusedField ? focusedFieldByFieldPath[focusedField] : undefined}
     />
   );

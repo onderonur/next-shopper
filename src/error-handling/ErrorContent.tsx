@@ -8,8 +8,8 @@ export interface ErrorContentProps {
 
 const ErrorContent = ({ statusCode, message }: ErrorContentProps) => {
   return (
-    <div className="absolute inset-0 flex flex-col justify-center items-center">
-      <div className="mb-4 flex items-center">
+    <div className="absolute inset-0 flex flex-col gap-4 justify-center items-center">
+      <div className="flex items-center">
         <span className="border-r-2 p-4 text-3xl font-bold text-text-lighter">
           {statusCode}
         </span>

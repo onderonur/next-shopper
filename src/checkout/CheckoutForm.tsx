@@ -9,7 +9,10 @@ import { useFocusedField } from '@src/forms/useFocusedField';
 import { ApiRequestError } from '@src/error-handling/ErrorHandlingTypes';
 import Form from '@src/forms/Form';
 import CheckoutFormCreditCard from './CheckoutFormCreditCard';
-import { DoCheckoutArgs, doCheckoutArgsSchema } from './CheckoutUtils';
+import {
+  CompleteCheckoutArgs,
+  completeCheckoutArgsSchema,
+} from './CheckoutUtils';
 import FormItem from '@src/forms/FormItem';
 import Input from '@src/forms/Input';
 
@@ -38,21 +41,23 @@ const cardExpiryFormat = (val: string) => {
   return month + (year.length ? '/' + year : '');
 };
 
-const defaultValues = doCheckoutArgsSchema.getDefault();
+const defaultValues = completeCheckoutArgsSchema.getDefault();
 
 interface CheckoutFormProps {
   error: Maybe<ApiRequestError>;
-  onSubmit: SubmitHandler<DoCheckoutArgs>;
+  onSubmit: SubmitHandler<CompleteCheckoutArgs>;
 }
 
 function CheckoutForm({ error, onSubmit }: CheckoutFormProps) {
-  const resolver = useYupValidationResolver(doCheckoutArgsSchema);
-  const { register, formState, handleSubmit, watch } = useForm<DoCheckoutArgs>({
-    resolver,
-    defaultValues,
-  });
+  const resolver = useYupValidationResolver(completeCheckoutArgsSchema);
+  const { register, formState, handleSubmit, watch } =
+    useForm<CompleteCheckoutArgs>({
+      resolver,
+      defaultValues,
+    });
 
-  const { focusedField, focusHandlers } = useFocusedField<DoCheckoutArgs>();
+  const { focusedField, focusHandlers } =
+    useFocusedField<CompleteCheckoutArgs>();
 
   const values = watch();
 

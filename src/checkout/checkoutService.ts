@@ -1,14 +1,20 @@
+import { goTry } from 'go-try';
 import createHttpError from 'http-errors';
-import { DoCheckoutArgs, doCheckoutArgsSchema } from './CheckoutUtils';
+import {
+  CompleteCheckoutArgs,
+  completeCheckoutArgsSchema,
+} from './CheckoutUtils';
 
 export const checkoutService = {
-  doCheckout: async (args: DoCheckoutArgs) => {
-    try {
-      await doCheckoutArgsSchema.validate(args);
-    } catch (err) {
+  completeCheckout: async (args: CompleteCheckoutArgs) => {
+    const [error] = await goTry(() =>
+      completeCheckoutArgsSchema.validate(args),
+    );
+
+    if (error) {
       let errorMessage = 'Invalid input';
-      if (err instanceof Error) {
-        errorMessage = err.message;
+      if (error instanceof Error) {
+        errorMessage = error.message;
       }
       throw new createHttpError.BadRequest(errorMessage);
     }

@@ -4,17 +4,17 @@ import ListItem from '@src/common/ListItem';
 import OptionButton from './OptionButton';
 import OptionGroupSkeleton from './OptionGroupSkeleton';
 
-interface RadioGroupProps<Option> {
+interface CheckboxGroupProps<Option> {
   isLoading?: boolean;
   isDisabled?: boolean;
   options: Maybe<Option[]>;
   getOptionLabel: (option: Option) => React.ReactNode;
   getOptionValue: (option: Option) => string;
-  value: Maybe<string>;
-  onChange: (value: string) => void;
+  value: Maybe<string[]>;
+  onChange: (value: string[]) => void;
 }
 
-function RadioGroup<Option>({
+function CheckboxGroup<Option>({
   isLoading,
   isDisabled,
   options,
@@ -22,26 +22,42 @@ function RadioGroup<Option>({
   onChange,
   getOptionLabel,
   getOptionValue,
-}: RadioGroupProps<Option>) {
+}: CheckboxGroupProps<Option>) {
   if (isLoading) {
     return <OptionGroupSkeleton />;
   }
 
   return (
-    <List role="radiogroup">
+    <List role="group">
+      <ListItem>
+        <OptionButton
+          type="checkbox"
+          isDisabled={isDisabled}
+          isChecked={!value?.length}
+          value={''}
+          label={'All'}
+          onChange={() => {
+            onChange([]);
+          }}
+        />
+      </ListItem>
       {options?.map((option) => {
         const optionValue = getOptionValue(option);
-        const isChecked = value === optionValue;
+        const isChecked = !!value?.includes(optionValue);
         return (
           <ListItem key={optionValue}>
             <OptionButton
-              type="radio"
-              isChecked={isChecked}
+              type="checkbox"
               isDisabled={isDisabled}
+              isChecked={isChecked}
               value={optionValue}
               label={getOptionLabel(option)}
-              onChange={(newValue) => {
-                onChange(newValue);
+              onChange={() => {
+                if (value?.includes(optionValue)) {
+                  onChange(value.filter((item) => item !== optionValue));
+                } else {
+                  onChange(value ? [...value, optionValue] : [optionValue]);
+                }
               }}
             />
           </ListItem>
@@ -51,4 +67,4 @@ function RadioGroup<Option>({
   );
 }
 
-export default RadioGroup;
+export default CheckboxGroup;

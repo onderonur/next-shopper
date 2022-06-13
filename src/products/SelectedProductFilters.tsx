@@ -44,12 +44,7 @@ function SelectedProductFilters({
           );
         })}
         <ListItem>
-          <Button
-            aria-label="Clear Filters"
-            className="text-sm"
-            variant="transparent"
-            onClick={onReset}
-          >
+          <Button className="text-sm" variant="transparent" onClick={onReset}>
             Clear Filters
           </Button>
         </ListItem>

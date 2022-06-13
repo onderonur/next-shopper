@@ -23,15 +23,14 @@ function Drawer({
 }: DrawerProps) {
   return (
     <Backdrop<HTMLDivElement> isOpen={isOpen} onClick={onClose}>
-      {({ focusRef, contentClassName }) => (
+      {({ focusRef }) => (
         <Slide
           from={from}
           isIn={isOpen}
           className={classNames(
-            'h-full w-full max-w-xs fixed',
+            'h-full w-full max-w-xs fixed bg-background-main',
             from === 'left' && 'left-0',
             from === 'right' && 'right-0',
-            contentClassName,
           )}
         >
           <Section

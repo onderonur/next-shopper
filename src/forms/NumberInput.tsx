@@ -2,11 +2,14 @@ import React from 'react';
 import NumberFormat, { NumberFormatPropsBase } from 'react-number-format';
 import Input, { InputProps } from './Input';
 
-type NumberInputProps = Pick<
+export type NumberInputProps = Pick<
   NumberFormatPropsBase<typeof Input>,
   'format' | 'mask' | 'value'
 > &
-  Pick<InputProps, 'placeholder' | 'onFocus' | 'onBlur' | 'onChange' | 'name'>;
+  Pick<
+    InputProps,
+    'id' | 'placeholder' | 'onFocus' | 'onBlur' | 'onChange' | 'name'
+  >;
 
 const NumberInput = React.forwardRef<
   React.ComponentRef<typeof Input>,

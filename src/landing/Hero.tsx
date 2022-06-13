@@ -18,7 +18,6 @@ function Hero() {
           <p className="text-primary-dark font-semibold">{APP_DESCRIPTION}</p>
           <Button
             className="mt-1"
-            aria-label="Check the source code on GitHub"
             variant="transparent"
             href={APP_REPOSITORY_URL}
             isExternalUrl
@@ -29,9 +28,7 @@ function Hero() {
           </Button>
         </div>
         <hr className="w-24 border-t-4 border-secondary-lighter" />
-        <Button aria-label="Browse Store" href={routes.search()}>
-          Browse Store
-        </Button>
+        <Button href={routes.search()}>Browse Store</Button>
       </div>
     </div>
   );

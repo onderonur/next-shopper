@@ -1,12 +1,12 @@
 import Button from '@src/common/Button';
 import { routes } from '@src/routing/routes';
-import { useCartContext } from './CartContext';
 import CartItemList from './CartItemList';
+import { cartSelectors, useCartStore } from './cartStore';
 import CartTotalPrice from './CartTotalPrice';
 import ClearCartButton from './ClearCartButton';
 
 function CartDrawerContent() {
-  const { cartItems } = useCartContext();
+  const cartItems = useCartStore(cartSelectors.cartItems);
 
   return (
     <div className="absolute inset-0 flex flex-col">
@@ -14,12 +14,7 @@ function CartDrawerContent() {
       <CartItemList className="flex-grow overflow-y-auto" />
       <CartTotalPrice />
       {cartItems.length > 0 && (
-        <Button
-          aria-label="Proceed to Checkout"
-          href={routes.checkout()}
-          variant="primary"
-          className="my-2"
-        >
+        <Button href={routes.checkout()} variant="primary" className="my-2">
           Proceed to Checkout
         </Button>
       )}

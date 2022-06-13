@@ -1,6 +1,4 @@
 import { Maybe } from '@src/common/CommonTypes';
-import List from '@src/common/List';
-import ListItem from '@src/common/ListItem';
 import OptionButton from './OptionButton';
 import OptionGroupSkeleton from './OptionGroupSkeleton';
 
@@ -28,26 +26,25 @@ function RadioGroup<Option>({
   }
 
   return (
-    <List role="radiogroup">
+    <div role="radiogroup">
       {options?.map((option) => {
         const optionValue = getOptionValue(option);
         const isChecked = value === optionValue;
         return (
-          <ListItem key={optionValue}>
-            <OptionButton
-              type="radio"
-              isChecked={isChecked}
-              isDisabled={isDisabled}
-              value={optionValue}
-              label={getOptionLabel(option)}
-              onChange={(newValue) => {
-                onChange(newValue);
-              }}
-            />
-          </ListItem>
+          <OptionButton
+            key={optionValue}
+            type="radio"
+            isChecked={isChecked}
+            isDisabled={isDisabled}
+            value={optionValue}
+            label={getOptionLabel(option)}
+            onChange={(newValue) => {
+              onChange(newValue);
+            }}
+          />
         );
       })}
-    </List>
+    </div>
   );
 }
 

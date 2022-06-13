@@ -1,16 +1,16 @@
 import Price from '@src/common/Price';
-import { useCartContext } from './CartContext';
 import CartItemActionButtons from './CartItemActionButtons';
 import List from '@src/common/List';
 import ListItem from '@src/common/ListItem';
 import { CartIcon } from '@src/common/Icons';
+import { cartSelectors, useCartStore } from './cartStore';
 
 interface CartItemListProps {
   className?: string;
 }
 
 function CartItemList({ className }: CartItemListProps) {
-  const { cartItems } = useCartContext();
+  const cartItems = useCartStore(cartSelectors.cartItems);
 
   return (
     <List

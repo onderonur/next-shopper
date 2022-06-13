@@ -1,10 +1,8 @@
-type FormItemLabelProps = React.PropsWithChildren<{}>;
+type FormItemLabelProps = React.ComponentPropsWithoutRef<'label'>;
 
-function FormItemLabel({ children }: FormItemLabelProps) {
+function FormItemLabel(props: FormItemLabelProps) {
   return (
-    <label className="text-text-light font-semibold text-sm block">
-      {children}
-    </label>
+    <label className="text-text-light font-semibold text-sm block" {...props} />
   );
 }
 

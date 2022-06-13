@@ -32,10 +32,7 @@ type BackdropProps<Focusable extends HTMLElement> = Pick<
 > & {
   className?: string;
   isOpen: Maybe<boolean>;
-  children: (args: {
-    focusRef: React.RefObject<Focusable>;
-    contentClassName: string;
-  }) => React.ReactNode;
+  children: (args: { focusRef: React.RefObject<Focusable> }) => React.ReactNode;
 };
 
 function Backdrop<Focusable extends HTMLElement>({
@@ -56,14 +53,16 @@ function Backdrop<Focusable extends HTMLElement>({
   return (
     <>
       <FadeIn isIn={!!isOpen} className={'fixed z-10'}>
-        <div className={classNames('fixed inset-0', className)}>
-          <div
-            className="bg-gray-700 opacity-70 absolute inset-0"
-            onClick={onClick}
-          />
+        <div
+          className={classNames('fixed inset-0 bg-gray-700/70', className)}
+          onClick={(e) =>
+            // Ignoring click events of children of Backdrop.
+            // Just clicking Backdrop will work here.
+            e.currentTarget === e.target && onClick?.(e)
+          }
+        >
           {children({
             focusRef,
-            contentClassName: 'fixed bg-background-main focus:outline-none',
           })}
         </div>
       </FadeIn>

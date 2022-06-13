@@ -15,31 +15,8 @@ import {
 } from './CheckoutUtils';
 import FormItem from '@src/forms/FormItem';
 import Input from '@src/forms/Input';
-
-const cardExpiryLimit = (val: string, max: string) => {
-  if (val.length === 1 && val[0] > max[0]) {
-    val = '0' + val;
-  }
-
-  if (val.length === 2) {
-    if (Number(val) === 0) {
-      val = '01';
-
-      //this can happen when user paste number
-    } else if (val > max) {
-      val = max;
-    }
-  }
-
-  return val;
-};
-
-const cardExpiryFormat = (val: string) => {
-  const month = cardExpiryLimit(val.substring(0, 2), '12');
-  const year = val.substring(2, 4);
-
-  return month + (year.length ? '/' + year : '');
-};
+import FormItemLabel from '@src/forms/FormItemLabel';
+import CardExpiryInput from './CardExpiryInput';
 
 const defaultValues = completeCheckoutArgsSchema.getDefault();
 
@@ -67,14 +44,18 @@ function CheckoutForm({ error, onSubmit }: CheckoutFormProps) {
         <CheckoutFormCreditCard values={values} focusedField={focusedField} />
       </div>
       <ErrorMessage error={error} />
-      <FormItem label="Name Surname" error={formState.errors.nameSurname}>
+      <FormItem error={formState.errors.nameSurname}>
+        <FormItemLabel htmlFor="nameSurname">Name Surname</FormItemLabel>
         <Input
+          id="nameSurname"
           placeholder="Name Surname"
           {...focusHandlers(register('nameSurname'))}
         />
       </FormItem>
-      <FormItem label="Card Number" error={formState.errors.cardNumber}>
+      <FormItem error={formState.errors.cardNumber}>
+        <FormItemLabel htmlFor="cardNumber">Card Number</FormItemLabel>
         <NumberInput
+          id="cardNumber"
           format="#### #### #### ####"
           mask="_"
           placeholder="0000 0000 0000 0000"
@@ -82,15 +63,14 @@ function CheckoutForm({ error, onSubmit }: CheckoutFormProps) {
         />
       </FormItem>
       <div className="flex justify-between gap-4">
-        <FormItem label="Expiration Date" error={formState.errors.expiry}>
-          <NumberInput
-            format={cardExpiryFormat}
-            placeholder="MM/YY"
-            {...focusHandlers(register('expiry'))}
-          />
+        <FormItem error={formState.errors.expiry}>
+          <FormItemLabel htmlFor="expiry">Expiration Date</FormItemLabel>
+          <CardExpiryInput id="expiry" {...focusHandlers(register('expiry'))} />
         </FormItem>
-        <FormItem label="CVC" error={formState.errors.cvc}>
+        <FormItem error={formState.errors.cvc}>
+          <FormItemLabel htmlFor="cvc">CVC</FormItemLabel>
           <NumberInput
+            id="cvc"
             mask="_"
             format="###"
             placeholder="000"
@@ -99,9 +79,7 @@ function CheckoutForm({ error, onSubmit }: CheckoutFormProps) {
         </FormItem>
       </div>
       <div className="my-2 flex justify-end">
-        <SubmitButton aria-label="Complete Checkout" formState={formState}>
-          Checkout
-        </SubmitButton>
+        <SubmitButton formState={formState}>Complete Checkout</SubmitButton>
       </div>
     </Form>
   );

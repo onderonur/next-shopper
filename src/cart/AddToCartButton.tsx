@@ -1,6 +1,6 @@
 import Button from '@src/common/Button';
-import { useCartContext } from './CartContext';
 import { Product } from '@src/products/ProductsTypes';
+import { cartSelectors, useCartStore } from './cartStore';
 
 interface AddToCartButtonProps {
   className?: string;
@@ -8,13 +8,12 @@ interface AddToCartButtonProps {
 }
 
 function AddToCartButton({ className, product }: AddToCartButtonProps) {
-  const { addProduct } = useCartContext();
+  const addProduct = useCartStore(cartSelectors.addProduct);
 
   return (
     <Button
-      aria-label="Add to Cart"
       variant="primary"
-      block
+      isFullWidth
       className={className}
       onClick={() => addProduct(product)}
     >

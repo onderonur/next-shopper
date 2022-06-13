@@ -1,14 +1,16 @@
 import Button from '@src/common/Button';
-import { useCartContext } from './CartContext';
 import { CartItem } from './CartTypes';
 import { DeleteIcon, MinusIcon, PlusIcon } from '@src/common/Icons';
+import { cartSelectors, useCartStore } from './cartStore';
 
 interface CartItemActionButtonsProps {
   cartItem: CartItem;
 }
 
 function CartItemActionButtons({ cartItem }: CartItemActionButtonsProps) {
-  const { addProduct, removeProduct, removeCartItem } = useCartContext();
+  const addProduct = useCartStore(cartSelectors.addProduct);
+  const removeProduct = useCartStore(cartSelectors.removeProduct);
+  const removeCartItem = useCartStore(cartSelectors.removeCartItem);
 
   const product = cartItem.info;
 

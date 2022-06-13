@@ -44,8 +44,8 @@ function ProductView() {
           product?.image
             ? [
                 {
-                  url: product?.image,
-                  alt: `Product image of ${product.title}`,
+                  url: product.image,
+                  alt: product.title,
                 },
               ]
             : undefined

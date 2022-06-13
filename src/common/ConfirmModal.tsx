@@ -1,8 +1,7 @@
 import Backdrop from '@src/common/Backdrop';
 import Button from '@src/common/Button';
 import { useRouterEvent } from '@src/routing/useRouterEvent';
-import classNames from 'classnames';
-import React, { useCallback } from 'react';
+import React, { useCallback, useId } from 'react';
 import { useModalContext } from './ModalContext';
 
 export type ConfirmModalProps = {
@@ -22,20 +21,22 @@ function ConfirmModal({ title, confirmText = 'OK', body }: ConfirmModalProps) {
 
   useRouterEvent('routeChangeStart', handleClose);
 
+  const labelId = useId();
+
   return (
     <Backdrop<HTMLDivElement>
-      className="flex justify-center items-center"
       isOpen={isOpen}
       onClick={handleClose}
+      className="grid place-items-center overflow-y-auto p-4"
     >
-      {({ focusRef, contentClassName }) => {
+      {({ focusRef }) => {
         return (
           <div
+            role="dialog"
+            aria-modal
+            aria-labelledby={labelId}
             ref={focusRef}
-            className={classNames(
-              'rounded-md w-full max-w-sm mb-10 p-4',
-              contentClassName,
-            )}
+            className="rounded-md w-full max-w-sm p-4 bg-background-main"
             // To make "onKeyDown" work on this element
             tabIndex={-1}
             onKeyDown={(e) => {
@@ -44,18 +45,15 @@ function ConfirmModal({ title, confirmText = 'OK', body }: ConfirmModalProps) {
               }
             }}
           >
-            <h2 className="font-semibold text-lg">{title}</h2>
+            <h2 id={labelId} className="font-semibold text-lg">
+              {title}
+            </h2>
             <div>{body}</div>
             <div className="flex justify-end gap-2 mt-2">
-              <Button
-                aria-label="Cancel"
-                variant="transparent"
-                onClick={handleClose}
-              >
+              <Button variant="transparent" onClick={handleClose}>
                 Cancel
               </Button>
               <Button
-                aria-label="Confirm text"
                 variant="primary"
                 onClick={() => {
                   hide({ isConfirmed: true });

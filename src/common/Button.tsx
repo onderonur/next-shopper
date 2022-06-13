@@ -3,19 +3,18 @@ import classNames from 'classnames';
 
 export type ButtonProps = React.ComponentPropsWithoutRef<'button'> &
   Partial<Pick<NextLinkProps, 'href' | 'isExternalUrl'>> & {
-    block?: boolean;
+    isFullWidth?: boolean;
     variant?: 'default' | 'primary' | 'secondary' | 'transparent';
     icon?: React.ReactNode;
     iconAlignment?: 'left' | 'right';
     circle?: boolean;
-    'aria-label': string;
   };
 
 function Button({
   href,
   isExternalUrl,
   className,
-  block,
+  isFullWidth,
   variant = 'default',
   icon,
   iconAlignment = 'left',
@@ -40,7 +39,7 @@ function Button({
       : icon && !children
       ? 'rounded-md h-8 w-8'
       : 'rounded-md px-4 py-2',
-    block && 'w-full',
+    isFullWidth && 'w-full',
     className,
   );
 

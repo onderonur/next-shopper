@@ -1,6 +1,6 @@
 import AppLayout from '@src/app-layout/AppLayout';
-import { useCartContext } from '@src/cart/CartContext';
 import CartItemList from '@src/cart/CartItemList';
+import { cartSelectors, useCartStore } from '@src/cart/cartStore';
 import CartTotalPrice from '@src/cart/CartTotalPrice';
 import ClearCartButton from '@src/cart/ClearCartButton';
 import { checkoutAPI } from '@src/checkout/checkoutAPI';
@@ -17,7 +17,8 @@ import { useEffect } from 'react';
 import { useMutation } from 'react-query';
 
 function CheckoutView() {
-  const { cartItems, clearCart } = useCartContext();
+  const cartItems = useCartStore(cartSelectors.cartItems);
+  const clearCart = useCartStore(cartSelectors.clearCart);
 
   const completeCheckoutMutation = useMutation<
     void,
@@ -47,7 +48,7 @@ function CheckoutView() {
         ) : (
           <Section title="Cart" titleAs="h2" hideTitle>
             <Panel title="Cart" actions={<ClearCartButton />}>
-              <CartItemList className="max-h-80 overflow-auto" />
+              <CartItemList />
               <CartTotalPrice />
             </Panel>
           </Section>

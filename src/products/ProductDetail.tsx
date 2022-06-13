@@ -16,7 +16,7 @@ function ProductDetail({ product }: ProductDetailProps) {
       <div className="flex-1">
         <BaseImage
           src={product.image}
-          alt={`Image of ${product.title}`}
+          alt={product.title}
           height={10}
           width={10}
           objectFit="contain"
@@ -26,7 +26,7 @@ function ProductDetail({ product }: ProductDetailProps) {
       </div>
       <div className="flex-1 flex flex-col items-center gap-4">
         <div className="text-center flex flex-col gap-2">
-          <h1 className="font-bold text-2xl">{product.title}</h1>
+          <div className="font-bold text-2xl">{product.title}</div>
           <div className="text-4xl">
             <Price className="text-primary-dark" value={product.price} />
           </div>

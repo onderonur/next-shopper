@@ -1,7 +1,6 @@
 import type { AppProps } from 'next/app';
 import PageProgressBar from '@src/common/PageProgressBar';
 import BaseQueryClientProvider from '@src/query-client/BaseQueryClientProvider';
-import CartProvider from '@src/cart/CartContext';
 import BaseDefaultSeo from '@src/seo/BaseDefaultSeo';
 import Head from 'next/head';
 import React from 'react';
@@ -26,11 +25,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         <ThemeProvider>
           <PageProgressBar />
           <ModalRootProvider>
-            <CartProvider>
-              <Layout>
-                <Component {...pageProps} />
-              </Layout>
-            </CartProvider>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
           </ModalRootProvider>
         </ThemeProvider>
       </BaseQueryClientProvider>

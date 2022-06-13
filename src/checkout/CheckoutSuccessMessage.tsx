@@ -9,9 +9,7 @@ function CheckoutSuccessMessage() {
       <div className="font-semibold text-2xl text-center">
         Your order has been received
       </div>
-      <Button aria-label="Back to Store" href={routes.search()}>
-        Back to Store
-      </Button>
+      <Button href={routes.search()}>Back to Store</Button>
     </div>
   );
 }

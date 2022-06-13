@@ -11,9 +11,11 @@ function PageHeader({ title }: PageHeaderProps) {
       <div className="flex-shrink-0">
         <GoBackButton />
       </div>
-      <h1 className="border-l pl-4 font-bold text-text-light line-clamp-2">
-        {title}
-      </h1>
+      {title && (
+        <h1 className="border-l pl-4 font-bold text-text-light line-clamp-2">
+          {title}
+        </h1>
+      )}
     </div>
   );
 }

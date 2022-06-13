@@ -117,12 +117,7 @@ function ProductListView() {
             onReset={() => setQueryParams({})}
           />
           <div className="md:hidden flex justify-end">
-            <Button
-              aria-label="Open Filters Drawer"
-              variant="transparent"
-              icon={<FilterIcon />}
-              onClick={open}
-            >
+            <Button variant="transparent" icon={<FilterIcon />} onClick={open}>
               Filter
             </Button>
             <Drawer title="Product Filter" isOpen={isOpen} onClose={close}>

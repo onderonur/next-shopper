@@ -1,6 +1,4 @@
 import { Maybe } from '@src/common/CommonTypes';
-import List from '@src/common/List';
-import ListItem from '@src/common/ListItem';
 import OptionButton from './OptionButton';
 import OptionGroupSkeleton from './OptionGroupSkeleton';
 
@@ -28,42 +26,39 @@ function CheckboxGroup<Option>({
   }
 
   return (
-    <List role="group">
-      <ListItem>
-        <OptionButton
-          type="checkbox"
-          isDisabled={isDisabled}
-          isChecked={!value?.length}
-          value={''}
-          label={'All'}
-          onChange={() => {
-            onChange([]);
-          }}
-        />
-      </ListItem>
+    <div role="group">
+      <OptionButton
+        type="checkbox"
+        isDisabled={isDisabled}
+        isChecked={!value?.length}
+        value={''}
+        label={'All'}
+        onChange={() => {
+          onChange([]);
+        }}
+      />
       {options?.map((option) => {
         const optionValue = getOptionValue(option);
         const isChecked = !!value?.includes(optionValue);
         return (
-          <ListItem key={optionValue}>
-            <OptionButton
-              type="checkbox"
-              isDisabled={isDisabled}
-              isChecked={isChecked}
-              value={optionValue}
-              label={getOptionLabel(option)}
-              onChange={() => {
-                if (value?.includes(optionValue)) {
-                  onChange(value.filter((item) => item !== optionValue));
-                } else {
-                  onChange(value ? [...value, optionValue] : [optionValue]);
-                }
-              }}
-            />
-          </ListItem>
+          <OptionButton
+            key={optionValue}
+            type="checkbox"
+            isDisabled={isDisabled}
+            isChecked={isChecked}
+            value={optionValue}
+            label={getOptionLabel(option)}
+            onChange={() => {
+              if (value?.includes(optionValue)) {
+                onChange(value.filter((item) => item !== optionValue));
+              } else {
+                onChange(value ? [...value, optionValue] : [optionValue]);
+              }
+            }}
+          />
         );
       })}
-    </List>
+    </div>
   );
 }
 

@@ -19,7 +19,7 @@ function ProductCard({ product }: ProductCardProps) {
             <div className="transition duration-500 ease-out bg-transparent p-2 transform group-hover:scale-110">
               <BaseImage
                 src={product.image}
-                alt={`Image of ${product.title}`}
+                alt={product.title}
                 layout="responsive"
                 height={12}
                 width={10}

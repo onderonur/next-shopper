@@ -1,8 +1,8 @@
 import Price from '@src/common/Price';
-import { useCartContext } from './CartContext';
+import { cartSelectors, useCartStore } from './cartStore';
 
 function CartTotalPrice() {
-  const { totalPrice } = useCartContext();
+  const totalPrice = useCartStore(cartSelectors.totalPrice);
 
   if (!totalPrice) {
     return null;

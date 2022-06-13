@@ -16,7 +16,7 @@ import { categoriesAPI } from '@src/categories/categoriesAPI';
 import ListItem from '@src/common/ListItem';
 import { createMockArray } from '@src/common/CommonUtils';
 
-function HomeView() {
+function LandingView() {
   const {
     data: categories,
     isLoading,
@@ -85,4 +85,4 @@ export const getServerSideProps: GetServerSideProps = async () => {
   };
 };
 
-export default HomeView;
+export default LandingView;

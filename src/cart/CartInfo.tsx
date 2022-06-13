@@ -3,16 +3,17 @@ import Button from '@src/common/Button';
 import { useDrawer } from '@src/common/Drawer';
 import { CartIcon } from '@src/common/Icons';
 import Price from '@src/common/Price';
-import { useCartContext } from './CartContext';
 import CartDrawer from './CartDrawer';
+import { cartSelectors, useCartStore } from './cartStore';
 
 function CartInfo() {
-  const { totalPrice, productCount } = useCartContext();
+  const totalPrice = useCartStore(cartSelectors.totalPrice);
+  const productsCount = useCartStore(cartSelectors.productsCount);
   const { isOpen, open, close } = useDrawer();
 
   return (
     <>
-      <Badge value={productCount}>
+      <Badge value={productsCount}>
         <Button
           aria-label="Open Cart Info"
           className="text-lg"

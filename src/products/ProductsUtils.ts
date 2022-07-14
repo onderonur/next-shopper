@@ -12,7 +12,7 @@ export enum ProductFilterKey {
   PRICE_RANGES = 'priceRanges',
 }
 
-function getOneSelectedOptionValue(
+export function getOneSelectedOptionValue(
   filterKey: ProductFilterKey,
   selectedOptions: Maybe<ProductFilterSelectedOption[]>,
 ) {
@@ -20,7 +20,7 @@ function getOneSelectedOptionValue(
     ?.value;
 }
 
-function getManySelectedOptionValues(
+export function getManySelectedOptionValues(
   filterKey: ProductFilterKey,
   selectedOptions: Maybe<ProductFilterSelectedOption[]>,
 ) {

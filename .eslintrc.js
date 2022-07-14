@@ -1,10 +1,18 @@
 module.exports = {
-  plugins: ['prettier', '@typescript-eslint', 'deprecation'],
+  plugins: [
+    'prettier',
+    '@typescript-eslint',
+    'jest-dom',
+    'testing-library',
+    'deprecation',
+  ],
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'prettier',
     'next',
+    'plugin:jest-dom/recommended',
+    'plugin:testing-library/react',
   ],
   parser: '@typescript-eslint/parser',
   // For eslint-plugin-deprecation:

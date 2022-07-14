@@ -29,7 +29,10 @@ function CartItemActionButtons({ cartItem }: CartItemActionButtonsProps) {
           icon={<MinusIcon />}
           onClick={() => dispatch(removeProduct(product))}
         />
-        <div className="h-8 w-8 text-sm border-2 flex justify-center items-center">
+        <div
+          data-testid="cart-item-count"
+          className="h-8 w-8 text-sm border-2 flex justify-center items-center"
+        >
           {cartItem.count}
         </div>
         <Button

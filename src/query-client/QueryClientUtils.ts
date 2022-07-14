@@ -6,7 +6,7 @@ import {
   UseQueryOptions,
 } from 'react-query';
 
-export const createQueryClient = () => {
+export const createQueryClient = (config?: { isTesting: boolean }) => {
   return new QueryClient({
     defaultOptions: {
       queries: {
@@ -16,7 +16,8 @@ export const createQueryClient = () => {
         // Because staleTime defaults to 0, queries will be refetched in the background on page load by default.
         // You might want to use a higher staleTime to avoid this double fetching, especially if you don't cache your markup.
         // https://react-query.tanstack.com/guides/ssr#staleness-is-measured-from-when-the-query-was-fetched-on-the-server
-        staleTime: 1000,
+        // TODO: Bu testing için infinity olayına bi bak docs'tan
+        staleTime: config?.isTesting ? Infinity : 1000,
       },
     },
   });

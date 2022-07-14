@@ -125,23 +125,31 @@ function ProductListView() {
             </Drawer>
           </div>
           <Panel>
-            <List className="grid grid-cols-[repeat(auto-fill,minmax(11rem,1fr))] gap-4">
-              {isFetching
-                ? createMockArray(8).map((i) => {
-                    return (
-                      <ListItem key={i}>
-                        <ProductCardSkeleton />
-                      </ListItem>
-                    );
-                  })
-                : data?.products.map((product) => {
-                    return (
-                      <ListItem key={product.id}>
-                        <ProductCard product={product} />
-                      </ListItem>
-                    );
-                  })}
-            </List>
+            <div data-testid="products-list-wrapper">
+              <List className="grid grid-cols-[repeat(auto-fill,minmax(11rem,1fr))] gap-4">
+                {isFetching
+                  ? createMockArray(8).map((i) => {
+                      return (
+                        <ListItem
+                          key={i}
+                          data-testid="product-list-item-skeleton"
+                        >
+                          <ProductCardSkeleton />
+                        </ListItem>
+                      );
+                    })
+                  : data?.products.map((product) => {
+                      return (
+                        <ListItem
+                          key={product.id}
+                          data-testid="product-list-item"
+                        >
+                          <ProductCard product={product} />
+                        </ListItem>
+                      );
+                    })}
+              </List>
+            </div>
           </Panel>
         </Section>
       </div>

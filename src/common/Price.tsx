@@ -8,7 +8,10 @@ interface PriceProps {
 
 function Price({ className, value }: PriceProps) {
   return (
-    <span className={classNames('font-semibold', className)}>
+    <span
+      data-testid="price"
+      className={classNames('font-semibold', className)}
+    >
       ${(value ?? 0).toFixed(2).replace('.', ',')}
     </span>
   );

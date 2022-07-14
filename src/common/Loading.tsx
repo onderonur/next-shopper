@@ -19,6 +19,7 @@ function Loading({
 
   return (
     <div
+      data-testid="loading-spinner"
       className={classNames(
         'flex justify-center',
         children && 'py-6',

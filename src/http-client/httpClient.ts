@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // https://github.com/vercel/next.js/blob/canary/packages/next/shared/lib/router/utils/querystring.ts
-function stringifyUrlQueryParam(param: unknown): string {
+export function stringifyUrlQueryParam(param: unknown): string {
   if (
     typeof param === 'string' ||
     (typeof param === 'number' && !isNaN(param)) ||
@@ -13,18 +13,27 @@ function stringifyUrlQueryParam(param: unknown): string {
   }
 }
 
-export const httpClient = axios.create({
-  paramsSerializer: (params) => {
-    const result = new URLSearchParams();
-    Object.entries(params).forEach(([key, value]) => {
-      if (Array.isArray(value)) {
-        value.forEach((valueItem) => {
-          result.append(key, stringifyUrlQueryParam(valueItem));
-        });
-      } else {
-        result.set(key, stringifyUrlQueryParam(value));
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function paramsSerializer(params: any) {
+  const result = new URLSearchParams();
+  Object.entries(params).forEach(([key, value]) => {
+    if (Array.isArray(value)) {
+      value.forEach((valueItem) => {
+        const stringified = stringifyUrlQueryParam(valueItem);
+        if (stringified) {
+          result.append(key, stringified);
+        }
+      });
+    } else {
+      const stringified = stringifyUrlQueryParam(value);
+      if (stringified) {
+        result.set(key, stringified);
       }
-    });
-    return result.toString();
-  },
+    }
+  });
+  return result.toString();
+}
+
+export const httpClient = axios.create({
+  paramsSerializer,
 });

@@ -2,7 +2,7 @@ import { Maybe } from '@src/common/CommonTypes';
 import OptionButton from './OptionButton';
 import OptionGroupSkeleton from './OptionGroupSkeleton';
 
-interface RadioGroupProps<Option> {
+export interface RadioGroupProps<Option> {
   isLoading?: boolean;
   isDisabled?: boolean;
   options: Maybe<Option[]>;

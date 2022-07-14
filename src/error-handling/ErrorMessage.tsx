@@ -21,7 +21,10 @@ function ErrorMessage({ children, error }: ErrorMessageProps) {
   }
 
   return (
-    <div className="bg-error-lighter text-error-dark border border-error-main rounded-md p-4">
+    <div
+      data-testid="error-message"
+      className="bg-error-lighter text-error-dark border border-error-main rounded-md p-4"
+    >
       {message}
     </div>
   );

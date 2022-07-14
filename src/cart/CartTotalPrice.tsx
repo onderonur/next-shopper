@@ -10,7 +10,10 @@ function CartTotalPrice() {
   }
 
   return (
-    <div className="flex justify-space py-2 text-lg font-bold">
+    <div
+      data-testid="cart-total-price"
+      className="flex justify-space py-2 text-lg font-bold"
+    >
       <span>Total</span>
       <div className="flex-grow" />
       <Price value={totalPrice} />

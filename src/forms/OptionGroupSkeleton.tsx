@@ -5,15 +5,17 @@ import OptionButtonSkeleton from './OptionButtonSkeleton';
 
 function OptionGroupSkeleton() {
   return (
-    <List>
-      {createMockArray(4).map((i) => {
-        return (
-          <ListItem key={i}>
-            <OptionButtonSkeleton />
-          </ListItem>
-        );
-      })}
-    </List>
+    <div data-testid="option-group-skeleton">
+      <List>
+        {createMockArray(4).map((i) => {
+          return (
+            <ListItem key={i}>
+              <OptionButtonSkeleton />
+            </ListItem>
+          );
+        })}
+      </List>
+    </div>
   );
 }
 

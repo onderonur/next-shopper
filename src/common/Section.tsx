@@ -37,9 +37,13 @@ const Section = React.forwardRef<React.ComponentRef<'section'>, SectionProps>(
           )}
         >
           <Heading className="font-semibold text-lg">{title}</Heading>
-          {headerActions && <div>{headerActions}</div>}
+          {headerActions && (
+            <div data-testid="section-actions">{headerActions}</div>
+          )}
         </header>
-        {children}
+        <div data-testid="section-content" className="h-full">
+          {children}
+        </div>
       </section>
     );
   },

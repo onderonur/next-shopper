@@ -20,6 +20,7 @@ function Chip({
 }: ChipProps) {
   return (
     <div
+      data-testid="chip"
       className={classNames(
         'flex justify-center items-center gap-1 select-none',
         'border-2 px-2 py-1 rounded-md text-sm',

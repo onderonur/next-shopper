@@ -15,7 +15,12 @@ function Hero() {
           {APP_TITLE}
         </h1>
         <div className="flex flex-col items-center">
-          <p className="text-primary-dark font-semibold">{APP_DESCRIPTION}</p>
+          <p
+            data-testid="app-description"
+            className="text-primary-dark font-semibold"
+          >
+            {APP_DESCRIPTION}
+          </p>
           <Button
             className="mt-1"
             variant="transparent"

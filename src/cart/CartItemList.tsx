@@ -26,7 +26,11 @@ function CartItemList({ className }: CartItemListProps) {
     >
       {cartItems.map((cartItem) => {
         return (
-          <ListItem key={cartItem.info.id} className="border-b-2 py-2">
+          <ListItem
+            key={cartItem.info.id}
+            className="border-b-2 py-2"
+            aria-label={cartItem.info.title}
+          >
             <div className="flex gap-4">
               <div className="flex-grow font-semibold">
                 {cartItem.info.title}

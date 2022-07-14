@@ -3,7 +3,7 @@ import { Product } from '@src/products/ProductsTypes';
 import { RootState } from '@src/store/store';
 import { CartItem } from './CartTypes';
 
-type CartState = {
+export type CartState = {
   cartItems: CartItem[];
 };
 

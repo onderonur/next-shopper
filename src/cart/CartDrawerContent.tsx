@@ -1,12 +1,13 @@
 import Button from '@src/common/Button';
 import { routes } from '@src/routing/routes';
+import { useAppSelector } from '@src/store/store';
 import CartItemList from './CartItemList';
-import { cartSelectors, useCartStore } from './cartStore';
+import { selectCartItems } from './cartSlice';
 import CartTotalPrice from './CartTotalPrice';
 import ClearCartButton from './ClearCartButton';
 
 function CartDrawerContent() {
-  const cartItems = useCartStore(cartSelectors.cartItems);
+  const cartItems = useAppSelector(selectCartItems);
 
   return (
     <div className="absolute inset-0 flex flex-col">

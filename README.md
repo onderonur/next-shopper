@@ -8,7 +8,7 @@ This is a simple e-commerce web application built with [Next.js](https://nextjs.
 - Language: [TypeScript](https://www.typescriptlang.org/)
 - Framework: [Next.js](https://nextjs.org/)
 - Data: [Fake Store API](https://fakestoreapi.com/)
-- State Management: [React Query](https://react-query.tanstack.com/) & [Zustand](https://github.com/pmndrs/zustand)
+- State Management: [React Query](https://react-query.tanstack.com/) & [Redux Toolkit](https://redux-toolkit.js.org/)
 - Forms: [React Hook Form](https://react-hook-form.com/)
 - Styling: [Tailwind CSS](https://tailwindcss.com/)
 - Animations: [Framer Motion](https://www.framer.com/motion/)

@@ -1,6 +1,7 @@
 import Button from '@src/common/Button';
 import { Product } from '@src/products/ProductsTypes';
-import { cartSelectors, useCartStore } from './cartStore';
+import { useAppDispatch } from '@src/store/store';
+import { addProduct } from './cartSlice';
 
 interface AddToCartButtonProps {
   className?: string;
@@ -8,14 +9,14 @@ interface AddToCartButtonProps {
 }
 
 function AddToCartButton({ className, product }: AddToCartButtonProps) {
-  const addProduct = useCartStore(cartSelectors.addProduct);
+  const dispatch = useAppDispatch();
 
   return (
     <Button
       variant="primary"
       isFullWidth
       className={className}
-      onClick={() => addProduct(product)}
+      onClick={() => dispatch(addProduct(product))}
     >
       Add to Cart
     </Button>

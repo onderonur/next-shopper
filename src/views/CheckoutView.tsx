@@ -1,6 +1,6 @@
 import AppLayout from '@src/app-layout/AppLayout';
 import CartItemList from '@src/cart/CartItemList';
-import { cartSelectors, useCartStore } from '@src/cart/cartStore';
+import { clearCart, selectCartItems } from '@src/cart/cartSlice';
 import CartTotalPrice from '@src/cart/CartTotalPrice';
 import ClearCartButton from '@src/cart/ClearCartButton';
 import { checkoutAPI } from '@src/checkout/checkoutAPI';
@@ -13,12 +13,13 @@ import Panel from '@src/common/Panel';
 import Section from '@src/common/Section';
 import { ApiRequestError } from '@src/error-handling/ErrorHandlingTypes';
 import BaseSeo from '@src/seo/BaseSeo';
+import { useAppDispatch, useAppSelector } from '@src/store/store';
 import { useEffect } from 'react';
 import { useMutation } from 'react-query';
 
 function CheckoutView() {
-  const cartItems = useCartStore(cartSelectors.cartItems);
-  const clearCart = useCartStore(cartSelectors.clearCart);
+  const cartItems = useAppSelector(selectCartItems);
+  const dispatch = useAppDispatch();
 
   const completeCheckoutMutation = useMutation<
     void,
@@ -30,9 +31,9 @@ function CheckoutView() {
 
   useEffect(() => {
     if (completeCheckoutMutation.isSuccess) {
-      clearCart();
+      dispatch(clearCart());
     }
-  }, [clearCart, completeCheckoutMutation.isSuccess]);
+  }, [completeCheckoutMutation.isSuccess, dispatch]);
 
   return (
     <>

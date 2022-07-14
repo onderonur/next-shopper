@@ -9,6 +9,7 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import '@src/styling/global.css';
 import '@src/styling/scrollbar.css';
 import ModalRootProvider from '@src/common/ModalRootContext';
+import { wrapper } from '@src/store/store';
 
 function MyApp({ Component, pageProps }: AppProps) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -20,8 +21,8 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="theme-color" content="#fff" />
       </Head>
       <BaseQueryClientProvider dehydratedState={pageProps.dehydratedState}>
-        <BaseDefaultSeo />
         <ReactQueryDevtools />
+        <BaseDefaultSeo />
         <ThemeProvider>
           <PageProgressBar />
           <ModalRootProvider>
@@ -35,4 +36,4 @@ function MyApp({ Component, pageProps }: AppProps) {
   );
 }
 
-export default MyApp;
+export default wrapper.withRedux(MyApp);

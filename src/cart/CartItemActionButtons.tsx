@@ -1,17 +1,15 @@
 import Button from '@src/common/Button';
 import { CartItem } from './CartTypes';
 import { DeleteIcon, MinusIcon, PlusIcon } from '@src/common/Icons';
-import { cartSelectors, useCartStore } from './cartStore';
+import { addProduct, removeCartItem, removeProduct } from './cartSlice';
+import { useAppDispatch } from '@src/store/store';
 
 interface CartItemActionButtonsProps {
   cartItem: CartItem;
 }
 
 function CartItemActionButtons({ cartItem }: CartItemActionButtonsProps) {
-  const addProduct = useCartStore(cartSelectors.addProduct);
-  const removeProduct = useCartStore(cartSelectors.removeProduct);
-  const removeCartItem = useCartStore(cartSelectors.removeCartItem);
-
+  const dispatch = useAppDispatch();
   const product = cartItem.info;
 
   return (
@@ -21,7 +19,7 @@ function CartItemActionButtons({ cartItem }: CartItemActionButtonsProps) {
         className="h-8 w-8 text-sm rounded-md"
         variant="secondary"
         icon={<DeleteIcon />}
-        onClick={() => removeCartItem(product)}
+        onClick={() => dispatch(removeCartItem(product))}
       />
       <div className="flex items-center">
         <Button
@@ -29,7 +27,7 @@ function CartItemActionButtons({ cartItem }: CartItemActionButtonsProps) {
           className="h-8 w-8 text-sm rounded-l-md rounded-r-none"
           variant="primary"
           icon={<MinusIcon />}
-          onClick={() => removeProduct(product)}
+          onClick={() => dispatch(removeProduct(product))}
         />
         <div className="h-8 w-8 text-sm border-2 flex justify-center items-center">
           {cartItem.count}
@@ -39,7 +37,7 @@ function CartItemActionButtons({ cartItem }: CartItemActionButtonsProps) {
           className="h-8 w-8 text-sm rounded-r-md rounded-l-none"
           variant="primary"
           icon={<PlusIcon />}
-          onClick={() => addProduct(product)}
+          onClick={() => dispatch(addProduct(product))}
         />
       </div>
     </div>

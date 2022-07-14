@@ -4,11 +4,13 @@ import ConfirmModal, {
   ConfirmModalData,
   ConfirmModalProps,
 } from '@src/common/ConfirmModal';
-import { cartSelectors, useCartStore } from './cartStore';
+import { useAppDispatch, useAppSelector } from '@src/store/store';
+import { clearCart, selectCartItems } from './cartSlice';
 
 function ClearCartButton() {
-  const cartItems = useCartStore(cartSelectors.cartItems);
-  const clearCart = useCartStore(cartSelectors.clearCart);
+  const cartItems = useAppSelector(selectCartItems);
+  const dispatch = useAppDispatch();
+
   const confirmModal = useModal<ConfirmModalProps, ConfirmModalData>(
     ConfirmModal,
   );
@@ -28,7 +30,7 @@ function ClearCartButton() {
         });
 
         if (isConfirmed) {
-          clearCart();
+          dispatch(clearCart());
         }
       }}
     >

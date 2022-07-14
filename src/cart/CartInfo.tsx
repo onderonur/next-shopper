@@ -3,12 +3,13 @@ import Button from '@src/common/Button';
 import { useDrawer } from '@src/common/Drawer';
 import { CartIcon } from '@src/common/Icons';
 import Price from '@src/common/Price';
+import { useAppSelector } from '@src/store/store';
 import CartDrawer from './CartDrawer';
-import { cartSelectors, useCartStore } from './cartStore';
+import { selectProductsCount, selectTotalPrice } from './cartSlice';
 
 function CartInfo() {
-  const totalPrice = useCartStore(cartSelectors.totalPrice);
-  const productsCount = useCartStore(cartSelectors.productsCount);
+  const totalPrice = useAppSelector(selectTotalPrice);
+  const productsCount = useAppSelector(selectProductsCount);
   const { isOpen, open, close } = useDrawer();
 
   return (

@@ -1,8 +1,9 @@
 import Price from '@src/common/Price';
-import { cartSelectors, useCartStore } from './cartStore';
+import { useAppSelector } from '@src/store/store';
+import { selectTotalPrice } from './cartSlice';
 
 function CartTotalPrice() {
-  const totalPrice = useCartStore(cartSelectors.totalPrice);
+  const totalPrice = useAppSelector(selectTotalPrice);
 
   if (!totalPrice) {
     return null;

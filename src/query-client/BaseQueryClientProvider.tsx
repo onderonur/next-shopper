@@ -1,4 +1,8 @@
-import { DehydratedState, Hydrate, QueryClientProvider } from 'react-query';
+import {
+  DehydratedState,
+  Hydrate,
+  QueryClientProvider,
+} from '@tanstack/react-query';
 import { useState } from 'react';
 import { createQueryClient } from './QueryClientUtils';
 
@@ -15,7 +19,7 @@ function BaseQueryClientProvider({
   return (
     <QueryClientProvider client={queryClient}>
       {/* Using hydration:
-       https://react-query.tanstack.com/guides/ssr#using-hydration */}
+       https://@tanstack/react-query.tanstack.com/guides/ssr#using-hydration */}
       <Hydrate state={dehydratedState}>{children}</Hydrate>
     </QueryClientProvider>
   );

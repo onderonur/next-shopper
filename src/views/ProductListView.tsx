@@ -10,7 +10,7 @@ import ProductFilter from '@src/products/ProductFilter';
 import Drawer, { useDrawer } from '@src/common/Drawer';
 import Section from '@src/common/Section';
 import { QueryParams, RouteParams, routes } from '@src/routing/routes';
-import { dehydrate, useQuery } from 'react-query';
+import { dehydrate, useQuery } from '@tanstack/react-query';
 import { productsAPI } from '@src/products/productsAPI';
 import ListItem from '@src/common/ListItem';
 import ProductCardSkeleton from '@src/products/ProductCardSkeleton';

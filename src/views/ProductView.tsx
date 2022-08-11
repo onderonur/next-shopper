@@ -1,5 +1,5 @@
 import { GetServerSideProps } from 'next';
-import { dehydrate, DehydratedState } from 'react-query';
+import { dehydrate, DehydratedState } from '@tanstack/react-query';
 import { createQueryClient } from '@src/query-client/QueryClientUtils';
 import ErrorMessage from '@src/error-handling/ErrorMessage';
 import ProductDetail from '@src/products/ProductDetail';
@@ -12,7 +12,7 @@ import Panel from '@src/common/Panel';
 import React from 'react';
 import PageHeader from '@src/common/PageHeader';
 import { RouteParams, routes } from '@src/routing/routes';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import { productsAPI } from '@src/products/productsAPI';
 
 type ProductViewRouteParams = RouteParams<typeof routes['product']>;
@@ -69,7 +69,7 @@ export const getServerSideProps: GetServerSideProps<ProductViewProps> = async (
   ctx,
 ) => {
   // Using hydration:
-  // https://react-query.tanstack.com/guides/ssr#using-hydration
+  // https://@tanstack/react-query.tanstack.com/guides/ssr#using-hydration
   const queryClient = createQueryClient();
   const productId = getProductId(parseRouteParams(ctx.query));
   await queryClient.prefetchQuery(

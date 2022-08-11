@@ -15,7 +15,7 @@ import { ApiRequestError } from '@src/error-handling/ErrorHandlingTypes';
 import BaseSeo from '@src/seo/BaseSeo';
 import { useAppDispatch, useAppSelector } from '@src/store/store';
 import { useEffect } from 'react';
-import { useMutation } from 'react-query';
+import { useMutation } from '@tanstack/react-query';
 
 function CheckoutView() {
   const cartItems = useAppSelector(selectCartItems);

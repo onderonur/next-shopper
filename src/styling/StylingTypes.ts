@@ -1,7 +1,7 @@
-import { TailwindConfig } from 'tailwindcss/tailwind-config';
+import { ThemeConfig } from 'tailwindcss/types/config';
 
-export type Theme = TailwindConfig['theme'] & {
-  colors: TailwindConfig['theme']['colors'] & {
+export type Theme = ThemeConfig & {
+  colors: ThemeConfig['colors'] & {
     primary: {
       darker: string;
       dark: string;

@@ -5,11 +5,11 @@ import BaseDefaultSeo from '@src/seo/BaseDefaultSeo';
 import Head from 'next/head';
 import React from 'react';
 import ThemeProvider from '@src/styling/ThemeProvider';
-import { ReactQueryDevtools } from 'react-query/devtools';
 import '@src/styling/global.css';
 import '@src/styling/scrollbar.css';
 import ModalRootProvider from '@src/common/ModalRootContext';
 import { wrapper } from '@src/store/store';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 function MyApp({ Component, pageProps }: AppProps) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

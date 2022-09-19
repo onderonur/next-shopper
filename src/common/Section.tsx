@@ -28,7 +28,7 @@ const Section = React.forwardRef<React.ComponentRef<'section'>, SectionProps>(
     const Heading = titleAs;
 
     return (
-      <section ref={ref} aria-label={title} {...rest}>
+      <section ref={ref} {...rest}>
         <header
           className={classNames(
             hideTitle && 'sr-only',

@@ -44,11 +44,11 @@ function Button({
   );
 
   const content = (
-    <div className="flex items-center gap-2">
+    <span className="flex items-center gap-2">
       {iconAlignment === 'left' && icon}
       {children && <span>{children}</span>}
       {iconAlignment === 'right' && icon}
-    </div>
+    </span>
   );
 
   if (href) {

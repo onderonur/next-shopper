@@ -32,13 +32,12 @@ function OptionButton({
         <input
           className="sr-only"
           type={type}
-          aria-checked={isChecked}
           checked={isChecked}
           disabled={isDisabled}
           value={value}
           onChange={() => onChange(value)}
         />
-        <div
+        <span
           className={classNames(
             'w-7 h-7 border-2 border-primary-main mr-2 text-white flex items-center justify-center',
             isChecked && 'bg-primary-light',
@@ -46,7 +45,7 @@ function OptionButton({
           )}
         >
           {isChecked && <CheckIcon />}
-        </div>
+        </span>
       </span>
       <span>{label}</span>
     </label>

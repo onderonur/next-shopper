@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { UseFormRegisterReturn, FieldPath } from 'react-hook-form';
+import { UseFormRegisterReturn, FieldPath, FieldValues } from 'react-hook-form';
 
-export function useFocusedField<FieldValues>() {
-  const [focusedField, setFocusedField] = useState<FieldPath<FieldValues>>();
+export function useFocusedField<FormFieldValues extends FieldValues>() {
+  const [focusedField, setFocusedField] =
+    useState<FieldPath<FormFieldValues>>();
 
   const focusHandlers = (registerResult: UseFormRegisterReturn) => {
     const onFocus = () => {
-      setFocusedField(registerResult.name as FieldPath<FieldValues>);
+      setFocusedField(registerResult.name as FieldPath<FormFieldValues>);
     };
 
     const onBlur: React.ComponentPropsWithoutRef<'input'>['onBlur'] = (e) => {

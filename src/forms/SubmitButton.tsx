@@ -1,19 +1,19 @@
 import Button, { ButtonProps } from '@src/common/Button';
 import Loading from '@src/common/Loading';
-import { FormState } from 'react-hook-form';
+import { FieldValues, FormState } from 'react-hook-form';
 
-type SubmitButtonProps<FieldValues> = Pick<
+type SubmitButtonProps<FormFieldValues extends FieldValues> = Pick<
   ButtonProps,
   'children' | 'aria-label'
 > & {
-  formState: FormState<FieldValues>;
+  formState: FormState<FormFieldValues>;
 };
 
-function SubmitButton<FieldValues>({
+function SubmitButton<FormFieldValues extends FieldValues>({
   formState,
   children,
   ...rest
-}: SubmitButtonProps<FieldValues>) {
+}: SubmitButtonProps<FormFieldValues>) {
   const { isSubmitting } = formState;
 
   return (

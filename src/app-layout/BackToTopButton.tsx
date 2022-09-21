@@ -1,28 +1,28 @@
 import Button from '@src/common/Button';
-import { IS_SERVER } from '@src/common/CommonUtils';
 import { ArrowUpIcon } from '@src/common/Icons';
 import FadeIn from '@src/transitions/FadeIn';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useSyncExternalStore } from 'react';
 
 const thresholdY = 800;
 
-function BackToTopButton() {
-  const [scrollY, setScrollY] = useState<number>(
-    IS_SERVER ? 0 : window.scrollY,
-  );
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-
-    window.addEventListener('scroll', handleScroll);
+const scrollStore = {
+  subscribe: (onStoreChange: VoidFunction) => {
+    window.addEventListener('scroll', onStoreChange);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', onStoreChange);
     };
-  }, []);
+  },
+  getSnapshot: () => window.scrollY,
+  getServerSnapshot: () => 0,
+};
+
+function BackToTopButton() {
+  const scrollY = useSyncExternalStore(
+    scrollStore.subscribe,
+    scrollStore.getSnapshot,
+    scrollStore.getServerSnapshot,
+  );
 
   return (
     <FadeIn isIn={scrollY >= thresholdY}>

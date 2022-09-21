@@ -10,8 +10,17 @@ import '@src/styling/scrollbar.css';
 import ModalRootProvider from '@src/common/ModalRootContext';
 import { wrapper } from '@src/store/store';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { DehydratedState } from '@tanstack/react-query';
+import { Provider } from 'react-redux';
 
-function MyApp({ Component, pageProps }: AppProps) {
+type MyAppProps = AppProps<{
+  dehydratedState: DehydratedState;
+}>;
+
+function MyApp({ Component, ...rest }: MyAppProps) {
+  const { store, props } = wrapper.useWrappedStore(rest);
+  const pageProps = props.pageProps as MyAppProps['pageProps'];
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const Layout = (Component as any).Layout ?? React.Fragment;
 
@@ -20,20 +29,22 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Head>
         <meta name="theme-color" content="#fff" />
       </Head>
-      <BaseQueryClientProvider dehydratedState={pageProps.dehydratedState}>
-        <ReactQueryDevtools />
-        <BaseDefaultSeo />
-        <ThemeProvider>
-          <PageProgressBar />
-          <ModalRootProvider>
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-          </ModalRootProvider>
-        </ThemeProvider>
-      </BaseQueryClientProvider>
+      <Provider store={store}>
+        <BaseQueryClientProvider dehydratedState={pageProps.dehydratedState}>
+          <ReactQueryDevtools />
+          <BaseDefaultSeo />
+          <ThemeProvider>
+            <PageProgressBar />
+            <ModalRootProvider>
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
+            </ModalRootProvider>
+          </ThemeProvider>
+        </BaseQueryClientProvider>
+      </Provider>
     </>
   );
 }
 
-export default wrapper.withRedux(MyApp);
+export default MyApp;

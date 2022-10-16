@@ -14,17 +14,19 @@ function stringifyUrlQueryParam(param: unknown): string {
 }
 
 export const httpClient = axios.create({
-  paramsSerializer: (params) => {
-    const result = new URLSearchParams();
-    Object.entries(params).forEach(([key, value]) => {
-      if (Array.isArray(value)) {
-        value.forEach((valueItem) => {
-          result.append(key, stringifyUrlQueryParam(valueItem));
-        });
-      } else {
-        result.set(key, stringifyUrlQueryParam(value));
-      }
-    });
-    return result.toString();
+  paramsSerializer: {
+    serialize: (params) => {
+      const result = new URLSearchParams();
+      Object.entries(params).forEach(([key, value]) => {
+        if (Array.isArray(value)) {
+          value.forEach((valueItem) => {
+            result.append(key, stringifyUrlQueryParam(valueItem));
+          });
+        } else {
+          result.set(key, stringifyUrlQueryParam(value));
+        }
+      });
+      return result.toString();
+    },
   },
 });

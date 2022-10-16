@@ -3,12 +3,12 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
-    'prettier',
+    'plugin:prettier/recommended',
     'next',
   ],
   parser: '@typescript-eslint/parser',
   // For eslint-plugin-deprecation:
-  // https://stackoverflow.com/a/64488474/10876256
+  // https://github.com/gund/eslint-plugin-deprecation#prerequisites
   overrides: [
     {
       files: ['*.ts', '*.tsx'],

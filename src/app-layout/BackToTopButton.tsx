@@ -1,3 +1,5 @@
+'use client';
+
 import Button from '@src/common/Button';
 import { ArrowUpIcon } from '@src/common/Icons';
 import FadeIn from '@src/transitions/FadeIn';

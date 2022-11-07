@@ -1,3 +1,6 @@
+// TODO: Bu use client'ları daha temize çekmek gerekebilir.
+'use client';
+
 import Badge from '@src/common/Badge';
 import Button from '@src/common/Button';
 import { useDrawer } from '@src/common/Drawer';
@@ -10,6 +13,7 @@ import { selectProductsCount, selectTotalPrice } from './cartSlice';
 function CartInfo() {
   const totalPrice = useAppSelector(selectTotalPrice);
   const productsCount = useAppSelector(selectProductsCount);
+
   const { isOpen, open, close } = useDrawer();
 
   return (

@@ -13,3 +13,10 @@ export const isNil = (val: unknown): val is Nil => {
 };
 
 export const IS_SERVER = typeof window === 'undefined';
+
+export const wait = () =>
+  new Promise<void>((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, 500);
+  });

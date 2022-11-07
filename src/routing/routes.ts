@@ -1,5 +1,5 @@
 import { AnyFunction, Id } from '@src/common/CommonTypes';
-import { pruneQueryParams } from './RoutingUtils';
+import { paramsToSearchParams, pruneQueryParams } from './RoutingUtils';
 import { ParsedUrlQuery } from 'querystring';
 import { FilterProductsArgs } from '@src/products/ProductsTypes';
 
@@ -12,6 +12,7 @@ interface CreateRouteArgs {
 type RequiredKeys<T> = {
   [K in keyof T]-?: {} extends { [P in K]: T[K] } ? never : K;
 }[keyof T];
+
 type HasRequiredField<T> = RequiredKeys<T> extends never ? false : true;
 
 type CreateRouteResult<RouteArgs extends CreateRouteArgs> = (
@@ -20,16 +21,23 @@ type CreateRouteResult<RouteArgs extends CreateRouteArgs> = (
 ) => {
   pathname: string;
   query: ParsedUrlQuery;
+  href: string;
 };
 
 function createRoute<RouteArgs extends CreateRouteArgs>(
-  pathname: (pathParams: RouteArgs['params']) => string,
+  getPathname: (pathParams: RouteArgs['params']) => string,
 ): CreateRouteResult<RouteArgs> {
   return (...args) => {
     const [routeArgs] = args;
+
+    const pathname = getPathname(routeArgs?.params);
+    const search = paramsToSearchParams(routeArgs?.query as any).toString();
+
+    // TODO: Buraya bi refactor yapılabilir.
     return {
-      pathname: pathname(routeArgs?.params),
+      pathname,
       query: pruneQueryParams(routeArgs?.query),
+      href: `${pathname}${search ? `?${search}` : ''}`,
     };
   };
 }

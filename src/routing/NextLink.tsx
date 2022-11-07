@@ -1,32 +1,19 @@
 import Link, { LinkProps } from 'next/link';
 
-export type NextLinkProps = React.PropsWithChildren<
-  LinkProps & {
+export type NextLinkProps = LinkProps &
+  React.PropsWithChildren<{
     className?: string;
-    isExternalUrl?: boolean;
     'aria-label'?: string;
-  }
->;
+    isExternalUrl?: boolean;
+  }>;
 
-function NextLink({
-  passHref = true,
-  className,
-  isExternalUrl,
-  children,
-  ...rest
-}: NextLinkProps) {
+function NextLink({ isExternalUrl, ...rest }: NextLinkProps) {
   return (
-    <Link {...rest} passHref={passHref}>
-      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-      <a
-        className={className}
-        target={isExternalUrl ? '_blank' : undefined}
-        rel={isExternalUrl ? 'noopener noreferrer' : undefined}
-        aria-label={rest['aria-label']}
-      >
-        {children}
-      </a>
-    </Link>
+    <Link
+      {...rest}
+      target={isExternalUrl ? '_blank' : undefined}
+      rel={isExternalUrl ? 'noopener noreferrer' : undefined}
+    />
   );
 }
 

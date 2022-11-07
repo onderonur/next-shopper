@@ -5,7 +5,7 @@ import List from '@src/common/List';
 import ListItem from '@src/common/ListItem';
 import { ProductFilterSelectedOption } from './ProductsTypes';
 
-interface ProductFilterProps {
+interface SelectedProductFiltersProps {
   selectedOptions: Maybe<ProductFilterSelectedOption[]>;
   onRemove: (option: ProductFilterSelectedOption) => void;
   onReset: VoidFunction;
@@ -15,7 +15,7 @@ function SelectedProductFilters({
   selectedOptions,
   onRemove,
   onReset,
-}: ProductFilterProps) {
+}: SelectedProductFiltersProps) {
   const visibleOptions = selectedOptions?.filter((option) => option.isVisible);
 
   if (!visibleOptions?.length) {

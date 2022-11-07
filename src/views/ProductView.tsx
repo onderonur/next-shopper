@@ -4,7 +4,6 @@ import { createQueryClient } from '@src/query-client/QueryClientUtils';
 import ErrorMessage from '@src/error-handling/ErrorMessage';
 import ProductDetail from '@src/products/ProductDetail';
 import { ParsedRouteParams, parseRouteParams } from '@src/routing/RoutingUtils';
-import AppLayout from '@src/app-layout/AppLayout';
 import Loading from '@src/common/Loading';
 import { useRouteParams } from '@src/routing/useRouteParams';
 import BaseSeo from '@src/seo/BaseSeo';
@@ -69,10 +68,11 @@ export const getServerSideProps: GetServerSideProps<ProductViewProps> = async (
   ctx,
 ) => {
   // Using hydration:
-  // https://@tanstack/react-query.tanstack.com/guides/ssr#using-hydration
-  const queryClient = createQueryClient();
+  // https://tanstack.com/query/v4/docs/guides/ssr#using-hydration
   const productId = getProductId(parseRouteParams(ctx.query));
-  await queryClient.prefetchQuery(
+  const queryClient = createQueryClient();
+
+  await queryClient.fetchQuery(
     productsAPI.fetchOneProduct({
       args: { productId },
     }),
@@ -84,7 +84,5 @@ export const getServerSideProps: GetServerSideProps<ProductViewProps> = async (
     },
   };
 };
-
-ProductView.Layout = AppLayout;
 
 export default ProductView;

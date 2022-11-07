@@ -21,11 +21,14 @@ function List({
   }
 
   return (
-    <ListProvider isAnimated={isAnimated}>
-      <motion.ul layout={isAnimated} role={role} className={className}>
-        {isAnimated ? <AnimatePresence>{children}</AnimatePresence> : children}
-      </motion.ul>
-    </ListProvider>
+    // <ListProvider isAnimated={isAnimated}>
+    // <motion.ul layout={isAnimated} role={role} className={className}>
+    //   {isAnimated ? <AnimatePresence>{children}</AnimatePresence> : children}
+    // </motion.ul>
+    // </ListProvider>
+    <ul role={role} className={className}>
+      {children}
+    </ul>
   );
 }
 

@@ -1,3 +1,5 @@
+'use client';
+
 import { useRouterEvent } from '@src/routing/useRouterEvent';
 import FadeIn from '@src/transitions/FadeIn';
 import classNames from 'classnames';
@@ -18,10 +20,11 @@ export const useBackdrop = (
   }, []);
 
   // Closing the backdrop on route change
-  useRouterEvent(
-    'routeChangeStart',
-    args?.closeOnRouteChange ? close : undefined,
-  );
+  // TODO: Fix gerekebilir buna
+  // useRouterEvent(
+  //   'routeChangeStart',
+  //   args?.closeOnRouteChange ? close : undefined,
+  // );
 
   return { isOpen, open, close };
 };

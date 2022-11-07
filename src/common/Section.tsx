@@ -31,12 +31,18 @@ const Section = React.forwardRef<React.ComponentRef<'section'>, SectionProps>(
       <section ref={ref} {...rest}>
         <header
           className={classNames(
-            hideTitle && 'sr-only',
-            'flex items-center justify-between text-text-light',
+            'flex items-center justify-between text-text-light mb-1',
             headerClassName,
           )}
         >
-          <Heading className="font-semibold text-lg">{title}</Heading>
+          <Heading
+            className={classNames(
+              'font-semibold text-lg',
+              hideTitle && 'sr-only',
+            )}
+          >
+            {title}
+          </Heading>
           {headerActions && <div>{headerActions}</div>}
         </header>
         {children}

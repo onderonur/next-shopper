@@ -1,9 +1,9 @@
 import Button from '@src/common/Button';
-import { useModal } from '@src/common/ModalRootContext';
 import ConfirmModal, {
   ConfirmModalData,
   ConfirmModalProps,
-} from '@src/common/ConfirmModal';
+} from '@src/modals/ConfirmModal';
+import { useModal } from '@src/modals/useModal';
 import { useAppDispatch, useAppSelector } from '@src/store/store';
 import { clearCart, selectCartItems } from './cartSlice';
 

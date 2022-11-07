@@ -45,3 +45,20 @@ export const pruneQueryParams = (query: any): ParsedUrlQuery => {
   });
   return filteredQuery;
 };
+
+// TODO: Rename, refactor etc.
+export function paramsToSearchParams(params: any) {
+  const searchParams = new URLSearchParams();
+
+  Object.entries(params ?? {}).forEach(([key, value]) => {
+    if (Array.isArray(value)) {
+      value.forEach((valueItem) => {
+        searchParams.append(key, valueItem);
+      });
+    } else {
+      searchParams.append(key, value as any);
+    }
+  });
+
+  return searchParams;
+}

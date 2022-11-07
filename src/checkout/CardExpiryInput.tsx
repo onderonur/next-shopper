@@ -1,5 +1,4 @@
 import NumberInput, { NumberInputProps } from '@src/forms/NumberInput';
-import 'react-credit-cards/es/styles-compiled.css';
 import { Omit } from '@src/common/CommonTypes';
 import React from 'react';
 

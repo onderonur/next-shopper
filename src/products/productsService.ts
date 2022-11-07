@@ -1,3 +1,4 @@
+import 'server-only';
 import dbJson from '@src/db/db.json';
 import createHttpError from 'http-errors';
 import {
@@ -13,6 +14,7 @@ import {
   ProductFilterResponse,
   ProductFilterSelectedOption,
 } from './ProductsTypes';
+import { wait } from '@src/common/CommonUtils';
 
 function getProductFilterOptions() {
   const { sortings, categories, priceRanges } = dbJson;
@@ -123,8 +125,13 @@ function getManyProducts(args: FilterProductsArgs) {
   return response;
 }
 
+// TODO: Aslında bu service'ler async değil. Ondan await'siz de çağrılabiliyorlar.
+// Async hale getir bunları ve kullanıldıkları yerleri kontrol et.
 export const productsService = {
-  filterProducts: (args: FilterProductsArgs): ProductFilterResponse => {
+  filterProducts: async (
+    args: FilterProductsArgs,
+  ): Promise<ProductFilterResponse> => {
+    await wait();
     const filterOptions = getProductFilterOptions();
     const selectedOptions = getProductFilterSelectedOptions(args);
     const products = getManyProducts(
@@ -132,14 +139,14 @@ export const productsService = {
     );
     return { filterOptions, selectedOptions, products };
   },
-  getOneProductById: (args: GetOneProductByIdArgs) => {
+  getOneProductById: async (args: GetOneProductByIdArgs) => {
+    await wait();
+
     const found = dbJson.products.find(
       (product) => product.id === args.productId,
     );
 
-    if (!found) {
-      throw new createHttpError.NotFound('Product not found');
-    }
+    // TODO: Gereksiz paketleri sil.
 
     return found;
   },

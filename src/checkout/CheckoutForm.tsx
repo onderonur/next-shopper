@@ -1,14 +1,10 @@
 import NumberInput from '@src/forms/NumberInput';
 import SubmitButton from '@src/forms/SubmitButton';
-import { useYupValidationResolver } from '@src/forms/useYupValidationResolver';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import 'react-credit-cards/es/styles-compiled.css';
 import ErrorMessage from '@src/error-handling/ErrorMessage';
 import { Maybe } from '@src/common/CommonTypes';
-import { useFocusedField } from '@src/forms/useFocusedField';
 import { ApiRequestError } from '@src/error-handling/ErrorHandlingTypes';
 import Form from '@src/forms/Form';
-import CheckoutFormCreditCard from './CheckoutFormCreditCard';
 import {
   CompleteCheckoutArgs,
   completeCheckoutArgsSchema,
@@ -17,6 +13,7 @@ import FormItem from '@src/forms/FormItem';
 import Input from '@src/forms/Input';
 import FormItemLabel from '@src/forms/FormItemLabel';
 import CardExpiryInput from './CardExpiryInput';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 const defaultValues = completeCheckoutArgsSchema.getDefault();
 
@@ -26,30 +23,20 @@ interface CheckoutFormProps {
 }
 
 function CheckoutForm({ error, onSubmit }: CheckoutFormProps) {
-  const resolver = useYupValidationResolver(completeCheckoutArgsSchema);
-  const { register, formState, handleSubmit, watch } =
-    useForm<CompleteCheckoutArgs>({
-      resolver,
-      defaultValues,
-    });
-
-  const { focusedField, focusHandlers } =
-    useFocusedField<CompleteCheckoutArgs>();
-
-  const values = watch();
+  const { register, formState, handleSubmit } = useForm<CompleteCheckoutArgs>({
+    resolver: yupResolver(completeCheckoutArgsSchema),
+    defaultValues,
+  });
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <div className="mb-4">
-        <CheckoutFormCreditCard values={values} focusedField={focusedField} />
-      </div>
       <ErrorMessage error={error} />
       <FormItem error={formState.errors.nameSurname}>
         <FormItemLabel htmlFor="nameSurname">Name Surname</FormItemLabel>
         <Input
           id="nameSurname"
           placeholder="Name Surname"
-          {...focusHandlers(register('nameSurname'))}
+          {...register('nameSurname')}
         />
       </FormItem>
       <FormItem error={formState.errors.cardNumber}>
@@ -59,13 +46,13 @@ function CheckoutForm({ error, onSubmit }: CheckoutFormProps) {
           format="#### #### #### ####"
           mask="_"
           placeholder="0000 0000 0000 0000"
-          {...focusHandlers(register('cardNumber'))}
+          {...register('cardNumber')}
         />
       </FormItem>
       <div className="flex justify-between gap-4">
         <FormItem error={formState.errors.expiry}>
           <FormItemLabel htmlFor="expiry">Expiration Date</FormItemLabel>
-          <CardExpiryInput id="expiry" {...focusHandlers(register('expiry'))} />
+          <CardExpiryInput id="expiry" {...register('expiry')} />
         </FormItem>
         <FormItem error={formState.errors.cvc}>
           <FormItemLabel htmlFor="cvc">CVC</FormItemLabel>
@@ -74,7 +61,7 @@ function CheckoutForm({ error, onSubmit }: CheckoutFormProps) {
             mask="_"
             format="###"
             placeholder="000"
-            {...focusHandlers(register('cvc'))}
+            {...register('cvc')}
           />
         </FormItem>
       </div>

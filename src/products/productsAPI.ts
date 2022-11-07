@@ -45,7 +45,7 @@ export const productsAPI = {
       const response = await httpClient.get<Product>(
         `/api/products/${args.productId}`,
       );
-      return response.data;
+      return response.data as any;
     },
   }),
 };

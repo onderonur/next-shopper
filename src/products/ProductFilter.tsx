@@ -1,3 +1,5 @@
+'use client';
+
 import { Maybe } from '@src/common/CommonTypes';
 import Panel from '@src/common/Panel';
 import CheckboxGroup from '@src/forms/CheckboxGroup';

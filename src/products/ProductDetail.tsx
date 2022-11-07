@@ -13,14 +13,12 @@ interface ProductDetailProps {
 function ProductDetail({ product }: ProductDetailProps) {
   return (
     <div className="flex flex-col sm:flex-row gap-6">
-      <div className="flex-1">
+      <div className="flex-1 relative aspect-square">
         <BaseImage
           src={product.image}
           alt={product.title}
-          height={10}
-          width={10}
-          objectFit="contain"
-          layout="responsive"
+          className="object-contain"
+          fill
           priority
         />
       </div>
@@ -31,7 +29,7 @@ function ProductDetail({ product }: ProductDetailProps) {
             <Price className="text-primary-dark" value={product.price} />
           </div>
         </div>
-        <AddToCartButton className="max-w-xs" product={product} />
+        {/* <AddToCartButton className="max-w-xs" product={product} /> */}
         <p>{product.description}</p>
         <NextLink
           href={routes.search({

@@ -15,15 +15,13 @@ function ProductCard({ product }: ProductCardProps) {
     <article className="flex flex-col h-full group border-2 p-2 rounded-md">
       <div className="relative cursor-pointer">
         <NextLink href={routes.product({ params: { productId: product.id } })}>
-          <div className="p-2 ">
-            <div className="transition duration-500 ease-out bg-transparent p-2 transform group-hover:scale-110">
+          <div className="p-4">
+            <div className="relative aspect-[10/12] transition duration-500 ease-out bg-transparent transform group-hover:scale-110">
               <BaseImage
                 src={product.image}
                 alt={product.title}
-                layout="responsive"
-                height={12}
-                width={10}
-                objectFit="contain"
+                className="object-contain"
+                fill
               />
             </div>
           </div>

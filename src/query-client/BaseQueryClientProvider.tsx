@@ -19,7 +19,7 @@ function BaseQueryClientProvider({
   return (
     <QueryClientProvider client={queryClient}>
       {/* Using hydration:
-       https://@tanstack/react-query.tanstack.com/guides/ssr#using-hydration */}
+       https://tanstack.com/query/v4/docs/guides/ssr#using-hydration */}
       <Hydrate state={dehydratedState}>{children}</Hydrate>
     </QueryClientProvider>
   );

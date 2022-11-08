@@ -4,7 +4,7 @@ import { useListContext } from './ListContext';
 // type ListItemProps = React.ComponentPropsWithoutRef<typeof motion.li>;
 type ListItemProps = React.ComponentPropsWithoutRef<'li'>;
 
-function ListItem(props: ListItemProps) {
+export default function ListItem(props: ListItemProps) {
   // const { isAnimated } = useListContext();
 
   // return (
@@ -19,5 +19,3 @@ function ListItem(props: ListItemProps) {
 
   return <li {...props} />;
 }
-
-export default ListItem;

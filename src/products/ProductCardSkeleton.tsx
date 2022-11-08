@@ -1,6 +1,6 @@
 import ContentLoader from 'react-content-loader';
 
-function ProductCardSkeleton() {
+export default function ProductCardSkeleton() {
   return (
     <ContentLoader uniqueKey="productCardSkeleton" viewBox="0 0 242 500">
       <rect x="12%" y="12" width="76%" height="270" />
@@ -12,5 +12,3 @@ function ProductCardSkeleton() {
     </ContentLoader>
   );
 }
-
-export default ProductCardSkeleton;

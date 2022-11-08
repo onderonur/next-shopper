@@ -12,7 +12,7 @@ export default function FilterDrawer({ children }: FilterDrawerProps) {
 
   // TODO: Bu geçici olarak eklendi. Yoksa build alınca param'lar siliniyor.
   // https://github.com/vercel/next.js/issues/42438
-  const temp = useSearchParams();
+  useSearchParams();
 
   return (
     <div className="md:hidden flex justify-end">

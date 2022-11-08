@@ -1,3 +1,5 @@
+/* TODO: Tailwind için bunlara base vs eklemek gerekli mi bi bak */
+
 ::-webkit-scrollbar {
   @apply h-3 w-3;
 }

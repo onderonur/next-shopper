@@ -1,4 +1,3 @@
-import { useTheme } from '@src/styling/ThemeProvider';
 import { Router } from 'next/router';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
@@ -9,7 +8,7 @@ Router.events.on('routeChangeStart', () => {
 Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
-function PageProgressBar() {
+export default function PageProgressBar() {
   const theme = useTheme();
   const color = theme.colors.secondary.light;
 
@@ -36,5 +35,3 @@ function PageProgressBar() {
     </style>
   );
 }
-
-export default PageProgressBar;

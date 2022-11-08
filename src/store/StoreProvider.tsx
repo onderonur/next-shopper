@@ -1,9 +1,7 @@
 'use client';
 
 import { Provider } from 'react-redux';
-import { makeStore } from './store';
-
-const store = makeStore();
+import { store } from './store';
 
 type StoreProvider = React.PropsWithChildren;
 

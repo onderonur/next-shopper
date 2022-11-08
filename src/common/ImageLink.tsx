@@ -6,7 +6,7 @@ type ImageLinkProps = Pick<NextLinkProps, 'href'> & {
   title: string;
 };
 
-function ImageLink({ href, imageSrc, title }: ImageLinkProps) {
+export default function ImageLink({ href, imageSrc, title }: ImageLinkProps) {
   return (
     <NextLink
       className="relative block w-full h-80 group rounded-md overflow-hidden"
@@ -29,5 +29,3 @@ function ImageLink({ href, imageSrc, title }: ImageLinkProps) {
     </NextLink>
   );
 }
-
-export default ImageLink;

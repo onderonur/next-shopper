@@ -10,7 +10,7 @@ type ChipProps = React.PropsWithChildren<{
   closeButtonProps?: ButtonProps;
 }>;
 
-function Chip({
+export default function Chip({
   className,
   textAlign,
   variant,
@@ -47,5 +47,3 @@ function Chip({
     </div>
   );
 }
-
-export default Chip;

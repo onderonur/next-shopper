@@ -2,15 +2,12 @@ import Container from '@src/common/Container';
 
 type AppContentProps = React.PropsWithChildren<{}>;
 
-function AppContent({ children }: AppContentProps) {
+export default function AppContent({ children }: AppContentProps) {
   return (
-    <Container
-      maxWidth="xl"
-      className="mt-app-header flex-grow w-full flex flex-col p-2 md:p-6"
-    >
-      <main className="flex-grow relative">{children}</main>
-    </Container>
+    <main className="mt-app-header flex-grow p-2 md:p-6">
+      <Container maxWidth="xl" className="p-2 md:p-6">
+        {children}
+      </Container>
+    </main>
   );
 }
-
-export default AppContent;

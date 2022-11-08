@@ -5,7 +5,7 @@ type FormItemProps = React.PropsWithChildren<{
   error?: Maybe<FieldError>;
 }>;
 
-function FormItem({ error, children }: FormItemProps) {
+export default function FormItem({ error, children }: FormItemProps) {
   return (
     <div className="py-1">
       {children}
@@ -17,5 +17,3 @@ function FormItem({ error, children }: FormItemProps) {
     </div>
   );
 }
-
-export default FormItem;

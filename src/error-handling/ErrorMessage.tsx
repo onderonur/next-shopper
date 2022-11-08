@@ -6,7 +6,7 @@ type ErrorMessageProps = React.PropsWithChildren<{
   error: Maybe<Error | ApiRequestError>;
 }>;
 
-function ErrorMessage({ children, error }: ErrorMessageProps) {
+export default function ErrorMessage({ children, error }: ErrorMessageProps) {
   if (!error) {
     return <>{children}</>;
   }
@@ -26,5 +26,3 @@ function ErrorMessage({ children, error }: ErrorMessageProps) {
     </div>
   );
 }
-
-export default ErrorMessage;

@@ -10,7 +10,7 @@ export type MethodHandlers<
   [Method in MethodName]: NextApiHandler<MethodHandlerSchema[Method]>;
 }>;
 
-export interface ApiErrorResponse {
+export type ApiErrorResponse = {
   statusCode: number;
   message: string;
-}
+};

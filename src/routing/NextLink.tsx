@@ -7,7 +7,7 @@ export type NextLinkProps = LinkProps &
     isExternalUrl?: boolean;
   }>;
 
-function NextLink({ isExternalUrl, ...rest }: NextLinkProps) {
+export default function NextLink({ isExternalUrl, ...rest }: NextLinkProps) {
   return (
     <Link
       {...rest}
@@ -16,5 +16,3 @@ function NextLink({ isExternalUrl, ...rest }: NextLinkProps) {
     />
   );
 }
-
-export default NextLink;

@@ -1,7 +1,7 @@
 import { Id } from '@src/common/CommonTypes';
 import { ProductFilterKey } from './ProductsUtils';
 
-export interface Product {
+export type Product = {
   id: Id;
   category: {
     title: string;
@@ -11,11 +11,7 @@ export interface Product {
   image: string;
   price: number;
   title: string;
-}
-
-export interface GetOneProductByIdArgs {
-  productId: Id;
-}
+};
 
 export type FilterProductsArgs = {
   sorting?: string;
@@ -23,16 +19,16 @@ export type FilterProductsArgs = {
   priceRanges?: string[];
 };
 
-export interface ProductFilterOptionItem {
+export type ProductFilterOptionItem = {
   title: string;
   value: string;
-}
+};
 
-export interface ProductFilterData {
+export type ProductFilterData = {
   title: string;
   options: ProductFilterOptionItem[];
   filterKey: ProductFilterKey;
-}
+};
 
 export type ProductFilterOptions = Record<
   'categories' | 'sortings' | 'priceRanges',
@@ -44,8 +40,8 @@ export type ProductFilterSelectedOption = ProductFilterOptionItem & {
   filterKey: ProductFilterKey;
 };
 
-export interface ProductFilterResponse {
+export type ProductFilterResponse = {
   filterOptions: ProductFilterOptions;
   selectedOptions: ProductFilterSelectedOption[];
   products: Product[];
-}
+};

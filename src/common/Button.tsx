@@ -10,7 +10,7 @@ export type ButtonProps = React.ComponentPropsWithoutRef<'button'> &
     circle?: boolean;
   };
 
-function Button({
+export default function Button({
   href,
   isExternalUrl,
   className,
@@ -70,5 +70,3 @@ function Button({
     </button>
   );
 }
-
-export default Button;

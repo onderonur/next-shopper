@@ -19,7 +19,7 @@ const scrollStore = {
   getServerSnapshot: () => 0,
 };
 
-function BackToTopButton() {
+export default function BackToTopButton() {
   const scrollY = useSyncExternalStore(
     scrollStore.subscribe,
     scrollStore.getSnapshot,
@@ -37,5 +37,3 @@ function BackToTopButton() {
     </FadeIn>
   );
 }
-
-export default BackToTopButton;

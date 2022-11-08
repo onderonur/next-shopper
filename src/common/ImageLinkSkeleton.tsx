@@ -1,6 +1,6 @@
 import ContentLoader from 'react-content-loader';
 
-function ImageLinkSkeleton() {
+export default function ImageLinkSkeleton() {
   return (
     <ContentLoader
       uniqueKey="imageLinkSkeleton"
@@ -10,5 +10,3 @@ function ImageLinkSkeleton() {
     </ContentLoader>
   );
 }
-
-export default ImageLinkSkeleton;

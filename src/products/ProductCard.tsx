@@ -6,11 +6,11 @@ import Price from '@src/common/Price';
 import { Product } from './ProductsTypes';
 import { routes } from '@src/routing/routes';
 
-interface ProductCardProps {
+type ProductCardProps = {
   product: Product;
-}
+};
 
-function ProductCard({ product }: ProductCardProps) {
+export default function ProductCard({ product }: ProductCardProps) {
   return (
     <article className="flex flex-col h-full group border-2 p-2 rounded-md">
       <div className="relative cursor-pointer">
@@ -31,9 +31,9 @@ function ProductCard({ product }: ProductCardProps) {
         <div className="text-md">
           <Price className="text-primary-dark" value={product.price} />
         </div>
-        <h2 className="font-bold text-sm flex-grow text-center">
+        <h3 className="font-bold text-sm flex-grow text-center">
           {product.title}
-        </h2>
+        </h3>
         <NextLink
           href={routes.search({
             query: { categories: [product.category.value] },
@@ -50,5 +50,3 @@ function ProductCard({ product }: ProductCardProps) {
     </article>
   );
 }
-
-export default ProductCard;

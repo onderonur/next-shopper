@@ -17,7 +17,6 @@ export default function LandingPage() {
         <Container maxWidth="xl">
           <CategoriesShell>
             <Suspense fallback={<CategoriesSkeleton />}>
-              {/* @ts-ignore */}
               <Categories />
             </Suspense>
           </CategoriesShell>

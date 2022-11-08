@@ -2,7 +2,7 @@ import Price from '@src/common/Price';
 import { useAppSelector } from '@src/store/store';
 import { selectTotalPrice } from './cartSlice';
 
-function CartTotalPrice() {
+export default function CartTotalPrice() {
   const totalPrice = useAppSelector(selectTotalPrice);
 
   if (!totalPrice) {
@@ -17,5 +17,3 @@ function CartTotalPrice() {
     </div>
   );
 }
-
-export default CartTotalPrice;

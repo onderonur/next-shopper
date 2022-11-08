@@ -4,11 +4,13 @@ import { DeleteIcon, MinusIcon, PlusIcon } from '@src/common/Icons';
 import { addProduct, removeCartItem, removeProduct } from './cartSlice';
 import { useAppDispatch } from '@src/store/store';
 
-interface CartItemActionButtonsProps {
+type CartItemActionButtonsProps = {
   cartItem: CartItem;
-}
+};
 
-function CartItemActionButtons({ cartItem }: CartItemActionButtonsProps) {
+export default function CartItemActionButtons({
+  cartItem,
+}: CartItemActionButtonsProps) {
   const dispatch = useAppDispatch();
   const product = cartItem.info;
 
@@ -43,5 +45,3 @@ function CartItemActionButtons({ cartItem }: CartItemActionButtonsProps) {
     </div>
   );
 }
-
-export default CartItemActionButtons;

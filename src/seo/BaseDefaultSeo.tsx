@@ -1,7 +1,7 @@
 import { DefaultSeo } from 'next-seo';
 import { APP_DESCRIPTION, APP_TITLE } from '@src/common/CommonUtils';
 
-function BaseDefaultSeo() {
+export default function BaseDefaultSeo() {
   const title = APP_TITLE;
 
   return (
@@ -19,5 +19,3 @@ function BaseDefaultSeo() {
     />
   );
 }
-
-export default BaseDefaultSeo;

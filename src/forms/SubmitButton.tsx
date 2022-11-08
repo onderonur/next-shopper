@@ -9,7 +9,7 @@ type SubmitButtonProps<FormFieldValues extends FieldValues> = Pick<
   formState: FormState<FormFieldValues>;
 };
 
-function SubmitButton<FormFieldValues extends FieldValues>({
+export default function SubmitButton<FormFieldValues extends FieldValues>({
   formState,
   children,
   ...rest
@@ -28,5 +28,3 @@ function SubmitButton<FormFieldValues extends FieldValues>({
     </Button>
   );
 }
-
-export default SubmitButton;

@@ -4,7 +4,7 @@ import { OpenGraph } from 'next-seo/lib/types';
 type BaseSeoProps = Pick<NextSeoProps, 'title' | 'description'> &
   Pick<OpenGraph, 'images'>;
 
-function BaseSeo({ title, description, images }: BaseSeoProps) {
+export default function BaseSeo({ title, description, images }: BaseSeoProps) {
   return (
     <NextSeo
       title={title}
@@ -20,5 +20,3 @@ function BaseSeo({ title, description, images }: BaseSeoProps) {
     />
   );
 }
-
-export default BaseSeo;

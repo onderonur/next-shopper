@@ -3,7 +3,7 @@ import List from '@src/common/List';
 import ListItem from '@src/common/ListItem';
 import OptionButtonSkeleton from './OptionButtonSkeleton';
 
-function OptionGroupSkeleton() {
+export default function OptionGroupSkeleton() {
   return (
     <List>
       {createMockArray(4).map((i) => {
@@ -16,5 +16,3 @@ function OptionGroupSkeleton() {
     </List>
   );
 }
-
-export default OptionGroupSkeleton;

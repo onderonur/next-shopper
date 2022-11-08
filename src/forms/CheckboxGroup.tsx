@@ -2,7 +2,7 @@ import { Maybe } from '@src/common/CommonTypes';
 import OptionButton from './OptionButton';
 import OptionGroupSkeleton from './OptionGroupSkeleton';
 
-interface CheckboxGroupProps<Option> {
+type CheckboxGroupProps<Option> = {
   isLoading?: boolean;
   isDisabled?: boolean;
   options: Maybe<Option[]>;
@@ -10,9 +10,9 @@ interface CheckboxGroupProps<Option> {
   getOptionValue: (option: Option) => string;
   value: Maybe<string[]>;
   onChange: (value: string[]) => void;
-}
+};
 
-function CheckboxGroup<Option>({
+export default function CheckboxGroup<Option>({
   isLoading,
   isDisabled,
   options,
@@ -61,5 +61,3 @@ function CheckboxGroup<Option>({
     </div>
   );
 }
-
-export default CheckboxGroup;

@@ -8,7 +8,7 @@ type FadeInProps = React.PropsWithChildren<{
   className?: string;
 }>;
 
-function FadeIn({ isIn, className, children }: FadeInProps) {
+export default function FadeIn({ isIn, className, children }: FadeInProps) {
   return (
     <AnimatePresence>
       {isIn ? (
@@ -25,5 +25,3 @@ function FadeIn({ isIn, className, children }: FadeInProps) {
     </AnimatePresence>
   );
 }
-
-export default FadeIn;

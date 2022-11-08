@@ -5,12 +5,14 @@ import ListItem from '@src/common/ListItem';
 import { CartIcon } from '@src/common/Icons';
 import { useAppSelector } from '@src/store/store';
 import { selectCartItems } from './cartSlice';
+import NextLink from '@src/routing/NextLink';
+import { routes } from '@src/routing/routes';
 
-interface CartItemListProps {
+type CartItemListProps = {
   className?: string;
-}
+};
 
-function CartItemList({ className }: CartItemListProps) {
+export default function CartItemList({ className }: CartItemListProps) {
   const cartItems = useAppSelector(selectCartItems);
 
   return (
@@ -28,9 +30,14 @@ function CartItemList({ className }: CartItemListProps) {
         return (
           <ListItem key={cartItem.info.id} className="border-b-2 py-2">
             <div className="flex gap-4">
-              <div className="flex-grow font-semibold">
+              <NextLink
+                href={routes.product({
+                  params: { productId: cartItem.info.id },
+                })}
+                className="flex-grow font-semibold"
+              >
                 {cartItem.info.title}
-              </div>
+              </NextLink>
               <div className="flex flex-col items-end">
                 <Price
                   className="text-primary-dark"
@@ -47,5 +54,3 @@ function CartItemList({ className }: CartItemListProps) {
     </List>
   );
 }
-
-export default CartItemList;

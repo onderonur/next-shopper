@@ -1,5 +1,5 @@
-export interface Category {
+export type Category = {
   title: string;
   value: string;
   image: string;
-}
+};

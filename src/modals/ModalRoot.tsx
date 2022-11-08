@@ -4,7 +4,7 @@ import { useSyncExternalStore } from 'react';
 import ModalProvider from './ModalContext';
 import { modalStore } from './modalStore';
 
-function ModalRoot() {
+export default function ModalRoot() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const modals = useSyncExternalStore(
     modalStore.subscribe,
@@ -28,5 +28,3 @@ function ModalRoot() {
     </>
   );
 }
-
-export default ModalRoot;

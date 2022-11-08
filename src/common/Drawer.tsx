@@ -4,6 +4,7 @@ import Backdrop, { useBackdrop } from './Backdrop';
 import classNames from 'classnames';
 import Slide, { SlideProps } from '@src/transitions/Slide';
 import Section from './Section';
+import SectionTitle from './SectionTitle';
 
 export const useDrawer = useBackdrop;
 
@@ -14,7 +15,7 @@ export type DrawerProps = Pick<SlideProps, 'from'> &
     onClose: VoidFunction;
   }>;
 
-function Drawer({
+export default function Drawer({
   from = 'left',
   title,
   isOpen,
@@ -36,17 +37,6 @@ function Drawer({
           <Section
             ref={focusRef}
             className="h-full flex flex-col"
-            title={title}
-            titleAs="h2"
-            headerClassName="py-2 px-4 shadow-sm"
-            headerActions={
-              <Button
-                aria-label="Close Drawer"
-                variant="transparent"
-                icon={<CloseIcon />}
-                onClick={onClose}
-              />
-            }
             // To make "onKeyDown" work on this element
             tabIndex={-1}
             onKeyDown={(e) => {
@@ -55,6 +45,20 @@ function Drawer({
               }
             }}
           >
+            <SectionTitle
+              as="h2"
+              className="py-2 px-4 shadow-sm"
+              actions={
+                <Button
+                  aria-label="Close Drawer"
+                  variant="transparent"
+                  icon={<CloseIcon />}
+                  onClick={onClose}
+                />
+              }
+            >
+              {title}
+            </SectionTitle>
             <div className="p-4 h-full overflow-auto">
               <div className="relative h-full">{children}</div>
             </div>
@@ -64,5 +68,3 @@ function Drawer({
     </Backdrop>
   );
 }
-
-export default Drawer;

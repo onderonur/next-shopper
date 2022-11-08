@@ -22,7 +22,7 @@ type ModalProviderProps = React.PropsWithChildren<{
   isOpen: boolean;
 }>;
 
-function ModalProvider<Data>({
+export default function ModalProvider<Data>({
   modalKey,
   isOpen,
   children,
@@ -44,5 +44,3 @@ function ModalProvider<Data>({
     </ModalContext.Provider>
   );
 }
-
-export default ModalProvider;

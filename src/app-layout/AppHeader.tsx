@@ -3,7 +3,7 @@ import NextLink from '@src/routing/NextLink';
 import { APP_TITLE } from '@src/common/CommonUtils';
 import Container from '@src/common/Container';
 
-function AppHeader() {
+export default function AppHeader() {
   return (
     <header className="fixed w-full h-app-header z-10 bg-background-main px-6 shadow-sm flex items-center">
       <Container maxWidth="xl" className="flex items-center">
@@ -16,5 +16,3 @@ function AppHeader() {
     </header>
   );
 }
-
-export default AppHeader;

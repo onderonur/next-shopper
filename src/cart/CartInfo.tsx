@@ -10,7 +10,7 @@ import { useAppSelector } from '@src/store/store';
 import CartDrawer from './CartDrawer';
 import { selectProductsCount, selectTotalPrice } from './cartSlice';
 
-function CartInfo() {
+export default function CartInfo() {
   const totalPrice = useAppSelector(selectTotalPrice);
   const productsCount = useAppSelector(selectProductsCount);
 
@@ -32,5 +32,3 @@ function CartInfo() {
     </>
   );
 }
-
-export default CartInfo;

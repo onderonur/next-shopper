@@ -14,8 +14,6 @@ export function useListContext() {
 
 type ListProviderProps = React.PropsWithChildren<ListContextValue>;
 
-function ListProvider({ children, ...rest }: ListProviderProps) {
+export default function ListProvider({ children, ...rest }: ListProviderProps) {
   return <ListContext.Provider value={rest}>{children}</ListContext.Provider>;
 }
-
-export default ListProvider;

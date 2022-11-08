@@ -2,7 +2,7 @@ type BadgeProps = React.PropsWithChildren<{
   value: number;
 }>;
 
-function Badge({ value, children }: BadgeProps) {
+export default function Badge({ value, children }: BadgeProps) {
   return (
     <div className="relative">
       {children}
@@ -14,5 +14,3 @@ function Badge({ value, children }: BadgeProps) {
     </div>
   );
 }
-
-export default Badge;

@@ -1,12 +1,15 @@
 import Button from '@src/common/Button';
 import { StatusCodes } from 'http-status-codes';
 
-export interface ErrorContentProps {
+type ErrorContentProps = {
   statusCode: StatusCodes;
   message: string;
-}
+};
 
-function ErrorContent({ statusCode, message }: ErrorContentProps) {
+export default function ErrorContent({
+  statusCode,
+  message,
+}: ErrorContentProps) {
   return (
     <div className="flex flex-col gap-4 justify-center items-center">
       <div className="flex items-center">
@@ -21,5 +24,3 @@ function ErrorContent({ statusCode, message }: ErrorContentProps) {
     </div>
   );
 }
-
-export default ErrorContent;

@@ -12,11 +12,11 @@ import {
 import { routes } from '@src/routing/routes';
 import { useRouter } from 'next/navigation';
 
-interface SelectedFiltersProps {
+type SelectedFiltersProps = {
   // TODO: Rename
   filterArgs: FilterProductsArgs;
   selectedOptions: Maybe<ProductFilterSelectedOption[]>;
-}
+};
 
 export default function SelectedFilters({
   filterArgs,

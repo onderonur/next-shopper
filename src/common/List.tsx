@@ -9,7 +9,7 @@ type ListProps = Pick<React.ComponentProps<'ul'>, 'role'> &
     emptyMessage?: React.ReactNode;
   }>;
 
-function List({
+export default function List({
   role,
   className,
   isAnimated,
@@ -31,5 +31,3 @@ function List({
     </ul>
   );
 }
-
-export default List;

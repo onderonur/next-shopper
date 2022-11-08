@@ -7,7 +7,13 @@ export type SlideProps = React.PropsWithChildren<{
   from?: 'left' | 'right';
   isIn: boolean;
 }>;
-function Slide({ className, from = 'left', isIn, children }: SlideProps) {
+
+export default function Slide({
+  className,
+  from = 'left',
+  isIn,
+  children,
+}: SlideProps) {
   const outTransform = { x: from === 'left' ? '-100%' : '100%' };
 
   // AnimatePresence is not working when it's nested into another one.
@@ -26,5 +32,3 @@ function Slide({ className, from = 'left', isIn, children }: SlideProps) {
     </motion.div>
   ) : null;
 }
-
-export default Slide;

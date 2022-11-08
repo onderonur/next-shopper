@@ -5,7 +5,11 @@ type ContainerProps = React.PropsWithChildren<{
   className?: string;
 }>;
 
-function Container({ maxWidth, className, children }: ContainerProps) {
+export default function Container({
+  maxWidth,
+  className,
+  children,
+}: ContainerProps) {
   return (
     <div
       className={classNames(
@@ -25,5 +29,3 @@ function Container({ maxWidth, className, children }: ContainerProps) {
     </div>
   );
 }
-
-export default Container;

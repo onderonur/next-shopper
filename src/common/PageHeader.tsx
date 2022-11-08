@@ -1,23 +1,28 @@
 import GoBackButton from '@src/routing/GoBackButton';
-import { Maybe } from './CommonTypes';
+import classNames from 'classnames';
 
-interface PageHeaderProps {
-  title: Maybe<string>;
-}
+type PageHeaderProps = {
+  isHidden?: boolean;
+  title: string;
+};
 
-function PageHeader({ title }: PageHeaderProps) {
+export default function PageHeader({ isHidden, title }: PageHeaderProps) {
   return (
     <div className="flex items-center gap-2 mb-2">
-      <div className="flex-shrink-0">
-        <GoBackButton />
-      </div>
-      {title && (
-        <h1 className="border-l pl-4 font-bold text-text-light line-clamp-2">
-          {title}
-        </h1>
+      {!isHidden && (
+        <div className="flex-shrink-0">
+          <GoBackButton />
+        </div>
       )}
+      <h1
+        className={classNames(
+          isHidden
+            ? 'sr-only'
+            : 'border-l pl-4 font-bold text-text-light line-clamp-2',
+        )}
+      >
+        {title}
+      </h1>
     </div>
   );
 }
-
-export default PageHeader;

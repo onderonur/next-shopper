@@ -17,12 +17,12 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 const defaultValues = completeCheckoutArgsSchema.getDefault();
 
-interface CheckoutFormProps {
+type CheckoutFormProps = {
   error: Maybe<ApiRequestError>;
   onSubmit: SubmitHandler<CompleteCheckoutArgs>;
-}
+};
 
-function CheckoutForm({ error, onSubmit }: CheckoutFormProps) {
+export default function CheckoutForm({ error, onSubmit }: CheckoutFormProps) {
   const { register, formState, handleSubmit } = useForm<CompleteCheckoutArgs>({
     resolver: yupResolver(completeCheckoutArgsSchema),
     defaultValues,
@@ -71,5 +71,3 @@ function CheckoutForm({ error, onSubmit }: CheckoutFormProps) {
     </Form>
   );
 }
-
-export default CheckoutForm;

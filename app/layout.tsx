@@ -15,7 +15,6 @@ export default function RootLayout({
     <html lang="en" className={roboto.className}>
       {/* Due to this issue, this empty head is added:
       https://github.com/vercel/next.js/issues/41953 */}
-      {/* eslint-disable-next-line @next/next/no-head-element */}
       <head></head>
       <body>
         <StoreProvider>

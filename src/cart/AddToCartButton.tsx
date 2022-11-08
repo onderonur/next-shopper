@@ -5,12 +5,15 @@ import { Product } from '@src/products/ProductsTypes';
 import { useAppDispatch } from '@src/store/store';
 import { addProduct } from './cartSlice';
 
-interface AddToCartButtonProps {
+type AddToCartButtonProps = {
   className?: string;
   product: Product;
-}
+};
 
-function AddToCartButton({ className, product }: AddToCartButtonProps) {
+export default function AddToCartButton({
+  className,
+  product,
+}: AddToCartButtonProps) {
   const dispatch = useAppDispatch();
 
   return (
@@ -24,5 +27,3 @@ function AddToCartButton({ className, product }: AddToCartButtonProps) {
     </Button>
   );
 }
-
-export default AddToCartButton;

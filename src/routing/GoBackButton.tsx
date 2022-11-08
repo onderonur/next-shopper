@@ -4,7 +4,7 @@ import Button from '@src/common/Button';
 import { ArrowLeftIcon } from '@src/common/Icons';
 import { useRouter } from 'next/navigation';
 
-function GoBackButton() {
+export default function GoBackButton() {
   const router = useRouter();
 
   return (
@@ -17,5 +17,3 @@ function GoBackButton() {
     />
   );
 }
-
-export default GoBackButton;

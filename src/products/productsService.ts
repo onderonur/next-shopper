@@ -1,6 +1,5 @@
 import 'server-only';
 import dbJson from '@src/db/db.json';
-import createHttpError from 'http-errors';
 import {
   getValuesOfSelectedOptions,
   ProductFilterKey,
@@ -8,13 +7,13 @@ import {
 } from '@src/products/ProductsUtils';
 import {
   FilterProductsArgs,
-  GetOneProductByIdArgs,
   Product,
   ProductFilterOptions,
   ProductFilterResponse,
   ProductFilterSelectedOption,
 } from './ProductsTypes';
 import { wait } from '@src/common/CommonUtils';
+import { Id } from '@src/common/CommonTypes';
 
 function getProductFilterOptions() {
   const { sortings, categories, priceRanges } = dbJson;
@@ -139,12 +138,10 @@ export const productsService = {
     );
     return { filterOptions, selectedOptions, products };
   },
-  getOneProductById: async (args: GetOneProductByIdArgs) => {
+  getOneProductById: async (productId: Id) => {
     await wait();
 
-    const found = dbJson.products.find(
-      (product) => product.id === args.productId,
-    );
+    const found = dbJson.products.find((product) => product.id === productId);
 
     // TODO: Gereksiz paketleri sil.
 

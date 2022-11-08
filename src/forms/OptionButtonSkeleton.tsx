@@ -1,6 +1,6 @@
 import ContentLoader from 'react-content-loader';
 
-function OptionButtonSkeleton() {
+export default function OptionButtonSkeleton() {
   return (
     <ContentLoader uniqueKey="optionButtonSkeletton" viewBox="0 0 200 48">
       <rect rx="4" y="10" width="28" height="28" />
@@ -8,5 +8,3 @@ function OptionButtonSkeleton() {
     </ContentLoader>
   );
 }
-
-export default OptionButtonSkeleton;

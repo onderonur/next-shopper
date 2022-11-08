@@ -3,7 +3,7 @@ import BaseImage from '@src/common/BaseImage';
 import Chip from '@src/common/Chip';
 import { Id } from '@src/common/CommonTypes';
 import PageHeader from '@src/common/PageHeader';
-import Panel from '@src/common/Panel';
+import Paper from '@src/common/Paper';
 import Price from '@src/common/Price';
 import { productsService } from '@src/products/productsService';
 import NextLink from '@src/routing/NextLink';
@@ -17,9 +17,9 @@ export type ProductPageProps = {
 };
 
 export default async function ProductPage({ params }: ProductPageProps) {
-  const product = await productsService.getOneProductById({
-    productId: Number(params.productId),
-  });
+  const product = await productsService.getOneProductById(
+    Number(params.productId),
+  );
 
   if (!product) {
     notFound();
@@ -28,7 +28,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
   return (
     <>
       <PageHeader title={product.title} />
-      <Panel>
+      <Paper>
         <div className="flex flex-col sm:flex-row gap-6">
           <div className="flex-1 relative aspect-square">
             <BaseImage
@@ -57,7 +57,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
             </NextLink>
           </div>
         </div>
-      </Panel>
+      </Paper>
     </>
   );
 }

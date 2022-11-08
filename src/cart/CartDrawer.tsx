@@ -10,7 +10,7 @@ import ClearCartButton from './ClearCartButton';
 
 type CartDrawerProps = Pick<DrawerProps, 'isOpen' | 'onClose'>;
 
-function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
+export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
   const cartItems = useAppSelector(selectCartItems);
 
   useOnPathnameChange(() => {
@@ -23,7 +23,7 @@ function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
         <ClearCartButton />
         <CartItemList className="flex-grow overflow-y-auto" />
         <CartTotalPrice />
-        {cartItems.length > 0 && (
+        {!!cartItems.length && (
           <Button href={routes.checkout()} variant="primary" className="my-2">
             Proceed to Checkout
           </Button>
@@ -32,5 +32,3 @@ function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
     </Drawer>
   );
 }
-
-export default CartDrawer;

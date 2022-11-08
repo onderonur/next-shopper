@@ -4,7 +4,7 @@ import { Omit } from './CommonTypes';
 type BaseImageProps = Omit<ImageProps, 'alt'> &
   Required<Pick<ImageProps, 'alt'>>;
 
-function BaseImage({
+export default function BaseImage({
   // We set image as `unoptimized` to not exceed the
   // fair usage policy of vercel about image optimization.
   // https://vercel.com/docs/platform/fair-use-policy
@@ -14,5 +14,3 @@ function BaseImage({
 }: BaseImageProps) {
   return <Image {...rest} alt={alt} unoptimized={unoptimized} />;
 }
-
-export default BaseImage;

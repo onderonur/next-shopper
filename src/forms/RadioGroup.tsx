@@ -2,7 +2,7 @@ import { Maybe } from '@src/common/CommonTypes';
 import OptionButton from './OptionButton';
 import OptionGroupSkeleton from './OptionGroupSkeleton';
 
-interface RadioGroupProps<Option> {
+type RadioGroupProps<Option> = {
   isLoading?: boolean;
   isDisabled?: boolean;
   options: Maybe<Option[]>;
@@ -10,9 +10,9 @@ interface RadioGroupProps<Option> {
   getOptionValue: (option: Option) => string;
   value: Maybe<string>;
   onChange: (value: string) => void;
-}
+};
 
-function RadioGroup<Option>({
+export default function RadioGroup<Option>({
   isLoading,
   isDisabled,
   options,
@@ -47,5 +47,3 @@ function RadioGroup<Option>({
     </div>
   );
 }
-
-export default RadioGroup;

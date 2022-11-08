@@ -7,7 +7,6 @@ import {
   MethodHandlers,
   MethodName,
 } from './ApiTypes';
-import { services } from './ApiServices';
 import { goTry } from 'go-try';
 
 const handleErrors =
@@ -18,19 +17,19 @@ const handleErrors =
       return response;
     });
 
-    if (error) {
-      let statusCode = StatusCodes.INTERNAL_SERVER_ERROR;
-      let message = 'Something went wrong';
-      if (isHttpError(error)) {
-        statusCode = error.statusCode ?? statusCode;
-        message = error.message ?? message;
-      }
-
-      const errorResponse: ApiErrorResponse = { statusCode, message };
-      return res.status(errorResponse.statusCode).json(errorResponse);
+    if (!error) {
+      return data;
     }
 
-    return data;
+    let statusCode = StatusCodes.INTERNAL_SERVER_ERROR;
+    let message = 'Something went wrong';
+    if (isHttpError(error)) {
+      statusCode = error.statusCode ?? statusCode;
+      message = error.message ?? message;
+    }
+
+    const errorResponse: ApiErrorResponse = { statusCode, message };
+    return res.status(errorResponse.statusCode).json(errorResponse);
   };
 
 export const createHandler =
@@ -41,8 +40,6 @@ export const createHandler =
     if (req.method) {
       const handler = handlers[req.method as MethodName];
       if (handler) {
-        // Injecting services
-        req.services = services;
         return handleErrors(handler)(req, res);
       }
     }

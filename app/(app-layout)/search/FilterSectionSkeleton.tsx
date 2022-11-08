@@ -1,18 +1,19 @@
-import Panel from '@src/common/Panel';
+import Paper from '@src/common/Paper';
 import OptionGroupSkeleton from '@src/forms/OptionGroupSkeleton';
 
+// TODO: Panel title skeleton ekle
 export default function FilterSectionSkeleton() {
   return (
     <>
-      <Panel>
+      <Paper>
         <OptionGroupSkeleton />
-      </Panel>
-      <Panel>
+      </Paper>
+      <Paper>
         <OptionGroupSkeleton />
-      </Panel>
-      <Panel>
+      </Paper>
+      <Paper>
         <OptionGroupSkeleton />
-      </Panel>
+      </Paper>
     </>
   );
 }

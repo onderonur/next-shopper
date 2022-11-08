@@ -1,16 +1,16 @@
 import classNames from 'classnames';
 import { CheckIcon } from '../common/Icons';
 
-interface OptionButtonProps {
+type OptionButtonProps = {
   type: 'radio' | 'checkbox';
   isChecked: boolean;
   isDisabled?: boolean;
   label: React.ReactNode;
   value: string;
   onChange: (value: string) => void;
-}
+};
 
-function OptionButton({
+export default function OptionButton({
   type,
   isChecked,
   isDisabled,
@@ -51,5 +51,3 @@ function OptionButton({
     </label>
   );
 }
-
-export default OptionButton;

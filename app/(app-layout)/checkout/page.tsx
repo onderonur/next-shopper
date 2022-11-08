@@ -7,69 +7,60 @@ import ClearCartButton from '@src/cart/ClearCartButton';
 import { checkoutAPI } from '@src/checkout/checkoutAPI';
 import CheckoutForm from '@src/checkout/CheckoutForm';
 import CheckoutSuccessMessage from '@src/checkout/CheckoutSuccessMessage';
-import { CompleteCheckoutArgs } from '@src/checkout/CheckoutUtils';
 import Container from '@src/common/Container';
 import PageHeader from '@src/common/PageHeader';
-import Panel from '@src/common/Panel';
 import Section from '@src/common/Section';
-import { ApiRequestError } from '@src/error-handling/ErrorHandlingTypes';
-import BaseSeo from '@src/seo/BaseSeo';
 import { useAppDispatch, useAppSelector } from '@src/store/store';
 import { useEffect } from 'react';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation } from '@src/http-client/useMutation';
+import SectionTitle from '@src/common/SectionTitle';
+import Paper from '@src/common/Paper';
 
 function CheckoutPage() {
   const cartItems = useAppSelector(selectCartItems);
   const dispatch = useAppDispatch();
 
-  //   const completeCheckoutMutation = useMutation<
-  //     void,
-  //     ApiRequestError,
-  //     CompleteCheckoutArgs
-  //   >({
-  //     mutationFn: checkoutAPI.completeCheckout,
-  //   });
+  const checkoutMutation = useMutation(checkoutAPI.completeCheckout);
 
-  const completeCheckoutMutation: any = {};
-
-  //   useEffect(() => {
-  //     if (completeCheckoutMutation.isSuccess) {
-  //       //   dispatch(clearCart());
-  //     }
-  //   }, [completeCheckoutMutation.isSuccess]);
+  useEffect(() => {
+    if (checkoutMutation.isSuccess) {
+      dispatch(clearCart());
+    }
+  }, [checkoutMutation.isSuccess, dispatch]);
 
   return (
     <>
       <PageHeader title="Checkout" />
       <Container maxWidth="sm" className="flex flex-col justify-center gap-4">
-        {completeCheckoutMutation.isSuccess ? (
-          <Section title="Checkout Success" titleAs="h1" hideTitle>
-            <Panel>
+        {checkoutMutation.isSuccess ? (
+          <Section>
+            <SectionTitle as="h2">Checkout Success</SectionTitle>
+            <Paper>
               <CheckoutSuccessMessage />
-            </Panel>
+            </Paper>
           </Section>
         ) : (
-          <Section
-            title="Cart"
-            titleAs="h2"
-            headerActions={<ClearCartButton />}
-          >
-            <Panel>
+          <Section>
+            <SectionTitle as="h2" actions={<ClearCartButton />}>
+              Cart
+            </SectionTitle>
+            <Paper>
               <CartItemList />
               <CartTotalPrice />
-            </Panel>
+            </Paper>
           </Section>
         )}
-        {cartItems.length > 0 && (
-          <Section title="Credit/Debit Card Information" titleAs="h2">
-            <Panel>
+        {!!cartItems.length && (
+          <Section>
+            <SectionTitle as="h2">Credit/Debit Card Information</SectionTitle>
+            <Paper>
               <CheckoutForm
-                error={completeCheckoutMutation.error}
+                error={checkoutMutation.error}
                 onSubmit={async (values) => {
-                  await completeCheckoutMutation.mutateAsync(values);
+                  await checkoutMutation.mutate(values);
                 }}
               />
-            </Panel>
+            </Paper>
           </Section>
         )}
       </Container>

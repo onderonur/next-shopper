@@ -7,7 +7,7 @@ import { useModal } from '@src/modals/useModal';
 import { useAppDispatch, useAppSelector } from '@src/store/store';
 import { clearCart, selectCartItems } from './cartSlice';
 
-function ClearCartButton() {
+export default function ClearCartButton() {
   const cartItems = useAppSelector(selectCartItems);
   const dispatch = useAppDispatch();
 
@@ -38,5 +38,3 @@ function ClearCartButton() {
     </Button>
   );
 }
-
-export default ClearCartButton;

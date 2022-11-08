@@ -1,7 +1,8 @@
 'use client';
 
 import { Maybe } from '@src/common/CommonTypes';
-import Panel from '@src/common/Panel';
+import PanelTitle from '@src/common/PanelTitle';
+import Paper from '@src/common/Paper';
 import CheckboxGroup from '@src/forms/CheckboxGroup';
 import RadioGroup from '@src/forms/RadioGroup';
 import {
@@ -14,29 +15,10 @@ import { ProductFilterKey } from '@src/products/ProductsUtils';
 import { routes } from '@src/routing/routes';
 import { useRouter } from 'next/navigation';
 
-interface ProductFilterProps {
+type ProductFilterProps = {
   filterArgs: any;
   options: Maybe<ProductFilterOptions>;
   values: FilterProductsArgs;
-}
-
-// To render filter skeleton during the initial fetch.
-const defaultOptions: ProductFilterOptions = {
-  sortings: {
-    title: 'Sorting',
-    options: [],
-    filterKey: ProductFilterKey.SORTING,
-  },
-  categories: {
-    title: 'Categories',
-    options: [],
-    filterKey: ProductFilterKey.CATEGORIES,
-  },
-  priceRanges: {
-    title: 'Price',
-    options: [],
-    filterKey: ProductFilterKey.PRICE_RANGES,
-  },
 };
 
 function ProductFilter({ filterArgs, options, values }: ProductFilterProps) {
@@ -56,9 +38,13 @@ function ProductFilter({ filterArgs, options, values }: ProductFilterProps) {
     );
   };
 
+  if (!options) {
+    return null;
+  }
+
   return (
     <>
-      {Object.values(options ?? defaultOptions).map((filter) => {
+      {Object.values(options).map((filter) => {
         let filterInput = null;
 
         switch (filter.filterKey) {
@@ -94,10 +80,12 @@ function ProductFilter({ filterArgs, options, values }: ProductFilterProps) {
             );
         }
 
+        // TODO: Bu Panel vs'ler kaldırıp Paper kullanmak daha iyi aslında.
         return (
-          <Panel key={filter.filterKey} title={filter.title}>
-            {filterInput}
-          </Panel>
+          <div key={filter.filterKey}>
+            <PanelTitle>{filter.title}</PanelTitle>
+            <Paper>{filterInput}</Paper>
+          </div>
         );
       })}
     </>

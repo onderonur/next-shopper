@@ -1,5 +1,5 @@
 import Section from '@src/common/Section';
-import { QueryParams, RouteParams, routes } from '@src/routing/routes';
+import { QueryParams, routes } from '@src/routing/routes';
 import { ProductFilterKey } from '@src/products/ProductsUtils';
 import FilterSection from './FilterSection';
 import { paramsToSearchParams } from '@src/routing/RoutingUtils';
@@ -12,11 +12,13 @@ import FilterSectionShell from './FilterSectionShell';
 import FilterSectionSkeleton from './FilterSectionSkeleton';
 import { productsService } from '@src/products/productsService';
 import SelectedFiltersWrapper from './SelectedFiltersWrapper';
+import SectionTitle from '@src/common/SectionTitle';
+import SectionBody from '@src/common/SectionBody';
+import PageHeader from '@src/common/PageHeader';
 
-type ProductListPageQueryParams = QueryParams<typeof routes['search']>;
-type ProductListPageRouteParams = RouteParams<typeof routes['search']>;
+type ProductListPageQueryParams = QueryParams<typeof routes.search>;
 
-function getFilterProductsArgs(params: ProductListPageRouteParams) {
+function getFilterProductsArgs(params: ProductListPageQueryParams) {
   const searchParams = paramsToSearchParams(params);
 
   const query: ProductListPageQueryParams = {};
@@ -57,32 +59,31 @@ export default function SearchPage({ searchParams }: SearchPageProps) {
 
   return (
     <>
+      <PageHeader title="Search Products" isHidden />
       <div className="flex gap-2">
-        <Section
-          title="Product Filter"
-          titleAs="h2"
-          hideTitle
-          className="hidden md:block w-72 px-2 max-h-[80vh] overflow-auto sticky top-24"
-        >
-          {filterSection}
+        <Section className="hidden md:block w-72 px-2 max-h-[80vh] overflow-auto sticky top-24">
+          <SectionTitle as="h2" hideTitle>
+            Filter
+          </SectionTitle>
+          <div>{filterSection}</div>
         </Section>
-        <Section
-          title="Products"
-          titleAs="h1"
-          hideTitle
-          className="flex-1 flex flex-col gap-2"
-        >
-          <Suspense>
-            {/* @ts-ignore */}
-            <SelectedFiltersWrapper filterArgs={filterArgs} _data={_data} />
-          </Suspense>
-          <FilterDrawer>{filterSection}</FilterDrawer>
-          <ProductListShell>
-            <Suspense fallback={<ProductListSkeleton />}>
+        <Section className="flex-1">
+          <SectionTitle as="h2" hideTitle>
+            Search Results
+          </SectionTitle>
+          <div className="flex flex-col gap-2">
+            <Suspense>
               {/* @ts-ignore */}
-              <ProductList _data={_data} />
+              <SelectedFiltersWrapper filterArgs={filterArgs} _data={_data} />
             </Suspense>
-          </ProductListShell>
+            <FilterDrawer>{filterSection}</FilterDrawer>
+            <ProductListShell>
+              <Suspense fallback={<ProductListSkeleton />}>
+                {/* @ts-ignore */}
+                <ProductList _data={_data} />
+              </Suspense>
+            </ProductListShell>
+          </div>
         </Section>
       </div>
     </>

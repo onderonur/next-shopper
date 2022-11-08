@@ -4,9 +4,9 @@ import { ProductPageProps } from './page';
 
 export default async function ProductHead({ params }: ProductPageProps) {
   // TODO: Buna caching lazım
-  const product = await productsService.getOneProductById({
-    productId: Number(params.productId),
-  });
+  const product = await productsService.getOneProductById(
+    Number(params.productId),
+  );
 
   if (!product) {
     return null;

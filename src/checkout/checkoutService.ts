@@ -1,4 +1,5 @@
-import 'server-only';
+// TODO: Bunu açınca "/api/checkout" api route'u paylı
+// import 'server-only';
 import { goTry } from 'go-try';
 import createHttpError from 'http-errors';
 import {

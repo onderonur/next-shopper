@@ -6,6 +6,7 @@ import { NextPage } from 'next';
 
 type ErrorPageProps = ErrorContentProps;
 
+// TODO: Error page'i de app altına taşı
 const ErrorPage: NextPage<ErrorPageProps> = (props) => {
   return <ErrorContent {...props} />;
 };

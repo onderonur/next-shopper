@@ -12,7 +12,11 @@ export type ConfirmModalProps = {
 
 export type ConfirmModalData = { isConfirmed: boolean };
 
-function ConfirmModal({ title, confirmText = 'OK', body }: ConfirmModalProps) {
+export default function ConfirmModal({
+  title,
+  confirmText = 'OK',
+  body,
+}: ConfirmModalProps) {
   const { isOpen, hide } = useModalContext<ConfirmModalData>();
 
   function handleClose() {
@@ -68,5 +72,3 @@ function ConfirmModal({ title, confirmText = 'OK', body }: ConfirmModalProps) {
     </Backdrop>
   );
 }
-
-export default ConfirmModal;

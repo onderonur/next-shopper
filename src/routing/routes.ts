@@ -3,10 +3,10 @@ import { paramsToSearchParams, pruneQueryParams } from './RoutingUtils';
 import { ParsedUrlQuery } from 'querystring';
 import { FilterProductsArgs } from '@src/products/ProductsTypes';
 
-interface CreateRouteArgs {
+type CreateRouteArgs = {
   params?: unknown;
   query?: unknown;
-}
+};
 
 // https://stackoverflow.com/a/55247867/10876256
 type RequiredKeys<T> = {
@@ -45,7 +45,6 @@ function createRoute<RouteArgs extends CreateRouteArgs>(
 type RouteArgs<T extends AnyFunction> = NonNullable<Parameters<T>[0]>;
 export type PathParams<T extends AnyFunction> = RouteArgs<T>['params'];
 export type QueryParams<T extends AnyFunction> = RouteArgs<T>['query'];
-export type RouteParams<T extends AnyFunction> = PathParams<T> & QueryParams<T>;
 
 export const routes = {
   home: createRoute(() => '/'),

@@ -7,7 +7,7 @@ type LoadingProps = React.PropsWithChildren<{
   size?: 'default' | 'small';
 }>;
 
-function Loading({
+export default function Loading({
   className,
   isLoading,
   size = 'default',
@@ -51,5 +51,3 @@ function Loading({
     </div>
   );
 }
-
-export default Loading;

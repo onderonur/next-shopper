@@ -13,6 +13,7 @@ import {
 } from './ProductsTypes';
 import { Id } from '@src/common/CommonTypes';
 import { getDb } from '@src/db/DbUtils';
+import { cache } from 'react';
 
 async function getProductFilterOptions() {
   const db = await getDb();
@@ -129,19 +130,19 @@ async function getManyProducts(args: FilterProductsArgs) {
 }
 
 export const productsService = {
-  filterProducts: async (
-    args: FilterProductsArgs,
-  ): Promise<ProductFilterResponse> => {
-    const filterOptions = await getProductFilterOptions();
-    const selectedOptions = await getProductFilterSelectedOptions(args);
-    const products = await getManyProducts(
-      getValuesOfSelectedOptions(selectedOptions),
-    );
-    return { filterOptions, selectedOptions, products };
-  },
-  getOneProductById: async (productId: Id) => {
+  filterProducts: cache(
+    async (args: FilterProductsArgs): Promise<ProductFilterResponse> => {
+      const filterOptions = await getProductFilterOptions();
+      const selectedOptions = await getProductFilterSelectedOptions(args);
+      const products = await getManyProducts(
+        getValuesOfSelectedOptions(selectedOptions),
+      );
+      return { filterOptions, selectedOptions, products };
+    },
+  ),
+  getOneProductById: cache(async (productId: Id) => {
     const db = await getDb();
     const found = db.products.find((product) => product.id === productId);
     return found;
-  },
+  }),
 };

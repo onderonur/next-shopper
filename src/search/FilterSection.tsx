@@ -7,6 +7,7 @@ type FilterSectionProps = {
   filterArgs: FilterProductsArgs;
 };
 
+// TODO: Rename
 export default async function FilterSection({
   filterArgs,
 }: FilterSectionProps) {

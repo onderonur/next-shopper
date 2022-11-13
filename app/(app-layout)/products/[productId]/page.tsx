@@ -59,6 +59,13 @@ export default async function ProductPage({ params }: ProductPageProps) {
             </NextLink>
           </div>
         </div>
+        <NextLink
+          href={routes.product({
+            params: { productId: Number(product.id) + 1 },
+          })}
+        >
+          Go go go go
+        </NextLink>
       </Paper>
     </>
   );

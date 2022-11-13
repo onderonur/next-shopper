@@ -17,6 +17,8 @@ export default function LandingPage() {
         <Center maxWidth="xl">
           <CategoriesShell>
             <Suspense fallback={<CategoriesSkeleton />}>
+              {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+              {/* @ts-ignore */}
               <Categories />
             </Suspense>
           </CategoriesShell>

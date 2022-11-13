@@ -1,24 +1,24 @@
+import { Suspense } from 'react';
 import { QueryParams, routes } from '@src/routing/routes';
 import { ProductFilterKey } from '@src/products/ProductsUtils';
-import FilterSection from './FilterSection';
 import { paramsToSearchParams } from '@src/routing/RoutingUtils';
-import FilterDrawer from './FilterDrawer';
-import SearchResults from './SearchResults';
-import { Suspense } from 'react';
-import SearchResultsSkeleton from './SearchResultsSkeleton';
-import FilterSectionSkeleton from './FilterSectionSkeleton';
-import SelectedFiltersWrapper from './SelectedFiltersWrapper';
+import FilterDrawer from '@src/search/FilterDrawer';
 import SectionTitle from '@src/common/SectionTitle';
 import PageTitle from '@src/common/PageTitle';
-import Paper from '@src/common/Paper';
-import List from '@src/common/List';
+import FilterSectionSkeleton from '@src/search/FilterSectionSkeleton';
+import FilterSection from '@src/search/FilterSection';
+import SelectedFiltersWrapper from '@src/search/SelectedFiltersWrapper';
+import SearchResultsSkeleton from '@src/search/SearchResultsSkeleton';
+import SearchResults from '@src/search/SearchResults';
+import SearchResultsShell from '@src/search/SearchResultsShell';
+import FilterSectionShell from '@src/search/FilterSectionShell';
 
-type ProductListPageQueryParams = QueryParams<typeof routes.search>;
+type SearchPageQueryParams = QueryParams<typeof routes.search>;
 
-function getFilterProductsArgs(params: ProductListPageQueryParams) {
+function getFilterProductsArgs(params: SearchPageQueryParams) {
   const searchParams = paramsToSearchParams(params);
 
-  const query: ProductListPageQueryParams = {};
+  const query: SearchPageQueryParams = {};
 
   const sorting = searchParams.get(ProductFilterKey.SORTING);
   if (sorting) {
@@ -32,21 +32,23 @@ function getFilterProductsArgs(params: ProductListPageQueryParams) {
 }
 
 type SearchPageProps = {
-  searchParams: ProductListPageQueryParams;
+  searchParams: SearchPageQueryParams;
 };
 
 export default function SearchPage({ searchParams }: SearchPageProps) {
   const filterArgs = getFilterProductsArgs(searchParams);
 
   const filterSection = (
-    <div className="pb-6 flex flex-col gap-4">
+    <FilterSectionShell>
       <Suspense fallback={<FilterSectionSkeleton />}>
+        {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+        {/* @ts-ignore */}
         <FilterSection
           // TODO: Rename
           filterArgs={filterArgs}
         />
       </Suspense>
-    </div>
+    </FilterSectionShell>
   );
 
   return (
@@ -65,16 +67,18 @@ export default function SearchPage({ searchParams }: SearchPageProps) {
           </SectionTitle>
           <div className="flex flex-col gap-2">
             <Suspense>
+              {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+              {/* @ts-ignore */}
               <SelectedFiltersWrapper filterArgs={filterArgs} />
             </Suspense>
             <FilterDrawer>{filterSection}</FilterDrawer>
-            <Paper>
-              <List className="grid grid-cols-[repeat(auto-fill,minmax(11rem,1fr))] gap-4">
-                <Suspense fallback={<SearchResultsSkeleton />}>
-                  <SearchResults filterArgs={filterArgs} />
-                </Suspense>
-              </List>
-            </Paper>
+            <SearchResultsShell>
+              <Suspense fallback={<SearchResultsSkeleton />}>
+                {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+                {/* @ts-ignore */}
+                <SearchResults filterArgs={filterArgs} />
+              </Suspense>
+            </SearchResultsShell>
           </div>
         </section>
       </div>

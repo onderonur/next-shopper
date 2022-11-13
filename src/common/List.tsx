@@ -1,3 +1,5 @@
+'use client';
+
 import { AnimatePresence, motion } from 'framer-motion';
 import React from 'react';
 import ListProvider from './ListContext';
@@ -21,13 +23,10 @@ export default function List({
   }
 
   return (
-    // <ListProvider isAnimated={isAnimated}>
-    // <motion.ul layout={isAnimated} role={role} className={className}>
-    //   {isAnimated ? <AnimatePresence>{children}</AnimatePresence> : children}
-    // </motion.ul>
-    // </ListProvider>
-    <ul role={role} className={className}>
-      {children}
-    </ul>
+    <ListProvider isAnimated={isAnimated}>
+      <motion.ul layout={isAnimated} role={role} className={className}>
+        {isAnimated ? <AnimatePresence>{children}</AnimatePresence> : children}
+      </motion.ul>
+    </ListProvider>
   );
 }

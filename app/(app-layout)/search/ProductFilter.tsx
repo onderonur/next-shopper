@@ -1,7 +1,7 @@
 'use client';
 
 import { Maybe } from '@src/common/CommonTypes';
-import PanelTitle from '@src/common/PanelTitle';
+import PaperTitle from '@src/common/PaperTitle';
 import Paper from '@src/common/Paper';
 import CheckboxGroup from '@src/forms/CheckboxGroup';
 import RadioGroup from '@src/forms/RadioGroup';
@@ -16,7 +16,7 @@ import { routes } from '@src/routing/routes';
 import { useRouter } from 'next/navigation';
 
 type ProductFilterProps = {
-  filterArgs: any;
+  filterArgs: FilterProductsArgs;
   options: Maybe<ProductFilterOptions>;
   values: FilterProductsArgs;
 };
@@ -80,10 +80,9 @@ function ProductFilter({ filterArgs, options, values }: ProductFilterProps) {
             );
         }
 
-        // TODO: Bu Panel vs'ler kaldırıp Paper kullanmak daha iyi aslında.
         return (
           <div key={filter.filterKey}>
-            <PanelTitle>{filter.title}</PanelTitle>
+            <PaperTitle>{filter.title}</PaperTitle>
             <Paper>{filterInput}</Paper>
           </div>
         );

@@ -3,16 +3,15 @@ import { ProductFilterKey } from '@src/products/ProductsUtils';
 import FilterSection from './FilterSection';
 import { paramsToSearchParams } from '@src/routing/RoutingUtils';
 import FilterDrawer from './FilterDrawer';
-import ProductList from './ProductList';
+import SearchResults from './SearchResults';
 import { Suspense } from 'react';
-import ProductListShell from './ProductListShell';
-import ProductListSkeleton from './ProductListSkeleton';
-import FilterSectionShell from './FilterSectionShell';
+import SearchResultsSkeleton from './SearchResultsSkeleton';
 import FilterSectionSkeleton from './FilterSectionSkeleton';
-import { productsService } from '@src/products/productsService';
 import SelectedFiltersWrapper from './SelectedFiltersWrapper';
 import SectionTitle from '@src/common/SectionTitle';
 import PageTitle from '@src/common/PageTitle';
+import Paper from '@src/common/Paper';
+import List from '@src/common/List';
 
 type ProductListPageQueryParams = QueryParams<typeof routes.search>;
 
@@ -38,18 +37,16 @@ type SearchPageProps = {
 
 export default function SearchPage({ searchParams }: SearchPageProps) {
   const filterArgs = getFilterProductsArgs(searchParams);
-  const _data = productsService.filterProducts(filterArgs);
 
   const filterSection = (
-    <FilterSectionShell>
+    <div className="pb-6 flex flex-col gap-4">
       <Suspense fallback={<FilterSectionSkeleton />}>
         <FilterSection
           // TODO: Rename
           filterArgs={filterArgs}
-          _data={_data}
         />
       </Suspense>
-    </FilterSectionShell>
+    </div>
   );
 
   return (
@@ -57,25 +54,27 @@ export default function SearchPage({ searchParams }: SearchPageProps) {
       <PageTitle title="Search Products" srOnly />
       <div className="flex gap-2">
         <section className="hidden md:block w-72 px-2 max-h-[80vh] overflow-auto sticky top-24">
-          <SectionTitle as="h2" hideTitle>
+          <SectionTitle as="h2" srOnly>
             Filter
           </SectionTitle>
-          <div>{filterSection}</div>
+          {filterSection}
         </section>
         <section className="flex-1">
-          <SectionTitle as="h2" hideTitle>
+          <SectionTitle as="h2" srOnly>
             Search Results
           </SectionTitle>
           <div className="flex flex-col gap-2">
             <Suspense>
-              <SelectedFiltersWrapper filterArgs={filterArgs} _data={_data} />
+              <SelectedFiltersWrapper filterArgs={filterArgs} />
             </Suspense>
             <FilterDrawer>{filterSection}</FilterDrawer>
-            <ProductListShell>
-              <Suspense fallback={<ProductListSkeleton />}>
-                <ProductList _data={_data} />
-              </Suspense>
-            </ProductListShell>
+            <Paper>
+              <List className="grid grid-cols-[repeat(auto-fill,minmax(11rem,1fr))] gap-4">
+                <Suspense fallback={<SearchResultsSkeleton />}>
+                  <SearchResults filterArgs={filterArgs} />
+                </Suspense>
+              </List>
+            </Paper>
           </div>
         </section>
       </div>

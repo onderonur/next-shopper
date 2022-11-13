@@ -6,14 +6,14 @@ type SectionTitleProps = React.PropsWithChildren<{
     JSX.IntrinsicElements,
     'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
   >;
-  hideTitle?: boolean;
+  srOnly?: boolean;
   actions?: React.ReactNode;
   className?: string;
 }>;
 
 export default function SectionTitle({
   as,
-  hideTitle,
+  srOnly,
   actions,
   className,
   children,
@@ -23,12 +23,15 @@ export default function SectionTitle({
   return (
     <header
       className={classNames(
-        'flex items-center justify-between text-text-light mb-1',
+        'flex items-center justify-between mb-1',
         className,
       )}
     >
       <Heading
-        className={classNames('font-semibold text-lg', hideTitle && 'sr-only')}
+        className={classNames(
+          'font-semibold text-lg text-text-light',
+          srOnly && 'sr-only',
+        )}
       >
         {children}
       </Heading>

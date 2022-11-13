@@ -1,19 +1,21 @@
+import { createMockArray } from '@src/common/CommonUtils';
 import Paper from '@src/common/Paper';
+import PaperTitle from '@src/common/PaperTitle';
 import OptionGroupSkeleton from '@src/forms/OptionGroupSkeleton';
 
-// TODO: Panel title skeleton ekle
 export default function FilterSectionSkeleton() {
   return (
     <>
-      <Paper>
-        <OptionGroupSkeleton />
-      </Paper>
-      <Paper>
-        <OptionGroupSkeleton />
-      </Paper>
-      <Paper>
-        <OptionGroupSkeleton />
-      </Paper>
+      {createMockArray(3).map((i) => {
+        return (
+          <div key={i}>
+            <PaperTitle isLoading />
+            <Paper>
+              <OptionGroupSkeleton />
+            </Paper>
+          </div>
+        );
+      })}
     </>
   );
 }

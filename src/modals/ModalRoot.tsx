@@ -5,7 +5,6 @@ import ModalProvider from './ModalContext';
 import { modalStore } from './modalStore';
 
 export default function ModalRoot() {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const modals = useSyncExternalStore(
     modalStore.subscribe,
     modalStore.getSnapshot,

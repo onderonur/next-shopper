@@ -1,5 +1,4 @@
 import 'server-only';
-import dbJson from '@src/db/db.json';
 import {
   getValuesOfSelectedOptions,
   ProductFilterKey,
@@ -12,11 +11,12 @@ import {
   ProductFilterResponse,
   ProductFilterSelectedOption,
 } from './ProductsTypes';
-import { wait } from '@src/common/CommonUtils';
 import { Id } from '@src/common/CommonTypes';
+import { getDb } from '@src/db/DbUtils';
 
-function getProductFilterOptions() {
-  const { sortings, categories, priceRanges } = dbJson;
+async function getProductFilterOptions() {
+  const db = await getDb();
+  const { sortings, categories, priceRanges } = db;
   const filterOptions: ProductFilterOptions = {
     sortings: {
       title: 'Sorting',
@@ -37,27 +37,30 @@ function getProductFilterOptions() {
   return filterOptions;
 }
 
-function getProductFilterSelectedOptions(args: FilterProductsArgs) {
-  const { sortings, categories, priceRanges } = dbJson;
+async function getProductFilterSelectedOptions(args: FilterProductsArgs) {
+  const db = await getDb();
+  const { sortings, categories, priceRanges } = db;
   const selectedOptions: ProductFilterSelectedOption[] = [];
 
+  const defaultSorting = sortings.find((sorting) => sorting.isDefault);
   let isDefaultSortingApplied = false;
   let selectedSorting = sortings.find(
     (sorting) => sorting.value === args.sorting,
   );
 
-  if (!selectedSorting) {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    selectedSorting = sortings.find((sorting) => sorting.isDefault)!;
+  if (!selectedSorting && defaultSorting) {
     isDefaultSortingApplied = true;
+    selectedSorting = defaultSorting;
   }
 
-  selectedOptions.push({
-    value: selectedSorting.value,
-    title: selectedSorting.title,
-    isVisible: !isDefaultSortingApplied,
-    filterKey: ProductFilterKey.SORTING,
-  });
+  if (selectedSorting) {
+    selectedOptions.push({
+      value: selectedSorting.value,
+      title: selectedSorting.title,
+      isVisible: !isDefaultSortingApplied,
+      filterKey: ProductFilterKey.SORTING,
+    });
+  }
 
   selectedOptions.push(
     ...categories
@@ -84,8 +87,9 @@ function getProductFilterSelectedOptions(args: FilterProductsArgs) {
   return selectedOptions;
 }
 
-function getManyProducts(args: FilterProductsArgs) {
-  let response: Product[] = [...dbJson.products];
+async function getManyProducts(args: FilterProductsArgs) {
+  const db = await getDb();
+  let response: Product[] = [...db.products];
 
   if (args.categories?.length) {
     response = response.filter((product) =>
@@ -124,27 +128,20 @@ function getManyProducts(args: FilterProductsArgs) {
   return response;
 }
 
-// TODO: Aslında bu service'ler async değil. Ondan await'siz de çağrılabiliyorlar.
-// Async hale getir bunları ve kullanıldıkları yerleri kontrol et.
 export const productsService = {
   filterProducts: async (
     args: FilterProductsArgs,
   ): Promise<ProductFilterResponse> => {
-    await wait();
-    const filterOptions = getProductFilterOptions();
-    const selectedOptions = getProductFilterSelectedOptions(args);
-    const products = getManyProducts(
+    const filterOptions = await getProductFilterOptions();
+    const selectedOptions = await getProductFilterSelectedOptions(args);
+    const products = await getManyProducts(
       getValuesOfSelectedOptions(selectedOptions),
     );
     return { filterOptions, selectedOptions, products };
   },
   getOneProductById: async (productId: Id) => {
-    await wait();
-
-    const found = dbJson.products.find((product) => product.id === productId);
-
-    // TODO: Gereksiz paketleri sil.
-
+    const db = await getDb();
+    const found = db.products.find((product) => product.id === productId);
     return found;
   },
 };

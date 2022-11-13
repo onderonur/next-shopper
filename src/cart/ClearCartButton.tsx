@@ -1,9 +1,5 @@
 import Button from '@src/common/Button';
-import ConfirmModal, {
-  ConfirmModalData,
-  ConfirmModalProps,
-} from '@src/modals/ConfirmModal';
-import { useModal } from '@src/modals/useModal';
+import { useConfirmModal } from '@src/modals/ConfirmModal';
 import { useAppDispatch, useAppSelector } from '@src/store/store';
 import { clearCart, selectCartItems } from './cartSlice';
 
@@ -11,9 +7,7 @@ export default function ClearCartButton() {
   const cartItems = useAppSelector(selectCartItems);
   const dispatch = useAppDispatch();
 
-  const confirmModal = useModal<ConfirmModalProps, ConfirmModalData>(
-    ConfirmModal,
-  );
+  const confirmModal = useConfirmModal();
 
   if (!cartItems.length) {
     return null;

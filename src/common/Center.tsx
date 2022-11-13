@@ -1,15 +1,11 @@
 import classNames from 'classnames';
 
-type ContainerProps = React.PropsWithChildren<{
+type CenterProps = React.PropsWithChildren<{
   maxWidth: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
   className?: string;
 }>;
 
-export default function Container({
-  maxWidth,
-  className,
-  children,
-}: ContainerProps) {
+export default function Center({ maxWidth, className, children }: CenterProps) {
   return (
     <div
       className={classNames(

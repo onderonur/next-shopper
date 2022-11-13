@@ -1,6 +1,6 @@
 import AddToCartButton from '@src/cart/AddToCartButton';
 import NextLink from '@src/routing/NextLink';
-import BaseImage from '@src/common/BaseImage';
+import BaseImage, { imageProps } from '@src/common/BaseImage';
 import Chip from '@src/common/Chip';
 import Price from '@src/common/Price';
 import { Product } from './ProductsTypes';
@@ -16,12 +16,14 @@ export default function ProductCard({ product }: ProductCardProps) {
       <div className="relative cursor-pointer">
         <NextLink href={routes.product({ params: { productId: product.id } })}>
           <div className="p-4">
-            <div className="relative aspect-[10/12] transition duration-500 ease-out bg-transparent transform group-hover:scale-110">
+            <div className="transition duration-500 ease-out bg-transparent transform group-hover:scale-110">
               <BaseImage
                 src={product.image}
                 alt={product.title}
-                className="object-contain"
-                fill
+                {...imageProps.responsive({
+                  aspectRatio: '12 / 10',
+                  objectFit: 'contain',
+                })}
               />
             </div>
           </div>

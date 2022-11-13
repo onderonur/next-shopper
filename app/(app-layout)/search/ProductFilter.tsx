@@ -34,7 +34,7 @@ function ProductFilter({ filterArgs, options, values }: ProductFilterProps) {
           ...filterArgs,
           [filterKey]: newValue,
         },
-      }).href,
+      }),
     );
   };
 

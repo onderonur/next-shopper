@@ -1,4 +1,3 @@
-import { ApiErrorResponse } from '@src/api/ApiTypes';
-import { AxiosError } from 'axios';
+import { HttpClientError } from '@src/http-client/HttpClientError';
 
-export type ApiRequestError = AxiosError<ApiErrorResponse>;
+export type ApiRequestError = HttpClientError;

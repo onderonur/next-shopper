@@ -2,7 +2,6 @@
 
 import Button from '@src/common/Button';
 import Chip from '@src/common/Chip';
-import { Maybe } from '@src/common/CommonTypes';
 import List from '@src/common/List';
 import ListItem from '@src/common/ListItem';
 import {
@@ -15,7 +14,7 @@ import { useRouter } from 'next/navigation';
 type SelectedFiltersProps = {
   // TODO: Rename
   filterArgs: FilterProductsArgs;
-  selectedOptions: Maybe<ProductFilterSelectedOption[]>;
+  selectedOptions: ProductFilterSelectedOption[];
 };
 
 export default function SelectedFilters({
@@ -24,7 +23,7 @@ export default function SelectedFilters({
 }: SelectedFiltersProps) {
   const router = useRouter();
 
-  const visibleOptions = selectedOptions?.filter((option) => option.isVisible);
+  const visibleOptions = selectedOptions.filter((option) => option.isVisible);
 
   if (!visibleOptions?.length) {
     return null;
@@ -58,10 +57,10 @@ export default function SelectedFilters({
                               (value) => value !== selectedOption.value,
                             ),
                           },
-                        }).href,
+                        }),
                       );
                     } else {
-                      router.push(routes.search({ query: restQuery }).href);
+                      router.push(routes.search({ query: restQuery }));
                     }
                   },
                 }}
@@ -76,7 +75,7 @@ export default function SelectedFilters({
             className="text-sm"
             variant="transparent"
             onClick={() => {
-              router.push(routes.search().href);
+              router.push(routes.search());
             }}
           >
             Clear Filters

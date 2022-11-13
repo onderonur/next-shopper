@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { Maybe } from '@src/common/CommonTypes';
 import { ApiRequestError } from './ErrorHandlingTypes';
 
@@ -11,14 +10,7 @@ export default function ErrorMessage({ children, error }: ErrorMessageProps) {
     return <>{children}</>;
   }
 
-  let { message } = error ?? {};
-  if (axios.isAxiosError(error) && error.response) {
-    ({ message } = error.response.data as ApiRequestError);
-  }
-
-  if (!message) {
-    message = 'Something went wrong';
-  }
+  const message = error.message ?? 'Something went wrong';
 
   return (
     <div className="bg-error-lighter text-error-dark border border-error-main rounded-md p-4">

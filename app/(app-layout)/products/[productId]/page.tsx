@@ -1,8 +1,8 @@
 import AddToCartButton from '@src/cart/AddToCartButton';
-import BaseImage from '@src/common/BaseImage';
+import BaseImage, { imageProps } from '@src/common/BaseImage';
 import Chip from '@src/common/Chip';
 import { Id } from '@src/common/CommonTypes';
-import PageHeader from '@src/common/PageHeader';
+import PageTitle from '@src/common/PageTitle';
 import Paper from '@src/common/Paper';
 import Price from '@src/common/Price';
 import { productsService } from '@src/products/productsService';
@@ -27,16 +27,18 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
   return (
     <>
-      <PageHeader title={product.title} />
+      <PageTitle title={product.title} />
       <Paper>
         <div className="flex flex-col sm:flex-row gap-6">
-          <div className="flex-1 relative aspect-square">
+          <div className="flex-1">
             <BaseImage
               src={product.image}
               alt={product.title}
-              className="object-contain"
-              fill
               priority
+              {...imageProps.responsive({
+                aspectRatio: '1',
+                objectFit: 'contain',
+              })}
             />
           </div>
           <div className="flex-1 flex flex-col items-center gap-4">

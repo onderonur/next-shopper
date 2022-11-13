@@ -28,7 +28,6 @@ export default function OptionButton({
       )}
     >
       <span>
-        {/* eslint-disable-next-line jsx-a11y/role-supports-aria-props */}
         <input
           className="sr-only"
           type={type}

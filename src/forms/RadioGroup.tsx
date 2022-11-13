@@ -1,9 +1,7 @@
 import { Maybe } from '@src/common/CommonTypes';
 import OptionButton from './OptionButton';
-import OptionGroupSkeleton from './OptionGroupSkeleton';
 
 type RadioGroupProps<Option> = {
-  isLoading?: boolean;
   isDisabled?: boolean;
   options: Maybe<Option[]>;
   getOptionLabel: (option: Option) => React.ReactNode;
@@ -13,7 +11,6 @@ type RadioGroupProps<Option> = {
 };
 
 export default function RadioGroup<Option>({
-  isLoading,
   isDisabled,
   options,
   value,
@@ -21,10 +18,6 @@ export default function RadioGroup<Option>({
   getOptionLabel,
   getOptionValue,
 }: RadioGroupProps<Option>) {
-  if (isLoading) {
-    return <OptionGroupSkeleton />;
-  }
-
   return (
     <div role="radiogroup">
       {options?.map((option) => {

@@ -3,6 +3,7 @@ import Button from '@src/common/Button';
 import { useOnPathnameChange } from '@src/routing/useOnPathnameChange';
 import React, { useId } from 'react';
 import { useModalContext } from './ModalContext';
+import { useModal } from './useModal';
 
 export type ConfirmModalProps = {
   title: string;
@@ -10,7 +11,15 @@ export type ConfirmModalProps = {
   confirmText?: string;
 };
 
-export type ConfirmModalData = { isConfirmed: boolean };
+type ConfirmModalData = { isConfirmed: boolean };
+
+export const useConfirmModal = () => {
+  const confirmModal = useModal<ConfirmModalProps, ConfirmModalData>(
+    ConfirmModal,
+  );
+
+  return confirmModal;
+};
 
 export default function ConfirmModal({
   title,

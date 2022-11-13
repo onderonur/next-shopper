@@ -1,6 +1,6 @@
 'use client';
 
-import { useRouterEvent } from '@src/routing/useRouterEvent';
+import { useOnPathnameChange } from '@src/routing/useOnPathnameChange';
 import FadeIn from '@src/transitions/FadeIn';
 import classNames from 'classnames';
 import React, { useEffect, useState, useRef, useCallback } from 'react';
@@ -19,12 +19,11 @@ export const useBackdrop = (
     setIsOpen(false);
   }, []);
 
-  // Closing the backdrop on route change
-  // TODO: Fix gerekebilir buna
-  // useRouterEvent(
-  //   'routeChangeStart',
-  //   args?.closeOnRouteChange ? close : undefined,
-  // );
+  useOnPathnameChange(() => {
+    if (args.closeOnRouteChange) {
+      close();
+    }
+  });
 
   return { isOpen, open, close };
 };

@@ -1,9 +1,5 @@
-import Title from '@src/seo/Title';
+import BaseSeo from '@src/seo/BaseSeo';
 
 export default function SearchHead() {
-  return (
-    <>
-      <Title>Products</Title>
-    </>
-  );
+  return <BaseSeo title="Search Products" />;
 }

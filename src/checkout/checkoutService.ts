@@ -1,4 +1,4 @@
-// TODO: Bunu açınca "/api/checkout" api route'u paylı
+// TODO: Bunu açınca "/api/checkout" api route'u patlıyor
 // import 'server-only';
 import { goTry } from 'go-try';
 import createHttpError from 'http-errors';
@@ -6,12 +6,9 @@ import {
   CompleteCheckoutArgs,
   completeCheckoutArgsSchema,
 } from './CheckoutUtils';
-import { wait } from '@src/common/CommonUtils';
 
 export const checkoutService = {
   completeCheckout: async (args: CompleteCheckoutArgs) => {
-    await wait();
-
     const [error] = await goTry(() =>
       completeCheckoutArgsSchema.validate(args),
     );

@@ -3,7 +3,6 @@ import { CloseIcon } from './Icons';
 import Backdrop, { useBackdrop } from './Backdrop';
 import classNames from 'classnames';
 import Slide, { SlideProps } from '@src/transitions/Slide';
-import Section from './Section';
 import SectionTitle from './SectionTitle';
 
 export const useDrawer = useBackdrop;
@@ -34,7 +33,7 @@ export default function Drawer({
             from === 'right' && 'right-0',
           )}
         >
-          <Section
+          <section
             ref={focusRef}
             className="h-full flex flex-col"
             // To make "onKeyDown" work on this element
@@ -62,7 +61,7 @@ export default function Drawer({
             <div className="p-4 h-full overflow-auto">
               <div className="relative h-full">{children}</div>
             </div>
-          </Section>
+          </section>
         </Slide>
       )}
     </Backdrop>

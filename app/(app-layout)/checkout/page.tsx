@@ -7,9 +7,8 @@ import ClearCartButton from '@src/cart/ClearCartButton';
 import { checkoutAPI } from '@src/checkout/checkoutAPI';
 import CheckoutForm from '@src/checkout/CheckoutForm';
 import CheckoutSuccessMessage from '@src/checkout/CheckoutSuccessMessage';
-import Container from '@src/common/Container';
-import PageHeader from '@src/common/PageHeader';
-import Section from '@src/common/Section';
+import Center from '@src/common/Center';
+import PageTitle from '@src/common/PageTitle';
 import { useAppDispatch, useAppSelector } from '@src/store/store';
 import { useEffect } from 'react';
 import { useMutation } from '@src/http-client/useMutation';
@@ -30,17 +29,17 @@ function CheckoutPage() {
 
   return (
     <>
-      <PageHeader title="Checkout" />
-      <Container maxWidth="sm" className="flex flex-col justify-center gap-4">
+      <PageTitle title="Checkout" />
+      <Center maxWidth="sm" className="flex flex-col justify-center gap-4">
         {checkoutMutation.isSuccess ? (
-          <Section>
+          <section>
             <SectionTitle as="h2">Checkout Success</SectionTitle>
             <Paper>
               <CheckoutSuccessMessage />
             </Paper>
-          </Section>
+          </section>
         ) : (
-          <Section>
+          <section>
             <SectionTitle as="h2" actions={<ClearCartButton />}>
               Cart
             </SectionTitle>
@@ -48,10 +47,10 @@ function CheckoutPage() {
               <CartItemList />
               <CartTotalPrice />
             </Paper>
-          </Section>
+          </section>
         )}
         {!!cartItems.length && (
-          <Section>
+          <section>
             <SectionTitle as="h2">Credit/Debit Card Information</SectionTitle>
             <Paper>
               <CheckoutForm
@@ -61,9 +60,9 @@ function CheckoutPage() {
                 }}
               />
             </Paper>
-          </Section>
+          </section>
         )}
-      </Container>
+      </Center>
     </>
   );
 }

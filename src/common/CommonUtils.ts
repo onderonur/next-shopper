@@ -11,10 +11,3 @@ export const createMockArray = (length: number) => {
 export const isNil = (val: unknown): val is Nil => {
   return val === null || val === undefined;
 };
-
-export const wait = () =>
-  new Promise<void>((resolve) => {
-    setTimeout(() => {
-      resolve();
-    }, 500);
-  });

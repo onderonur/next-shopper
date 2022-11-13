@@ -7,7 +7,6 @@ type ProductListProps = {
 };
 
 export default async function ProductList({ _data }: ProductListProps) {
-  // TODO: Birden çok yerde kullanılıyor bu call. Ondan bunu cache'lemeye (dedup vs) bak.
   const data = await _data;
 
   return (

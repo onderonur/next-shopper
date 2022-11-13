@@ -1,5 +1,5 @@
 import { productsService } from '@src/products/productsService';
-import Title from '@src/seo/Title';
+import BaseSeo from '@src/seo/BaseSeo';
 import { ProductPageProps } from './page';
 
 export default async function ProductHead({ params }: ProductPageProps) {
@@ -13,23 +13,10 @@ export default async function ProductHead({ params }: ProductPageProps) {
   }
 
   return (
-    <>
-      <Title>{product.title}</Title>
-      {/* TODO: Fix */}
-      {/* <BaseSeo
-        title={product?.title}
-        description={product?.description}
-        images={
-          product?.image
-            ? [
-                {
-                  url: product.image,
-                  alt: product.title,
-                },
-              ]
-            : undefined
-        }
-      /> */}
-    </>
+    <BaseSeo
+      title={product.title}
+      description={product.description}
+      images={[{ url: product.image, alt: product.title }]}
+    />
   );
 }

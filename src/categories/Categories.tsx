@@ -8,7 +8,7 @@ export default async function Categories() {
 
   return (
     <>
-      {categories?.map((category) => {
+      {categories.map((category) => {
         return (
           <ListItem key={category.value}>
             <ImageLink

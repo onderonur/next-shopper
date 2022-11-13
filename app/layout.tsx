@@ -1,5 +1,4 @@
 import '@src/styling/global.css';
-import '@src/styling/scrollbar.css';
 import { Roboto } from '@next/font/google';
 import ModalRoot from '@src/modals/ModalRoot';
 import StoreProvider from '@src/store/StoreProvider';
@@ -13,9 +12,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={roboto.className}>
-      {/* Due to this issue, this empty head is added:
-      https://github.com/vercel/next.js/issues/41953 */}
-      <head></head>
+      <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="theme-color" content="#fff" />
+      </head>
       <body>
         <StoreProvider>
           {children}

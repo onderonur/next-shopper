@@ -1,12 +1,6 @@
-import { AnyFunction, Id } from '@src/common/CommonTypes';
-import { paramsToSearchParams, pruneQueryParams } from './RoutingUtils';
-import { ParsedUrlQuery } from 'querystring';
+import { AnyFunction, Id, Maybe } from '@src/common/CommonTypes';
+import { paramsToSearchParams } from './RoutingUtils';
 import { FilterProductsArgs } from '@src/products/ProductsTypes';
-
-type CreateRouteArgs = {
-  params?: unknown;
-  query?: unknown;
-};
 
 // https://stackoverflow.com/a/55247867/10876256
 type RequiredKeys<T> = {
@@ -15,30 +9,24 @@ type RequiredKeys<T> = {
 
 type HasRequiredField<T> = RequiredKeys<T> extends never ? false : true;
 
+type CreateRouteArgs = {
+  params?: unknown;
+  query?: Record<string, Maybe<string | string[]>>;
+};
+
 type CreateRouteResult<RouteArgs extends CreateRouteArgs> = (
   // args parameter is optional when both of params and query fields are optional
   ...args: HasRequiredField<RouteArgs> extends true ? [RouteArgs] : [RouteArgs?]
-) => {
-  pathname: string;
-  query: ParsedUrlQuery;
-  href: string;
-};
+) => string;
 
 function createRoute<RouteArgs extends CreateRouteArgs>(
   getPathname: (pathParams: RouteArgs['params']) => string,
 ): CreateRouteResult<RouteArgs> {
   return (...args) => {
     const [routeArgs] = args;
-
     const pathname = getPathname(routeArgs?.params);
-    const search = paramsToSearchParams(routeArgs?.query as any).toString();
-
-    // TODO: Buraya bi refactor yapılabilir.
-    return {
-      pathname,
-      query: pruneQueryParams(routeArgs?.query),
-      href: `${pathname}${search ? `?${search}` : ''}`,
-    };
+    const search = paramsToSearchParams(routeArgs?.query).toString();
+    return `${pathname}${search ? `?${search}` : ''}`;
   };
 }
 

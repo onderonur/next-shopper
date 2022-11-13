@@ -1,6 +1,6 @@
 import { Product } from '@src/products/ProductsTypes';
 
 export type CartItem = {
-  info: Product;
+  product: Product;
   count: number;
 };

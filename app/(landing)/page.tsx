@@ -1,11 +1,11 @@
 import AppFooter from '@src/app-layout/AppFooter';
 import AppLayoutRoot from '@src/app-layout/AppLayoutRoot';
-import Container from '@src/common/Container';
-import Hero from 'app/(landing)/Hero';
-import CategoriesShell from './CategoriesShell';
+import Center from '@src/common/Center';
+import Hero from '@src/common/Hero';
 import { Suspense } from 'react';
-import CategoriesSkeleton from './CategoriesSkeleton';
-import Categories from './Categories';
+import Categories from '@src/categories/Categories';
+import CategoriesShell from '@src/categories/CategoriesShell';
+import CategoriesSkeleton from '@src/categories/CategoriesSkeleton';
 
 export default function LandingPage() {
   return (
@@ -14,13 +14,13 @@ export default function LandingPage() {
         <Hero />
       </header>
       <main className="p-4 flex-grow">
-        <Container maxWidth="xl">
+        <Center maxWidth="xl">
           <CategoriesShell>
             <Suspense fallback={<CategoriesSkeleton />}>
               <Categories />
             </Suspense>
           </CategoriesShell>
-        </Container>
+        </Center>
       </main>
       <AppFooter />
     </AppLayoutRoot>

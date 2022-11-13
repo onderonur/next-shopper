@@ -27,21 +27,23 @@ export default function CartItemList({ className }: CartItemListProps) {
       }
     >
       {cartItems.map((cartItem) => {
+        const { product } = cartItem;
+
         return (
-          <ListItem key={cartItem.info.id} className="border-b-2 py-2">
+          <ListItem key={product.id} className="border-b-2 py-2">
             <div className="flex gap-4">
               <NextLink
                 href={routes.product({
-                  params: { productId: cartItem.info.id },
+                  params: { productId: product.id },
                 })}
                 className="flex-grow font-semibold"
               >
-                {cartItem.info.title}
+                {product.title}
               </NextLink>
               <div className="flex flex-col items-end">
                 <Price
                   className="text-primary-dark"
-                  value={cartItem.info.price * cartItem.count}
+                  value={product.price * cartItem.count}
                 />
               </div>
             </div>

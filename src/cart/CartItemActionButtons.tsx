@@ -12,7 +12,7 @@ export default function CartItemActionButtons({
   cartItem,
 }: CartItemActionButtonsProps) {
   const dispatch = useAppDispatch();
-  const product = cartItem.info;
+  const { product } = cartItem;
 
   return (
     <div className="flex justify-between items-center">

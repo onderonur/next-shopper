@@ -1,9 +1,5 @@
-import Title from '@src/seo/Title';
+import BaseSeo from '@src/seo/BaseSeo';
 
 export default function CheckoutHead() {
-  return (
-    <>
-      <Title>Checkout</Title>
-    </>
-  );
+  return <BaseSeo title="Checkout" />;
 }

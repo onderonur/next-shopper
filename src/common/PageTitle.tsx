@@ -1,4 +1,5 @@
 import GoBackButton from '@src/routing/GoBackButton';
+import MobilePadding from './MobilePadding';
 
 type PageTitleProps = {
   srOnly?: boolean;
@@ -11,13 +12,13 @@ export default function PageTitle({ srOnly, title }: PageTitleProps) {
   }
 
   return (
-    <div className="flex items-center gap-2 mb-2">
+    <MobilePadding className="flex items-center gap-2 mb-2">
       <div className="flex-shrink-0">
         <GoBackButton />
       </div>
       <h1 className="border-l pl-4 font-bold text-text-light line-clamp-2">
         {title}
       </h1>
-    </div>
+    </MobilePadding>
   );
 }

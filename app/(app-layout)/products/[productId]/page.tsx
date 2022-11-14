@@ -30,7 +30,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
       <PageTitle title={product.title} />
       <Paper>
         <div className="flex flex-col sm:flex-row gap-6">
-          <div className="flex-1">
+          <div className="flex-1 max-w-lg">
             <BaseImage
               src={product.image}
               alt={product.title}
@@ -44,12 +44,12 @@ export default async function ProductPage({ params }: ProductPageProps) {
           <div className="flex-1 flex flex-col items-center gap-4">
             <div className="text-center flex flex-col gap-2">
               <div className="font-bold text-2xl">{product.title}</div>
-              <div className="text-4xl">
+              <div className="text-3xl">
                 <Price className="text-primary-dark" value={product.price} />
               </div>
             </div>
             <AddToCartButton className="max-w-xs" product={product} />
-            <p>{product.description}</p>
+            <p className="text-sm">{product.description}</p>
             <NextLink
               href={routes.search({
                 query: { categories: [product.category.value] },
@@ -59,13 +59,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
             </NextLink>
           </div>
         </div>
-        <NextLink
-          href={routes.product({
-            params: { productId: Number(product.id) + 1 },
-          })}
-        >
-          Go go go go
-        </NextLink>
       </Paper>
     </>
   );

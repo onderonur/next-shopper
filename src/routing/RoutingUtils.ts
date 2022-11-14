@@ -1,8 +1,7 @@
 import { Maybe } from '@src/common/CommonTypes';
 import { isNil } from '@src/common/CommonUtils';
 
-// TODO: Rename, refactor etc.
-export function paramsToSearchParams(
+export function parseToSearchParams(
   params: Maybe<Record<string, Maybe<string | string[]>>>,
 ) {
   const searchParams = new URLSearchParams();

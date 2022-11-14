@@ -3,7 +3,6 @@ import BaseSeo from '@src/seo/BaseSeo';
 import { ProductPageProps } from './page';
 
 export default async function ProductHead({ params }: ProductPageProps) {
-  // TODO: Buna caching lazım
   const product = await productsService.getOneProductById(
     Number(params.productId),
   );

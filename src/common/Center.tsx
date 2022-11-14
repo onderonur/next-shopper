@@ -16,8 +16,7 @@ export default function Center({ maxWidth, className, children }: CenterProps) {
           'max-w-screen-xl': maxWidth === 'xl',
           'max-w-screen-2xl': maxWidth === '2xl',
         },
-        'mx-auto',
-        'w-full',
+        'mx-auto w-full',
         className,
       )}
     >

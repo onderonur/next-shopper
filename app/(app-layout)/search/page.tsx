@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { QueryParams, routes } from '@src/routing/routes';
 import { ProductFilterKey } from '@src/products/ProductsUtils';
-import { paramsToSearchParams } from '@src/routing/RoutingUtils';
+import { parseToSearchParams } from '@src/routing/RoutingUtils';
 import FilterDrawer from '@src/search/FilterDrawer';
 import SectionTitle from '@src/common/SectionTitle';
 import PageTitle from '@src/common/PageTitle';
@@ -16,7 +16,7 @@ import FilterSectionShell from '@src/search/FilterSectionShell';
 type SearchPageQueryParams = QueryParams<typeof routes.search>;
 
 function getFilterProductsArgs(params: SearchPageQueryParams) {
-  const searchParams = paramsToSearchParams(params);
+  const searchParams = parseToSearchParams(params);
 
   const query: SearchPageQueryParams = {};
 

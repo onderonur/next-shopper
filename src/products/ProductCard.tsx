@@ -1,7 +1,5 @@
-import AddToCartButton from '@src/cart/AddToCartButton';
 import NextLink from '@src/routing/NextLink';
 import BaseImage, { imageProps } from '@src/common/BaseImage';
-import Chip from '@src/common/Chip';
 import Price from '@src/common/Price';
 import { Product } from './ProductsTypes';
 import { routes } from '@src/routing/routes';
@@ -12,10 +10,10 @@ type ProductCardProps = {
 
 export default function ProductCard({ product }: ProductCardProps) {
   return (
-    <article className="flex flex-col h-full group border-2 p-2 rounded-md">
-      <div className="relative cursor-pointer">
-        <NextLink href={routes.product({ params: { productId: product.id } })}>
-          <div className="p-4">
+    <NextLink href={routes.product({ params: { productId: product.id } })}>
+      <article className="flex flex-col gap-2 h-full group border-2 p-2 md:p-4 rounded-md">
+        <div className="relative cursor-pointer">
+          <div className="p-2">
             <div className="transition duration-500 ease-out bg-transparent transform group-hover:scale-110">
               <BaseImage
                 src={product.image}
@@ -27,28 +25,14 @@ export default function ProductCard({ product }: ProductCardProps) {
               />
             </div>
           </div>
-        </NextLink>
-      </div>
-      <div className="mt-2 flex flex-col items-center">
-        <div className="text-md">
-          <Price className="text-primary-dark" value={product.price} />
         </div>
-        <h3 className="font-bold text-sm flex-grow text-center">
-          {product.title}
-        </h3>
-        <NextLink
-          href={routes.search({
-            query: { categories: [product.category.value] },
-          })}
-          className="mt-2"
-        >
-          <Chip variant="secondary">{product.category.title}</Chip>
-        </NextLink>
-      </div>
-      <div className="flex-grow" />
-      <div className="mt-4">
-        <AddToCartButton product={product} />
-      </div>
-    </article>
+        <div className="text-center">
+          <div className="text-md">
+            <Price className="text-primary-dark" value={product.price} />
+          </div>
+          <h3 className="font-bold text-sm">{product.title}</h3>
+        </div>
+      </article>
+    </NextLink>
   );
 }

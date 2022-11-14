@@ -6,10 +6,15 @@ type PriceProps = {
   value: Maybe<number>;
 };
 
+const priceFormatter = new Intl.NumberFormat('en', {
+  style: 'currency',
+  currency: 'USD',
+});
+
 export default function Price({ className, value }: PriceProps) {
   return (
     <span className={classNames('font-semibold', className)}>
-      ${(value ?? 0).toFixed(2).replace('.', ',')}
+      {priceFormatter.format(value ?? 0)}
     </span>
   );
 }

@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import React from 'react';
+import MobilePadding from './MobilePadding';
 
 type SectionTitleProps = React.PropsWithChildren<{
   as: keyof Pick<
@@ -18,24 +19,14 @@ export default function SectionTitle({
   className,
   children,
 }: SectionTitleProps) {
-  const Heading = as;
+  const As = as;
 
   return (
-    <header
-      className={classNames(
-        'flex items-center justify-between mb-1',
-        className,
-      )}
-    >
-      <Heading
-        className={classNames(
-          'font-semibold text-lg text-text-light',
-          srOnly && 'sr-only',
-        )}
-      >
-        {children}
-      </Heading>
-      {actions && <div>{actions}</div>}
-    </header>
+    <MobilePadding className={classNames(srOnly && 'sr-only', className)}>
+      <header className="flex items-center justify-between mb-1">
+        <As className="font-semibold text-lg text-text-light">{children}</As>
+        {actions && <div>{actions}</div>}
+      </header>
+    </MobilePadding>
   );
 }

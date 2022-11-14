@@ -1,5 +1,5 @@
 import { AnyFunction, Id, Maybe } from '@src/common/CommonTypes';
-import { paramsToSearchParams } from './RoutingUtils';
+import { parseToSearchParams } from './RoutingUtils';
 import { FilterProductsArgs } from '@src/products/ProductsTypes';
 
 // https://stackoverflow.com/a/55247867/10876256
@@ -25,7 +25,7 @@ function createRoute<RouteArgs extends CreateRouteArgs>(
   return (...args) => {
     const [routeArgs] = args;
     const pathname = getPathname(routeArgs?.params);
-    const search = paramsToSearchParams(routeArgs?.query).toString();
+    const search = parseToSearchParams(routeArgs?.query).toString();
     return `${pathname}${search ? `?${search}` : ''}`;
   };
 }

@@ -46,7 +46,9 @@ export default function Drawer({
           >
             <SectionTitle
               as="h2"
-              className="py-2 px-4 shadow-sm"
+              // These `!important` usages are an escape hatch.
+              // Otherwise, `p-0` in SectionTitle -> MobilePadding overrides these.
+              className="!py-2 !px-4 shadow-sm"
               actions={
                 <Button
                   aria-label="Close Drawer"

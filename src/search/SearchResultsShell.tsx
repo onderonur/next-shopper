@@ -8,7 +8,7 @@ export default function SearchResultsShell({
 }: SearchResultsShellProps) {
   return (
     <Paper>
-      <List className="grid grid-cols-[repeat(auto-fill,minmax(11rem,1fr))] gap-4">
+      <List className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-4">
         {children}
       </List>
     </Paper>

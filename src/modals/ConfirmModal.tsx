@@ -5,7 +5,7 @@ import React, { useId } from 'react';
 import { useModalContext } from './ModalContext';
 import { useModal } from './useModal';
 
-export type ConfirmModalProps = {
+type ConfirmModalProps = {
   title: string;
   body: React.ReactNode;
   confirmText?: string;
@@ -21,11 +21,7 @@ export const useConfirmModal = () => {
   return confirmModal;
 };
 
-export default function ConfirmModal({
-  title,
-  confirmText = 'OK',
-  body,
-}: ConfirmModalProps) {
+function ConfirmModal({ title, confirmText = 'OK', body }: ConfirmModalProps) {
   const { isOpen, hide } = useModalContext<ConfirmModalData>();
 
   function handleClose() {

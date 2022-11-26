@@ -1,12 +1,16 @@
 import NextLink, { NextLinkProps } from '@src/routing/NextLink';
 import BaseImage from '@src/common/BaseImage';
 
-type ImageLinkProps = Pick<NextLinkProps, 'href'> & {
+type CategoryLinkProps = Pick<NextLinkProps, 'href'> & {
   imageSrc: string;
   title: string;
 };
 
-export default function ImageLink({ href, imageSrc, title }: ImageLinkProps) {
+export default function CategoryLink({
+  href,
+  imageSrc,
+  title,
+}: CategoryLinkProps) {
   return (
     <NextLink
       className="relative block w-full h-80 group rounded-md overflow-hidden"
@@ -21,7 +25,7 @@ export default function ImageLink({ href, imageSrc, title }: ImageLinkProps) {
       />
       <div className="absolute inset-0 flex justify-center items-center">
         <div className="p-6 bg-black bg-opacity-50 rounded-md">
-          <h2 className="text-white text-4xl font-bold border-b-4 mb-2 text-center">
+          <h2 className="text-white text-3xl md:text-4xl font-bold border-b-4 mb-2 text-center">
             {title}
           </h2>
         </div>

@@ -1,6 +1,6 @@
 import ContentLoader from 'react-content-loader';
 
-export default function ImageLinkSkeleton() {
+export default function CategoryLinkSkeleton() {
   return (
     <ContentLoader
       uniqueKey="imageLinkSkeleton"

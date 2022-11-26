@@ -1,7 +1,7 @@
 import { categoriesService } from '@src/categories/categoriesService';
 import ListItem from '@src/common/ListItem';
-import ImageLink from '@src/common/ImageLink';
 import { routes } from '@src/routing/routes';
+import CategoryLink from './CategoryLink';
 
 export default async function Categories() {
   const categories = await categoriesService.getManyCategories();
@@ -11,7 +11,7 @@ export default async function Categories() {
       {categories.map((category) => {
         return (
           <ListItem key={category.value}>
-            <ImageLink
+            <CategoryLink
               href={routes.search({
                 query: { categories: [category.value] },
               })}

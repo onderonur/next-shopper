@@ -1,6 +1,6 @@
 import { createMockArray } from '@src/common/CommonUtils';
 import ListItem from '@src/common/ListItem';
-import ImageLinkSkeleton from '@src/common/ImageLinkSkeleton';
+import CategoryLinkSkeleton from './CategoryLinkSkeleton';
 
 export default function CategoriesSkeleton() {
   return (
@@ -8,7 +8,7 @@ export default function CategoriesSkeleton() {
       {createMockArray(4).map((i) => {
         return (
           <ListItem key={i}>
-            <ImageLinkSkeleton />
+            <CategoryLinkSkeleton />
           </ListItem>
         );
       })}

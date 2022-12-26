@@ -1,11 +1,12 @@
-import 'server-only';
+// TODO: Bunu açınca "/api/search" api route'u patlıyor
+// import 'server-only';
 import {
   getValuesOfSelectedOptions,
   ProductFilterKey,
   ProductSorting,
 } from '@src/products/ProductsUtils';
 import {
-  FilterProductsArgs,
+  ProductFilterArgs,
   Product,
   ProductFilterOptions,
   ProductFilterResponse,
@@ -38,7 +39,7 @@ async function getProductFilterOptions() {
   return filterOptions;
 }
 
-async function getProductFilterSelectedOptions(args: FilterProductsArgs) {
+async function getProductFilterSelectedOptions(args: ProductFilterArgs) {
   const db = await getDb();
   const { sortings, categories, priceRanges } = db;
   const selectedOptions: ProductFilterSelectedOption[] = [];
@@ -88,7 +89,7 @@ async function getProductFilterSelectedOptions(args: FilterProductsArgs) {
   return selectedOptions;
 }
 
-async function getManyProducts(args: FilterProductsArgs) {
+async function getManyProducts(args: ProductFilterArgs) {
   const db = await getDb();
   let response: Product[] = [...db.products];
 
@@ -131,7 +132,7 @@ async function getManyProducts(args: FilterProductsArgs) {
 
 export const productsService = {
   filterProducts: cache(
-    async (args: FilterProductsArgs): Promise<ProductFilterResponse> => {
+    async (args: ProductFilterArgs): Promise<ProductFilterResponse> => {
       const filterOptions = await getProductFilterOptions();
       const selectedOptions = await getProductFilterSelectedOptions(args);
       const products = await getManyProducts(

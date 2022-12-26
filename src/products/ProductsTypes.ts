@@ -13,7 +13,7 @@ export type Product = {
   title: string;
 };
 
-export type FilterProductsArgs = {
+export type ProductFilterArgs = {
   sorting?: string;
   categories?: string[];
   priceRanges?: string[];

@@ -2,6 +2,7 @@ import '@src/styling/global.css';
 import { Inter } from '@next/font/google';
 import ModalRoot from '@src/modals/ModalRoot';
 import StoreProvider from '@src/store/StoreProvider';
+import BaseSWRConfig from '@src/http-client/BaseSWRConfig';
 
 const font = Inter({ subsets: ['latin'] });
 
@@ -19,10 +20,12 @@ export default function RootLayout({
         <meta name="theme-color" content="#fff" />
       </head>
       <body>
-        <StoreProvider>
-          {children}
-          <ModalRoot />
-        </StoreProvider>
+        <BaseSWRConfig>
+          <StoreProvider>
+            {children}
+            <ModalRoot />
+          </StoreProvider>
+        </BaseSWRConfig>
       </body>
     </html>
   );

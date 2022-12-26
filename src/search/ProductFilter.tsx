@@ -6,7 +6,7 @@ import Paper from '@src/common/Paper';
 import CheckboxGroup from '@src/forms/CheckboxGroup';
 import RadioGroup from '@src/forms/RadioGroup';
 import {
-  FilterProductsArgs,
+  ProductFilterArgs,
   ProductFilterData,
   ProductFilterOptionItem,
   ProductFilterOptions,
@@ -14,15 +14,17 @@ import {
 import { ProductFilterKey } from '@src/products/ProductsUtils';
 import { routes } from '@src/routing/routes';
 import { useRouter } from 'next/navigation';
+import { useProductFilterArgs } from '@src/products/useProductFilterArgs';
 
 type ProductFilterProps = {
-  filterArgs: FilterProductsArgs;
   options: Maybe<ProductFilterOptions>;
-  values: FilterProductsArgs;
+  values: ProductFilterArgs;
+  isDisabled: boolean;
 };
 
-function ProductFilter({ filterArgs, options, values }: ProductFilterProps) {
+function ProductFilter({ options, values, isDisabled }: ProductFilterProps) {
   const router = useRouter();
+  const filterArgs = useProductFilterArgs();
 
   const onChange = (
     filterKey: ProductFilterData['filterKey'],
@@ -53,7 +55,7 @@ function ProductFilter({ filterArgs, options, values }: ProductFilterProps) {
             filterInput = (
               <CheckboxGroup<ProductFilterOptionItem>
                 // isLoading={isLoading}
-                // isDisabled={isDisabled}
+                isDisabled={isDisabled}
                 options={filter.options}
                 getOptionLabel={(option) => option.title}
                 getOptionValue={(option) => option.value}
@@ -68,7 +70,7 @@ function ProductFilter({ filterArgs, options, values }: ProductFilterProps) {
             filterInput = (
               <RadioGroup<ProductFilterOptionItem>
                 // isLoading={isLoading}
-                // isDisabled={isDisabled}
+                isDisabled={isDisabled}
                 options={filter.options}
                 getOptionLabel={(option) => option.title}
                 getOptionValue={(option) => option.value}

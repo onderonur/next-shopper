@@ -48,7 +48,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 <Price className="text-primary-dark" value={product.price} />
               </div>
             </div>
-            <AddToCartButton className="max-w-xs" product={product} />
+            <AddToCartButton product={product} />
             <p className="text-sm">{product.description}</p>
             <NextLink
               href={routes.search({

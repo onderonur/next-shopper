@@ -1,6 +1,6 @@
 import { AnyFunction, Id, Maybe } from '@src/common/CommonTypes';
 import { parseToSearchParams } from './RoutingUtils';
-import { FilterProductsArgs } from '@src/products/ProductsTypes';
+import { ProductFilterArgs } from '@src/products/ProductsTypes';
 
 // https://stackoverflow.com/a/55247867/10876256
 type RequiredKeys<T> = {
@@ -36,7 +36,7 @@ export type QueryParams<T extends AnyFunction> = RouteArgs<T>['query'];
 
 export const routes = {
   home: createRoute(() => '/'),
-  search: createRoute<{ query?: FilterProductsArgs }>(() => '/search'),
+  search: createRoute<{ query?: ProductFilterArgs }>(() => '/search'),
   product: createRoute<{ params: { productId: Id } }>(
     (params) => `/products/${params.productId}`,
   ),

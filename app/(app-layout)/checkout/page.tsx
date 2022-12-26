@@ -4,34 +4,29 @@ import CartItemList from '@src/cart/CartItemList';
 import { clearCart, selectCartItems } from '@src/cart/cartSlice';
 import CartTotalPrice from '@src/cart/CartTotalPrice';
 import ClearCartButton from '@src/cart/ClearCartButton';
-import { checkoutAPI } from '@src/checkout/checkoutAPI';
 import CheckoutForm from '@src/checkout/CheckoutForm';
 import CheckoutSuccessMessage from '@src/checkout/CheckoutSuccessMessage';
 import Center from '@src/common/Center';
 import PageTitle from '@src/common/PageTitle';
 import { useAppDispatch, useAppSelector } from '@src/store/store';
-import { useEffect } from 'react';
-import { useMutation } from '@src/http-client/useMutation';
+import { useState } from 'react';
 import SectionTitle from '@src/common/SectionTitle';
 import Paper from '@src/common/Paper';
+import { useCheckoutMutation } from '@src/checkout/useCheckoutMutation';
 
 function CheckoutPage() {
   const cartItems = useAppSelector(selectCartItems);
   const dispatch = useAppDispatch();
 
-  const checkoutMutation = useMutation(checkoutAPI.completeCheckout);
+  const [isSuccess, setIsSuccess] = useState(false);
 
-  useEffect(() => {
-    if (checkoutMutation.isSuccess) {
-      dispatch(clearCart());
-    }
-  }, [checkoutMutation.isSuccess, dispatch]);
+  const checkoutMutation = useCheckoutMutation();
 
   return (
     <>
       <PageTitle title="Checkout" />
       <Center maxWidth="sm" className="flex flex-col justify-center gap-4">
-        {checkoutMutation.isSuccess ? (
+        {isSuccess ? (
           <section>
             <SectionTitle as="h2">Checkout Success</SectionTitle>
             <Paper>
@@ -56,7 +51,9 @@ function CheckoutPage() {
               <CheckoutForm
                 error={checkoutMutation.error}
                 onSubmit={async (values) => {
-                  await checkoutMutation.mutate(values);
+                  await checkoutMutation.trigger(values);
+                  dispatch(clearCart());
+                  setIsSuccess(true);
                 }}
               />
             </Paper>

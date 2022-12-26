@@ -1,6 +1,7 @@
 import ErrorContent, {
   ErrorContentProps,
 } from '@src/error-handling/ErrorContent';
+import { DEFAULT_ERROR_MESSAGE } from '@src/error-handling/ErrorHandlingUtils';
 import { StatusCodes } from 'http-status-codes';
 import { NextPage } from 'next';
 
@@ -14,7 +15,7 @@ const ErrorPage: NextPage<ErrorPageProps> = (props) => {
 ErrorPage.getInitialProps = ({ res, err }) => {
   const statusCode =
     res?.statusCode ?? err?.statusCode ?? StatusCodes.NOT_FOUND;
-  const message = err?.message ?? res?.statusMessage ?? 'Something went wrong';
+  const message = err?.message ?? res?.statusMessage ?? DEFAULT_ERROR_MESSAGE;
   return { statusCode, message };
 };
 

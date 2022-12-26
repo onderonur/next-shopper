@@ -10,17 +10,14 @@ type AddToCartButtonProps = {
   product: Product;
 };
 
-export default function AddToCartButton({
-  className,
-  product,
-}: AddToCartButtonProps) {
+export default function AddToCartButton({ product }: AddToCartButtonProps) {
   const dispatch = useAppDispatch();
 
   return (
     <Button
       variant="primary"
       isFullWidth
-      className={className}
+      className="max-w-xs"
       onClick={() => dispatch(addProduct(product))}
     >
       Add to Cart

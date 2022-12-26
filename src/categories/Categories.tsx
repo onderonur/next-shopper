@@ -1,4 +1,5 @@
 import { categoriesService } from '@src/categories/categoriesService';
+import List from '@src/common/List';
 import ListItem from '@src/common/ListItem';
 import { routes } from '@src/routing/routes';
 import CategoryLink from './CategoryLink';
@@ -7,7 +8,7 @@ export default async function Categories() {
   const categories = await categoriesService.getManyCategories();
 
   return (
-    <>
+    <List className="grid lg:grid-cols-2 gap-4">
       {categories.map((category) => {
         return (
           <ListItem key={category.value}>
@@ -21,6 +22,6 @@ export default async function Categories() {
           </ListItem>
         );
       })}
-    </>
+    </List>
   );
 }

@@ -1,26 +1,30 @@
+'use client';
+
 import ProductCard from '@src/products/ProductCard';
 import ListItem from '@src/common/ListItem';
-import { FilterProductsArgs } from '@src/products/ProductsTypes';
-import { productsService } from '@src/products/productsService';
+import Paper from '@src/common/Paper';
+import List from '@src/common/List';
+import { useFilterProducts } from '@src/products/useFilterProducts';
+import SearchResultsSkeleton from './SearchResultsSkeleton';
 
-type SearchResultsProps = {
-  filterArgs: FilterProductsArgs;
-};
-
-export default async function SearchResults({
-  filterArgs,
-}: SearchResultsProps) {
-  const data = await productsService.filterProducts(filterArgs);
+export default function SearchResults() {
+  const { data, isValidating } = useFilterProducts();
 
   return (
-    <>
-      {data.products.map((product) => {
-        return (
-          <ListItem key={product.id}>
-            <ProductCard product={product} />
-          </ListItem>
-        );
-      })}
-    </>
+    <Paper>
+      <List className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-4">
+        {isValidating ? (
+          <SearchResultsSkeleton />
+        ) : (
+          data?.products.map((product) => {
+            return (
+              <ListItem key={product.id}>
+                <ProductCard product={product} />
+              </ListItem>
+            );
+          })
+        )}
+      </List>
+    </Paper>
   );
 }

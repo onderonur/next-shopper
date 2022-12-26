@@ -5,26 +5,19 @@ import Chip from '@src/common/Chip';
 import List from '@src/common/List';
 import ListItem from '@src/common/ListItem';
 import MobilePadding from '@src/common/MobilePadding';
-import {
-  FilterProductsArgs,
-  ProductFilterSelectedOption,
-} from '@src/products/ProductsTypes';
+import { useFilterProducts } from '@src/products/useFilterProducts';
+import { useProductFilterArgs } from '@src/products/useProductFilterArgs';
 import { routes } from '@src/routing/routes';
 import { useRouter } from 'next/navigation';
 
-type SelectedFiltersProps = {
-  // TODO: Rename
-  filterArgs: FilterProductsArgs;
-  selectedOptions: ProductFilterSelectedOption[];
-};
-
-export default function SelectedFilters({
-  filterArgs,
-  selectedOptions,
-}: SelectedFiltersProps) {
+export default function SelectedFilters() {
   const router = useRouter();
+  const filterArgs = useProductFilterArgs();
+  const { data } = useFilterProducts();
 
-  const visibleOptions = selectedOptions.filter((option) => option.isVisible);
+  const visibleOptions = data?.selectedOptions.filter(
+    (option) => option.isVisible,
+  );
 
   if (!visibleOptions?.length) {
     return null;
@@ -54,7 +47,7 @@ export default function SelectedFilters({
                         router.push(
                           routes.search({
                             query: {
-                              ...filterArgs,
+                              ...restQuery,
                               [selectedOption.filterKey]: currentValue.filter(
                                 (value) => value !== selectedOption.value,
                               ),

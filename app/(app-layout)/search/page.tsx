@@ -1,12 +1,12 @@
 import FilterDrawer from '@src/search/FilterDrawer';
 import SectionTitle from '@src/common/SectionTitle';
 import PageTitle from '@src/common/PageTitle';
-import FilterSection from '@src/search/FilterSection';
 import SelectedFilters from '@src/search/SelectedFilters';
 import SearchResults from '@src/search/SearchResults';
+import ProductFilter from '@src/search/ProductFilter';
 
 export default function SearchPage() {
-  const filterSection = <FilterSection />;
+  const productFilter = <ProductFilter />;
 
   return (
     <>
@@ -16,7 +16,7 @@ export default function SearchPage() {
           <SectionTitle as="h2" srOnly>
             Filter
           </SectionTitle>
-          {filterSection}
+          {productFilter}
         </section>
         <section className="flex-1">
           <SectionTitle as="h2" srOnly>
@@ -24,7 +24,7 @@ export default function SearchPage() {
           </SectionTitle>
           <div className="flex flex-col gap-2">
             <SelectedFilters />
-            <FilterDrawer>{filterSection}</FilterDrawer>
+            <FilterDrawer>{productFilter}</FilterDrawer>
             <SearchResults />
           </div>
         </section>

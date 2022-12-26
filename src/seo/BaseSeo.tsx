@@ -14,6 +14,7 @@ export default function BaseSeo({ title, description, images }: BaseSeoProps) {
       useAppDir
       title={metaTitle}
       description={metaDescription}
+      themeColor="#fff"
       openGraph={{
         type: 'website',
         title: metaTitle,

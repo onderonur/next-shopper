@@ -1,6 +1,6 @@
 import BackToTopButton from './BackToTopButton';
 
-type AppLayoutRootProps = React.PropsWithChildren<{}>;
+type AppLayoutRootProps = React.PropsWithChildren;
 
 export default function AppLayoutRoot({ children }: AppLayoutRootProps) {
   return (

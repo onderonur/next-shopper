@@ -1,13 +1,21 @@
 import classNames from 'classnames';
 
 type CenterProps = React.PropsWithChildren<{
+  as?: keyof JSX.IntrinsicElements;
   maxWidth: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
   className?: string;
 }>;
 
-export default function Center({ maxWidth, className, children }: CenterProps) {
+export default function Center({
+  as = 'div',
+  maxWidth,
+  className,
+  children,
+}: CenterProps) {
+  const As = as;
+
   return (
-    <div
+    <As
       className={classNames(
         {
           'max-w-screen-sm': maxWidth === 'sm',
@@ -21,6 +29,6 @@ export default function Center({ maxWidth, className, children }: CenterProps) {
       )}
     >
       {children}
-    </div>
+    </As>
   );
 }

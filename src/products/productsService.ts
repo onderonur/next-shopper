@@ -1,5 +1,6 @@
 // TODO: Bunu açınca "/api/search" api route'u patlıyor
 // import 'server-only';
+
 import {
   getValuesOfSelectedOptions,
   ProductFilterKey,

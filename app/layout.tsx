@@ -3,6 +3,7 @@ import { Inter } from '@next/font/google';
 import ModalRoot from '@src/modals/ModalRoot';
 import StoreProvider from '@src/store/StoreProvider';
 import BaseSWRConfig from '@src/http-client/BaseSWRConfig';
+import BaseSeo from '@src/seo/BaseSeo';
 
 const font = Inter({ subsets: ['latin'] });
 
@@ -17,7 +18,7 @@ export default function RootLayout({
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href="/favicon.ico" />
-        <meta name="theme-color" content="#fff" />
+        <BaseSeo />
       </head>
       <body>
         <BaseSWRConfig>

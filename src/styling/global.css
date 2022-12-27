@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* TODO: Tailwind için base vs kullanımına bi bak */
-
 @layer base {
   body {
     @apply text-text-main bg-background-dark;
@@ -23,19 +21,5 @@
 
   ::-webkit-scrollbar-thumb:hover {
     @apply rounded-lg bg-scrollbar-thumbHover;
-  }
-
-  /* TODO: Bu çalışmıyor şu an. Fix lazım */
-  #nprogress .bar {
-    background: theme('colors.secondary.light');
-  }
-
-  #nprogress .peg {
-    box-shadow: 0 0 10px theme('colors.secondary.light'),
-      0 0 5px theme('colors.secondary.light');
-  }
-
-  #nprogress .spinner-icon {
-    display: none;
   }
 }

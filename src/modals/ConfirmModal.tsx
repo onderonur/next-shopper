@@ -24,18 +24,18 @@ export const useConfirmModal = () => {
 function ConfirmModal({ title, confirmText = 'OK', body }: ConfirmModalProps) {
   const { isOpen, hide } = useModalContext<ConfirmModalData>();
 
-  function handleClose() {
+  function handleCancel() {
     hide({ isConfirmed: false });
   }
 
-  useOnPathnameChange(handleClose);
+  useOnPathnameChange(handleCancel);
 
   const labelId = useId();
 
   return (
     <Backdrop<HTMLDivElement>
       isOpen={isOpen}
-      onClick={handleClose}
+      onClick={handleCancel}
       className="grid place-items-center overflow-y-auto p-4"
     >
       {({ focusRef }) => {
@@ -50,7 +50,7 @@ function ConfirmModal({ title, confirmText = 'OK', body }: ConfirmModalProps) {
             tabIndex={-1}
             onKeyDown={(e) => {
               if (e.key === 'Escape') {
-                handleClose();
+                handleCancel();
               }
             }}
           >
@@ -59,7 +59,7 @@ function ConfirmModal({ title, confirmText = 'OK', body }: ConfirmModalProps) {
             </h2>
             <div>{body}</div>
             <div className="flex justify-end gap-2 mt-2">
-              <Button variant="transparent" onClick={handleClose}>
+              <Button variant="transparent" onClick={handleCancel}>
                 Cancel
               </Button>
               <Button

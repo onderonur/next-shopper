@@ -1,4 +1,6 @@
-// TODO: Bunu açınca "/api/checkout" api route'u patlıyor
+// TODO: This service is used in an API route
+// and they are seen like Client Components.
+// So, `server-only` is throwing an error here.
 // import 'server-only';
 
 import { goTry } from 'go-try';

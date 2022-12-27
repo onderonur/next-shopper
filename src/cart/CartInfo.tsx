@@ -1,4 +1,3 @@
-// TODO: Bu use client'ları daha temize çekmek gerekebilir.
 'use client';
 
 import Badge from '@src/common/Badge';

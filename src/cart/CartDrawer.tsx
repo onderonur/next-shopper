@@ -1,7 +1,6 @@
 import Button from '@src/common/Button';
 import Drawer, { DrawerProps } from '@src/common/Drawer';
 import { routes } from '@src/routing/routes';
-import { useOnPathnameChange } from '@src/routing/useOnPathnameChange';
 import { useAppSelector } from '@src/store/store';
 import CartItemList from './CartItemList';
 import { selectCartItems } from './cartSlice';
@@ -12,10 +11,6 @@ type CartDrawerProps = Pick<DrawerProps, 'isOpen' | 'onClose'>;
 
 export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
   const cartItems = useAppSelector(selectCartItems);
-
-  useOnPathnameChange(() => {
-    onClose();
-  });
 
   return (
     <Drawer from="right" isOpen={isOpen} title="Cart" onClose={onClose}>

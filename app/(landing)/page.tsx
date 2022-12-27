@@ -10,13 +10,11 @@ export default function LandingPage() {
       <header>
         <Hero />
       </header>
-      <main className="p-4 flex-grow">
-        <Center maxWidth="xl">
-          {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-          {/* @ts-ignore */}
-          <Categories />
-        </Center>
-      </main>
+      <Center as="main" maxWidth="xl" className="p-4 flex-grow">
+        {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+        {/* @ts-ignore */}
+        <Categories />
+      </Center>
       <AppFooter />
     </AppLayoutRoot>
   );

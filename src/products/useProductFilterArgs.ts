@@ -6,12 +6,7 @@ export function useProductFilterArgs() {
   const searchParams = useSearchParams();
 
   const query: ProductFilterArgs = {};
-
-  const sorting = searchParams.get(ProductFilterKey.SORTING);
-  if (sorting) {
-    query.sorting = sorting;
-  }
-
+  query.sorting = searchParams.get(ProductFilterKey.SORTING) ?? undefined;
   query.categories = searchParams.getAll(ProductFilterKey.CATEGORIES);
   query.priceRanges = searchParams.getAll(ProductFilterKey.PRICE_RANGES);
 

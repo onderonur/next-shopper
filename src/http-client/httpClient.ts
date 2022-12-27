@@ -24,6 +24,12 @@ export const httpClient = {
   post: async <Data>(url: string, body: object): Promise<Data> => {
     const response = await fetch(url, {
       method: 'POST',
+      headers: {
+        // API Routes are parsing `req.body` according to `content-type` header.
+        // So, we need to set this. Otherwise, API Route parses `req.body` as a string.
+        // https://nextjs.org/docs/api-routes/request-helpers
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify(body),
     });
     const data = await handleResponse<Data>(response);

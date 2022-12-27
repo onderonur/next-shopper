@@ -1,12 +1,13 @@
 import * as Yup from 'yup';
 import cardValidator from 'card-validator';
+import { ERROR_MESSAGES } from '@src/error-handling/ErrorHandlingUtils';
 
 export const completeCheckoutArgsSchema = Yup.object({
   nameSurname: Yup.string()
     .required()
     .test(
       'nameSurnameText',
-      ({ label }) => `${label} is invalid`,
+      ({ label }) => ERROR_MESSAGES.invalid(label),
       (value) => cardValidator.cardholderName(value).isValid,
     )
     .label('Name Surname')
@@ -15,7 +16,7 @@ export const completeCheckoutArgsSchema = Yup.object({
     .required()
     .test(
       'cardNumberTest',
-      ({ label }) => `${label} is invalid`,
+      ({ label }) => ERROR_MESSAGES.invalid(label),
       (value) => cardValidator.number(value).isValid,
     )
     .label('Card Number')
@@ -24,7 +25,7 @@ export const completeCheckoutArgsSchema = Yup.object({
     .required()
     .test(
       'expiryTest',
-      ({ label }) => `${label} is invalid`,
+      ({ label }) => ERROR_MESSAGES.invalid(label),
       (value) => cardValidator.expirationDate(value).isValid,
     )
     .label('Expiration Date')
@@ -33,7 +34,7 @@ export const completeCheckoutArgsSchema = Yup.object({
     .required()
     .test(
       'cvcTest',
-      ({ label }) => `${label} is invalid`,
+      ({ label }) => ERROR_MESSAGES.invalid(label),
       (value) => cardValidator.cvv(value).isValid,
     )
     .label('CVC')

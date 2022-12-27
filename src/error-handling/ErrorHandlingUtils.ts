@@ -28,3 +28,7 @@ export const handleErrors =
     const errorResponse: ApiErrorResponse = { statusCode, message };
     return res.status(errorResponse.statusCode).json(errorResponse);
   };
+
+export const ERROR_MESSAGES = {
+  invalid: (label: string) => `${label} is invalid`,
+};

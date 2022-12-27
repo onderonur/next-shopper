@@ -8,6 +8,7 @@ import RadioGroup from '@src/forms/RadioGroup';
 import {
   ProductFilterData,
   ProductFilterOptionItem,
+  ProductFilterOptions,
 } from '@src/products/ProductsTypes';
 import {
   getValuesOfSelectedOptions,
@@ -17,17 +18,42 @@ import { routes } from '@src/routing/routes';
 import { useRouter } from 'next/navigation';
 import { useProductFilterArgs } from '@src/products/useProductFilterArgs';
 import { useFilterProducts } from '@src/products/useFilterProducts';
-import { createMockArray } from '@src/common/CommonUtils';
-import OptionGroupSkeleton from '@src/forms/OptionGroupSkeleton';
+
+// To render filter skeleton during the initial fetch.
+const defaultOptions: ProductFilterOptions = {
+  sortings: {
+    title: 'Sorting',
+    options: [],
+    filterKey: ProductFilterKey.SORTING,
+  },
+  categories: {
+    title: 'Categories',
+    options: [],
+    filterKey: ProductFilterKey.CATEGORIES,
+  },
+  priceRanges: {
+    title: 'Price',
+    options: [],
+    filterKey: ProductFilterKey.PRICE_RANGES,
+  },
+};
 
 export default function ProductFilter() {
-  // TODO: Mobile moddayken filter drawer'ı açınca refetch ediyor search'ü revalidate etmek için.
-  // Ondan bu revalidateIfStale false yapıldı.
-  // Belki daha iyi bi yöntem vs bulunabilir bilemedim.
   const { data, isLoading, isValidating } = useFilterProducts({
+    // When filter drawer is opened in mobile view, it refetches
+    // search results when they are stale.
+    // To prevent this, we don't want to revalidate this query in filter
+    // when data is stale.
     revalidateIfStale: false,
   });
 
+  // Since `values` are depending on the server response,
+  // we disable inputs during requests.
+  // Otherwise, if user clicks multiple options of a checkbox group,
+  // only the last clicked option becomes selected for some cases.
+  // We can handle this by using query params as a fallback during requests (like optimistic UI etc.).
+  // Even if this is not the best UX, it is a common pattern used by other e-commerce websites
+  // and enough for the purpose of this project.
   const isDisabled = isValidating;
   const values = getValuesOfSelectedOptions(data?.selectedOptions);
   const router = useRouter();
@@ -47,62 +73,53 @@ export default function ProductFilter() {
     );
   };
 
+  const isFirstLoading = isLoading && !data;
+
   return (
     <div className="pb-6 flex flex-col gap-4">
-      {isLoading && !data
-        ? createMockArray(3).map((i) => {
-            return (
-              <div key={i}>
-                <PaperTitle isLoading />
-                <Paper>
-                  <OptionGroupSkeleton />
-                </Paper>
-              </div>
-            );
-          })
-        : Object.values(data?.filterOptions ?? {}).map((filter) => {
-            let filterInput = null;
+      {Object.values(data?.filterOptions ?? defaultOptions).map((filter) => {
+        let filterInput = null;
 
-            switch (filter.filterKey) {
-              case ProductFilterKey.CATEGORIES:
-              case ProductFilterKey.PRICE_RANGES:
-                filterInput = (
-                  <CheckboxGroup<ProductFilterOptionItem>
-                    // isLoading={isLoading}
-                    isDisabled={isDisabled}
-                    options={filter.options}
-                    getOptionLabel={(option) => option.title}
-                    getOptionValue={(option) => option.value}
-                    value={values[filter.filterKey]}
-                    onChange={(newValue) => {
-                      handleChange(filter.filterKey, newValue);
-                    }}
-                  />
-                );
-                break;
-              case ProductFilterKey.SORTING:
-                filterInput = (
-                  <RadioGroup<ProductFilterOptionItem>
-                    // isLoading={isLoading}
-                    isDisabled={isDisabled}
-                    options={filter.options}
-                    getOptionLabel={(option) => option.title}
-                    getOptionValue={(option) => option.value}
-                    value={values[filter.filterKey]}
-                    onChange={(newValue) => {
-                      handleChange(filter.filterKey, newValue);
-                    }}
-                  />
-                );
-            }
-
-            return (
-              <div key={filter.filterKey}>
-                <PaperTitle>{filter.title}</PaperTitle>
-                <Paper>{filterInput}</Paper>
-              </div>
+        switch (filter.filterKey) {
+          case ProductFilterKey.CATEGORIES:
+          case ProductFilterKey.PRICE_RANGES:
+            filterInput = (
+              <CheckboxGroup<ProductFilterOptionItem>
+                isLoading={isFirstLoading}
+                isDisabled={isDisabled}
+                options={filter.options}
+                getOptionLabel={(option) => option.title}
+                getOptionValue={(option) => option.value}
+                value={values[filter.filterKey]}
+                onChange={(newValue) => {
+                  handleChange(filter.filterKey, newValue);
+                }}
+              />
             );
-          })}
+            break;
+          case ProductFilterKey.SORTING:
+            filterInput = (
+              <RadioGroup<ProductFilterOptionItem>
+                isLoading={isFirstLoading}
+                isDisabled={isDisabled}
+                options={filter.options}
+                getOptionLabel={(option) => option.title}
+                getOptionValue={(option) => option.value}
+                value={values[filter.filterKey]}
+                onChange={(newValue) => {
+                  handleChange(filter.filterKey, newValue);
+                }}
+              />
+            );
+        }
+
+        return (
+          <div key={filter.filterKey}>
+            <PaperTitle>{filter.title}</PaperTitle>
+            <Paper>{filterInput}</Paper>
+          </div>
+        );
+      })}
     </div>
   );
 }

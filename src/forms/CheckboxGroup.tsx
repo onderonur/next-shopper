@@ -1,7 +1,9 @@
 import { Maybe } from '@src/common/CommonTypes';
 import OptionButton from './OptionButton';
+import OptionGroupSkeleton from './OptionGroupSkeleton';
 
 type CheckboxGroupProps<Option> = {
+  isLoading?: boolean;
   isDisabled?: boolean;
   options: Maybe<Option[]>;
   getOptionLabel: (option: Option) => React.ReactNode;
@@ -11,6 +13,7 @@ type CheckboxGroupProps<Option> = {
 };
 
 export default function CheckboxGroup<Option>({
+  isLoading,
   isDisabled,
   options,
   value,
@@ -18,6 +21,10 @@ export default function CheckboxGroup<Option>({
   getOptionLabel,
   getOptionValue,
 }: CheckboxGroupProps<Option>) {
+  if (isLoading) {
+    return <OptionGroupSkeleton />;
+  }
+
   return (
     <div role="group">
       <OptionButton

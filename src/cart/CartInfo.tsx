@@ -18,12 +18,7 @@ export default function CartInfo() {
   return (
     <>
       <Badge value={productsCount}>
-        <Button
-          aria-label="Open Cart Info"
-          className="text-lg"
-          icon={<CartIcon />}
-          onClick={open}
-        >
+        <Button aria-label="Open Cart Info" icon={<CartIcon />} onClick={open}>
           <Price value={totalPrice} />
         </Button>
       </Badge>

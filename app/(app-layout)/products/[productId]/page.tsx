@@ -30,8 +30,9 @@ export default async function ProductPage({ params }: ProductPageProps) {
       <PageTitle title={product.title} />
       <Paper>
         <div className="flex flex-col sm:flex-row gap-6">
-          <div className="flex-1 max-w-lg">
+          <div className="flex-1 flex justify-center">
             <BaseImage
+              className="max-w-lg"
               src={product.image}
               alt={product.title}
               priority

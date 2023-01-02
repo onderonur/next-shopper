@@ -1,5 +1,6 @@
 const lineClamp = require('@tailwindcss/line-clamp');
 const colors = require('tailwindcss/colors');
+const defaultTheme = require('tailwindcss/defaultTheme');
 
 const primaryColor = colors.purple;
 const secondaryColor = colors.teal;
@@ -62,7 +63,7 @@ module.exports = {
         },
       },
       spacing: {
-        'app-header': `${20 * 0.25}rem`,
+        'app-header': defaultTheme.spacing[16],
       },
     },
   },

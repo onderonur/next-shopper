@@ -65,7 +65,7 @@ export default function CheckoutForm({ error, onSubmit }: CheckoutFormProps) {
           />
         </FormItem>
       </div>
-      <div className="my-2 flex justify-end">
+      <div className="flex justify-end">
         <SubmitButton formState={formState}>Complete Checkout</SubmitButton>
       </div>
     </Form>

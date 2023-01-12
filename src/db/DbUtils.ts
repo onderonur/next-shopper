@@ -4,7 +4,7 @@ const wait = () =>
   new Promise<void>((resolve) => {
     setTimeout(() => {
       resolve();
-    }, 200);
+    }, 100);
   });
 
 export const getDb = async () => {

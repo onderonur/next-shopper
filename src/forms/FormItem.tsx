@@ -7,7 +7,7 @@ type FormItemProps = React.PropsWithChildren<{
 
 export default function FormItem({ error, children }: FormItemProps) {
   return (
-    <div className="py-1">
+    <div>
       {children}
       {error && (
         <div role="alert" className="text-error-main">

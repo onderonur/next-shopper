@@ -4,7 +4,7 @@ import { ProductFilterArgs } from '@src/products/ProductsTypes';
 
 // https://stackoverflow.com/a/55247867/10876256
 type RequiredKeys<T> = {
-  [K in keyof T]-?: {} extends { [P in K]: T[K] } ? never : K;
+  [K in keyof T]-?: object extends { [P in K]: T[K] } ? never : K;
 }[keyof T];
 
 type HasRequiredField<T> = RequiredKeys<T> extends never ? false : true;

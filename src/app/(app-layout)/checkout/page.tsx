@@ -25,7 +25,7 @@ function CheckoutPage() {
   return (
     <>
       <PageTitle title="Checkout" />
-      <Center maxWidth="sm" className="flex flex-col justify-center gap-4">
+      <Center maxWidth="sm" className="flex flex-col gap-4">
         {isSuccess ? (
           <section>
             <SectionTitle as="h2">Checkout Success</SectionTitle>

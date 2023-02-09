@@ -21,7 +21,7 @@ export default function Chip({
   return (
     <div
       className={classNames(
-        'flex justify-center items-center gap-1 select-none',
+        'flex items-center gap-1 select-none',
         'border-2 px-2 py-1 rounded-md text-sm',
         textAlign === 'left' ? 'text-left' : 'text-center',
         variant === 'primary' && [

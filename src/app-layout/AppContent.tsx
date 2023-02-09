@@ -10,10 +10,7 @@ export default function AppContent({ className, children }: AppContentProps) {
     <Center
       as="main"
       maxWidth="xl"
-      className={classNames(
-        'mt-app-header flex-grow py-2 md:p-4 flex flex-col',
-        className,
-      )}
+      className={classNames('mt-app-header py-2 md:p-4', className)}
     >
       {children}
     </Center>

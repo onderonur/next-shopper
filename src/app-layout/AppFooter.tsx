@@ -4,7 +4,7 @@ import { GithubIcon } from '@src/common/Icons';
 
 export default function AppFooter() {
   return (
-    <footer className="bg-background-main px-6 h-16 shrink-0 flex justify-between items-center text-text-light">
+    <footer className="bg-background-main px-6 h-16 flex justify-between items-center text-text-light">
       {new Date().getFullYear()} © {APP_TITLE}
       <Button
         aria-label="Check the Source Code on GitHub"

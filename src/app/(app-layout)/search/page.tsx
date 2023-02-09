@@ -11,14 +11,14 @@ export default function SearchPage() {
   return (
     <>
       <PageTitle title="Search Products" srOnly />
-      <div className="flex gap-2">
-        <section className="hidden md:block w-72 px-2 max-h-[80vh] overflow-auto sticky top-24">
+      <div className="grid md:grid-cols-[theme(spacing.72)_1fr] gap-2">
+        <section className="hidden md:block px-2 max-h-[80vh] overflow-auto sticky top-24">
           <SectionTitle as="h2" srOnly>
             Filter
           </SectionTitle>
           {productFilter}
         </section>
-        <section className="flex-1">
+        <section>
           <SectionTitle as="h2" srOnly>
             Search Results
           </SectionTitle>

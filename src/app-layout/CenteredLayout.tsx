@@ -7,9 +7,9 @@ type AppLayoutProps = React.PropsWithChildren;
 
 export default function CenteredLayout({ children }: AppLayoutProps) {
   return (
-    <AppLayoutRoot>
+    <AppLayoutRoot className="grid-rows-[1fr_auto]">
       <AppHeader />
-      <AppContent className="justify-center align-center mb-12">
+      <AppContent className="grid place-items-center mb-12">
         {children}
       </AppContent>
       <AppFooter />

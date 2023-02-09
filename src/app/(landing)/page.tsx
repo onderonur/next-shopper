@@ -6,11 +6,11 @@ import Categories from '@src/categories/Categories';
 
 export default function LandingPage() {
   return (
-    <AppLayoutRoot>
+    <AppLayoutRoot className="grid-rows-[auto_1fr_auto]">
       <header>
         <Hero />
       </header>
-      <Center as="main" maxWidth="xl" className="p-4 flex-grow">
+      <Center as="main" maxWidth="xl" className="p-4">
         {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
         {/* @ts-ignore */}
         <Categories />

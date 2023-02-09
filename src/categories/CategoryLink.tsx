@@ -23,7 +23,7 @@ export default function CategoryLink({
         fill
         priority
       />
-      <div className="absolute inset-0 flex justify-center items-center">
+      <div className="absolute inset-0 grid place-items-center">
         <div className="p-6 bg-black bg-opacity-50 rounded-md">
           <h2 className="text-white text-3xl md:text-4xl font-bold border-b-4 mb-2 text-center">
             {title}

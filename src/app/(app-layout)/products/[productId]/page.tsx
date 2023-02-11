@@ -29,7 +29,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
     <>
       <PageTitle title={product.title} />
       <Paper>
-        <div className="grid grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-6">
           <BaseImage
             className="max-w-lg mx-auto"
             src={product.image}

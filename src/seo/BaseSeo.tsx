@@ -25,6 +25,7 @@ export default function BaseSeo({ title, description, images }: BaseSeoProps) {
       }}
       twitter={{
         handle: '@onderonur_',
+        cardType: 'summary_large_image',
       }}
     />
   );

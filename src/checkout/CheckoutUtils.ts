@@ -41,6 +41,6 @@ export const completeCheckoutArgsSchema = Yup.object({
     .default(''),
 });
 
-export type CompleteCheckoutArgs = Yup.TypeOf<
+export type CompleteCheckoutArgs = Yup.InferType<
   typeof completeCheckoutArgsSchema
 >;

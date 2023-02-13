@@ -21,6 +21,7 @@ export default function Button({
   circle,
   children,
   disabled,
+  type = 'button',
   ...rest
 }: ButtonProps) {
   const buttonClassName = classNames(
@@ -65,7 +66,12 @@ export default function Button({
   }
 
   return (
-    <button {...rest} className={buttonClassName} disabled={disabled}>
+    <button
+      {...rest}
+      type={type}
+      className={buttonClassName}
+      disabled={disabled}
+    >
       {content}
     </button>
   );

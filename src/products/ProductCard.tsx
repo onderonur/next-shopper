@@ -27,7 +27,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           </div>
         </div>
         <div className="text-center">
-          <div className="text-md">
+          <div>
             <Price className="text-primary-dark" value={product.price} />
           </div>
           <h3 className="font-bold text-sm">{product.title}</h3>

@@ -31,7 +31,7 @@ After the installation is completed, we can run the app by:
 npm run dev
 ```
 
-and it will start at `http://localhost:3000`.
+and it will start on `http://localhost:3000`.
 
 ## 🚀 Build
 

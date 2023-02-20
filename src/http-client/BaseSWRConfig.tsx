@@ -9,7 +9,13 @@ export default function BaseSWRConfig({
   children: React.ReactNode;
 }) {
   return (
-    <SWRConfig value={{ revalidateOnFocus: false, fetcher: httpClient.get }}>
+    <SWRConfig
+      value={{
+        revalidateOnFocus: false,
+        fetcher: httpClient.get,
+        dedupingInterval: 60 * 1000,
+      }}
+    >
       {children}
     </SWRConfig>
   );

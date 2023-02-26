@@ -8,14 +8,13 @@ import Form from '@src/forms/Form';
 import {
   CompleteCheckoutArgs,
   completeCheckoutArgsSchema,
+  defaultCompleteCheckoutArgs,
 } from './CheckoutUtils';
 import FormItem from '@src/forms/FormItem';
 import Input from '@src/forms/Input';
 import FormItemLabel from '@src/forms/FormItemLabel';
 import CardExpiryInput from './CardExpiryInput';
-import { yupResolver } from '@hookform/resolvers/yup';
-
-const defaultValues = completeCheckoutArgsSchema.getDefault();
+import { zodResolver } from '@hookform/resolvers/zod';
 
 type CheckoutFormProps = {
   error: Maybe<ApiRequestError>;
@@ -24,8 +23,8 @@ type CheckoutFormProps = {
 
 export default function CheckoutForm({ error, onSubmit }: CheckoutFormProps) {
   const { register, formState, handleSubmit } = useForm<CompleteCheckoutArgs>({
-    resolver: yupResolver(completeCheckoutArgsSchema),
-    defaultValues,
+    resolver: zodResolver(completeCheckoutArgsSchema),
+    defaultValues: defaultCompleteCheckoutArgs,
   });
 
   return (

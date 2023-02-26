@@ -25,8 +25,8 @@ export const httpClient = {
     const response = await fetch(url, {
       method: 'POST',
       headers: {
-        // API Routes are parsing `req.body` according to `content-type` header.
-        // So, we need to set this. Otherwise, API Route parses `req.body` as a string.
+        // API Routes are parsing `request.body` according to `content-type` header.
+        // So, we need to set this. Otherwise, API Route parses `request.body` as a string.
         // https://nextjs.org/docs/api-routes/request-helpers
         'Content-Type': 'application/json',
       },

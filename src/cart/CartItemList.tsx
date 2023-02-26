@@ -6,7 +6,7 @@ import { CartIcon } from '@src/common/Icons';
 import { useAppSelector } from '@src/store/store';
 import { selectCartItems } from './cartSlice';
 import NextLink from '@src/routing/NextLink';
-import { routes } from '@src/routing/routes';
+import { routes } from '@src/routing/RoutingUtils';
 
 type CartItemListProps = {
   className?: string;

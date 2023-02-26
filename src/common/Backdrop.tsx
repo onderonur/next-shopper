@@ -1,6 +1,6 @@
 'use client';
 
-import { useOnPathnameChange } from '@src/routing/useOnPathnameChange';
+import { useOnRouteChange } from '@src/routing/RoutingHooks';
 import FadeIn from '@src/transitions/FadeIn';
 import classNames from 'classnames';
 import React, { useEffect, useState, useRef, useCallback } from 'react';
@@ -19,7 +19,7 @@ export const useBackdrop = (
     setIsOpen(false);
   }, []);
 
-  useOnPathnameChange(() => {
+  useOnRouteChange(() => {
     if (args.closeOnRouteChange) {
       close();
     }

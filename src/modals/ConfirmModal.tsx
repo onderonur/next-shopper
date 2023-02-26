@@ -1,9 +1,9 @@
 import Backdrop from '@src/common/Backdrop';
 import Button from '@src/common/Button';
-import { useOnPathnameChange } from '@src/routing/useOnPathnameChange';
+import { useOnRouteChange } from '@src/routing/RoutingHooks';
 import React, { useId } from 'react';
 import { useModalContext } from './ModalContext';
-import { useModal } from './useModal';
+import { useModal } from './ModalHooks';
 
 type ConfirmModalProps = {
   title: string;
@@ -28,7 +28,7 @@ function ConfirmModal({ title, confirmText = 'OK', body }: ConfirmModalProps) {
     hide({ isConfirmed: false });
   }
 
-  useOnPathnameChange(handleCancel);
+  useOnRouteChange(handleCancel);
 
   const labelId = useId();
 

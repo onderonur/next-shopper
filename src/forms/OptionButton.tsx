@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { CheckIcon } from '../common/Icons';
+import { CheckIcon } from '@src/common/Icons';
 
 type OptionButtonProps = {
   type: 'radio' | 'checkbox';

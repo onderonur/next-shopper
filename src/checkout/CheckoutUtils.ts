@@ -1,46 +1,43 @@
-import * as Yup from 'yup';
 import cardValidator from 'card-validator';
 import { ERROR_MESSAGES } from '@src/error-handling/ErrorHandlingUtils';
+import { z } from 'zod';
 
-export const completeCheckoutArgsSchema = Yup.object({
-  nameSurname: Yup.string()
-    .required()
-    .test(
-      'nameSurnameText',
-      ({ label }) => ERROR_MESSAGES.invalid(label),
+export const completeCheckoutArgsSchema = z.object({
+  nameSurname: z
+    .string()
+    .min(1, ERROR_MESSAGES.required('Name Surname'))
+    .refine(
       (value) => cardValidator.cardholderName(value).isValid,
-    )
-    .label('Name Surname')
-    .default(''),
-  cardNumber: Yup.string()
-    .required()
-    .test(
-      'cardNumberTest',
-      ({ label }) => ERROR_MESSAGES.invalid(label),
+      ERROR_MESSAGES.invalid('Name Surname'),
+    ),
+  cardNumber: z
+    .string()
+    .min(1, ERROR_MESSAGES.required('Card Number'))
+    .refine(
       (value) => cardValidator.number(value).isValid,
-    )
-    .label('Card Number')
-    .default(''),
-  expiry: Yup.string()
-    .required()
-    .test(
-      'expiryTest',
-      ({ label }) => ERROR_MESSAGES.invalid(label),
+      ERROR_MESSAGES.invalid('Card Number'),
+    ),
+  expiry: z
+    .string()
+    .min(1, ERROR_MESSAGES.required('Expiration Date'))
+    .refine(
       (value) => cardValidator.expirationDate(value).isValid,
-    )
-    .label('Expiration Date')
-    .default(''),
-  cvc: Yup.string()
-    .required()
-    .test(
-      'cvcTest',
-      ({ label }) => ERROR_MESSAGES.invalid(label),
+      ERROR_MESSAGES.invalid('Expiration Date'),
+    ),
+  cvc: z
+    .string()
+    .min(1, ERROR_MESSAGES.required('CVC'))
+    .refine(
       (value) => cardValidator.cvv(value).isValid,
-    )
-    .label('CVC')
-    .default(''),
+      ERROR_MESSAGES.invalid('CVC'),
+    ),
 });
 
-export type CompleteCheckoutArgs = Yup.InferType<
-  typeof completeCheckoutArgsSchema
->;
+export type CompleteCheckoutArgs = z.infer<typeof completeCheckoutArgsSchema>;
+
+export const defaultCompleteCheckoutArgs: CompleteCheckoutArgs = {
+  nameSurname: '',
+  cardNumber: '',
+  expiry: '',
+  cvc: '',
+};

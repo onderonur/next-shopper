@@ -1,6 +1,6 @@
 import Button from '@src/common/Button';
 import Drawer, { DrawerProps } from '@src/common/Drawer';
-import { routes } from '@src/routing/routes';
+import { routes } from '@src/routing/RoutingUtils';
 import { useAppSelector } from '@src/store/store';
 import CartItemList from './CartItemList';
 import { selectCartItems } from './cartSlice';

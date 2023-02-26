@@ -27,6 +27,7 @@ module.exports = {
           light: secondaryColor[300],
           lighter: secondaryColor[100],
         },
+        skeleton: gray[200],
         background: {
           dark: gray[50],
           main: colors.white,

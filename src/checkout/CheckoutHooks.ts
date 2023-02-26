@@ -5,7 +5,7 @@ import { CompleteCheckoutArgs } from './CheckoutUtils';
 
 export function useCheckoutMutation() {
   return useSWRMutation<void, HttpClientError, string, CompleteCheckoutArgs>(
-    '/api/checkout',
+    '/checkout/api',
     (url, { arg }) => httpClient.post(url, arg),
   );
 }

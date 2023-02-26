@@ -3,23 +3,18 @@ import { Inter } from '@next/font/google';
 import ModalRoot from '@src/modals/ModalRoot';
 import StoreProvider from '@src/store/StoreProvider';
 import BaseSWRConfig from '@src/http-client/BaseSWRConfig';
-import BaseSeo from '@src/seo/BaseSeo';
+import { getMetadata } from '@src/seo/SeoUtils';
 
 const font = Inter({ subsets: ['latin'] });
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export const metadata = getMetadata();
+
+type RootLayoutProps = React.PropsWithChildren;
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" className={font.className}>
-      <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" href="/favicon.ico" />
-        <BaseSeo />
-      </head>
+      <head />
       <body>
         <BaseSWRConfig>
           <StoreProvider>

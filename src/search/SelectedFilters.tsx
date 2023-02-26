@@ -5,10 +5,9 @@ import Chip from '@src/common/Chip';
 import List from '@src/common/List';
 import ListItem from '@src/common/ListItem';
 import MobilePadding from '@src/common/MobilePadding';
-import { useFilterProducts } from '@src/products/useFilterProducts';
-import { useProductFilterArgs } from '@src/products/useProductFilterArgs';
-import { routes } from '@src/routing/routes';
+import { routes } from '@src/routing/RoutingUtils';
 import { useRouter } from 'next/navigation';
+import { useFilterProducts, useProductFilterArgs } from './SearchHooks';
 
 export default function SelectedFilters() {
   const router = useRouter();

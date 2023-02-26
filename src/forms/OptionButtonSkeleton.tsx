@@ -1,10 +1,8 @@
-import ContentLoader from 'react-content-loader';
-
 export default function OptionButtonSkeleton() {
   return (
-    <ContentLoader uniqueKey="optionButtonSkeletton" viewBox="0 0 200 48">
-      <rect rx="4" y="10" width="28" height="28" />
-      <rect rx="4" x="18%" y="10" width="78%" height="28" />
-    </ContentLoader>
+    <div className="w-full p-1 flex gap-2 animate-pulse">
+      <div className="w-8 h-8 flex-none bg-skeleton rounded-md" />
+      <div className="h-8 flex-1 bg-skeleton rounded-md" />
+    </div>
   );
 }

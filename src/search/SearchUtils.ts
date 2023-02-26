@@ -1,15 +1,28 @@
 import { Maybe } from '@src/common/CommonTypes';
-import { ProductFilterSelectedOption } from './ProductsTypes';
+import {
+  ProductFilterArgs,
+  ProductFilterSelectedOption,
+} from '@src/search/SearchTypes';
+
+export enum ProductFilterKey {
+  SORTING = 'sorting',
+  CATEGORIES = 'categories',
+  PRICE_RANGES = 'priceRanges',
+}
 
 export enum ProductSorting {
   PRICE_ASC = 'price-asc',
   PRICE_DESC = 'price-desc',
 }
 
-export enum ProductFilterKey {
-  SORTING = 'sorting',
-  CATEGORIES = 'categories',
-  PRICE_RANGES = 'priceRanges',
+export function getProductFilterArgs(searchParams: URLSearchParams) {
+  const query: ProductFilterArgs = {};
+
+  query.sorting = searchParams.get(ProductFilterKey.SORTING) ?? undefined;
+  query.categories = searchParams.getAll(ProductFilterKey.CATEGORIES);
+  query.priceRanges = searchParams.getAll(ProductFilterKey.PRICE_RANGES);
+
+  return query;
 }
 
 function getOneSelectedOptionValue(

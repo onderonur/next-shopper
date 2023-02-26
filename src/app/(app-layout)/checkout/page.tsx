@@ -12,7 +12,7 @@ import { useAppDispatch, useAppSelector } from '@src/store/store';
 import { useState } from 'react';
 import SectionTitle from '@src/common/SectionTitle';
 import Paper from '@src/common/Paper';
-import { useCheckoutMutation } from '@src/checkout/useCheckoutMutation';
+import { useCheckoutMutation } from '@src/checkout/CheckoutHooks';
 
 function CheckoutPage() {
   const cartItems = useAppSelector(selectCartItems);

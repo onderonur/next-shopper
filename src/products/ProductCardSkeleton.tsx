@@ -1,12 +1,14 @@
-import ContentLoader from 'react-content-loader';
-
 export default function ProductCardSkeleton() {
   return (
-    <ContentLoader uniqueKey="productCardSkeleton" viewBox="0 0 242 270">
-      <rect x="12%" y="12" width="76%" height="180" />
-      <rect x="30%" y="206" width="40%" height="18" />
-      <rect x="0" y="230" width="100%" height="16" />
-      <rect x="10%" y="250" width="80%" height="16" />
-    </ContentLoader>
+    <div className="flex flex-col gap-2 border-2 p-2 md:p-4 rounded-md animate-pulse">
+      <div className="p-2">
+        <div className="aspect-[12/10] bg-skeleton rounded-md" />
+      </div>
+      <div className="flex flex-col gap-2">
+        <div className="w-16 h-6 mx-auto bg-skeleton rounded-md" />
+        <div className="w-full max-w-[theme(spacing.48)] h-4 mx-auto bg-skeleton rounded-md" />
+        <div className="w-full max-w-[theme(spacing.28)] h-4 mx-auto bg-skeleton rounded-md" />
+      </div>
+    </div>
   );
 }

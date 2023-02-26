@@ -4,7 +4,7 @@ import ProductCard from '@src/products/ProductCard';
 import ListItem from '@src/common/ListItem';
 import Paper from '@src/common/Paper';
 import List from '@src/common/List';
-import { useFilterProducts } from '@src/products/useFilterProducts';
+import { useFilterProducts } from '@src/search/SearchHooks';
 import SearchResultsSkeleton from './SearchResultsSkeleton';
 
 export default function SearchResults() {

@@ -7,7 +7,9 @@ import Paper from '@src/common/Paper';
 import Price from '@src/common/Price';
 import { productsService } from '@src/products/productsService';
 import NextLink from '@src/routing/NextLink';
-import { routes } from '@src/routing/routes';
+import { routes } from '@src/routing/RoutingUtils';
+import { getMetadata } from '@src/seo/SeoUtils';
+import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 export type ProductPageProps = {
@@ -15,6 +17,24 @@ export type ProductPageProps = {
     productId: Id;
   };
 };
+
+export async function generateMetadata({
+  params,
+}: ProductPageProps): Promise<Metadata> {
+  const product = await productsService.getOneProductById(
+    Number(params.productId),
+  );
+
+  if (!product) {
+    return getMetadata();
+  }
+
+  return getMetadata({
+    title: product.title,
+    description: product.description,
+    images: [{ url: product.image, alt: product.title }],
+  });
+}
 
 export default async function ProductPage({ params }: ProductPageProps) {
   const product = await productsService.getOneProductById(

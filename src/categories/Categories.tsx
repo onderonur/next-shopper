@@ -1,7 +1,7 @@
 import { categoriesService } from '@src/categories/categoriesService';
 import List from '@src/common/List';
 import ListItem from '@src/common/ListItem';
-import { routes } from '@src/routing/routes';
+import { routes } from '@src/routing/RoutingUtils';
 import CategoryLink from './CategoryLink';
 
 export default async function Categories() {

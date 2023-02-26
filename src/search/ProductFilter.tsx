@@ -9,15 +9,15 @@ import {
   ProductFilterData,
   ProductFilterOptionItem,
   ProductFilterOptions,
-} from '@src/products/ProductsTypes';
+} from '@src/search/SearchTypes';
 import {
   getValuesOfSelectedOptions,
   ProductFilterKey,
-} from '@src/products/ProductsUtils';
-import { routes } from '@src/routing/routes';
+} from '@src/search/SearchUtils';
 import { useRouter } from 'next/navigation';
-import { useProductFilterArgs } from '@src/products/useProductFilterArgs';
-import { useFilterProducts } from '@src/products/useFilterProducts';
+import { useProductFilterArgs } from '@src/search/SearchHooks';
+import { useFilterProducts } from '@src/search/SearchHooks';
+import { routes } from '@src/routing/RoutingUtils';
 
 // To render filter skeleton during the initial fetch.
 const defaultOptions: ProductFilterOptions = {

@@ -1,7 +1,7 @@
 import Button from '@src/common/Button';
 import { StatusCodes } from 'http-status-codes';
 
-export type ErrorContentProps = {
+type ErrorContentProps = {
   statusCode: StatusCodes;
   message: string;
 };

@@ -21,7 +21,7 @@ export default function SubmitButton<FormFieldValues extends FieldValues>({
       aria-label={rest['aria-label']}
       type="submit"
       variant="primary"
-      disabled={isSubmitting}
+      // disabled={isSubmitting}
       icon={<Loading size="small" className="mr-1" isLoading={isSubmitting} />}
     >
       {children}

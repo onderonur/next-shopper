@@ -3,6 +3,9 @@ import AppLayoutRoot from '@src/app-layout/AppLayoutRoot';
 import Center from '@src/common/Center';
 import Hero from '@src/common/Hero';
 import Categories from '@src/categories/Categories';
+import { getMetadata } from '@src/seo/SeoUtils';
+
+export const metadata = getMetadata({ title: 'Home' });
 
 export default function LandingPage() {
   return (

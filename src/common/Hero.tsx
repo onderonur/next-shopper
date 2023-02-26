@@ -5,7 +5,7 @@ import {
   APP_TITLE,
 } from '@src/common/CommonUtils';
 import { ExternalLinkIcon } from '@src/common/Icons';
-import { routes } from '@src/routing/routes';
+import { routes } from '@src/routing/RoutingUtils';
 
 function Hero() {
   return (

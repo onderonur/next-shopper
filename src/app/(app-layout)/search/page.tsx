@@ -4,6 +4,9 @@ import PageTitle from '@src/common/PageTitle';
 import SelectedFilters from '@src/search/SelectedFilters';
 import SearchResults from '@src/search/SearchResults';
 import ProductFilter from '@src/search/ProductFilter';
+import { getMetadata } from '@src/seo/SeoUtils';
+
+export const metadata = getMetadata({ title: 'Search Products' });
 
 export default function SearchPage() {
   const productFilter = <ProductFilter />;

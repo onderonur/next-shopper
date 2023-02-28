@@ -1,12 +1,12 @@
-import Price from '@src/common/Price';
+import Price from '@/common/Price';
 import CartItemActionButtons from './CartItemActionButtons';
-import List from '@src/common/List';
-import ListItem from '@src/common/ListItem';
-import { CartIcon } from '@src/common/Icons';
-import { useAppSelector } from '@src/store/store';
+import List from '@/common/List';
+import ListItem from '@/common/ListItem';
+import { CartIcon } from '@/common/Icons';
+import { useAppSelector } from '@/store/store';
 import { selectCartItems } from './cartSlice';
-import NextLink from '@src/routing/NextLink';
-import { routes } from '@src/routing/RoutingUtils';
+import NextLink from '@/routing/NextLink';
+import { routes } from '@/routing/RoutingUtils';
 
 type CartItemListProps = {
   className?: string;

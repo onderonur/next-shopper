@@ -1,9 +1,9 @@
-import '@src/styling/global.css';
+import '@/styling/global.css';
 import { Inter } from '@next/font/google';
-import ModalRoot from '@src/modals/ModalRoot';
-import StoreProvider from '@src/store/StoreProvider';
-import BaseSWRConfig from '@src/http-client/BaseSWRConfig';
-import { getMetadata } from '@src/seo/SeoUtils';
+import ModalRoot from '@/modals/ModalRoot';
+import StoreProvider from '@/store/StoreProvider';
+import BaseSWRConfig from '@/http-client/BaseSWRConfig';
+import { getMetadata } from '@/seo/SeoUtils';
 
 const font = Inter({ subsets: ['latin'] });
 

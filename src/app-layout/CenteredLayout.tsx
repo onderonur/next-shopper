@@ -1,7 +1,7 @@
-import AppContent from '@src/app-layout/AppContent';
-import AppFooter from '@src/app-layout/AppFooter';
-import AppHeader from '@src/app-layout/AppHeader';
-import AppLayoutRoot from '@src/app-layout/AppLayoutRoot';
+import AppContent from '@/app-layout/AppContent';
+import AppFooter from '@/app-layout/AppFooter';
+import AppHeader from '@/app-layout/AppHeader';
+import AppLayoutRoot from '@/app-layout/AppLayoutRoot';
 
 type AppLayoutProps = React.PropsWithChildren;
 

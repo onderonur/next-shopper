@@ -1,7 +1,7 @@
 import 'server-only';
 
-import { Id } from '@src/common/CommonTypes';
-import { getDb } from '@src/db/DbUtils';
+import { Id } from '@/common/CommonTypes';
+import { getDb } from '@/db/DbUtils';
 import { cache } from 'react';
 
 export const productsService = {

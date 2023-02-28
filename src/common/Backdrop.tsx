@@ -1,7 +1,7 @@
 'use client';
 
-import { useOnRouteChange } from '@src/routing/RoutingHooks';
-import FadeIn from '@src/transitions/FadeIn';
+import { useOnRouteChange } from '@/routing/RoutingHooks';
+import FadeIn from '@/transitions/FadeIn';
 import classNames from 'classnames';
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { Maybe } from './CommonTypes';

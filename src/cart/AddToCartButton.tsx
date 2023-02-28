@@ -1,8 +1,8 @@
 'use client';
 
-import Button from '@src/common/Button';
-import { Product } from '@src/products/ProductsTypes';
-import { useAppDispatch } from '@src/store/store';
+import Button from '@/common/Button';
+import { Product } from '@/products/ProductsTypes';
+import { useAppDispatch } from '@/store/store';
 import { addProduct } from './cartSlice';
 
 type AddToCartButtonProps = {

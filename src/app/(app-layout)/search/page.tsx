@@ -1,10 +1,10 @@
-import FilterDrawer from '@src/search/FilterDrawer';
-import SectionTitle from '@src/common/SectionTitle';
-import PageTitle from '@src/common/PageTitle';
-import SelectedFilters from '@src/search/SelectedFilters';
-import SearchResults from '@src/search/SearchResults';
-import ProductFilter from '@src/search/ProductFilter';
-import { getMetadata } from '@src/seo/SeoUtils';
+import FilterDrawer from '@/search/FilterDrawer';
+import SectionTitle from '@/common/SectionTitle';
+import PageTitle from '@/common/PageTitle';
+import SelectedFilters from '@/search/SelectedFilters';
+import SearchResults from '@/search/SearchResults';
+import ProductFilter from '@/search/ProductFilter';
+import { getMetadata } from '@/seo/SeoUtils';
 
 export const metadata = getMetadata({ title: 'Search Products' });
 

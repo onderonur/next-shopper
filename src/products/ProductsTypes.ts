@@ -1,4 +1,4 @@
-import { Id } from '@src/common/CommonTypes';
+import { Id } from '@/common/CommonTypes';
 
 export type Product = {
   id: Id;

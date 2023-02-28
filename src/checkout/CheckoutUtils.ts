@@ -1,5 +1,5 @@
 import cardValidator from 'card-validator';
-import { ERROR_MESSAGES } from '@src/error-handling/ErrorHandlingUtils';
+import { ERROR_MESSAGES } from '@/error-handling/ErrorHandlingUtils';
 import { z } from 'zod';
 
 export const completeCheckoutArgsSchema = z.object({

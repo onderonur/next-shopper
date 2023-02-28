@@ -1,4 +1,4 @@
-import { APP_DESCRIPTION, APP_TITLE } from '@src/common/CommonUtils';
+import { APP_DESCRIPTION, APP_TITLE } from '@/common/CommonUtils';
 import { Metadata } from 'next';
 
 export function getMetadata({

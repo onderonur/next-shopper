@@ -1,11 +1,11 @@
-import Button from '@src/common/Button';
+import Button from '@/common/Button';
 import {
   APP_DESCRIPTION,
   APP_REPOSITORY_URL,
   APP_TITLE,
-} from '@src/common/CommonUtils';
-import { ExternalLinkIcon } from '@src/common/Icons';
-import { routes } from '@src/routing/RoutingUtils';
+} from '@/common/CommonUtils';
+import { ExternalLinkIcon } from '@/common/Icons';
+import { routes } from '@/routing/RoutingUtils';
 
 function Hero() {
   return (

@@ -2,7 +2,7 @@ import Button from './Button';
 import { CloseIcon } from './Icons';
 import Backdrop, { useBackdrop } from './Backdrop';
 import classNames from 'classnames';
-import Slide, { SlideProps } from '@src/transitions/Slide';
+import Slide, { SlideProps } from '@/transitions/Slide';
 import SectionTitle from './SectionTitle';
 
 export const useDrawer = useBackdrop;

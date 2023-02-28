@@ -1,6 +1,6 @@
-import { createHandler } from '@src/api/ApiUtils';
-import { searchService } from '@src/search/searchService';
-import { getProductFilterArgs } from '@src/search/SearchUtils';
+import { createHandler } from '@/api/ApiUtils';
+import { searchService } from '@/search/searchService';
+import { getProductFilterArgs } from '@/search/SearchUtils';
 import { NextResponse } from 'next/server';
 
 export const GET = createHandler(async (request) => {

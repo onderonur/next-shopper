@@ -1,5 +1,5 @@
 import 'server-only';
-import { getDb } from '@src/db/DbUtils';
+import { getDb } from '@/db/DbUtils';
 import { cache } from 'react';
 import { Category } from './CategoriesTypes';
 

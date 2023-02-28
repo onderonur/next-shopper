@@ -1,18 +1,18 @@
 'use client';
 
-import CartItemList from '@src/cart/CartItemList';
-import { clearCart, selectCartItems } from '@src/cart/cartSlice';
-import CartTotalPrice from '@src/cart/CartTotalPrice';
-import ClearCartButton from '@src/cart/ClearCartButton';
-import CheckoutForm from '@src/checkout/CheckoutForm';
-import CheckoutSuccessMessage from '@src/checkout/CheckoutSuccessMessage';
-import Center from '@src/common/Center';
-import PageTitle from '@src/common/PageTitle';
-import { useAppDispatch, useAppSelector } from '@src/store/store';
+import CartItemList from '@/cart/CartItemList';
+import { clearCart, selectCartItems } from '@/cart/cartSlice';
+import CartTotalPrice from '@/cart/CartTotalPrice';
+import ClearCartButton from '@/cart/ClearCartButton';
+import CheckoutForm from '@/checkout/CheckoutForm';
+import CheckoutSuccessMessage from '@/checkout/CheckoutSuccessMessage';
+import Center from '@/common/Center';
+import PageTitle from '@/common/PageTitle';
+import { useAppDispatch, useAppSelector } from '@/store/store';
 import { useState } from 'react';
-import SectionTitle from '@src/common/SectionTitle';
-import Paper from '@src/common/Paper';
-import { useCheckoutMutation } from '@src/checkout/CheckoutHooks';
+import SectionTitle from '@/common/SectionTitle';
+import Paper from '@/common/Paper';
+import { useCheckoutMutation } from '@/checkout/CheckoutHooks';
 
 function CheckoutPage() {
   const cartItems = useAppSelector(selectCartItems);

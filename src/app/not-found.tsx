@@ -1,5 +1,5 @@
-import CenteredLayout from '@src/app-layout/CenteredLayout';
-import ErrorContent from '@src/error-handling/ErrorContent';
+import CenteredLayout from '@/app-layout/CenteredLayout';
+import ErrorContent from '@/error-handling/ErrorContent';
 import { StatusCodes } from 'http-status-codes';
 
 // TODO: Fix

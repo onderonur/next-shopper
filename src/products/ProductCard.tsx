@@ -1,8 +1,8 @@
-import NextLink from '@src/routing/NextLink';
-import BaseImage, { imageProps } from '@src/common/BaseImage';
-import Price from '@src/common/Price';
+import NextLink from '@/routing/NextLink';
+import BaseImage, { imageProps } from '@/common/BaseImage';
+import Price from '@/common/Price';
 import { Product } from './ProductsTypes';
-import { routes } from '@src/routing/RoutingUtils';
+import { routes } from '@/routing/RoutingUtils';
 
 type ProductCardProps = {
   product: Product;

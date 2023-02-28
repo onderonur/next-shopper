@@ -4,16 +4,16 @@ import {
   getValuesOfSelectedOptions,
   ProductFilterKey,
   ProductSorting,
-} from '@src/search/SearchUtils';
+} from '@/search/SearchUtils';
 import {
   ProductFilterArgs,
   ProductFilterOptions,
   ProductFilterResponse,
   ProductFilterSelectedOption,
-} from '@src/search/SearchTypes';
-import { getDb } from '@src/db/DbUtils';
+} from '@/search/SearchTypes';
+import { getDb } from '@/db/DbUtils';
 import { cache } from 'react';
-import { Product } from '@src/products/ProductsTypes';
+import { Product } from '@/products/ProductsTypes';
 
 async function getProductFilterOptions() {
   const db = await getDb();

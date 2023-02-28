@@ -1,11 +1,11 @@
 'use client';
 
-import Button from '@src/common/Button';
-import Chip from '@src/common/Chip';
-import List from '@src/common/List';
-import ListItem from '@src/common/ListItem';
-import MobilePadding from '@src/common/MobilePadding';
-import { routes } from '@src/routing/RoutingUtils';
+import Button from '@/common/Button';
+import Chip from '@/common/Chip';
+import List from '@/common/List';
+import ListItem from '@/common/ListItem';
+import MobilePadding from '@/common/MobilePadding';
+import { routes } from '@/routing/RoutingUtils';
 import { useRouter } from 'next/navigation';
 import { useFilterProducts, useProductFilterArgs } from './SearchHooks';
 

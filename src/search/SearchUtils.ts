@@ -1,8 +1,8 @@
-import { Maybe } from '@src/common/CommonTypes';
+import { Maybe } from '@/common/CommonTypes';
 import {
   ProductFilterArgs,
   ProductFilterSelectedOption,
-} from '@src/search/SearchTypes';
+} from '@/search/SearchTypes';
 
 export enum ProductFilterKey {
   SORTING = 'sorting',

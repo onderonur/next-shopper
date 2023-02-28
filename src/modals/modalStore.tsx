@@ -1,4 +1,4 @@
-import { Maybe } from '@src/common/CommonTypes';
+import { Maybe } from '@/common/CommonTypes';
 import produce from 'immer';
 
 type RegisteredModal<ModalProps, Data> = {

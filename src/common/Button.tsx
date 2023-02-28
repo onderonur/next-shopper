@@ -1,4 +1,4 @@
-import NextLink, { NextLinkProps } from '@src/routing/NextLink';
+import NextLink, { NextLinkProps } from '@/routing/NextLink';
 import classNames from 'classnames';
 
 export type ButtonProps = React.ComponentPropsWithoutRef<'button'> &

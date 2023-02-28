@@ -1,6 +1,6 @@
-import Button from '@src/common/Button';
-import { useConfirmModal } from '@src/modals/ConfirmModal';
-import { useAppDispatch, useAppSelector } from '@src/store/store';
+import Button from '@/common/Button';
+import { useConfirmModal } from '@/modals/ConfirmModal';
+import { useAppDispatch, useAppSelector } from '@/store/store';
 import { clearCart, selectCartItems } from './cartSlice';
 
 export default function ClearCartButton() {

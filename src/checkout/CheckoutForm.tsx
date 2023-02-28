@@ -1,18 +1,18 @@
-import NumberInput from '@src/forms/NumberInput';
-import SubmitButton from '@src/forms/SubmitButton';
+import NumberInput from '@/forms/NumberInput';
+import SubmitButton from '@/forms/SubmitButton';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import ErrorMessage from '@src/error-handling/ErrorMessage';
-import { Maybe } from '@src/common/CommonTypes';
-import { ApiRequestError } from '@src/error-handling/ErrorHandlingTypes';
-import Form from '@src/forms/Form';
+import ErrorMessage from '@/error-handling/ErrorMessage';
+import { Maybe } from '@/common/CommonTypes';
+import { ApiRequestError } from '@/error-handling/ErrorHandlingTypes';
+import Form from '@/forms/Form';
 import {
   CompleteCheckoutArgs,
   completeCheckoutArgsSchema,
   defaultCompleteCheckoutArgs,
 } from './CheckoutUtils';
-import FormItem from '@src/forms/FormItem';
-import Input from '@src/forms/Input';
-import FormItemLabel from '@src/forms/FormItemLabel';
+import FormItem from '@/forms/FormItem';
+import Input from '@/forms/Input';
+import FormItemLabel from '@/forms/FormItemLabel';
 import CardExpiryInput from './CardExpiryInput';
 import { zodResolver } from '@hookform/resolvers/zod';
 

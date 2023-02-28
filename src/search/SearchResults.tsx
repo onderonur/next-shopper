@@ -1,10 +1,10 @@
 'use client';
 
-import ProductCard from '@src/products/ProductCard';
-import ListItem from '@src/common/ListItem';
-import Paper from '@src/common/Paper';
-import List from '@src/common/List';
-import { useFilterProducts } from '@src/search/SearchHooks';
+import ProductCard from '@/products/ProductCard';
+import ListItem from '@/common/ListItem';
+import Paper from '@/common/Paper';
+import List from '@/common/List';
+import { useFilterProducts } from '@/search/SearchHooks';
 import SearchResultsSkeleton from './SearchResultsSkeleton';
 
 export default function SearchResults() {

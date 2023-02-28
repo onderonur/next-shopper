@@ -1,20 +1,19 @@
-import AddToCartButton from '@src/cart/AddToCartButton';
-import BaseImage, { imageProps } from '@src/common/BaseImage';
-import Chip from '@src/common/Chip';
-import { Id } from '@src/common/CommonTypes';
-import PageTitle from '@src/common/PageTitle';
-import Paper from '@src/common/Paper';
-import Price from '@src/common/Price';
-import { productsService } from '@src/products/productsService';
-import NextLink from '@src/routing/NextLink';
-import { routes } from '@src/routing/RoutingUtils';
-import { getMetadata } from '@src/seo/SeoUtils';
+import AddToCartButton from '@/cart/AddToCartButton';
+import BaseImage, { imageProps } from '@/common/BaseImage';
+import Chip from '@/common/Chip';
+import PageTitle from '@/common/PageTitle';
+import Paper from '@/common/Paper';
+import Price from '@/common/Price';
+import { productsService } from '@/products/productsService';
+import NextLink from '@/routing/NextLink';
+import { routes } from '@/routing/RoutingUtils';
+import { getMetadata } from '@/seo/SeoUtils';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 export type ProductPageProps = {
   params: {
-    productId: Id;
+    productId: string;
   };
 };
 

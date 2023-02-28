@@ -1,5 +1,5 @@
-import NumberInput, { NumberInputProps } from '@src/forms/NumberInput';
-import { Omit } from '@src/common/CommonTypes';
+import NumberInput, { NumberInputProps } from '@/forms/NumberInput';
+import { Omit } from '@/common/CommonTypes';
 import React from 'react';
 
 const cardExpiryLimit = (val: string, max: string) => {

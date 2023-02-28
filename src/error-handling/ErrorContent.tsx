@@ -1,4 +1,4 @@
-import Button from '@src/common/Button';
+import Button from '@/common/Button';
 import { StatusCodes } from 'http-status-codes';
 
 type ErrorContentProps = {

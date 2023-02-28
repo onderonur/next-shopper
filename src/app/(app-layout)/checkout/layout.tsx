@@ -1,4 +1,4 @@
-import { getMetadata } from '@src/seo/SeoUtils';
+import { getMetadata } from '@/seo/SeoUtils';
 
 type CheckoutLayoutProps = React.PropsWithChildren;
 

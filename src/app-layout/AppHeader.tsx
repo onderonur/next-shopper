@@ -1,7 +1,7 @@
-import CartInfo from '@src/cart/CartInfo';
-import NextLink from '@src/routing/NextLink';
-import { APP_TITLE } from '@src/common/CommonUtils';
-import Center from '@src/common/Center';
+import CartInfo from '@/cart/CartInfo';
+import NextLink from '@/routing/NextLink';
+import { APP_TITLE } from '@/common/CommonUtils';
+import Center from '@/common/Center';
 
 export default function AppHeader() {
   return (

@@ -1,9 +1,9 @@
-import AppFooter from '@src/app-layout/AppFooter';
-import AppLayoutRoot from '@src/app-layout/AppLayoutRoot';
-import Center from '@src/common/Center';
-import Hero from '@src/common/Hero';
-import Categories from '@src/categories/Categories';
-import { getMetadata } from '@src/seo/SeoUtils';
+import AppFooter from '@/app-layout/AppFooter';
+import AppLayoutRoot from '@/app-layout/AppLayoutRoot';
+import Center from '@/common/Center';
+import Hero from '@/common/Hero';
+import Categories from '@/categories/Categories';
+import { getMetadata } from '@/seo/SeoUtils';
 
 export const metadata = getMetadata({ title: 'Home' });
 

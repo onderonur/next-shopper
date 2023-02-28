@@ -1,5 +1,5 @@
-import { httpClient } from '@src/http-client/httpClient';
-import { HttpClientError } from '@src/http-client/HttpClientError';
+import { httpClient } from '@/http-client/httpClient';
+import { HttpClientError } from '@/http-client/HttpClientError';
 import useSWRMutation from 'swr/mutation';
 import { CompleteCheckoutArgs } from './CheckoutUtils';
 

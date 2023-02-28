@@ -1,8 +1,8 @@
-import Button from '@src/common/Button';
+import Button from '@/common/Button';
 import { CartItem } from './CartTypes';
-import { DeleteIcon, MinusIcon, PlusIcon } from '@src/common/Icons';
+import { DeleteIcon, MinusIcon, PlusIcon } from '@/common/Icons';
 import { addProduct, removeCartItem, removeProduct } from './cartSlice';
-import { useAppDispatch } from '@src/store/store';
+import { useAppDispatch } from '@/store/store';
 
 type CartItemActionButtonsProps = {
   cartItem: CartItem;

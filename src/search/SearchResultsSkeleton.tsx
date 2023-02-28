@@ -1,6 +1,6 @@
-import { createMockArray } from '@src/common/CommonUtils';
-import ListItem from '@src/common/ListItem';
-import ProductCardSkeleton from '@src/products/ProductCardSkeleton';
+import { createMockArray } from '@/common/CommonUtils';
+import ListItem from '@/common/ListItem';
+import ProductCardSkeleton from '@/products/ProductCardSkeleton';
 
 export default function SearchResultsSkeleton() {
   return (

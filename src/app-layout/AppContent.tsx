@@ -1,4 +1,4 @@
-import Center from '@src/common/Center';
+import Center from '@/common/Center';
 import classNames from 'classnames';
 
 type AppContentProps = React.PropsWithChildren<{

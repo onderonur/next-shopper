@@ -1,6 +1,6 @@
-import Button from '@src/common/Button';
-import { CheckOutlinedIcon } from '@src/common/Icons';
-import { routes } from '@src/routing/RoutingUtils';
+import Button from '@/common/Button';
+import { CheckOutlinedIcon } from '@/common/Icons';
+import { routes } from '@/routing/RoutingUtils';
 
 export default function CheckoutSuccessMessage() {
   return (

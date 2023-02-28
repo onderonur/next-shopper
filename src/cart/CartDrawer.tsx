@@ -1,7 +1,7 @@
-import Button from '@src/common/Button';
-import Drawer, { DrawerProps } from '@src/common/Drawer';
-import { routes } from '@src/routing/RoutingUtils';
-import { useAppSelector } from '@src/store/store';
+import Button from '@/common/Button';
+import Drawer, { DrawerProps } from '@/common/Drawer';
+import { routes } from '@/routing/RoutingUtils';
+import { useAppSelector } from '@/store/store';
 import CartItemList from './CartItemList';
 import { selectCartItems } from './cartSlice';
 import CartTotalPrice from './CartTotalPrice';

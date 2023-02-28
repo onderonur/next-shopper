@@ -1,5 +1,5 @@
-import Button, { ButtonProps } from '@src/common/Button';
-import Loading from '@src/common/Loading';
+import Button, { ButtonProps } from '@/common/Button';
+import Loading from '@/common/Loading';
 import { FieldValues, FormState } from 'react-hook-form';
 
 type SubmitButtonProps<FormFieldValues extends FieldValues> = Pick<

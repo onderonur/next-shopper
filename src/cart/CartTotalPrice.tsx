@@ -1,5 +1,5 @@
-import Price from '@src/common/Price';
-import { useAppSelector } from '@src/store/store';
+import Price from '@/common/Price';
+import { useAppSelector } from '@/store/store';
 import { selectTotalPrice } from './cartSlice';
 
 export default function CartTotalPrice() {

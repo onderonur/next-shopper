@@ -1,11 +1,11 @@
 'use client';
 
-import Badge from '@src/common/Badge';
-import Button from '@src/common/Button';
-import { useDrawer } from '@src/common/Drawer';
-import { CartIcon } from '@src/common/Icons';
-import Price from '@src/common/Price';
-import { useAppSelector } from '@src/store/store';
+import Badge from '@/common/Badge';
+import Button from '@/common/Button';
+import { useDrawer } from '@/common/Drawer';
+import { CartIcon } from '@/common/Icons';
+import Price from '@/common/Price';
+import { useAppSelector } from '@/store/store';
 import CartDrawer from './CartDrawer';
 import { selectProductsCount, selectTotalPrice } from './cartSlice';
 

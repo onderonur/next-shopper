@@ -1,4 +1,4 @@
-import GoBackButton from '@src/routing/GoBackButton';
+import GoBackButton from '@/routing/GoBackButton';
 import MobilePadding from './MobilePadding';
 
 type PageTitleProps = {

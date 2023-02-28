@@ -1,5 +1,5 @@
-import { createHandler } from '@src/api/ApiUtils';
-import { checkoutService } from '@src/checkout/checkoutService';
+import { createHandler } from '@/api/ApiUtils';
+import { checkoutService } from '@/checkout/checkoutService';
 import { StatusCodes } from 'http-status-codes';
 import { NextResponse } from 'next/server';
 

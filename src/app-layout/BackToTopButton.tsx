@@ -1,8 +1,8 @@
 'use client';
 
-import Button from '@src/common/Button';
-import { ArrowUpIcon } from '@src/common/Icons';
-import FadeIn from '@src/transitions/FadeIn';
+import Button from '@/common/Button';
+import { ArrowUpIcon } from '@/common/Icons';
+import FadeIn from '@/transitions/FadeIn';
 import { useSyncExternalStore } from 'react';
 
 const thresholdY = 800;

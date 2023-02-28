@@ -1,5 +1,5 @@
-import { ApiRequestError } from '@src/error-handling/ErrorHandlingTypes';
-import { HttpClientError } from '@src/http-client/HttpClientError';
+import { ApiRequestError } from '@/error-handling/ErrorHandlingTypes';
+import { HttpClientError } from '@/http-client/HttpClientError';
 
 async function handleResponse<Data>(response: Response) {
   if (!response.ok) {

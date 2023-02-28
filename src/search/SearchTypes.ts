@@ -1,4 +1,4 @@
-import { Product } from '@src/products/ProductsTypes';
+import { Product } from '@/products/ProductsTypes';
 import { ProductFilterKey } from './SearchUtils';
 
 export type ProductFilterArgs = {

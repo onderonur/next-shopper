@@ -1,6 +1,6 @@
-import Button from '@src/common/Button';
-import { APP_REPOSITORY_URL, APP_TITLE } from '@src/common/CommonUtils';
-import { GithubIcon } from '@src/common/Icons';
+import Button from '@/common/Button';
+import { APP_REPOSITORY_URL, APP_TITLE } from '@/common/CommonUtils';
+import { GithubIcon } from '@/common/Icons';
 
 export default function AppFooter() {
   return (

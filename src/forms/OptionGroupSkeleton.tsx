@@ -1,6 +1,6 @@
-import { createMockArray } from '@src/common/CommonUtils';
-import List from '@src/common/List';
-import ListItem from '@src/common/ListItem';
+import { createMockArray } from '@/common/CommonUtils';
+import List from '@/common/List';
+import ListItem from '@/common/ListItem';
 import OptionButtonSkeleton from './OptionButtonSkeleton';
 
 export default function OptionGroupSkeleton() {

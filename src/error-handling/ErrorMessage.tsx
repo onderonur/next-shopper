@@ -1,4 +1,4 @@
-import { Maybe } from '@src/common/CommonTypes';
+import { Maybe } from '@/common/CommonTypes';
 import { ApiRequestError } from './ErrorHandlingTypes';
 import { DEFAULT_ERROR_MESSAGE } from './ErrorHandlingUtils';
 

@@ -1,4 +1,4 @@
-import { Maybe } from '@src/common/CommonTypes';
+import { Maybe } from '@/common/CommonTypes';
 import { FieldError } from 'react-hook-form';
 
 type FormItemProps = React.PropsWithChildren<{

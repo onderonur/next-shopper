@@ -1,8 +1,8 @@
 'use client';
 
-import Button from '@src/common/Button';
-import Drawer, { useDrawer } from '@src/common/Drawer';
-import { FilterIcon } from '@src/common/Icons';
+import Button from '@/common/Button';
+import Drawer, { useDrawer } from '@/common/Drawer';
+import { FilterIcon } from '@/common/Icons';
 
 type FilterDrawerProps = React.PropsWithChildren;
 

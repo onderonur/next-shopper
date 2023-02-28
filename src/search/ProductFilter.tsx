@@ -1,23 +1,23 @@
 'use client';
 
-import { Maybe } from '@src/common/CommonTypes';
-import PaperTitle from '@src/common/PaperTitle';
-import Paper from '@src/common/Paper';
-import CheckboxGroup from '@src/forms/CheckboxGroup';
-import RadioGroup from '@src/forms/RadioGroup';
+import { Maybe } from '@/common/CommonTypes';
+import PaperTitle from '@/common/PaperTitle';
+import Paper from '@/common/Paper';
+import CheckboxGroup from '@/forms/CheckboxGroup';
+import RadioGroup from '@/forms/RadioGroup';
 import {
   ProductFilterData,
   ProductFilterOptionItem,
   ProductFilterOptions,
-} from '@src/search/SearchTypes';
+} from '@/search/SearchTypes';
 import {
   getValuesOfSelectedOptions,
   ProductFilterKey,
-} from '@src/search/SearchUtils';
+} from '@/search/SearchUtils';
 import { useRouter } from 'next/navigation';
-import { useProductFilterArgs } from '@src/search/SearchHooks';
-import { useFilterProducts } from '@src/search/SearchHooks';
-import { routes } from '@src/routing/RoutingUtils';
+import { useProductFilterArgs } from '@/search/SearchHooks';
+import { useFilterProducts } from '@/search/SearchHooks';
+import { routes } from '@/routing/RoutingUtils';
 
 // To render filter skeleton during the initial fetch.
 const defaultOptions: ProductFilterOptions = {

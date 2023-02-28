@@ -1,6 +1,6 @@
-import Backdrop from '@src/common/Backdrop';
-import Button from '@src/common/Button';
-import { useOnRouteChange } from '@src/routing/RoutingHooks';
+import Backdrop from '@/common/Backdrop';
+import Button from '@/common/Button';
+import { useOnRouteChange } from '@/routing/RoutingHooks';
 import React, { useId } from 'react';
 import { useModalContext } from './ModalContext';
 import { useModal } from './ModalHooks';

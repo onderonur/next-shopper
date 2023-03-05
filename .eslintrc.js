@@ -2,7 +2,6 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
-    // https://github.com/prettier/eslint-plugin-prettier#recommended-configuration
     'plugin:prettier/recommended',
     'next/core-web-vitals',
   ],

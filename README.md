@@ -12,7 +12,6 @@ This is a simple e-commerce web application built with [Next.js](https://nextjs.
 - Forms: [React Hook Form](https://react-hook-form.com/)
 - Styling: [Tailwind CSS](https://tailwindcss.com/)
 - Animations: [Framer Motion](https://www.framer.com/motion/)
-- SEO: [Next SEO](https://github.com/garmeeh/next-seo)
 - Linting: [ESLint](https://eslint.org/)
 - Code Formatting: [Prettier](https://prettier.io/)
 - Deployment: [Vercel](https://vercel.com/)
@@ -21,13 +20,13 @@ This is a simple e-commerce web application built with [Next.js](https://nextjs.
 
 To start development, we should install our packages first.
 
-```
+```bash
 npm install
 ```
 
 After the installation is completed, we can run the app by:
 
-```
+```bash
 npm run dev
 ```
 
@@ -37,12 +36,12 @@ and it will start on `http://localhost:3000`.
 
 To create a production build, we need to run the below command first:
 
-```
+```bash
 npm run build
 ```
 
 After this step, we can run the app in `production` mode by:
 
-```
+```bash
 npm start
 ```

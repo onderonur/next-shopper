@@ -13,6 +13,7 @@ export default function NextLink({ isExternalUrl, ...rest }: NextLinkProps) {
       {...rest}
       target={isExternalUrl ? '_blank' : undefined}
       rel={isExternalUrl ? 'noopener noreferrer' : undefined}
+      prefetch={false}
     />
   );
 }

@@ -9,8 +9,8 @@ export default function BaseSWRConfig({ children }: BaseSWRConfigProps) {
   return (
     <SWRConfig
       value={{
-        revalidateOnFocus: false,
         fetcher: httpClient.get,
+        revalidateOnFocus: false,
         dedupingInterval: 60 * 1000,
       }}
     >

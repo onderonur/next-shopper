@@ -1,6 +1,6 @@
-const lineClamp = require('@tailwindcss/line-clamp');
-const colors = require('tailwindcss/colors');
-const defaultTheme = require('tailwindcss/defaultTheme');
+import { Config } from 'tailwindcss';
+import colors from 'tailwindcss/colors';
+import defaultTheme from 'tailwindcss/defaultTheme';
 
 const primaryColor = colors.purple;
 const secondaryColor = colors.teal;
@@ -8,12 +8,12 @@ const successColor = colors.green;
 const errorColor = colors.red;
 const gray = colors.slate;
 
-module.exports = {
+const config: Config = {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-inter)', ...defaultTheme.fontFamily.sans],
+        sans: ['var(--font-inter)'],
       },
       colors: {
         primary: {
@@ -79,5 +79,6 @@ module.exports = {
       backgroundColor: ['active'],
     },
   },
-  plugins: [lineClamp],
 };
+
+export default config;

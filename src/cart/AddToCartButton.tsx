@@ -16,8 +16,7 @@ export default function AddToCartButton({ product }: AddToCartButtonProps) {
   return (
     <Button
       variant="primary"
-      isFullWidth
-      className="max-w-xs"
+      className="w-full max-w-xs"
       onClick={() => dispatch(addProduct(product))}
     >
       Add to Cart

@@ -4,6 +4,7 @@ import ModalRoot from '@/modals/ModalRoot';
 import StoreProvider from '@/store/StoreProvider';
 import BaseSWRConfig from '@/http-client/BaseSWRConfig';
 import { getMetadata } from '@/seo/SeoUtils';
+import classNames from 'classnames';
 
 const inter = Inter({
   variable: '--font-inter',
@@ -17,9 +18,9 @@ type RootLayoutProps = React.PropsWithChildren;
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={classNames(inter.variable, 'font-sans')}>
       <head />
-      <body className="font-sans">
+      <body>
         <BaseSWRConfig>
           <StoreProvider>
             {children}

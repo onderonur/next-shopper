@@ -3,6 +3,7 @@ import {
   ProductFilterArgs,
   ProductFilterSelectedOption,
 } from '@/search/SearchTypes';
+import { ReadonlyURLSearchParams } from 'next/navigation';
 
 export enum ProductFilterKey {
   SORTING = 'sorting',
@@ -15,7 +16,9 @@ export enum ProductSorting {
   PRICE_DESC = 'price-desc',
 }
 
-export function getProductFilterArgs(searchParams: URLSearchParams) {
+export function getProductFilterArgs(
+  searchParams: ReadonlyURLSearchParams | URLSearchParams,
+) {
   const query: ProductFilterArgs = {};
 
   query.sorting = searchParams.get(ProductFilterKey.SORTING) ?? undefined;

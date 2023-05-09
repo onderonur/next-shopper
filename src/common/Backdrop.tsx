@@ -3,8 +3,9 @@
 import { useOnRouteChange } from '@/routing/RoutingHooks';
 import FadeIn from '@/transitions/FadeIn';
 import classNames from 'classnames';
-import React, { useEffect, useState, useRef, useCallback } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import { Maybe } from './CommonTypes';
+import RemoveBodyScroll from './RemoveBodyScroll';
 
 export const useBackdrop = (
   args: { closeOnRouteChange: boolean } = { closeOnRouteChange: true },
@@ -68,17 +69,7 @@ function Backdrop<Focusable extends HTMLElement>({
           })}
         </div>
       </FadeIn>
-      {/* Disabling body scroll when the backdrop is visible */}
-      <style jsx global>
-        {`
-          ${isOpen &&
-          `
-            body {
-              overflow: hidden;
-            }          
-          `}
-        `}
-      </style>
+      {isOpen && <RemoveBodyScroll />}
     </>
   );
 }

@@ -5,7 +5,7 @@ import { HttpClientError } from '@/http-client/HttpClientError';
 import { getProductFilterArgs } from '@/search/SearchUtils';
 
 export function useFilterProducts(config?: SWRConfiguration) {
-  const searchParams = useSearchParams() || new URLSearchParams();
+  const searchParams = useSearchParams();
   const queryString = searchParams.toString();
   return useSWR<ProductFilterResponse, HttpClientError>(
     `/search/api${queryString ? `?${queryString}` : ''}`,
@@ -14,7 +14,7 @@ export function useFilterProducts(config?: SWRConfiguration) {
 }
 
 export function useProductFilterArgs() {
-  const searchParams = useSearchParams() || new URLSearchParams();
+  const searchParams = useSearchParams();
   const productFilterArgs = getProductFilterArgs(searchParams);
   return productFilterArgs;
 }

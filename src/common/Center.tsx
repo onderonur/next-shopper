@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 
 type CenterProps = React.PropsWithChildren<{
-  as?: keyof JSX.IntrinsicElements;
+  as?: keyof React.JSX.IntrinsicElements;
   maxWidth: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
   className?: string;
 }>;

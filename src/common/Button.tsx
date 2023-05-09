@@ -1,9 +1,9 @@
 import NextLink, { NextLinkProps } from '@/routing/NextLink';
 import classNames from 'classnames';
+import React from 'react';
 
 export type ButtonProps = React.ComponentPropsWithoutRef<'button'> &
   Partial<Pick<NextLinkProps, 'href' | 'isExternalUrl'>> & {
-    isFullWidth?: boolean;
     variant?: 'default' | 'primary' | 'secondary' | 'transparent';
     icon?: React.ReactNode;
     iconAlignment?: 'left' | 'right';
@@ -14,7 +14,6 @@ export default function Button({
   href,
   isExternalUrl,
   className,
-  isFullWidth,
   variant = 'default',
   icon,
   iconAlignment = 'left',
@@ -40,7 +39,6 @@ export default function Button({
       : icon && !children
       ? 'rounded-md h-8 w-8'
       : 'rounded-md px-4 py-2',
-    isFullWidth && 'w-full',
     className,
   );
 

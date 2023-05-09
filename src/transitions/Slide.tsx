@@ -1,4 +1,3 @@
-import React from 'react';
 import { TRANSITION_DURATION_IN_SECONDS } from './TransitionUtils';
 import { motion } from 'framer-motion';
 

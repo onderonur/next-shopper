@@ -1,4 +1,5 @@
 import Link, { LinkProps } from 'next/link';
+import React from 'react';
 
 export type NextLinkProps = LinkProps &
   React.PropsWithChildren<{

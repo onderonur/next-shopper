@@ -9,7 +9,7 @@ export const metadata = getMetadata({ title: 'Home' });
 
 export default function LandingPage() {
   return (
-    <AppLayoutRoot className="grid-rows-[auto_1fr_auto]">
+    <AppLayoutRoot>
       <main>
         <Hero />
         <Center maxWidth="xl" className="p-4">

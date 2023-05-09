@@ -1,19 +1,11 @@
 import BackToTopButton from './BackToTopButton';
-import classNames from 'classnames';
 
-type AppLayoutRootProps = React.PropsWithChildren<{
-  className?: string;
-}>;
+type AppLayoutRootProps = React.PropsWithChildren;
 
-export default function AppLayoutRoot({
-  className,
-  children,
-}: AppLayoutRootProps) {
+export default function AppLayoutRoot({ children }: AppLayoutRootProps) {
   return (
     <>
-      <div className={classNames('grid min-h-screen', className)}>
-        {children}
-      </div>
+      <div className="grid min-h-screen grid-rows-[1fr_auto]">{children}</div>
       <BackToTopButton />
     </>
   );

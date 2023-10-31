@@ -1,67 +1,38 @@
-'use client';
+import CartItemList from '@/cart/cart-item-list';
+import CartTotalPrice from '@/cart/cart-total-price';
+import CheckoutForm from '@/checkout/checkout-form';
+import Container from '@/common/container';
+import PageTitle from '@/common/page-title';
+import SectionTitle from '@/common/section-title';
+import Paper from '@/common/paper';
+import ClearCartButton from '@/cart/clear-cart-button';
+import { getCart } from '@/cart/cart-fetchers';
 
-import CartItemList from '@/cart/CartItemList';
-import { clearCart, selectCartItems } from '@/cart/cartSlice';
-import CartTotalPrice from '@/cart/CartTotalPrice';
-import ClearCartButton from '@/cart/ClearCartButton';
-import CheckoutForm from '@/checkout/CheckoutForm';
-import CheckoutSuccessMessage from '@/checkout/CheckoutSuccessMessage';
-import Center from '@/common/Center';
-import PageTitle from '@/common/PageTitle';
-import { useAppDispatch, useAppSelector } from '@/store/store';
-import { useState } from 'react';
-import SectionTitle from '@/common/SectionTitle';
-import Paper from '@/common/Paper';
-import { useCheckoutMutation } from '@/checkout/CheckoutHooks';
-
-function CheckoutPage() {
-  const cartItems = useAppSelector(selectCartItems);
-  const dispatch = useAppDispatch();
-
-  const [isSuccess, setIsSuccess] = useState(false);
-
-  const checkoutMutation = useCheckoutMutation();
+export default async function CheckoutPage() {
+  const cart = await getCart();
 
   return (
     <>
       <PageTitle title="Checkout" />
-      <Center maxWidth="sm" className="flex flex-col gap-4">
-        {isSuccess ? (
-          <section>
-            <SectionTitle as="h2">Checkout Success</SectionTitle>
-            <Paper>
-              <CheckoutSuccessMessage />
-            </Paper>
-          </section>
-        ) : (
-          <section>
-            <SectionTitle as="h2" actions={<ClearCartButton />}>
-              Cart
-            </SectionTitle>
-            <Paper>
-              <CartItemList />
-              <CartTotalPrice />
-            </Paper>
-          </section>
-        )}
-        {!!cartItems.length && (
+      <Container maxWidth="sm" className="space-y-4">
+        <section>
+          <SectionTitle as="h2" actions={<ClearCartButton cart={cart} />}>
+            Cart
+          </SectionTitle>
+          <Paper>
+            <CartItemList />
+            <CartTotalPrice />
+          </Paper>
+        </section>
+        {cart && (
           <section>
             <SectionTitle as="h2">Credit/Debit Card Information</SectionTitle>
             <Paper>
-              <CheckoutForm
-                error={checkoutMutation.error}
-                onSubmit={async (values) => {
-                  await checkoutMutation.trigger(values);
-                  dispatch(clearCart());
-                  setIsSuccess(true);
-                }}
-              />
+              <CheckoutForm />
             </Paper>
           </section>
         )}
-      </Center>
+      </Container>
     </>
   );
 }
-
-export default CheckoutPage;

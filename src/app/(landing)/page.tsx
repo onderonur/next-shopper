@@ -1,22 +1,20 @@
-import AppFooter from '@/app-layout/AppFooter';
-import AppLayoutRoot from '@/app-layout/AppLayoutRoot';
-import Center from '@/common/Center';
-import Hero from '@/common/Hero';
-import Categories from '@/categories/Categories';
-import { getMetadata } from '@/seo/SeoUtils';
+import AppFooter from '@/app-layout/app-footer';
+import AppLayoutRoot from '@/app-layout/app-layout-root';
+import Container from '@/common/container';
+import Hero from '@/common/hero';
+import Categories from '@/categories/categories';
+import { getMetadata } from '@/seo/seo-utils';
 
-export const metadata = getMetadata({ title: 'Home' });
+export const metadata = getMetadata({ title: 'Home', pathname: '/' });
 
 export default function LandingPage() {
   return (
     <AppLayoutRoot>
       <main>
         <Hero />
-        <Center maxWidth="xl" className="p-4">
-          {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-          {/* @ts-ignore */}
+        <Container maxWidth="xl" className="p-4">
           <Categories />
-        </Center>
+        </Container>
       </main>
       <AppFooter />
     </AppLayoutRoot>

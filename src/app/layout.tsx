@@ -1,10 +1,10 @@
-import '@/styling/global.css';
+import '@/styles/global.css';
 import { Inter } from 'next/font/google';
-import ModalRoot from '@/modals/ModalRoot';
-import StoreProvider from '@/store/StoreProvider';
-import BaseSWRConfig from '@/http-client/BaseSWRConfig';
-import { getMetadata } from '@/seo/SeoUtils';
+import ModalRoot from '@/modals/modal-root';
+import { getMetadata } from '@/seo/seo-utils';
 import classNames from 'classnames';
+import BaseSWRConfig from '@/http-client/base-swr-config';
+import { Viewport } from 'next';
 
 const inter = Inter({
   variable: '--font-inter',
@@ -12,7 +12,11 @@ const inter = Inter({
   subsets: ['latin'],
 });
 
-export const metadata = getMetadata();
+export const metadata = getMetadata({});
+
+export const viewport: Viewport = {
+  themeColor: '#fff',
+};
 
 type RootLayoutProps = React.PropsWithChildren;
 
@@ -22,10 +26,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <head />
       <body>
         <BaseSWRConfig>
-          <StoreProvider>
-            {children}
-            <ModalRoot />
-          </StoreProvider>
+          {children}
+          <ModalRoot />
         </BaseSWRConfig>
       </body>
     </html>

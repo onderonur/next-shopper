@@ -1,12 +1,15 @@
-import FilterDrawer from '@/search/FilterDrawer';
-import SectionTitle from '@/common/SectionTitle';
-import PageTitle from '@/common/PageTitle';
-import SelectedFilters from '@/search/SelectedFilters';
-import SearchResults from '@/search/SearchResults';
-import ProductFilter from '@/search/ProductFilter';
-import { getMetadata } from '@/seo/SeoUtils';
+import FilterDrawer from '@/search/filter-drawer';
+import SectionTitle from '@/common/section-title';
+import PageTitle from '@/common/page-title';
+import SelectedFilters from '@/search/selected-filters';
+import SearchResults from '@/search/search-results';
+import ProductFilter from '@/search/product-filter';
+import { getMetadata } from '@/seo/seo-utils';
 
-export const metadata = getMetadata({ title: 'Search Products' });
+export const metadata = getMetadata({
+  title: 'Search Products',
+  pathname: '/search',
+});
 
 export default function SearchPage() {
   const productFilter = <ProductFilter />;
@@ -25,7 +28,7 @@ export default function SearchPage() {
           <SectionTitle as="h2" srOnly>
             Search Results
           </SectionTitle>
-          <div className="flex flex-col gap-2">
+          <div className="space-y-2">
             <SelectedFilters />
             <FilterDrawer>{productFilter}</FilterDrawer>
             <SearchResults />

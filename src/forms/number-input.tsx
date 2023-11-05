@@ -1,7 +1,9 @@
 'use client';
 
-import NumberFormat, { NumberFormatPropsBase } from 'react-number-format';
-import Input, { InputProps } from './input';
+import type { NumberFormatPropsBase } from 'react-number-format';
+import NumberFormat from 'react-number-format';
+import type { InputProps } from './input';
+import Input from './input';
 import { forwardRef } from 'react';
 
 export type NumberInputProps = Pick<

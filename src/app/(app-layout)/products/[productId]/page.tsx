@@ -3,7 +3,7 @@ import Paper from '@/common/paper';
 import ProductDetails from '@/products/product-details';
 import { getOneProductById } from '@/products/product-fetchers';
 import { getMetadata } from '@/seo/seo-utils';
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 export type ProductPageProps = {

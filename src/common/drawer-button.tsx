@@ -1,6 +1,7 @@
 'use client';
 
-import Button, { ButtonProps } from './button';
+import type { ButtonProps } from './button';
+import Button from './button';
 import { useDrawerContext } from './drawer-context';
 
 type DrawerButtonProps = Pick<

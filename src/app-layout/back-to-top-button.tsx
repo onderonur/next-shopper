@@ -32,7 +32,9 @@ export default function BackToTopButton() {
         aria-label="Back to Top"
         className="fixed bottom-16 right-6 bg-background-main opacity-80"
         icon={<ArrowUpIcon />}
-        onClick={() => window.scrollTo({ behavior: 'smooth', top: 0 })}
+        onClick={() => {
+          window.scrollTo({ behavior: 'smooth', top: 0 });
+        }}
       />
     </FadeIn>
   );

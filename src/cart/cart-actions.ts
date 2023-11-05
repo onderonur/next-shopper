@@ -1,9 +1,9 @@
 'use server';
 
-import { Id } from '@/common/common-types';
+import type { Id } from '@/common/common-types';
 import { cookies } from 'next/headers';
 import { getCart } from './cart-fetchers';
-import { Cart } from './cart-types';
+import type { Cart } from './cart-types';
 
 export async function addProductToCart(productId: Id) {
   const cart = await getCart();
@@ -94,7 +94,7 @@ export async function removeProductFromCart(productId: Id) {
 }
 
 // Server actions should be async function.
-// eslint-disable-next-line require-await
+// eslint-disable-next-line @typescript-eslint/require-await
 export async function clearCart() {
   const cookieStore = cookies();
   cookieStore.delete('cart');

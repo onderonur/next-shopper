@@ -1,11 +1,11 @@
 'use client';
 
-import { Maybe } from '@/common/common-types';
+import type { Maybe } from '@/common/common-types';
 import PaperTitle from '@/common/paper-title';
 import Paper from '@/common/paper';
 import CheckboxGroup from '@/forms/checkbox-group';
 import RadioGroup from '@/forms/radio-group';
-import {
+import type {
   ProductFilterData,
   ProductFilterOptionItem,
   ProductFilterOptions,
@@ -15,8 +15,7 @@ import {
   ProductFilterKey,
 } from '@/search/search-utils';
 import { useRouter } from 'next/navigation';
-import { useProductFilterArgs } from '@/search/search-hooks';
-import { useFilterProducts } from '@/search/search-hooks';
+import { useProductFilterArgs, useFilterProducts } from '@/search/search-hooks';
 import { routes } from '@/routing/routing-utils';
 
 // To render filter skeleton during the initial fetch.

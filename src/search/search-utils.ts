@@ -1,9 +1,9 @@
-import { Maybe } from '@/common/common-types';
-import {
+import type { Maybe } from '@/common/common-types';
+import type {
   ProductFilterArgs,
   ProductFilterSelectedOption,
 } from '@/search/search-types';
-import { ReadonlyURLSearchParams } from 'next/navigation';
+import type { ReadonlyURLSearchParams } from 'next/navigation';
 
 export enum ProductFilterKey {
   SORTING = 'sorting',

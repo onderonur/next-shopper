@@ -1,4 +1,4 @@
-import { Maybe } from '@/common/common-types';
+import type { Maybe } from '@/common/common-types';
 import { createSafeContext } from '@/common/safe-context';
 
 type FormItemContextValue = {

@@ -1,4 +1,4 @@
-import { ApiRequestError } from '@/error-handling/error-handling-types';
+import type { ApiRequestError } from '@/error-handling/error-handling-types';
 import { HttpClientError } from '@/http-client/http-client-error';
 
 async function handleResponse<Data>(response: Response) {
@@ -7,7 +7,7 @@ async function handleResponse<Data>(response: Response) {
 
     throw new HttpClientError(
       errorJson.statusCode,
-      errorJson.message ?? response.statusText,
+      errorJson.message || response.statusText,
     );
   }
 

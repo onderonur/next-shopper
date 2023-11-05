@@ -34,7 +34,9 @@ export default function OptionButton({
           checked={isChecked}
           disabled={isDisabled}
           value={value}
-          onChange={() => onChange(value)}
+          onChange={() => {
+            onChange(value);
+          }}
         />
         <span
           className={classNames(
@@ -43,7 +45,7 @@ export default function OptionButton({
             type === 'radio' ? 'rounded-full' : 'rounded-md',
           )}
         >
-          {isChecked && <CheckIcon />}
+          {isChecked ? <CheckIcon /> : null}
         </span>
       </span>
       <span>{label}</span>

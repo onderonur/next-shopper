@@ -24,7 +24,7 @@ export default function SectionTitle({
     <MobilePadding className={classNames(srOnly && 'sr-only', className)}>
       <header className="flex items-center justify-between mb-1">
         <As className="font-semibold text-lg text-text-light">{children}</As>
-        {actions && <div>{actions}</div>}
+        {actions ? <div>{actions}</div> : null}
       </header>
     </MobilePadding>
   );

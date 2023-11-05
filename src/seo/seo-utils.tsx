@@ -1,5 +1,5 @@
 import { APP_DESCRIPTION, APP_TITLE, APP_URL } from '@/common/common-utils';
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 
 export function getMetadata({
   title,

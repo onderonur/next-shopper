@@ -1,13 +1,13 @@
 'use server';
 
 import { cookies } from 'next/headers';
-import {
-  CompleteCheckoutArgs,
-  completeCheckoutArgsSchema,
-} from './checkout-utils';
-import { ServerActionResult } from '@/server-actions/server-action-types';
+import type { CompleteCheckoutArgs } from './checkout-utils';
+import { completeCheckoutArgsSchema } from './checkout-utils';
+import type { ServerActionResult } from '@/server-actions/server-action-types';
 import { redirect } from 'next/navigation';
 
+// Server actions should be async functions.
+// eslint-disable-next-line @typescript-eslint/require-await
 export async function completeCheckout(
   currentState: ServerActionResult<CompleteCheckoutArgs, never> | null,
   formData: FormData,
@@ -19,7 +19,7 @@ export async function completeCheckout(
     cvc: formData.get('cvc'),
   };
 
-  const inputResult = await completeCheckoutArgsSchema.safeParse(input);
+  const inputResult = completeCheckoutArgsSchema.safeParse(input);
 
   if (!inputResult.success) {
     return { success: false, fieldErrors: inputResult.error.format() };

@@ -3,7 +3,7 @@ import { forwardRef } from 'react';
 
 type FormProps = React.ComponentPropsWithoutRef<'form'>;
 
-const Form = forwardRef<HTMLFormElement, FormProps>(function Form(
+const Form = forwardRef<React.ElementRef<'form'>, FormProps>(function Form(
   { className, ...rest },
   ref,
 ) {

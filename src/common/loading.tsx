@@ -1,4 +1,4 @@
-import { Maybe } from './common-types';
+import type { Maybe } from './common-types';
 import classNames from 'classnames';
 
 type LoadingProps = React.PropsWithChildren<{

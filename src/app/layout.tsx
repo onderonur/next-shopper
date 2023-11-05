@@ -4,7 +4,7 @@ import ModalRoot from '@/modals/modal-root';
 import { getMetadata } from '@/seo/seo-utils';
 import classNames from 'classnames';
 import BaseSWRConfig from '@/http-client/base-swr-config';
-import { Viewport } from 'next';
+import type { Viewport } from 'next';
 
 const inter = Inter({
   variable: '--font-inter',

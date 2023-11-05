@@ -3,7 +3,7 @@ import {
   ProductFilterKey,
   ProductSorting,
 } from '@/search/search-utils';
-import {
+import type {
   ProductFilterArgs,
   ProductFilterOptions,
   ProductFilterResponse,
@@ -11,7 +11,7 @@ import {
 } from '@/search/search-types';
 import { getDb } from '@/db/db-utils';
 import { cache } from 'react';
-import { Product } from '@/products/product-types';
+import type { Product } from '@/products/product-types';
 
 async function getProductFilterOptions() {
   const db = await getDb();

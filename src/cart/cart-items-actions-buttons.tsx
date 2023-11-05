@@ -1,4 +1,4 @@
-import { CartItem } from './cart-types';
+import type { CartItem } from './cart-types';
 import { DeleteIcon, MinusIcon, PlusIcon } from '@/common/icons';
 import {
   addProductToCart,

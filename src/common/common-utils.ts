@@ -1,4 +1,4 @@
-import { Nil } from './common-types';
+import type { Nil } from './common-types';
 
 export const APP_URL = 'https://next-shopper.vercel.app';
 export const APP_TITLE = 'Next-Shopper';

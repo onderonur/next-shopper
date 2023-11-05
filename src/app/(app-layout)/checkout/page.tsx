@@ -24,14 +24,14 @@ export default async function CheckoutPage() {
             <CartTotalPrice />
           </Paper>
         </section>
-        {cart && (
+        {cart ? (
           <section>
             <SectionTitle as="h2">Credit/Debit Card Information</SectionTitle>
             <Paper>
               <CheckoutForm />
             </Paper>
           </section>
-        )}
+        ) : null}
       </Container>
     </>
   );

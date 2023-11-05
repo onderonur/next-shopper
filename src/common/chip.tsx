@@ -1,5 +1,6 @@
 import classNames from 'classnames';
-import Button, { ButtonProps } from './button';
+import type { ButtonProps } from './button';
+import Button from './button';
 import { CloseIcon } from './icons';
 
 type ChipProps = React.PropsWithChildren<{
@@ -36,14 +37,14 @@ export default function Chip({
       )}
     >
       <span className="flex-1">{children}</span>
-      {closeButtonProps && (
+      {closeButtonProps ? (
         <Button
           {...closeButtonProps}
           className={classNames(closeButtonProps.className, 'h-6 w-6')}
           variant="transparent"
           icon={<CloseIcon />}
         />
-      )}
+      ) : null}
     </div>
   );
 }

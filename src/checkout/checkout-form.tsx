@@ -13,18 +13,12 @@ import { useFormState } from 'react-dom';
 import { useRef } from 'react';
 
 export default function CheckoutForm() {
-  const formRef = useRef<HTMLFormElement>(null);
+  const formRef = useRef<React.ElementRef<'form'>>(null);
   const [state, formAction] = useFormState(completeCheckout, null);
   const fieldErrors = state?.success ? null : state?.fieldErrors;
 
   return (
-    <Form
-      ref={formRef}
-      action={async (formData) => {
-        await formAction(formData);
-        formRef.current?.reset();
-      }}
-    >
+    <Form ref={formRef} action={formAction}>
       <FormItem errorMessages={fieldErrors?.nameSurname?._errors}>
         <FormItemLabel htmlFor="nameSurname">Name Surname</FormItemLabel>
         <Input id="nameSurname" name="nameSurname" placeholder="Name Surname" />

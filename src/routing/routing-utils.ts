@@ -1,6 +1,6 @@
-import { Id, Maybe } from '@/common/common-types';
+import type { Id, Maybe } from '@/common/common-types';
 import { isNil } from '@/common/common-utils';
-import { ProductFilterArgs } from '@/search/search-types';
+import type { ProductFilterArgs } from '@/search/search-types';
 
 function parseToSearchParams(
   params: Maybe<Record<string, Maybe<string | string[]>>>,

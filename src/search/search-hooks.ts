@@ -1,7 +1,8 @@
 import { useSearchParams } from 'next/navigation';
-import { ProductFilterResponse } from '@/search/search-types';
-import useSWR, { SWRConfiguration } from 'swr';
-import { HttpClientError } from '@/http-client/http-client-error';
+import type { ProductFilterResponse } from '@/search/search-types';
+import type { SWRConfiguration } from 'swr';
+import useSWR from 'swr';
+import type { HttpClientError } from '@/http-client/http-client-error';
 import { getProductFilterArgs } from '@/search/search-utils';
 
 export function useFilterProducts(config?: SWRConfiguration) {

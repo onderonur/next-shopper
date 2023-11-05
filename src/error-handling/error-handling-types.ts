@@ -1,4 +1,4 @@
-import { HttpClientError } from '@/http-client/http-client-error';
+import type { HttpClientError } from '@/http-client/http-client-error';
 
 export type ApiRequestError = HttpClientError;
 

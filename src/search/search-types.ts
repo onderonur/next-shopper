@@ -1,5 +1,5 @@
-import { Product } from '@/products/product-types';
-import { ProductFilterKey } from './search-utils';
+import type { Product } from '@/products/product-types';
+import type { ProductFilterKey } from './search-utils';
 
 export type ProductFilterArgs = {
   sorting?: string;

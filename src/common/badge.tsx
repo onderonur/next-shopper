@@ -1,4 +1,4 @@
-import { Maybe } from './common-types';
+import type { Maybe } from './common-types';
 
 type BadgeProps = React.PropsWithChildren<{
   value: Maybe<number>;

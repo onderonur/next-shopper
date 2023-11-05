@@ -1,4 +1,5 @@
-import NextLink, { NextLinkProps } from '@/routing/next-link';
+import type { NextLinkProps } from '@/routing/next-link';
+import NextLink from '@/routing/next-link';
 import classNames from 'classnames';
 import Loading from './loading';
 
@@ -27,24 +28,46 @@ export default function Button({
 }: ButtonProps) {
   const isDisabledOrLoading = disabled || isLoading;
 
-  const buttonClassName = classNames(
-    'select-none font-semibold uppercase border-2 grid place-items-center transform active:scale-95 transition ease-in-out',
-    isDisabledOrLoading
-      ? 'bg-disabled-main text-disabled-dark cursor-not-allowed'
-      : variant === 'default'
-      ? 'hover:bg-overlay-light active:bg-overlay-main text-primary-main border-primary-main'
-      : variant === 'primary'
-      ? 'bg-primary-main hover:bg-primary-dark active:bg-primary-darker text-white border-primary-dark'
-      : variant === 'secondary'
-      ? 'bg-secondary-main hover:bg-secondary-dark active:bg-secondary-darker text-white border-secondary-dark'
-      : 'hover:bg-overlay-light active:bg-overlay-main text-primary-main border-none',
-    circle
-      ? 'rounded-full h-10 w-10'
-      : icon && !children
-      ? 'rounded-md h-8 w-8'
-      : 'rounded-md px-4 py-2',
+  const classNameArgs: classNames.ArgumentArray = [
     className,
-  );
+    'select-none font-semibold uppercase border-2 grid place-items-center transform active:scale-95 transition ease-in-out',
+  ];
+
+  if (isDisabledOrLoading) {
+    classNameArgs.push(
+      'bg-disabled-main text-disabled-dark cursor-not-allowed',
+    );
+  } else {
+    switch (variant) {
+      case 'default':
+        classNameArgs.push(
+          'hover:bg-overlay-light active:bg-overlay-main text-primary-main border-primary-main',
+        );
+        break;
+      case 'primary':
+        classNameArgs.push(
+          'bg-primary-main hover:bg-primary-dark active:bg-primary-darker text-white border-primary-dark',
+        );
+        break;
+      case 'secondary':
+        classNameArgs.push(
+          'bg-secondary-main hover:bg-secondary-dark active:bg-secondary-darker text-white border-secondary-dark',
+        );
+        break;
+      default:
+        classNameArgs.push(
+          'hover:bg-overlay-light active:bg-overlay-main text-primary-main border-none',
+        );
+    }
+  }
+
+  if (circle) {
+    classNameArgs.push('rounded-full h-10 w-10');
+  } else if (icon && !children) {
+    classNameArgs.push('rounded-md h-8 w-8');
+  } else {
+    classNameArgs.push('rounded-md px-4 py-2');
+  }
 
   let buttonIcon = icon;
 
@@ -61,10 +84,12 @@ export default function Button({
   const content = (
     <span className="flex items-center gap-2">
       {iconAlignment === 'left' && buttonIcon}
-      {children && <span>{children}</span>}
+      {children ? <span>{children}</span> : null}
       {iconAlignment === 'right' && buttonIcon}
     </span>
   );
+
+  const buttonClassName = classNames(classNameArgs);
 
   if (href) {
     return (

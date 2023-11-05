@@ -1,5 +1,5 @@
 import { handleErrors } from '@/error-handling/error-handling-utils';
-import { NextRequest, NextResponse } from 'next/server';
+import type { NextRequest, NextResponse } from 'next/server';
 
 export const createHandler =
   (handler: (request: NextRequest) => Promise<NextResponse>) =>

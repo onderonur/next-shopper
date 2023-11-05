@@ -1,5 +1,6 @@
-import Image, { ImageProps } from 'next/image';
-import { Omit } from './common-types';
+import type { ImageProps } from 'next/image';
+import Image from 'next/image';
+import type { Omit } from './common-types';
 
 type BaseImageProps = Omit<ImageProps, 'alt'> &
   Required<Pick<ImageProps, 'alt'>>;

@@ -1,4 +1,4 @@
-import { Maybe } from '@/common/common-types';
+import type { Maybe } from '@/common/common-types';
 import { produce } from 'immer';
 
 type RegisteredModal<ModalProps, Data> = {
@@ -17,7 +17,9 @@ function createModalStore() {
   const listeners = new Set<VoidFunction>();
 
   function callListeners() {
-    listeners.forEach((listener) => listener());
+    listeners.forEach((listener) => {
+      listener();
+    });
   }
 
   function subscribe(onStoreChange: VoidFunction) {

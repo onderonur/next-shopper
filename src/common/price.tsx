@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { Maybe } from './common-types';
+import type { Maybe } from './common-types';
 
 type PriceProps = {
   className?: string;

@@ -1,4 +1,4 @@
-import { Product } from '@/products/product-types';
+import type { Product } from '@/products/product-types';
 import { z } from 'zod';
 
 export const cartSchema = z

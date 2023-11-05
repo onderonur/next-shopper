@@ -1,4 +1,4 @@
-import { Product } from '@/products/product-types';
+import type { Product } from '@/products/product-types';
 import { addProductToCart } from './cart-actions';
 import SubmitButton from '@/forms/submit-button';
 

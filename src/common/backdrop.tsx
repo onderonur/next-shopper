@@ -4,7 +4,7 @@ import { useOnRouteChange } from '@/routing/routing-hooks';
 import FadeIn from '@/transitions/fade-in';
 import classNames from 'classnames';
 import { useState, useCallback } from 'react';
-import { Maybe } from './common-types';
+import type { Maybe } from './common-types';
 import RemoveBodyScroll from './remove-body-scroll';
 
 export const useBackdrop = (
@@ -29,7 +29,10 @@ export const useBackdrop = (
   return { isOpen, open, close };
 };
 
-type BackdropProps = Pick<React.DOMAttributes<HTMLDivElement>, 'onClick'> &
+type BackdropProps = Pick<
+  React.DOMAttributes<React.ElementRef<'div'>>,
+  'onClick'
+> &
   React.PropsWithChildren<{
     className?: string;
     isOpen: Maybe<boolean>;
@@ -52,7 +55,7 @@ function Backdrop({ className, isOpen, children, onClick }: BackdropProps) {
           {children}
         </div>
       </FadeIn>
-      {isOpen && <RemoveBodyScroll />}
+      {isOpen ? <RemoveBodyScroll /> : null}
     </>
   );
 }

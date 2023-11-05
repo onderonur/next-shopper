@@ -1,30 +1,33 @@
-import NumberInput, { NumberInputProps } from '@/forms/number-input';
-import { Omit } from '@/common/common-types';
+import type { NumberInputProps } from '@/forms/number-input';
+import NumberInput from '@/forms/number-input';
+import type { Omit } from '@/common/common-types';
 import { forwardRef } from 'react';
 
 const cardExpiryLimit = (val: string, max: string) => {
+  let formattedVal = val;
+
   if (val.length === 1 && val[0] > max[0]) {
-    val = '0' + val;
+    formattedVal = `0${formattedVal}`;
   }
 
   if (val.length === 2) {
     if (Number(val) === 0) {
-      val = '01';
+      formattedVal = '01';
 
       //this can happen when user paste number
     } else if (val > max) {
-      val = max;
+      formattedVal = max;
     }
   }
 
-  return val;
+  return formattedVal;
 };
 
 const cardExpiryFormat = (val: string) => {
   const month = cardExpiryLimit(val.substring(0, 2), '12');
   const year = val.substring(2, 4);
 
-  return month + (year.length ? '/' + year : '');
+  return month + (year.length ? `/${year}` : '');
 };
 
 type CardExpiryInputProps = Omit<NumberInputProps, 'format' | 'placeholder'>;

@@ -4,7 +4,7 @@ import Chip from '@/common/chip';
 import Price from '@/common/price';
 import NextLink from '@/routing/next-link';
 import { routes } from '@/routing/routing-utils';
-import { Product } from './product-types';
+import type { Product } from './product-types';
 
 type ProductDetailsProps = {
   product: Product;

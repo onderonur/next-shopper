@@ -2,8 +2,8 @@
 
 import { useConfirmModal } from '@/modals/confirm-modal';
 import { clearCart } from './cart-actions';
-import { CartDetails } from './cart-types';
-import { Maybe } from '@/common/common-types';
+import type { CartDetails } from './cart-types';
+import type { Maybe } from '@/common/common-types';
 import SubmitButton from '@/forms/submit-button';
 
 type ClearCartButtonProps = { cart: Maybe<CartDetails> };

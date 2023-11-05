@@ -13,7 +13,9 @@ export default function GoBackButton() {
       circle
       variant="transparent"
       icon={<ArrowLeftIcon />}
-      onClick={router.back}
+      onClick={() => {
+        router.back();
+      }}
     />
   );
 }

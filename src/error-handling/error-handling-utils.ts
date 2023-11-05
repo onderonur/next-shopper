@@ -1,10 +1,11 @@
 import { goTry } from 'go-try';
 import { StatusCodes } from 'http-status-codes';
-import { NextRequest, NextResponse } from 'next/server';
-import z from 'zod';
-import { ApiErrorResponse } from './error-handling-types';
+import type { NextRequest } from 'next/server';
+import { NextResponse } from 'next/server';
+import { z } from 'zod';
+import type { ApiErrorResponse } from './error-handling-types';
 
-export const DEFAULT_ERROR_MESSAGE = 'Something went wrong';
+const DEFAULT_ERROR_MESSAGE = 'Something went wrong';
 
 export const handleErrors =
   (

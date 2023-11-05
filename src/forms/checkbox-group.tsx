@@ -1,4 +1,4 @@
-import { Maybe } from '@/common/common-types';
+import type { Maybe } from '@/common/common-types';
 import OptionButton from './option-button';
 import OptionGroupSkeleton from './option-group-skeleton';
 

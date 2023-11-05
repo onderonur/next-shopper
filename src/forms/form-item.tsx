@@ -1,4 +1,5 @@
-import { FormItemProvider, FormItemProviderProps } from './form-item-context';
+import type { FormItemProviderProps } from './form-item-context';
+import { FormItemProvider } from './form-item-context';
 
 type FormItemProps = React.PropsWithChildren<
   Pick<FormItemProviderProps, 'errorMessages'>

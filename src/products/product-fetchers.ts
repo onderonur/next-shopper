@@ -1,4 +1,4 @@
-import { Id } from '@/common/common-types';
+import type { Id } from '@/common/common-types';
 import { getDb } from '@/db/db-utils';
 import { cache } from 'react';
 

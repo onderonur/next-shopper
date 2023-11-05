@@ -1,4 +1,4 @@
-import { Config } from 'tailwindcss';
+import type { Config } from 'tailwindcss';
 import colors from 'tailwindcss/colors';
 import defaultTheme from 'tailwindcss/defaultTheme';
 
@@ -8,7 +8,7 @@ const successColor = colors.green;
 const errorColor = colors.red;
 const gray = colors.slate;
 
-const config: Config = {
+export default {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
@@ -79,6 +79,4 @@ const config: Config = {
       backgroundColor: ['active'],
     },
   },
-};
-
-export default config;
+} satisfies Config;

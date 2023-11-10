@@ -22,13 +22,13 @@ This is a simple e-commerce web application built with [Next.js](https://nextjs.
 To start development, we should install our packages first.
 
 ```bash
-pnpm install
+npm install
 ```
 
 After the installation is completed, we can run the app by:
 
 ```bash
-pnpm dev
+npm run dev
 ```
 
 and it will start on `http://localhost:3000`.
@@ -38,11 +38,11 @@ and it will start on `http://localhost:3000`.
 To create a production build, we need to run the below command first:
 
 ```bash
-pnpm build
+npm run build
 ```
 
 After this step, we can run the app in `production` mode by:
 
 ```bash
-pnpm start
+npm start
 ```

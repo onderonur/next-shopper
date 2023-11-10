@@ -14,7 +14,7 @@ export default async function CheckoutPage() {
   return (
     <>
       <PageTitle title="Checkout" />
-      <Container maxWidth="sm" className="space-y-4">
+      <Container maxWidth="sm" className="flex flex-col gap-4">
         <section>
           <SectionTitle as="h2" actions={<ClearCartButton cart={cart} />}>
             Cart

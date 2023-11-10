@@ -28,7 +28,7 @@ export default function SearchPage() {
           <SectionTitle as="h2" srOnly>
             Search Results
           </SectionTitle>
-          <div className="space-y-2">
+          <div className="flex flex-col gap-2">
             <SelectedFilters />
             <FilterDrawer>{productFilter}</FilterDrawer>
             <SearchResults />

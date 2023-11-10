@@ -16,7 +16,7 @@ export default async function CheckoutSuccessPage() {
   return (
     <>
       <PageTitle title="Success" />
-      <Container maxWidth="sm" className="space-y-4">
+      <Container maxWidth="sm" className="flex flex-col gap-4">
         <section>
           <SectionTitle as="h2">Checkout Success</SectionTitle>
           <Paper>

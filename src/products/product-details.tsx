@@ -23,7 +23,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
         />
       </div>
       <div className="flex flex-col items-center gap-4">
-        <div className="text-center space-y-2">
+        <div className="text-center flex flex-col gap-2">
           <div className="font-bold text-2xl">{product.title}</div>
           <div className="text-3xl">
             <Price className="text-primary-dark" value={product.price} />

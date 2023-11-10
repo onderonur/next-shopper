@@ -75,7 +75,7 @@ export default function ProductFilter() {
   const isFirstLoading = isLoading && !data;
 
   return (
-    <div className="pb-6 space-y-4">
+    <div className="pb-6 flex flex-col gap-4">
       {Object.values(data?.filterOptions ?? defaultOptions).map((filter) => {
         let filterInput = null;
 

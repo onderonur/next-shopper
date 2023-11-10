@@ -11,7 +11,7 @@ type ProductCardProps = {
 export default function ProductCard({ product }: ProductCardProps) {
   return (
     <NextLink href={routes.product({ params: { productId: product.id } })}>
-      <article className="space-y-2 group border-2 p-2 md:p-4 rounded-md">
+      <article className="flex flex-col gap-2 group border-2 p-2 md:p-4 rounded-md">
         <div className="p-2">
           <div className="relative aspect-[12/10] transition duration-500 ease-out bg-transparent transform group-hover:scale-110">
             <BaseImage

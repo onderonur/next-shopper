@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "build": "next build",
-    "codequality": "pnpm lint && pnpm format",
-    "codequality:fix": "pnpm lint:fix && pnpm format:fix",
+    "codequality": "npm run lint && npm run format",
+    "codequality:fix": "npm run lint:fix && npm run format:fix",
     "dev": "next dev",
     "format": "prettier --check --ignore-unknown .",
     "format:fix": "prettier --write --ignore-unknown .",

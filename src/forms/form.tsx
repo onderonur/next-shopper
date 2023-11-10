@@ -11,7 +11,7 @@ const Form = forwardRef<React.ElementRef<'form'>, FormProps>(function Form(
     <form
       ref={ref}
       autoComplete="off"
-      className={classNames(className, 'space-y-3')}
+      className={classNames(className, 'flex flex-col gap-3')}
       {...rest}
     />
   );

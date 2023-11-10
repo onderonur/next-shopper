@@ -30,7 +30,7 @@ export default function Button({
 
   const classNameArgs: classNames.ArgumentArray = [
     className,
-    'select-none font-semibold uppercase border-2 grid place-items-center transform active:scale-95 transition ease-in-out',
+    'select-none font-semibold uppercase border-2 inline-grid place-items-center transform active:scale-95 transition ease-in-out',
   ];
 
   if (isDisabledOrLoading) {

@@ -2,7 +2,7 @@ import { forwardRef } from 'react';
 
 export type InputProps = React.ComponentPropsWithRef<'input'>;
 
-const Input = forwardRef<React.ComponentRef<'input'>, InputProps>(
+const Input = forwardRef<React.ElementRef<'input'>, InputProps>(
   function Input(props, ref) {
     return (
       <input

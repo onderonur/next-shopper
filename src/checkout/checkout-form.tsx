@@ -1,6 +1,6 @@
 'use client';
 
-import NumberInput from '@/forms/number-input';
+import PatternFormatInput from '@/forms/pattern-format-input';
 import SubmitButton from '@/forms/submit-button';
 import Form from '@/forms/form';
 import FormItem from '@/forms/form-item';
@@ -26,11 +26,11 @@ export default function CheckoutForm() {
       </FormItem>
       <FormItem errorMessages={fieldErrors?.cardNumber?._errors}>
         <FormItemLabel htmlFor="cardNumber">Card Number</FormItemLabel>
-        <NumberInput
+        <PatternFormatInput
           id="cardNumber"
           name="cardNumber"
-          format="#### #### #### ####"
           mask="_"
+          format="#### #### #### ####"
           placeholder="0000 0000 0000 0000"
         />
         <FormItemErrorMessage />
@@ -43,7 +43,7 @@ export default function CheckoutForm() {
         </FormItem>
         <FormItem errorMessages={fieldErrors?.cvc?._errors}>
           <FormItemLabel htmlFor="cvc">CVC</FormItemLabel>
-          <NumberInput
+          <PatternFormatInput
             id="cvc"
             name="cvc"
             mask="_"

@@ -6,7 +6,7 @@ import type { InputProps, InputRef } from './input';
 import Input from './input';
 import { forwardRef } from 'react';
 
-export type PatterFormatInputProps = Pick<
+type PatterFormatInputProps = Pick<
   PatternFormatProps,
   'format' | 'mask' | 'value' | 'valueIsNumericString'
 > &

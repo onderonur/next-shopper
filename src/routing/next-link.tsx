@@ -1,12 +1,8 @@
-import type { LinkProps } from 'next/link';
 import Link from 'next/link';
 
-export type NextLinkProps = LinkProps &
-  React.PropsWithChildren<{
-    className?: string;
-    'aria-label'?: string;
-    isExternalUrl?: boolean;
-  }>;
+export type NextLinkProps = React.ComponentPropsWithoutRef<typeof Link> & {
+  isExternalUrl?: boolean;
+};
 
 export default function NextLink({ isExternalUrl, ...rest }: NextLinkProps) {
   return (

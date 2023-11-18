@@ -1,6 +1,6 @@
 import { Container } from '@/common/container';
 import { PageTitle } from '@/common/page-title';
-import { SectionTitle } from '@/common/section-title';
+import { Section, SectionTitle } from '@/common/section';
 import { Paper } from '@/common/paper';
 import { getCart } from '@/cart/cart-fetchers';
 import { redirect } from 'next/navigation';
@@ -17,12 +17,12 @@ export default async function CheckoutSuccessPage() {
     <>
       <PageTitle title="Success" />
       <Container maxWidth="sm" className="flex flex-col gap-4">
-        <section>
+        <Section>
           <SectionTitle as="h2">Checkout Success</SectionTitle>
           <Paper>
             <CheckoutSuccessMessage />
           </Paper>
-        </section>
+        </Section>
       </Container>
     </>
   );

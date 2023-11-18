@@ -1,5 +1,5 @@
 import { ProductFilterDrawer } from '@/search/product-filter-drawer';
-import { SectionTitle } from '@/common/section-title';
+import { Section, SectionTitle } from '@/common/section';
 import { PageTitle } from '@/common/page-title';
 import { SelectedFilters } from '@/search/selected-filters';
 import { SearchResults } from '@/search/search-results';
@@ -16,13 +16,13 @@ export default function SearchPage() {
     <>
       <PageTitle title="Search Products" srOnly />
       <div className="grid gap-2 md:grid-cols-[theme(spacing.72)_1fr]">
-        <section className="sticky top-24 hidden max-h-[80vh] overflow-auto px-2 md:block">
+        <Section className="sticky top-24 hidden max-h-[80vh] overflow-auto px-2 md:block">
           <SectionTitle as="h2" srOnly>
             Filter
           </SectionTitle>
           <ProductFilter />
-        </section>
-        <section>
+        </Section>
+        <Section>
           <SectionTitle as="h2" srOnly>
             Search Results
           </SectionTitle>
@@ -31,7 +31,7 @@ export default function SearchPage() {
             <ProductFilterDrawer />
             <SearchResults />
           </div>
-        </section>
+        </Section>
       </div>
     </>
   );

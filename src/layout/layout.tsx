@@ -1,4 +1,3 @@
-import { CartDrawer } from '@/cart/cart-drawer';
 import { BackToTopButton } from './back-to-top-button';
 import { Container } from '@/common/container';
 import classNames from 'classnames';
@@ -7,23 +6,9 @@ import { APP_REPOSITORY_URL, APP_TITLE } from '@/common/common-utils';
 import { GithubIcon } from '@/common/icons';
 import { NextLink } from '@/routing/next-link';
 
-type AppLayoutProps = React.PropsWithChildren;
+type LayoutProps = React.PropsWithChildren;
 
-export function AppLayout({ children }: AppLayoutProps) {
-  return (
-    <AppLayoutRoot>
-      <AppHeader>
-        <CartDrawer />
-      </AppHeader>
-      <AppContent>{children}</AppContent>
-      <AppFooter />
-    </AppLayoutRoot>
-  );
-}
-
-type AppLayoutRootProps = React.PropsWithChildren;
-
-export function AppLayoutRoot({ children }: AppLayoutRootProps) {
+export function Layout({ children }: LayoutProps) {
   return (
     <>
       <div className="grid min-h-screen grid-rows-[1fr_auto]">{children}</div>
@@ -32,9 +17,9 @@ export function AppLayoutRoot({ children }: AppLayoutRootProps) {
   );
 }
 
-type AppHeaderProps = React.PropsWithChildren;
+type LayoutHeaderProps = React.PropsWithChildren;
 
-export function AppHeader({ children }: AppHeaderProps) {
+export function LayoutHeader({ children }: LayoutHeaderProps) {
   return (
     <header className="fixed z-10 h-app-header w-full bg-background-main px-6 shadow-sm">
       <Container
@@ -50,11 +35,11 @@ export function AppHeader({ children }: AppHeaderProps) {
   );
 }
 
-type AppContentProps = React.PropsWithChildren<{
+type LayoutContentProps = React.PropsWithChildren<{
   className?: string;
 }>;
 
-export function AppContent({ className, children }: AppContentProps) {
+export function LayoutContent({ className, children }: LayoutContentProps) {
   return (
     <Container
       as="main"
@@ -66,7 +51,7 @@ export function AppContent({ className, children }: AppContentProps) {
   );
 }
 
-export function AppFooter() {
+export function LayoutFooter() {
   return (
     <footer className="flex h-16 items-center justify-between bg-background-main px-6 text-text-light">
       <p>

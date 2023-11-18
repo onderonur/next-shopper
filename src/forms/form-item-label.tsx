@@ -1,7 +1,9 @@
-type FormItemLabelProps = React.ComponentPropsWithoutRef<'label'>;
+import { Label } from './label';
+
+type FormItemLabelProps = React.ComponentPropsWithoutRef<typeof Label>;
 
 export default function FormItemLabel(props: FormItemLabelProps) {
   return (
-    <label className="text-text-light font-semibold text-sm block" {...props} />
+    <Label className="block text-sm font-semibold text-text-light" {...props} />
   );
 }

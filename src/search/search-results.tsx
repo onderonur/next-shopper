@@ -12,7 +12,7 @@ export default function SearchResults() {
 
   return (
     <Paper>
-      <List className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-4">
+      <List className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-2 md:gap-4 lg:grid-cols-3 xl:grid-cols-4">
         {isValidating ? (
           <SearchResultsSkeleton />
         ) : (

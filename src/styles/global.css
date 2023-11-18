@@ -9,11 +9,11 @@
   }
 
   body {
-    @apply text-text-main bg-background-dark;
+    @apply bg-background-dark text-text-main;
   }
 
   ::-webkit-scrollbar {
-    @apply h-3 w-3;
+    @apply w-3;
   }
 
   ::-webkit-scrollbar-track {
@@ -21,10 +21,10 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply rounded-lg bg-scrollbar-thumb border-2 border-solid border-background-dark;
+    @apply rounded-lg border-2 border-solid border-background-dark bg-scrollbar-thumb;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    @apply rounded-lg bg-scrollbar-thumbHover;
+    @apply rounded-lg bg-scrollbar-thumb-hover;
   }
 }

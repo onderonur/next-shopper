@@ -8,5 +8,7 @@ export default function MobilePadding({
   className,
   children,
 }: MobilePaddingProps) {
-  return <div className={classNames('px-2 md:p-0', className)}>{children}</div>;
+  return (
+    <div className={classNames('px-2 md:px-0', className)}>{children}</div>
+  );
 }

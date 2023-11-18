@@ -12,11 +12,11 @@ export default function PageTitle({ srOnly, title }: PageTitleProps) {
   }
 
   return (
-    <MobilePadding className="flex items-center gap-2 mb-2">
+    <MobilePadding className="mb-2 flex items-center gap-2">
       <div className="flex-none">
         <GoBackButton />
       </div>
-      <h1 className="border-l pl-4 font-bold text-text-light line-clamp-2">
+      <h1 className="line-clamp-2 border-l pl-4 font-bold text-text-light">
         {title}
       </h1>
     </MobilePadding>

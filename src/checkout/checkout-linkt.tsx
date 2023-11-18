@@ -1,6 +1,6 @@
-import Button from '@/common/button';
 import { getCart } from '../cart/cart-fetchers';
 import { routes } from '@/routing/routing-utils';
+import ButtonLink from '@/common/button-link';
 
 export default async function CheckoutLink() {
   const cart = await getCart();
@@ -10,8 +10,8 @@ export default async function CheckoutLink() {
   }
 
   return (
-    <Button href={routes.checkout()} variant="primary" className="my-2">
+    <ButtonLink href={routes.checkout()} variant="primary" className="w-full">
       Proceed to Checkout
-    </Button>
+    </ButtonLink>
   );
 }

@@ -8,7 +8,7 @@ type FormItemProps = React.PropsWithChildren<
 export default function FormItem({ errorMessages, children }: FormItemProps) {
   return (
     <FormItemProvider errorMessages={errorMessages}>
-      <div className="w-full flex flex-col gap-1">{children}</div>
+      <div className="flex w-full flex-col gap-1">{children}</div>
     </FormItemProvider>
   );
 }

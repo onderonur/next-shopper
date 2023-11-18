@@ -8,7 +8,7 @@ export default async function Categories() {
   const categories = await getManyCategories();
 
   return (
-    <List className="grid lg:grid-cols-2 gap-4">
+    <List className="grid gap-4 lg:grid-cols-2">
       {categories.map((category) => {
         return (
           <ListItem key={category.value}>

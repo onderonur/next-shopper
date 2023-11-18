@@ -1,7 +1,14 @@
 import Price from '@/common/price';
 import { getCart } from './cart-fetchers';
+import classNames from 'classnames';
 
-export default async function CartTotalPrice() {
+type CartTotalPriceProps = {
+  className?: string;
+};
+
+export default async function CartTotalPrice({
+  className,
+}: CartTotalPriceProps) {
   const cart = await getCart();
 
   if (!cart) {
@@ -9,7 +16,12 @@ export default async function CartTotalPrice() {
   }
 
   return (
-    <div className="flex justify-between py-2 text-lg font-bold">
+    <div
+      className={classNames(
+        'flex justify-between text-lg font-bold',
+        className,
+      )}
+    >
       <span>Total</span>
       <Price value={cart.totalPrice} />
     </div>

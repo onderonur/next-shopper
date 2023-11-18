@@ -9,7 +9,7 @@ export default function Badge({ value, children }: BadgeProps) {
     <div className="relative">
       {children}
       {!!value && (
-        <div className="absolute -top-2 -right-2 rounded-full bg-secondary-main text-white px-2">
+        <div className="absolute -right-2 -top-2 select-none rounded-full bg-secondary-main px-2 text-white">
           {value}
         </div>
       )}

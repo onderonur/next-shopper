@@ -1,7 +1,7 @@
 'use client';
 
 import Button from '@/common/button';
-import Chip from '@/common/chip';
+import { Chip, ChipClose, ChipContent } from '@/common/chip';
 import List from '@/common/list';
 import ListItem from '@/common/list-item';
 import MobilePadding from '@/common/mobile-padding';
@@ -30,12 +30,11 @@ export default function SelectedFilters() {
             <ListItem
               key={`${selectedOption.filterKey}_${selectedOption.value}`}
             >
-              <Chip
-                variant="secondary"
-                textAlign="left"
-                closeButtonProps={{
-                  'aria-label': `Remove ${selectedOption.title} filter`,
-                  onClick: () => {
+              <Chip variant="secondary" textAlign="left">
+                <ChipContent>{selectedOption.title}</ChipContent>
+                <ChipClose
+                  aria-label={`Remove ${selectedOption.title} filter`}
+                  onClick={() => {
                     const {
                       [selectedOption.filterKey]: currentValue,
                       ...restQuery
@@ -55,10 +54,8 @@ export default function SelectedFilters() {
                     } else {
                       router.push(routes.search({ query: restQuery }));
                     }
-                  },
-                }}
-              >
-                {selectedOption.title}
+                  }}
+                />
               </Chip>
             </ListItem>
           );

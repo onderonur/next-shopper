@@ -2,8 +2,11 @@
 
 import Button from '@/common/button';
 import { ArrowUpIcon } from '@/common/icons';
-import FadeIn from '@/transitions/fade-in';
+import { fadeIn } from '@/transitions/transition-utils';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useSyncExternalStore } from 'react';
+
+const MotionButton = motion(Button);
 
 const thresholdY = 800;
 
@@ -27,15 +30,18 @@ export default function BackToTopButton() {
   );
 
   return (
-    <FadeIn isIn={scrollY >= thresholdY}>
-      <Button
-        aria-label="Back to Top"
-        className="fixed bottom-16 right-6 bg-background-main opacity-80"
-        icon={<ArrowUpIcon />}
-        onClick={() => {
-          window.scrollTo({ behavior: 'smooth', top: 0 });
-        }}
-      />
-    </FadeIn>
+    <AnimatePresence>
+      {scrollY >= thresholdY && (
+        <MotionButton
+          {...fadeIn}
+          aria-label="Back to Top"
+          className="fixed bottom-16 right-6 bg-background-main opacity-80"
+          icon={<ArrowUpIcon />}
+          onClick={() => {
+            window.scrollTo({ behavior: 'smooth', top: 0 });
+          }}
+        />
+      )}
+    </AnimatePresence>
   );
 }

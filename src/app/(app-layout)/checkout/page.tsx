@@ -19,9 +19,9 @@ export default async function CheckoutPage() {
           <SectionTitle as="h2" actions={<ClearCartButton cart={cart} />}>
             Cart
           </SectionTitle>
-          <Paper>
+          <Paper className="!p-0">
             <CartItemList />
-            <CartTotalPrice />
+            <CartTotalPrice className="p-6" />
           </Paper>
         </section>
         {cart ? (

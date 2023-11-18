@@ -1,18 +1,17 @@
 'use client';
 
 import { AnimatePresence, motion } from 'framer-motion';
-import ListProvider from './list-context';
 import { Children } from 'react';
 
 type ListProps = React.PropsWithChildren<{
   className?: string;
-  isAnimated?: boolean;
+  layout?: boolean;
   emptyMessage?: React.ReactNode;
 }>;
 
 export default function List({
   className,
-  isAnimated,
+  layout,
   emptyMessage = 'No results...',
   children,
 }: ListProps) {
@@ -21,10 +20,8 @@ export default function List({
   }
 
   return (
-    <ListProvider isAnimated={isAnimated}>
-      <motion.ul layout={isAnimated} className={className}>
-        {isAnimated ? <AnimatePresence>{children}</AnimatePresence> : children}
-      </motion.ul>
-    </ListProvider>
+    <motion.ul layout={layout} className={className}>
+      {layout ? <AnimatePresence>{children}</AnimatePresence> : children}
+    </motion.ul>
   );
 }

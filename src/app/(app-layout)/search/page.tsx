@@ -1,4 +1,4 @@
-import FilterDrawer from '@/search/filter-drawer';
+import ProductFilterDrawer from '@/search/product-filter-drawer';
 import SectionTitle from '@/common/section-title';
 import PageTitle from '@/common/page-title';
 import SelectedFilters from '@/search/selected-filters';
@@ -12,17 +12,15 @@ export const metadata = getMetadata({
 });
 
 export default function SearchPage() {
-  const productFilter = <ProductFilter />;
-
   return (
     <>
       <PageTitle title="Search Products" srOnly />
-      <div className="grid md:grid-cols-[theme(spacing.72)_1fr] gap-2">
-        <section className="hidden md:block px-2 max-h-[80vh] overflow-auto sticky top-24">
+      <div className="grid gap-2 md:grid-cols-[theme(spacing.72)_1fr]">
+        <section className="sticky top-24 hidden max-h-[80vh] overflow-auto px-2 md:block">
           <SectionTitle as="h2" srOnly>
             Filter
           </SectionTitle>
-          {productFilter}
+          <ProductFilter />
         </section>
         <section>
           <SectionTitle as="h2" srOnly>
@@ -30,7 +28,7 @@ export default function SearchPage() {
           </SectionTitle>
           <div className="flex flex-col gap-2">
             <SelectedFilters />
-            <FilterDrawer>{productFilter}</FilterDrawer>
+            <ProductFilterDrawer />
             <SearchResults />
           </div>
         </section>

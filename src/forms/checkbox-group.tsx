@@ -1,63 +1,91 @@
-import type { Maybe } from '@/common/common-types';
-import OptionButton from './option-button';
-import OptionGroupSkeleton from './option-group-skeleton';
+import SelectableGroupSkeleton from './selectable-group-skeleton';
+import * as RadixCheckbox from '@radix-ui/react-checkbox';
+import { Label } from './label';
+import { createContext, useContext, useId } from 'react';
+import { useSelectableItemProps } from './selectable-item-hooks';
 
-type CheckboxGroupProps<Option> = {
-  isLoading?: boolean;
+type CheckboxGroupContextValue = {
   isDisabled?: boolean;
-  options: Maybe<Option[]>;
-  getOptionLabel: (option: Option) => React.ReactNode;
-  getOptionValue: (option: Option) => string;
-  value: Maybe<string[]>;
+  value: string[];
   onChange: (value: string[]) => void;
 };
 
-export default function CheckboxGroup<Option>({
+const CheckboxGroupContext = createContext<CheckboxGroupContextValue>(
+  {} as CheckboxGroupContextValue,
+);
+
+type CheckboxGroupProps = CheckboxGroupContextValue &
+  React.PropsWithChildren<{
+    isLoading?: boolean;
+  }>;
+
+function CheckboxGroup({
   isLoading,
   isDisabled,
-  options,
+  children,
   value,
   onChange,
-  getOptionLabel,
-  getOptionValue,
-}: CheckboxGroupProps<Option>) {
+}: CheckboxGroupProps) {
   if (isLoading) {
-    return <OptionGroupSkeleton />;
+    return <SelectableGroupSkeleton optionCount={5} />;
   }
 
   return (
-    <div role="group">
-      <OptionButton
-        type="checkbox"
-        isDisabled={isDisabled}
-        isChecked={!value?.length}
-        value={''}
-        label={'All'}
-        onChange={() => {
-          onChange([]);
+    <CheckboxGroupContext.Provider value={{ isDisabled, value, onChange }}>
+      <div role="group">
+        <Checkbox value={allSymbol}>All</Checkbox>
+        {children}
+      </div>
+    </CheckboxGroupContext.Provider>
+  );
+}
+
+const allSymbol = Symbol('all');
+
+type CheckboxProps = React.PropsWithChildren<{
+  value: string | typeof allSymbol;
+}>;
+
+function Checkbox({ value: checkboxValue, children }: CheckboxProps) {
+  const id = useId();
+  const { isDisabled, value, onChange } = useContext(CheckboxGroupContext);
+
+  const isAllOption = checkboxValue === allSymbol;
+
+  const {
+    rootClassName,
+    itemClassName,
+    indicatorClassName,
+    icon,
+    labelClassName,
+  } = useSelectableItemProps();
+
+  return (
+    <div className={rootClassName}>
+      <RadixCheckbox.Root
+        className={itemClassName}
+        id={id}
+        disabled={isDisabled}
+        checked={isAllOption ? !value.length : value.includes(checkboxValue)}
+        onCheckedChange={() => {
+          if (isAllOption) {
+            onChange([]);
+          } else if (value.includes(checkboxValue)) {
+            onChange(value.filter((item) => item !== checkboxValue));
+          } else {
+            onChange([...value, checkboxValue]);
+          }
         }}
-      />
-      {options?.map((option) => {
-        const optionValue = getOptionValue(option);
-        const isChecked = !!value?.includes(optionValue);
-        return (
-          <OptionButton
-            key={optionValue}
-            type="checkbox"
-            isDisabled={isDisabled}
-            isChecked={isChecked}
-            value={optionValue}
-            label={getOptionLabel(option)}
-            onChange={() => {
-              if (value?.includes(optionValue)) {
-                onChange(value.filter((item) => item !== optionValue));
-              } else {
-                onChange(value ? [...value, optionValue] : [optionValue]);
-              }
-            }}
-          />
-        );
-      })}
+      >
+        <RadixCheckbox.Indicator className={indicatorClassName}>
+          {icon}
+        </RadixCheckbox.Indicator>
+      </RadixCheckbox.Root>
+      <Label htmlFor={id} className={labelClassName}>
+        {children}
+      </Label>
     </div>
   );
 }
+
+export { CheckboxGroup, Checkbox };

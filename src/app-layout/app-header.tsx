@@ -6,12 +6,12 @@ type AppHeaderProps = React.PropsWithChildren;
 
 export default function AppHeader({ children }: AppHeaderProps) {
   return (
-    <header className="fixed w-full h-app-header z-10 bg-background-main px-6 shadow-sm">
+    <header className="fixed z-10 h-app-header w-full bg-background-main px-6 shadow-sm">
       <Container
         maxWidth="xl"
-        className="h-full flex items-center justify-between"
+        className="flex h-full items-center justify-between"
       >
-        <NextLink href="/" className="font-bold text-2xl text-primary-main">
+        <NextLink href="/" className="text-2xl font-bold text-primary-main">
           {APP_TITLE}
         </NextLink>
         {children}

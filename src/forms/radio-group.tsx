@@ -1,49 +1,67 @@
 import type { Maybe } from '@/common/common-types';
-import OptionButton from './option-button';
-import OptionGroupSkeleton from './option-group-skeleton';
+import SelectableGroupSkeleton from './selectable-group-skeleton';
+import * as RadixRadioGroup from '@radix-ui/react-radio-group';
+import { Label } from './label';
+import { useId } from 'react';
+import { useSelectableItemProps } from './selectable-item-hooks';
 
-type RadioGroupProps<Option> = {
+type RadioGroupProps = React.PropsWithChildren<{
   isLoading?: boolean;
   isDisabled?: boolean;
-  options: Maybe<Option[]>;
-  getOptionLabel: (option: Option) => React.ReactNode;
-  getOptionValue: (option: Option) => string;
   value: Maybe<string>;
   onChange: (value: string) => void;
-};
+}>;
 
-export default function RadioGroup<Option>({
+function RadioGroup({
   isLoading,
   isDisabled,
-  options,
   value,
+  children,
   onChange,
-  getOptionLabel,
-  getOptionValue,
-}: RadioGroupProps<Option>) {
+}: RadioGroupProps) {
   if (isLoading) {
-    return <OptionGroupSkeleton />;
+    return <SelectableGroupSkeleton optionCount={2} />;
   }
 
   return (
-    <div role="radiogroup">
-      {options?.map((option) => {
-        const optionValue = getOptionValue(option);
-        const isChecked = value === optionValue;
-        return (
-          <OptionButton
-            key={optionValue}
-            type="radio"
-            isChecked={isChecked}
-            isDisabled={isDisabled}
-            value={optionValue}
-            label={getOptionLabel(option)}
-            onChange={(newValue) => {
-              onChange(newValue);
-            }}
-          />
-        );
-      })}
+    <RadixRadioGroup.Root
+      className="flex flex-col gap-1"
+      disabled={isDisabled}
+      value={value ?? ''}
+      onValueChange={onChange}
+    >
+      {children}
+    </RadixRadioGroup.Root>
+  );
+}
+
+type RadioGroupItemProps = React.PropsWithChildren<{
+  value: string;
+}>;
+
+function RadioGroupItem({ value, children }: RadioGroupItemProps) {
+  const id = useId();
+
+  const {
+    rootClassName,
+    itemClassName,
+    indicatorClassName,
+    icon,
+    labelClassName,
+  } = useSelectableItemProps();
+
+  return (
+    <div className={rootClassName}>
+      <RadixRadioGroup.Item className={itemClassName} id={id} value={value}>
+        <RadixRadioGroup.Indicator className={indicatorClassName}>
+          {icon}
+        </RadixRadioGroup.Indicator>
+      </RadixRadioGroup.Item>
+      <Label htmlFor={id} className={labelClassName}>
+        {children}
+      </Label>
     </div>
   );
 }
+
+export { RadioGroup, RadioGroupItem };

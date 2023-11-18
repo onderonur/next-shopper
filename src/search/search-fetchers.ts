@@ -114,7 +114,7 @@ async function getManyProducts(args: ProductFilterArgs) {
   }
 
   if (args.sorting) {
-    switch (args.sorting) {
+    switch (args.sorting as ProductSorting) {
       case ProductSorting.PRICE_ASC:
         response.sort((a, b) => a.price - b.price);
         break;

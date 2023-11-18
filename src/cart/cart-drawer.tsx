@@ -2,32 +2,50 @@ import Badge from '@/common/badge';
 import { CartIcon } from '@/common/icons';
 import Price from '@/common/price';
 import { getCart } from './cart-fetchers';
-import DrawerProvider from '@/common/drawer-context';
-import DrawerButton from '@/common/drawer-button';
-import Drawer from '@/common/drawer';
 import CartTotalPrice from './cart-total-price';
 import CartItemList from './cart-item-list';
 import ClearCartButton from './clear-cart-button';
 import CheckoutLink from '../checkout/checkout-linkt';
+import Button from '@/common/button';
+import {
+  Drawer,
+  DrawerBody,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTrigger,
+} from '@/common/drawer';
 
 export default async function CartDrawer() {
   const cart = await getCart();
 
   return (
-    <DrawerProvider>
-      <Badge value={cart?.totalCount}>
-        <DrawerButton aria-label="Open Cart Info" icon={<CartIcon />}>
-          <Price value={cart?.totalPrice} />
-        </DrawerButton>
-      </Badge>
-      <Drawer from="right" title="Cart">
-        <div className="absolute inset-0 flex flex-col">
-          <ClearCartButton cart={cart} />
-          <CartItemList className="flex-grow overflow-y-auto" />
-          <CartTotalPrice />
-          <CheckoutLink />
-        </div>
-      </Drawer>
-    </DrawerProvider>
+    <Drawer
+      closeOnPathnameChange
+      trigger={
+        <Badge value={cart?.totalCount}>
+          <DrawerTrigger asChild>
+            <Button aria-label="Open Cart Info" icon={<CartIcon />}>
+              <Price value={cart?.totalPrice} />
+            </Button>
+          </DrawerTrigger>
+        </Badge>
+      }
+    >
+      <DrawerContent from="right">
+        <DrawerHeader>
+          <h2>Cart</h2>
+        </DrawerHeader>
+        <DrawerBody className="flex flex-col overflow-auto !p-0">
+          <div className="p-2">
+            <ClearCartButton cart={cart} />
+          </div>
+          <CartItemList isDense className="flex-grow overflow-y-auto" />
+          <div className="flex flex-col gap-3 bg-background-dark p-4">
+            <CartTotalPrice />
+            <CheckoutLink />
+          </div>
+        </DrawerBody>
+      </DrawerContent>
+    </Drawer>
   );
 }

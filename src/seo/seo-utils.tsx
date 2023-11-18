@@ -10,7 +10,7 @@ export function getMetadata({
   title?: string;
   description?: string;
   pathname?: string;
-  images?: [{ url: string; alt: string }];
+  images?: Array<{ url: string; alt: string }>;
 }): Metadata {
   const metaTitle = title ? `${title} | ${APP_TITLE}` : APP_TITLE;
   const metaDescription = description || APP_DESCRIPTION;

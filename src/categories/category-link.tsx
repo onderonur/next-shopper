@@ -14,19 +14,19 @@ export default function CategoryLink({
 }: CategoryLinkProps) {
   return (
     <NextLink
-      className="relative block w-full h-80 group rounded-md overflow-hidden"
+      className="group relative block h-80 w-full overflow-hidden rounded-md"
       href={href}
     >
       <BaseImage
         src={imageSrc}
         alt={title}
-        className="object-cover transition duration-700 transform group-hover:scale-110"
+        className="transform object-cover transition duration-700 group-hover:scale-110"
         fill
         priority
       />
       <div className="absolute inset-0 grid place-items-center">
-        <div className="p-6 bg-black bg-opacity-50 rounded-md">
-          <h2 className="text-white text-3xl md:text-4xl font-bold border-b-4 mb-2 text-center">
+        <div className="rounded-md bg-black bg-opacity-50 p-6">
+          <h2 className="mb-2 border-b-4 text-center text-3xl font-bold text-white md:text-4xl">
             {title}
           </h2>
         </div>

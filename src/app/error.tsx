@@ -18,7 +18,7 @@ export default function RootErrorPage({ error, reset }: RootErrorPageProps) {
       message={error.message}
     >
       <Button
-        className="w-fit mx-auto"
+        className="mx-auto w-fit"
         onClick={() => {
           reset();
         }}

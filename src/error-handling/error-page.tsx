@@ -18,12 +18,12 @@ export default function ErrorPage({
   return (
     <AppLayoutRoot>
       <AppHeader />
-      <AppContent className="grid gap-4 place-content-center mb-12">
+      <AppContent className="mb-12 grid place-content-center gap-4">
         <h1 className="flex items-center">
           <span className="border-r-2 p-4 text-3xl font-bold text-text-lighter">
             {statusCode}
           </span>
-          <span className="p-4 font-semibold text-lg text-text-light">
+          <span className="p-4 text-lg font-semibold text-text-light">
             {message}
           </span>
         </h1>

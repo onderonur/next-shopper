@@ -8,7 +8,7 @@ const Input = forwardRef<InputRef, InputProps>(function Input(props, ref) {
     <input
       ref={ref}
       {...props}
-      className="border-2 rounded-md px-2 py-1 text-lg w-full"
+      className="w-full rounded-md border-2 px-2 py-1 text-lg"
     />
   );
 });

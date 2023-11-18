@@ -1,66 +1,114 @@
 'use client';
 
+import { fadeIn, slide, type SlideArgs } from '@/transitions/transition-utils';
+import * as RadixDialog from '@radix-ui/react-dialog';
 import Button from './button';
 import { CloseIcon } from './icons';
-import Backdrop from './backdrop';
 import classNames from 'classnames';
-import type { SlideProps } from '@/transitions/slide';
-import Slide from '@/transitions/slide';
-import SectionTitle from './section-title';
-import { useDrawerContext } from './drawer-context';
-import BaseFocusTrap from './base-focus-trap';
+import { AnimatePresence, motion } from 'framer-motion';
+import { forwardRef, useState } from 'react';
+import { useOnPathnameChange, useOnRouteChange } from '@/routing/routing-hooks';
 
-type DrawerProps = Pick<SlideProps, 'from'> &
-  React.PropsWithChildren<{
-    title: string;
-  }>;
+type DrawerBodyProps = React.PropsWithChildren<{
+  className?: string;
+}>;
 
-export default function Drawer({
-  from = 'left',
-  title,
-  children,
-}: DrawerProps) {
-  const { isOpen, close } = useDrawerContext();
-
+function DrawerBody({ className, children }: DrawerBodyProps) {
   return (
-    <Backdrop isOpen={isOpen} onClick={close}>
-      <Slide
-        from={from}
-        isIn={isOpen}
-        className={classNames(
-          'h-full w-full max-w-xs fixed bg-background-main',
-          from === 'left' && 'left-0',
-          from === 'right' && 'right-0',
-        )}
-      >
-        <BaseFocusTrap onClose={close}>
-          {(trappedProps) => {
-            return (
-              <section className="h-full flex flex-col" {...trappedProps}>
-                <SectionTitle
-                  as="h2"
-                  // These `!important` usages are an escape hatch.
-                  // Otherwise, `p-0` in SectionTitle -> MobilePadding overrides these.
-                  className="py-8 px-6 md:py-2 md:px-2 shadow-sm"
-                  actions={
-                    <Button
-                      aria-label="Close Drawer"
-                      variant="transparent"
-                      icon={<CloseIcon />}
-                      onClick={close}
-                    />
-                  }
-                >
-                  {title}
-                </SectionTitle>
-                <div className="p-4 h-full overflow-auto">
-                  <div className="relative h-full">{children}</div>
-                </div>
-              </section>
-            );
-          }}
-        </BaseFocusTrap>
-      </Slide>
-    </Backdrop>
+    <div className={classNames('flex-1 px-4 py-3', className)}>{children}</div>
   );
 }
+
+type DrawerHeaderProps = React.PropsWithChildren;
+
+function DrawerHeader({ children }: DrawerHeaderProps) {
+  return (
+    <div className="flex items-center justify-between px-4 py-3 shadow-sm">
+      <RadixDialog.Title className="text-lg font-semibold" asChild>
+        {children}
+      </RadixDialog.Title>
+      <RadixDialog.Close asChild>
+        <Button variant="transparent" icon={<CloseIcon />} aria-label="Close" />
+      </RadixDialog.Close>
+    </div>
+  );
+}
+
+type DrawerContentProps = SlideArgs & React.PropsWithChildren;
+
+const DrawerContent = forwardRef<
+  React.ElementRef<typeof motion.div>,
+  DrawerContentProps
+>(function DrawerContent({ from, children }, ref) {
+  return (
+    <RadixDialog.Content asChild>
+      <motion.div
+        ref={ref}
+        {...slide({ from })}
+        className={classNames(
+          'fixed bottom-0 top-0 z-10 flex w-full max-w-xs flex-col bg-white focus:outline-none',
+          from === 'left' ? 'left-0' : 'right-0',
+        )}
+      >
+        {children}
+      </motion.div>
+    </RadixDialog.Content>
+  );
+});
+
+type DrawerProps = React.PropsWithChildren<{
+  trigger: React.ReactNode;
+  closeOnRouteChange?: boolean;
+  closeOnPathnameChange?: boolean;
+}>;
+
+function Drawer({
+  trigger,
+  closeOnRouteChange,
+  closeOnPathnameChange,
+  children,
+}: DrawerProps) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  useOnRouteChange(
+    closeOnRouteChange
+      ? () => {
+          setIsOpen(false);
+        }
+      : null,
+  );
+
+  useOnPathnameChange(
+    closeOnPathnameChange
+      ? () => {
+          setIsOpen(false);
+        }
+      : null,
+  );
+
+  return (
+    <RadixDialog.Root open={isOpen} onOpenChange={setIsOpen}>
+      {trigger}
+      <AnimatePresence>
+        {isOpen && (
+          <RadixDialog.Portal
+            // To make `framer-motion` exit animation work.
+            forceMount
+          >
+            <RadixDialog.Overlay asChild>
+              <motion.div
+                {...fadeIn}
+                className="fixed inset-0 z-10 bg-black/20 backdrop-blur-md"
+              />
+            </RadixDialog.Overlay>
+            {children}
+          </RadixDialog.Portal>
+        )}
+      </AnimatePresence>
+    </RadixDialog.Root>
+  );
+}
+
+const DrawerTrigger = RadixDialog.Trigger;
+
+export { Drawer, DrawerContent, DrawerHeader, DrawerBody, DrawerTrigger };

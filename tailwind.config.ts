@@ -63,7 +63,7 @@ export default {
         },
         scrollbar: {
           thumb: gray[500],
-          thumbHover: gray[400],
+          'thumb-hover': gray[400],
         },
       },
       spacing: {

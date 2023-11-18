@@ -1,4 +1,3 @@
-import Button from '@/common/button';
 import {
   APP_DESCRIPTION,
   APP_REPOSITORY_URL,
@@ -6,17 +5,18 @@ import {
 } from '@/common/common-utils';
 import { ExternalLinkIcon } from '@/common/icons';
 import { routes } from '@/routing/routing-utils';
+import ButtonLink from './button-link';
 
 function Hero() {
   return (
     <div className="bg-background-main shadow-sm">
-      <div className="flex flex-col items-center gap-4 text-center py-12 px-4">
-        <h1 className="text-primary-main text-3xl sm:text-4xl lg:text-5xl font-black uppercase">
+      <div className="flex flex-col items-center gap-4 px-4 py-12 text-center">
+        <h1 className="text-3xl font-black uppercase text-primary-main sm:text-4xl lg:text-5xl">
           {APP_TITLE}
         </h1>
         <div className="flex flex-col items-center">
-          <p className="text-primary-dark font-semibold">{APP_DESCRIPTION}</p>
-          <Button
+          <p className="font-semibold text-primary-dark">{APP_DESCRIPTION}</p>
+          <ButtonLink
             className="mt-1"
             variant="transparent"
             href={APP_REPOSITORY_URL}
@@ -25,10 +25,10 @@ function Hero() {
             iconAlignment="right"
           >
             Check the Source Code
-          </Button>
+          </ButtonLink>
         </div>
         <hr className="w-24 border-t-4 border-secondary-lighter" />
-        <Button href={routes.search()}>Browse Store</Button>
+        <ButtonLink href={routes.search()}>Browse Store</ButtonLink>
       </div>
     </div>
   );

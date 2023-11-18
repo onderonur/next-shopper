@@ -1,8 +1,15 @@
-type PaperProps = React.PropsWithChildren;
+import classNames from 'classnames';
 
-export default function Paper({ children }: PaperProps) {
+type PaperProps = React.PropsWithChildren<{ className?: string }>;
+
+export default function Paper({ className, children }: PaperProps) {
   return (
-    <div className="bg-background-main shadow-md p-4 md:p-6 md:rounded-lg">
+    <div
+      className={classNames(
+        'bg-background-main p-4 shadow-md md:rounded-lg md:p-6',
+        className,
+      )}
+    >
       {children}
     </div>
   );

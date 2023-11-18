@@ -1,7 +1,6 @@
 import '@/styles/global.css';
 import { Inter } from 'next/font/google';
 import ModalRoot from '@/modals/modal-root';
-import { getMetadata } from '@/seo/seo-utils';
 import classNames from 'classnames';
 import BaseSWRConfig from '@/http-client/base-swr-config';
 import type { Viewport } from 'next';
@@ -11,8 +10,6 @@ const inter = Inter({
   display: 'swap',
   subsets: ['latin'],
 });
-
-export const metadata = getMetadata({});
 
 export const viewport: Viewport = {
   themeColor: '#fff',

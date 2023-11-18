@@ -10,19 +10,25 @@ import classNames from 'classnames';
 
 type CartItemListProps = {
   className?: string;
+  isDense?: boolean;
 };
 
-export default async function CartItemList({ className }: CartItemListProps) {
+export default async function CartItemList({
+  className,
+  isDense,
+}: CartItemListProps) {
   const cart = await getCart();
 
   return (
     <List
-      className={classNames(className, 'px-1')}
-      isAnimated
+      className={classNames(className)}
+      layout
       emptyMessage={
-        <div className="grid place-items-center gap-2 text-secondary-main">
+        <div className="grid place-items-center gap-2 p-8 text-secondary-main">
           <CartIcon size={80} />
-          <div className="text-xl font-semibold">Your cart is empty</div>
+          <div className="text-center text-xl font-semibold">
+            Your cart is empty
+          </div>
         </div>
       }
     >
@@ -30,7 +36,11 @@ export default async function CartItemList({ className }: CartItemListProps) {
         const { product } = cartItem;
 
         return (
-          <ListItem key={product.id} className="border-b-2 py-2">
+          <ListItem
+            key={product.id}
+            layout
+            className={classNames('border-b-2 p-6', isDense && 'px-4 py-3')}
+          >
             <div className="flex gap-4">
               <NextLink
                 href={routes.product({

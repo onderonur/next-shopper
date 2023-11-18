@@ -1,27 +1,27 @@
 import {
-  FaMinus,
-  FaPlus,
-  FaShoppingCart,
-  FaCheck,
-  FaRegCheckCircle,
-  FaGithub,
-  FaArrowLeft,
-  FaArrowUp,
-  FaFilter,
-  FaExternalLinkAlt,
-} from 'react-icons/fa';
-import { RiDeleteBin6Line } from 'react-icons/ri';
-import { AiOutlineClose } from 'react-icons/ai';
+  Check,
+  X,
+  Filter,
+  Minus,
+  Plus,
+  Trash,
+  ShoppingBag,
+  CheckCircle,
+  Github,
+  ArrowLeft,
+  ArrowUp,
+  ExternalLink,
+} from 'lucide-react';
 
-export const MinusIcon = FaMinus;
-export const PlusIcon = FaPlus;
-export const DeleteIcon = RiDeleteBin6Line;
-export const CartIcon = FaShoppingCart;
-export const CloseIcon = AiOutlineClose;
-export const CheckIcon = FaCheck;
-export const CheckOutlinedIcon = FaRegCheckCircle;
-export const GithubIcon = FaGithub;
-export const ArrowLeftIcon = FaArrowLeft;
-export const ArrowUpIcon = FaArrowUp;
-export const FilterIcon = FaFilter;
-export const ExternalLinkIcon = FaExternalLinkAlt;
+export const MinusIcon = Minus;
+export const PlusIcon = Plus;
+export const DeleteIcon = Trash;
+export const CartIcon = ShoppingBag;
+export const CloseIcon = X;
+export const CheckIcon = Check;
+export const CheckOutlinedIcon = CheckCircle;
+export const GithubIcon = Github;
+export const ArrowLeftIcon = ArrowLeft;
+export const ArrowUpIcon = ArrowUp;
+export const FilterIcon = Filter;
+export const ExternalLinkIcon = ExternalLink;

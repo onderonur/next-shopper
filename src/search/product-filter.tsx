@@ -3,11 +3,10 @@
 import type { Maybe } from '@/common/common-types';
 import PaperTitle from '@/common/paper-title';
 import Paper from '@/common/paper';
-import CheckboxGroup from '@/forms/checkbox-group';
-import RadioGroup from '@/forms/radio-group';
+import { CheckboxGroup, Checkbox } from '@/forms/checkbox-group';
+import { RadioGroup, RadioGroupItem } from '@/forms/radio-group';
 import type {
   ProductFilterData,
-  ProductFilterOptionItem,
   ProductFilterOptions,
 } from '@/search/search-types';
 import {
@@ -75,7 +74,7 @@ export default function ProductFilter() {
   const isFirstLoading = isLoading && !data;
 
   return (
-    <div className="pb-6 flex flex-col gap-4">
+    <div className="flex flex-col gap-4 pb-6">
       {Object.values(data?.filterOptions ?? defaultOptions).map((filter) => {
         let filterInput = null;
 
@@ -83,32 +82,42 @@ export default function ProductFilter() {
           case ProductFilterKey.CATEGORIES:
           case ProductFilterKey.PRICE_RANGES:
             filterInput = (
-              <CheckboxGroup<ProductFilterOptionItem>
+              <CheckboxGroup
                 isLoading={isFirstLoading}
                 isDisabled={isDisabled}
-                options={filter.options}
-                getOptionLabel={(option) => option.title}
-                getOptionValue={(option) => option.value}
                 value={values[filter.filterKey]}
                 onChange={(newValue) => {
                   handleChange(filter.filterKey, newValue);
                 }}
-              />
+              >
+                {filter.options.map((option) => {
+                  return (
+                    <Checkbox key={option.value} value={option.value}>
+                      {option.title}
+                    </Checkbox>
+                  );
+                })}
+              </CheckboxGroup>
             );
             break;
           case ProductFilterKey.SORTING:
             filterInput = (
-              <RadioGroup<ProductFilterOptionItem>
+              <RadioGroup
                 isLoading={isFirstLoading}
                 isDisabled={isDisabled}
-                options={filter.options}
-                getOptionLabel={(option) => option.title}
-                getOptionValue={(option) => option.value}
                 value={values[filter.filterKey]}
                 onChange={(newValue) => {
                   handleChange(filter.filterKey, newValue);
                 }}
-              />
+              >
+                {filter.options.map((option) => {
+                  return (
+                    <RadioGroupItem key={option.value} value={option.value}>
+                      {option.title}
+                    </RadioGroupItem>
+                  );
+                })}
+              </RadioGroup>
             );
         }
 

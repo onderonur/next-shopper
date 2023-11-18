@@ -1,18 +1,18 @@
-import Button from '@/common/button';
+import { Button } from '@/common/button';
 import { FilterIcon } from '@/common/icons';
-import ProductFilter from './product-filter';
+import { ProductFilter } from './product-filter';
 import {
   Drawer,
   DrawerBody,
-  DrawerContent,
   DrawerHeader,
   DrawerTrigger,
 } from '@/common/drawer';
-import MobilePadding from '@/common/mobile-padding';
+import { MobilePadding } from '@/common/mobile-padding';
 
-export default function ProductFilterDrawer() {
+export function ProductFilterDrawer() {
   return (
     <Drawer
+      from="left"
       closeOnPathnameChange
       trigger={
         <MobilePadding className="md:hidden">
@@ -24,14 +24,12 @@ export default function ProductFilterDrawer() {
         </MobilePadding>
       }
     >
-      <DrawerContent from="left">
-        <DrawerHeader>
-          <h2>Product Filter</h2>
-        </DrawerHeader>
-        <DrawerBody>
-          <ProductFilter />
-        </DrawerBody>
-      </DrawerContent>
+      <DrawerHeader>
+        <h2>Product Filter</h2>
+      </DrawerHeader>
+      <DrawerBody>
+        <ProductFilter />
+      </DrawerBody>
     </Drawer>
   );
 }

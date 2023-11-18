@@ -1,9 +1,10 @@
 import type { Maybe } from '@/common/common-types';
-import SelectableGroupSkeleton from './selectable-group-skeleton';
+import { SelectableGroupSkeleton } from './selectable-group-skeleton';
 import * as RadixRadioGroup from '@radix-ui/react-radio-group';
 import { Label } from './label';
 import { useId } from 'react';
 import { useSelectableItemProps } from './selectable-item-hooks';
+import classNames from 'classnames';
 
 type RadioGroupProps = React.PropsWithChildren<{
   isLoading?: boolean;
@@ -12,7 +13,7 @@ type RadioGroupProps = React.PropsWithChildren<{
   onChange: (value: string) => void;
 }>;
 
-function RadioGroup({
+export function RadioGroup({
   isLoading,
   isDisabled,
   value,
@@ -39,7 +40,7 @@ type RadioGroupItemProps = React.PropsWithChildren<{
   value: string;
 }>;
 
-function RadioGroupItem({ value, children }: RadioGroupItemProps) {
+export function RadioGroupItem({ value, children }: RadioGroupItemProps) {
   const id = useId();
 
   const {
@@ -52,7 +53,11 @@ function RadioGroupItem({ value, children }: RadioGroupItemProps) {
 
   return (
     <div className={rootClassName}>
-      <RadixRadioGroup.Item className={itemClassName} id={id} value={value}>
+      <RadixRadioGroup.Item
+        className={classNames(itemClassName, '!rounded-full')}
+        id={id}
+        value={value}
+      >
         <RadixRadioGroup.Indicator className={indicatorClassName}>
           {icon}
         </RadixRadioGroup.Indicator>
@@ -63,5 +68,3 @@ function RadioGroupItem({ value, children }: RadioGroupItemProps) {
     </div>
   );
 }
-
-export { RadioGroup, RadioGroupItem };

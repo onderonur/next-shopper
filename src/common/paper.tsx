@@ -2,7 +2,7 @@ import classNames from 'classnames';
 
 type PaperProps = React.PropsWithChildren<{ className?: string }>;
 
-export default function Paper({ className, children }: PaperProps) {
+export function Paper({ className, children }: PaperProps) {
   return (
     <div
       className={classNames(
@@ -12,5 +12,13 @@ export default function Paper({ className, children }: PaperProps) {
     >
       {children}
     </div>
+  );
+}
+
+type PaperTitleProps = React.PropsWithChildren;
+
+export function PaperTitle({ children }: PaperTitleProps) {
+  return (
+    <div className="mb-1 text-lg font-semibold text-text-light">{children}</div>
   );
 }

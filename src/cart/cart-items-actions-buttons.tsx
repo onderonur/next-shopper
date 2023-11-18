@@ -5,13 +5,13 @@ import {
   removeProductFromCart,
   decreaseProductInCart,
 } from './cart-actions';
-import SubmitButton from '@/forms/submit-button';
+import { SubmitButton } from '@/forms/submit-button';
 
 type CartItemActionButtonsProps = {
   cartItem: CartItem;
 };
 
-export default function CartItemActionButtons({
+export function CartItemActionButtons({
   cartItem,
 }: CartItemActionButtonsProps) {
   const { product } = cartItem;

@@ -1,6 +1,6 @@
-import PageTitle from '@/common/page-title';
-import Paper from '@/common/paper';
-import ProductDetails from '@/products/product-details';
+import { PageTitle } from '@/common/page-title';
+import { Paper } from '@/common/paper';
+import { ProductDetails } from '@/products/product-details';
 import { getOneProductById } from '@/products/product-fetchers';
 import { getMetadata } from '@/seo/seo-utils';
 import type { Metadata } from 'next';

@@ -1,20 +1,18 @@
 'use client';
 
-import AppContent from '@/app-layout/app-content';
-import AppFooter from '@/app-layout/app-footer';
-import AppHeader from '@/app-layout/app-header';
-import AppLayoutRoot from '@/app-layout/app-layout-root';
+import {
+  AppContent,
+  AppFooter,
+  AppHeader,
+  AppLayoutRoot,
+} from '@/app-layout/app-layout';
 
 type ErrorPageProps = React.PropsWithChildren<{
   statusCode: number;
   message: string;
 }>;
 
-export default function ErrorPage({
-  statusCode,
-  message,
-  children,
-}: ErrorPageProps) {
+export function ErrorPage({ statusCode, message, children }: ErrorPageProps) {
   return (
     <AppLayoutRoot>
       <AppHeader />

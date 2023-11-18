@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import Loading from './loading';
+import { Loading } from './loading';
 
 export type UseButtonBasePropsArgs = React.PropsWithChildren<{
   className?: string;

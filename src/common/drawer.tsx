@@ -2,18 +2,18 @@
 
 import { fadeIn, slide, type SlideArgs } from '@/transitions/transition-utils';
 import * as RadixDialog from '@radix-ui/react-dialog';
-import Button from './button';
+import { Button } from './button';
 import { CloseIcon } from './icons';
 import classNames from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
-import { forwardRef, useState } from 'react';
+import { useState } from 'react';
 import { useOnPathnameChange, useOnRouteChange } from '@/routing/routing-hooks';
 
 type DrawerBodyProps = React.PropsWithChildren<{
   className?: string;
 }>;
 
-function DrawerBody({ className, children }: DrawerBodyProps) {
+export function DrawerBody({ className, children }: DrawerBodyProps) {
   return (
     <div className={classNames('flex-1 px-4 py-3', className)}>{children}</div>
   );
@@ -21,7 +21,7 @@ function DrawerBody({ className, children }: DrawerBodyProps) {
 
 type DrawerHeaderProps = React.PropsWithChildren;
 
-function DrawerHeader({ children }: DrawerHeaderProps) {
+export function DrawerHeader({ children }: DrawerHeaderProps) {
   return (
     <div className="flex items-center justify-between px-4 py-3 shadow-sm">
       <RadixDialog.Title className="text-lg font-semibold" asChild>
@@ -34,35 +34,15 @@ function DrawerHeader({ children }: DrawerHeaderProps) {
   );
 }
 
-type DrawerContentProps = SlideArgs & React.PropsWithChildren;
+type DrawerProps = SlideArgs &
+  React.PropsWithChildren<{
+    trigger: React.ReactNode;
+    closeOnRouteChange?: boolean;
+    closeOnPathnameChange?: boolean;
+  }>;
 
-const DrawerContent = forwardRef<
-  React.ElementRef<typeof motion.div>,
-  DrawerContentProps
->(function DrawerContent({ from, children }, ref) {
-  return (
-    <RadixDialog.Content asChild>
-      <motion.div
-        ref={ref}
-        {...slide({ from })}
-        className={classNames(
-          'fixed bottom-0 top-0 z-10 flex w-full max-w-xs flex-col bg-white focus:outline-none',
-          from === 'left' ? 'left-0' : 'right-0',
-        )}
-      >
-        {children}
-      </motion.div>
-    </RadixDialog.Content>
-  );
-});
-
-type DrawerProps = React.PropsWithChildren<{
-  trigger: React.ReactNode;
-  closeOnRouteChange?: boolean;
-  closeOnPathnameChange?: boolean;
-}>;
-
-function Drawer({
+export function Drawer({
+  from,
   trigger,
   closeOnRouteChange,
   closeOnPathnameChange,
@@ -101,7 +81,17 @@ function Drawer({
                 className="fixed inset-0 z-10 bg-black/20 backdrop-blur-md"
               />
             </RadixDialog.Overlay>
-            {children}
+            <RadixDialog.Content asChild>
+              <motion.div
+                {...slide({ from })}
+                className={classNames(
+                  'fixed bottom-0 top-0 z-10 flex w-full max-w-xs flex-col bg-white focus:outline-none',
+                  from === 'left' ? 'left-0' : 'right-0',
+                )}
+              >
+                {children}
+              </motion.div>
+            </RadixDialog.Content>
           </RadixDialog.Portal>
         )}
       </AnimatePresence>
@@ -109,6 +99,4 @@ function Drawer({
   );
 }
 
-const DrawerTrigger = RadixDialog.Trigger;
-
-export { Drawer, DrawerContent, DrawerHeader, DrawerBody, DrawerTrigger };
+export const DrawerTrigger = RadixDialog.Trigger;

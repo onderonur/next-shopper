@@ -1,8 +1,8 @@
-import ButtonLink from '@/common/button-link';
+import { ButtonLink } from '@/common/button-link';
 import { CheckOutlinedIcon } from '@/common/icons';
 import { routes } from '@/routing/routing-utils';
 
-export default function CheckoutSuccessMessage() {
+export function CheckoutSuccessMessage() {
   return (
     <div className="grid place-items-center gap-4 text-success-main">
       <CheckOutlinedIcon size={80} />

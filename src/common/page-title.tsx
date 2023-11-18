@@ -1,12 +1,12 @@
-import GoBackButton from '@/routing/go-back-button';
-import MobilePadding from './mobile-padding';
+import { GoBackButton } from '@/routing/go-back-button';
+import { MobilePadding } from './mobile-padding';
 
 type PageTitleProps = {
   srOnly?: boolean;
   title: string;
 };
 
-export default function PageTitle({ srOnly, title }: PageTitleProps) {
+export function PageTitle({ srOnly, title }: PageTitleProps) {
   if (srOnly) {
     return <h1 className="sr-only">{title}</h1>;
   }

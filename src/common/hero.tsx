@@ -5,9 +5,9 @@ import {
 } from '@/common/common-utils';
 import { ExternalLinkIcon } from '@/common/icons';
 import { routes } from '@/routing/routing-utils';
-import ButtonLink from './button-link';
+import { ButtonLink } from './button-link';
 
-function Hero() {
+export function Hero() {
   return (
     <div className="bg-background-main shadow-sm">
       <div className="flex flex-col items-center gap-4 px-4 py-12 text-center">
@@ -33,5 +33,3 @@ function Hero() {
     </div>
   );
 }
-
-export default Hero;

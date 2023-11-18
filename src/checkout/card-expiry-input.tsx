@@ -3,7 +3,7 @@ import { NumberFormatBase } from 'react-number-format';
 import type { Omit } from '@/common/common-types';
 import { forwardRef } from 'react';
 import type { InputRef } from '@/forms/input';
-import Input from '@/forms/input';
+import { Input } from '@/forms/input';
 
 // https://s-yadav.github.io/react-number-format/docs/customization#card-expiry-field
 function format(val: string) {
@@ -33,7 +33,7 @@ type CardExpiryInputProps = Omit<
   'format' | 'placeholder' | 'customInput'
 >;
 
-const CardExpiryInput = forwardRef<InputRef, CardExpiryInputProps>(
+export const CardExpiryInput = forwardRef<InputRef, CardExpiryInputProps>(
   function CardExpiryInput(props, ref) {
     return (
       <NumberFormatBase
@@ -46,5 +46,3 @@ const CardExpiryInput = forwardRef<InputRef, CardExpiryInputProps>(
     );
   },
 );
-
-export default CardExpiryInput;

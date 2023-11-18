@@ -1,9 +1,9 @@
-import ProductFilterDrawer from '@/search/product-filter-drawer';
-import SectionTitle from '@/common/section-title';
-import PageTitle from '@/common/page-title';
-import SelectedFilters from '@/search/selected-filters';
-import SearchResults from '@/search/search-results';
-import ProductFilter from '@/search/product-filter';
+import { ProductFilterDrawer } from '@/search/product-filter-drawer';
+import { SectionTitle } from '@/common/section-title';
+import { PageTitle } from '@/common/page-title';
+import { SelectedFilters } from '@/search/selected-filters';
+import { SearchResults } from '@/search/search-results';
+import { ProductFilter } from '@/search/product-filter';
 import { getMetadata } from '@/seo/seo-utils';
 
 export const metadata = getMetadata({

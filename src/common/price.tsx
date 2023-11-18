@@ -11,7 +11,7 @@ const priceFormatter = new Intl.NumberFormat('en', {
   currency: 'USD',
 });
 
-export default function Price({ className, value }: PriceProps) {
+export function Price({ className, value }: PriceProps) {
   return (
     <span className={classNames('font-semibold', className)}>
       {priceFormatter.format(value ?? 0)}

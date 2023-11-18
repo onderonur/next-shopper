@@ -1,13 +1,12 @@
 'use client';
 
-import ProductCard from '@/products/product-card';
-import ListItem from '@/common/list-item';
-import Paper from '@/common/paper';
-import List from '@/common/list';
+import { ProductCard, ProductCardSkeleton } from '@/products/product-card';
+import { Paper } from '@/common/paper';
+import { List, ListItem } from '@/common/list';
 import { useFilterProducts } from '@/search/search-hooks';
-import SearchResultsSkeleton from './search-results-skeleton';
+import { createMockArray } from '@/common/common-utils';
 
-export default function SearchResults() {
+export function SearchResults() {
   const { data, isValidating } = useFilterProducts();
 
   return (
@@ -26,5 +25,19 @@ export default function SearchResults() {
         )}
       </List>
     </Paper>
+  );
+}
+
+function SearchResultsSkeleton() {
+  return (
+    <>
+      {createMockArray(8).map((i) => {
+        return (
+          <ListItem key={i}>
+            <ProductCardSkeleton />
+          </ListItem>
+        );
+      })}
+    </>
   );
 }

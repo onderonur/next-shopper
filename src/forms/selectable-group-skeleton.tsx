@@ -1,13 +1,11 @@
 import { createMockArray } from '@/common/common-utils';
-import List from '@/common/list';
-import ListItem from '@/common/list-item';
-import SelectableItemSkeleton from './selectable-item-skeleton';
+import { List, ListItem } from '@/common/list';
 
 type SelectableGroupSkeletonProps = {
   optionCount: number;
 };
 
-export default function SelectableGroupSkeleton({
+export function SelectableGroupSkeleton({
   optionCount,
 }: SelectableGroupSkeletonProps) {
   return (
@@ -20,5 +18,14 @@ export default function SelectableGroupSkeleton({
         );
       })}
     </List>
+  );
+}
+
+function SelectableItemSkeleton() {
+  return (
+    <div className="flex w-full animate-pulse items-center gap-2 py-1">
+      <div className="h-8 w-8 flex-none rounded-md bg-skeleton" />
+      <div className="h-8 flex-1 rounded-md bg-skeleton" />
+    </div>
   );
 }

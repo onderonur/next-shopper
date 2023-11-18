@@ -1,6 +1,6 @@
 'use client';
 
-import Button from '@/common/button';
+import { Button } from '@/common/button';
 import { ArrowUpIcon } from '@/common/icons';
 import { fadeIn } from '@/transitions/transition-utils';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -22,7 +22,7 @@ const scrollStore = {
   getServerSnapshot: () => 0,
 };
 
-export default function BackToTopButton() {
+export function BackToTopButton() {
   const scrollY = useSyncExternalStore(
     scrollStore.subscribe,
     scrollStore.getSnapshot,

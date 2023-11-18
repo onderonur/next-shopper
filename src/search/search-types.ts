@@ -7,7 +7,7 @@ export type ProductFilterArgs = {
   priceRanges?: string[];
 };
 
-export type ProductFilterOptionItem = {
+type ProductFilterOptionItem = {
   title: string;
   value: string;
 };

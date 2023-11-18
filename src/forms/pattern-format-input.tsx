@@ -3,10 +3,10 @@
 import type { PatternFormatProps } from 'react-number-format';
 import { PatternFormat } from 'react-number-format';
 import type { InputProps, InputRef } from './input';
-import Input from './input';
+import { Input } from './input';
 import { forwardRef } from 'react';
 
-type PatterFormatInputProps = Pick<
+type PatternFormatInputProps = Pick<
   PatternFormatProps,
   'format' | 'mask' | 'value' | 'valueIsNumericString'
 > &
@@ -15,10 +15,8 @@ type PatterFormatInputProps = Pick<
     'id' | 'placeholder' | 'onFocus' | 'onBlur' | 'onChange' | 'name'
   >;
 
-const PatterFormatInput = forwardRef<InputRef, PatterFormatInputProps>(
-  function PatterFormatInput(props, ref) {
+export const PatternFormatInput = forwardRef<InputRef, PatternFormatInputProps>(
+  function PatternFormatInput(props, ref) {
     return <PatternFormat getInputRef={ref} {...props} customInput={Input} />;
   },
 );
-
-export default PatterFormatInput;

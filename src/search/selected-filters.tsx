@@ -1,15 +1,14 @@
 'use client';
 
-import Button from '@/common/button';
+import { Button } from '@/common/button';
 import { Chip, ChipClose, ChipContent } from '@/common/chip';
-import List from '@/common/list';
-import ListItem from '@/common/list-item';
-import MobilePadding from '@/common/mobile-padding';
+import { List, ListItem } from '@/common/list';
+import { MobilePadding } from '@/common/mobile-padding';
 import { routes } from '@/routing/routing-utils';
 import { useRouter } from 'next/navigation';
 import { useFilterProducts, useProductFilterArgs } from './search-hooks';
 
-export default function SelectedFilters() {
+export function SelectedFilters() {
   const router = useRouter();
   const filterArgs = useProductFilterArgs();
   const { data } = useFilterProducts();

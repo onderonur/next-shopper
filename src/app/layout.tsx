@@ -1,8 +1,7 @@
 import '@/styles/global.css';
 import { Inter } from 'next/font/google';
-import ModalRoot from '@/modals/modal-root';
 import classNames from 'classnames';
-import BaseSWRConfig from '@/http-client/base-swr-config';
+import { BaseSWRConfig } from '@/http-client/base-swr-config';
 import type { Viewport } from 'next';
 
 const inter = Inter({
@@ -22,10 +21,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html lang="en" className={classNames(inter.variable, 'font-sans')}>
       <head />
       <body>
-        <BaseSWRConfig>
-          {children}
-          <ModalRoot />
-        </BaseSWRConfig>
+        <BaseSWRConfig>{children}</BaseSWRConfig>
       </body>
     </html>
   );

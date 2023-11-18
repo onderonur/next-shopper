@@ -1,13 +1,13 @@
 import type { Omit } from './common-types';
 import type { NextLinkProps } from '@/routing/next-link';
-import NextLink from '@/routing/next-link';
-import type { UseButtonBasePropsArgs } from './button-hooks';
-import { useButtonBaseProps } from './button-hooks';
+import { NextLink } from '@/routing/next-link';
+import type { UseButtonBasePropsArgs } from './button-base-hooks';
+import { useButtonBaseProps } from './button-base-hooks';
 
 type ButtonLinkProps = NextLinkProps &
   Omit<UseButtonBasePropsArgs, 'isDisabled' | 'isLoading'>;
 
-export default function ButtonLink({
+export function ButtonLink({
   className,
   icon,
   iconAlignment,

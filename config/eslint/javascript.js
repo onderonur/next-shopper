@@ -16,5 +16,6 @@ module.exports = {
     'no-empty': 'warn',
     'import/no-duplicates': 'warn',
     'import/newline-after-import': 'warn',
+    'import/first': 'warn',
   },
 };

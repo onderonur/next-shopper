@@ -5,7 +5,7 @@ import { httpClient } from '@/http-client/http-client';
 
 type BaseSWRConfigProps = React.PropsWithChildren;
 
-export default function BaseSWRConfig({ children }: BaseSWRConfigProps) {
+export function BaseSWRConfig({ children }: BaseSWRConfigProps) {
   return (
     <SWRConfig
       value={{

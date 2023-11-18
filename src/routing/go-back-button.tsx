@@ -1,10 +1,10 @@
 'use client';
 
-import Button from '@/common/button';
+import { Button } from '@/common/button';
 import { ArrowLeftIcon } from '@/common/icons';
 import { useRouter } from 'next/navigation';
 
-export default function GoBackButton() {
+export function GoBackButton() {
   const router = useRouter();
 
   return (

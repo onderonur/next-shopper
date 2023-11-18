@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import type { ButtonProps } from './button';
-import Button from './button';
+import { Button } from './button';
 import { CloseIcon } from './icons';
 
 type ChipProps = React.PropsWithChildren<{
@@ -10,7 +10,13 @@ type ChipProps = React.PropsWithChildren<{
   filled?: boolean;
 }>;
 
-function Chip({ className, textAlign, variant, filled, children }: ChipProps) {
+export function Chip({
+  className,
+  textAlign,
+  variant,
+  filled,
+  children,
+}: ChipProps) {
   return (
     <div
       className={classNames(
@@ -35,7 +41,7 @@ function Chip({ className, textAlign, variant, filled, children }: ChipProps) {
 
 type ChipCloseProps = ButtonProps;
 
-function ChipClose({ className, ...rest }: ChipCloseProps) {
+export function ChipClose({ className, ...rest }: ChipCloseProps) {
   return (
     <Button
       {...rest}
@@ -48,8 +54,6 @@ function ChipClose({ className, ...rest }: ChipCloseProps) {
 
 type ChipContentProps = React.PropsWithChildren;
 
-function ChipContent({ children }: ChipContentProps) {
+export function ChipContent({ children }: ChipContentProps) {
   return <span className="flex-1">{children}</span>;
 }
-
-export { Chip, ChipClose, ChipContent };

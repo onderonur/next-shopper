@@ -6,7 +6,7 @@ type ContainerProps = React.PropsWithChildren<{
   className?: string;
 }>;
 
-export default function Container({
+export function Container({
   as = 'div',
   maxWidth,
   className,

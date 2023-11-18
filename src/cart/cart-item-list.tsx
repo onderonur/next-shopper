@@ -1,10 +1,9 @@
-import Price from '@/common/price';
-import List from '@/common/list';
-import ListItem from '@/common/list-item';
+import { Price } from '@/common/price';
+import { List, ListItem } from '@/common/list';
 import { CartIcon } from '@/common/icons';
-import NextLink from '@/routing/next-link';
+import { NextLink } from '@/routing/next-link';
 import { routes } from '@/routing/routing-utils';
-import CartItemActionButtons from './cart-items-actions-buttons';
+import { CartItemActionButtons } from './cart-items-actions-buttons';
 import { getCart } from './cart-fetchers';
 import classNames from 'classnames';
 
@@ -13,10 +12,7 @@ type CartItemListProps = {
   isDense?: boolean;
 };
 
-export default async function CartItemList({
-  className,
-  isDense,
-}: CartItemListProps) {
+export async function CartItemList({ className, isDense }: CartItemListProps) {
   const cart = await getCart();
 
   return (

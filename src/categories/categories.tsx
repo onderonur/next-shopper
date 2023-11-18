@@ -1,10 +1,9 @@
 import { getManyCategories } from '@/categories/category-fetchers';
-import List from '@/common/list';
-import ListItem from '@/common/list-item';
+import { List, ListItem } from '@/common/list';
 import { routes } from '@/routing/routing-utils';
-import CategoryLink from './category-link';
+import { CategoryLink } from './category-link';
 
-export default async function Categories() {
+export async function Categories() {
   const categories = await getManyCategories();
 
   return (

@@ -1,4 +1,4 @@
-import Price from '@/common/price';
+import { Price } from '@/common/price';
 import { getCart } from './cart-fetchers';
 import classNames from 'classnames';
 
@@ -6,9 +6,7 @@ type CartTotalPriceProps = {
   className?: string;
 };
 
-export default async function CartTotalPrice({
-  className,
-}: CartTotalPriceProps) {
+export async function CartTotalPrice({ className }: CartTotalPriceProps) {
   const cart = await getCart();
 
   if (!cart) {

@@ -1,9 +1,8 @@
 'use client';
 
 import type { Maybe } from '@/common/common-types';
-import PaperTitle from '@/common/paper-title';
-import Paper from '@/common/paper';
-import { CheckboxGroup, Checkbox } from '@/forms/checkbox-group';
+import { Paper, PaperTitle } from '@/common/paper';
+import { Checkbox, CheckboxGroup } from '@/forms/checkbox-group';
 import { RadioGroup, RadioGroupItem } from '@/forms/radio-group';
 import type {
   ProductFilterData,
@@ -36,7 +35,7 @@ const defaultOptions: ProductFilterOptions = {
   },
 };
 
-export default function ProductFilter() {
+export function ProductFilter() {
   const { data, isLoading, isValidating } = useFilterProducts({
     // When filter drawer is opened in mobile view, it refetches
     // search results when they are stale.

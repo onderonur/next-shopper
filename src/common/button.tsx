@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
-import type { UseButtonBasePropsArgs } from './button-hooks';
-import { useButtonBaseProps } from './button-hooks';
 import type { Omit } from './common-types';
+import type { UseButtonBasePropsArgs } from './button-base-hooks';
+import { useButtonBaseProps } from './button-base-hooks';
 
 export type ButtonProps = Omit<
   React.ComponentPropsWithoutRef<'button'>,
@@ -9,7 +9,7 @@ export type ButtonProps = Omit<
 > &
   UseButtonBasePropsArgs;
 
-const Button = forwardRef<React.ElementRef<'button'>, ButtonProps>(
+export const Button = forwardRef<React.ElementRef<'button'>, ButtonProps>(
   function Button(
     {
       className,
@@ -39,5 +39,3 @@ const Button = forwardRef<React.ElementRef<'button'>, ButtonProps>(
     return <button ref={ref} type={type} {...rest} {...buttonBaseProps} />;
   },
 );
-
-export default Button;

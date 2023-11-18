@@ -1,11 +1,11 @@
-import CartItemList from '@/cart/cart-item-list';
-import CartTotalPrice from '@/cart/cart-total-price';
-import CheckoutForm from '@/checkout/checkout-form';
-import Container from '@/common/container';
-import PageTitle from '@/common/page-title';
-import SectionTitle from '@/common/section-title';
-import Paper from '@/common/paper';
-import ClearCartButton from '@/cart/clear-cart-button';
+import { CartItemList } from '@/cart/cart-item-list';
+import { CartTotalPrice } from '@/cart/cart-total-price';
+import { CheckoutForm } from '@/checkout/checkout-form';
+import { Container } from '@/common/container';
+import { PageTitle } from '@/common/page-title';
+import { SectionTitle } from '@/common/section-title';
+import { Paper } from '@/common/paper';
+import { ClearCartButton } from '@/cart/clear-cart-button';
 import { getCart } from '@/cart/cart-fetchers';
 
 export default async function CheckoutPage() {

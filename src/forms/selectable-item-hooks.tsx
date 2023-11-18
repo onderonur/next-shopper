@@ -1,5 +1,5 @@
+import { CheckIcon } from '@/common/icons';
 import classNames from 'classnames';
-import { CheckIcon } from 'lucide-react';
 
 export function useSelectableItemProps() {
   return {

@@ -1,13 +1,13 @@
 import type { Product } from '@/products/product-types';
 import { addProductToCart } from './cart-actions';
-import SubmitButton from '@/forms/submit-button';
+import { SubmitButton } from '@/forms/submit-button';
 
 type AddProductToCartButtonProps = {
   className?: string;
   product: Product;
 };
 
-export default function AddProductToCartButton({
+export function AddProductToCartButton({
   product,
 }: AddProductToCartButtonProps) {
   const addProductToCartWithId = addProductToCart.bind(null, product.id);

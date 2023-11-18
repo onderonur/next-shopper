@@ -4,10 +4,7 @@ type MobilePaddingProps = React.PropsWithChildren<{
   className?: string;
 }>;
 
-export default function MobilePadding({
-  className,
-  children,
-}: MobilePaddingProps) {
+export function MobilePadding({ className, children }: MobilePaddingProps) {
   return (
     <div className={classNames('px-2 md:px-0', className)}>{children}</div>
   );

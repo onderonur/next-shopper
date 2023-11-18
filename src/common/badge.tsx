@@ -4,7 +4,7 @@ type BadgeProps = React.PropsWithChildren<{
   value: Maybe<number>;
 }>;
 
-export default function Badge({ value, children }: BadgeProps) {
+export function Badge({ value, children }: BadgeProps) {
   return (
     <div className="relative">
       {children}

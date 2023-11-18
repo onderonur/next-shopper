@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import MobilePadding from './mobile-padding';
+import { MobilePadding } from './mobile-padding';
 
 type SectionTitleProps = React.PropsWithChildren<{
   as: keyof Pick<
@@ -11,7 +11,7 @@ type SectionTitleProps = React.PropsWithChildren<{
   className?: string;
 }>;
 
-export default function SectionTitle({
+export function SectionTitle({
   as,
   srOnly,
   actions,

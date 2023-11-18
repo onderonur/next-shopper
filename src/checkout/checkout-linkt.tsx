@@ -1,8 +1,8 @@
+import { ButtonLink } from '@/common/button-link';
 import { getCart } from '../cart/cart-fetchers';
 import { routes } from '@/routing/routing-utils';
-import ButtonLink from '@/common/button-link';
 
-export default async function CheckoutLink() {
+export async function CheckoutLink() {
   const cart = await getCart();
 
   if (!cart) {

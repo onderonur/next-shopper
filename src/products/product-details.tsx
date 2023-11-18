@@ -1,8 +1,8 @@
-import AddProductToCartButton from '@/cart/add-to-cart-button';
-import BaseImage from '@/common/base-image';
+import { AddProductToCartButton } from '@/cart/add-to-cart-button';
+import { BaseImage } from '@/common/base-image';
 import { Chip, ChipContent } from '@/common/chip';
-import Price from '@/common/price';
-import NextLink from '@/routing/next-link';
+import { Price } from '@/common/price';
+import { NextLink } from '@/routing/next-link';
 import { routes } from '@/routing/routing-utils';
 import type { Product } from './product-types';
 
@@ -10,7 +10,7 @@ type ProductDetailsProps = {
   product: Product;
 };
 
-export default function ProductDetails({ product }: ProductDetailsProps) {
+export function ProductDetails({ product }: ProductDetailsProps) {
   return (
     <div className="grid gap-6 md:grid-cols-2">
       <div className="relative mx-auto aspect-square w-full max-w-sm md:max-w-lg">

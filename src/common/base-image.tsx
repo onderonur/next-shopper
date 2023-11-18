@@ -5,7 +5,7 @@ import type { Omit } from './common-types';
 type BaseImageProps = Omit<ImageProps, 'alt'> &
   Required<Pick<ImageProps, 'alt'>>;
 
-export default function BaseImage({ alt, ...rest }: BaseImageProps) {
+export function BaseImage({ alt, ...rest }: BaseImageProps) {
   return (
     <Image
       {...rest}

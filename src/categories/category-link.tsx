@@ -1,17 +1,13 @@
 import type { NextLinkProps } from '@/routing/next-link';
-import NextLink from '@/routing/next-link';
-import BaseImage from '@/common/base-image';
+import { NextLink } from '@/routing/next-link';
+import { BaseImage } from '@/common/base-image';
 
 type CategoryLinkProps = Pick<NextLinkProps, 'href'> & {
   imageSrc: string;
   title: string;
 };
 
-export default function CategoryLink({
-  href,
-  imageSrc,
-  title,
-}: CategoryLinkProps) {
+export function CategoryLink({ href, imageSrc, title }: CategoryLinkProps) {
   return (
     <NextLink
       className="group relative block h-80 w-full overflow-hidden rounded-md"

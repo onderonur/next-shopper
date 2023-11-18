@@ -2,8 +2,8 @@
 // https://nextjs.org/docs/app/building-your-application/routing/error-handling#error-boundaries
 'use client';
 
-import Button from '@/common/button';
-import ErrorPage from '@/error-handling/error-page';
+import { Button } from '@/common/button';
+import { ErrorPage } from '@/error-handling/error-page';
 import { StatusCodes } from 'http-status-codes';
 
 type RootErrorPageProps = {

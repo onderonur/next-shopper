@@ -1,10 +1,10 @@
-import Container from '@/common/container';
-import PageTitle from '@/common/page-title';
-import SectionTitle from '@/common/section-title';
-import Paper from '@/common/paper';
+import { Container } from '@/common/container';
+import { PageTitle } from '@/common/page-title';
+import { SectionTitle } from '@/common/section-title';
+import { Paper } from '@/common/paper';
 import { getCart } from '@/cart/cart-fetchers';
 import { redirect } from 'next/navigation';
-import CheckoutSuccessMessage from '@/checkout/checkout-success-message';
+import { CheckoutSuccessMessage } from '@/checkout/checkout-success-message';
 
 export default async function CheckoutSuccessPage() {
   const cart = await getCart();

@@ -98,4 +98,5 @@ export async function removeProductFromCart(productId: Id) {
 export async function clearCart() {
   const cookieStore = cookies();
   cookieStore.delete('cart');
+  return { success: true };
 }

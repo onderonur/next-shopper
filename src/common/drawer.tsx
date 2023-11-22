@@ -15,7 +15,9 @@ type DrawerBodyProps = React.PropsWithChildren<{
 
 export function DrawerBody({ className, children }: DrawerBodyProps) {
   return (
-    <div className={classNames('flex-1 px-4 py-3', className)}>{children}</div>
+    <div className={classNames('flex-1 overflow-auto px-4 py-3', className)}>
+      {children}
+    </div>
   );
 }
 

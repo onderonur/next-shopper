@@ -10,7 +10,7 @@ export default async function CheckoutSuccessPage() {
   const cart = await getCart();
 
   if (cart) {
-    return redirect('/');
+    redirect('/');
   }
 
   return (

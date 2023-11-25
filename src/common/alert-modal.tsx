@@ -38,7 +38,7 @@ export function AlertModal({
             <RadixAlertDialog.Content asChild>
               <motion.div
                 initial={{ y: '-80%', x: '-50%', scale: 0.8 }}
-                animate={{ y: '-50%', scale: 1, rotate: 0 }}
+                animate={{ y: '-50%', scale: 1 }}
                 exit={{ y: '-80%', scale: 0.8, opacity: 0 }}
                 className="fixed left-1/2 top-1/2 z-20 w-full max-w-md focus:outline-none"
               >

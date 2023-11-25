@@ -42,7 +42,7 @@ export async function CartItemList({ className, isDense }: CartItemListProps) {
                 href={routes.product({
                   params: { productId: product.id },
                 })}
-                className="flex-grow font-semibold"
+                className="line-clamp-3 flex-grow font-semibold"
               >
                 {product.title}
               </NextLink>

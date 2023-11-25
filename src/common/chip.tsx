@@ -45,9 +45,9 @@ export function ChipClose({ className, ...rest }: ChipCloseProps) {
   return (
     <Button
       {...rest}
-      className={classNames(className, 'h-6 w-6')}
+      className={classNames(className, '!h-6 !w-6')}
       variant="transparent"
-      icon={<CloseIcon />}
+      icon={<CloseIcon size="1.2rem" />}
     />
   );
 }

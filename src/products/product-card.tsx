@@ -3,6 +3,7 @@ import { BaseImage } from '@/common/base-image';
 import { Price } from '@/common/price';
 import type { Product } from './product-types';
 import { routes } from '@/routing/routing-utils';
+import { Tooltip } from '@/common/tooltip';
 
 type ProductCardProps = {
   product: Product;
@@ -22,11 +23,15 @@ export function ProductCard({ product }: ProductCardProps) {
             />
           </div>
         </div>
-        <div className="text-center">
+        <div className="flex flex-col gap-2 text-center">
+          <Tooltip content={<div>{product.title}</div>}>
+            <h3 className="text-sm font-bold fixed-leading-5 fixed-line-clamp-3">
+              {product.title}
+            </h3>
+          </Tooltip>
           <div>
             <Price className="text-primary-dark" value={product.price} />
           </div>
-          <h3 className="break-words text-sm font-bold">{product.title}</h3>
         </div>
       </article>
     </NextLink>
@@ -39,10 +44,13 @@ export function ProductCardSkeleton() {
       <div className="p-2">
         <div className="aspect-[12/10] rounded-md bg-skeleton" />
       </div>
-      <div className="flex flex-col gap-2">
-        <div className="mx-auto h-6 w-16 rounded-md bg-skeleton" />
-        <div className="mx-auto h-4 w-full max-w-[theme(spacing.48)] rounded-md bg-skeleton" />
-        <div className="mx-auto h-4 w-full max-w-[theme(spacing.28)] rounded-md bg-skeleton" />
+      <div className="flex flex-col items-center gap-3">
+        <div className="flex w-full flex-col items-center gap-1">
+          <div className="h-4 w-full max-w-[theme(spacing.28)] rounded-md bg-skeleton" />
+          <div className="h-4 w-full max-w-[theme(spacing.36)] rounded-md bg-skeleton" />
+          <div className="h-4 w-full max-w-[theme(spacing.28)] rounded-md bg-skeleton" />
+        </div>
+        <div className="h-6 w-16 rounded-md bg-skeleton" />
       </div>
     </div>
   );

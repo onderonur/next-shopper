@@ -21,10 +21,10 @@ type LayoutHeaderProps = React.PropsWithChildren;
 
 export function LayoutHeader({ children }: LayoutHeaderProps) {
   return (
-    <header className="fixed z-10 h-app-header w-full bg-background-main px-6 shadow-sm">
+    <header className="fixed z-10 h-app-header w-full bg-background-main shadow-sm">
       <Container
         maxWidth="xl"
-        className="flex h-full items-center justify-between"
+        className="flex h-full items-center justify-between px-4"
       >
         <NextLink href="/" className="text-2xl font-bold text-primary-main">
           {APP_TITLE}
@@ -53,16 +53,21 @@ export function LayoutContent({ className, children }: LayoutContentProps) {
 
 export function LayoutFooter() {
   return (
-    <footer className="flex h-16 items-center justify-between bg-background-main px-6 text-text-light">
-      <p>
-        {new Date().getFullYear()} © {APP_TITLE}
-      </p>
-      <ButtonLink
-        aria-label="Check the Source Code on GitHub"
-        icon={<GithubIcon />}
-        href={APP_REPOSITORY_URL}
-        isExternalUrl
-      />
+    <footer className="bg-background-main text-text-light">
+      <Container
+        maxWidth="xl"
+        className="flex items-center justify-between px-4 py-6"
+      >
+        <p>
+          {new Date().getFullYear()} © {APP_TITLE}
+        </p>
+        <ButtonLink
+          aria-label="Check the Source Code on GitHub"
+          icon={<GithubIcon />}
+          href={APP_REPOSITORY_URL}
+          isExternalUrl
+        />
+      </Container>
     </footer>
   );
 }

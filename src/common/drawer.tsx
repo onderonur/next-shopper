@@ -4,10 +4,10 @@ import { fadeIn, slide, type SlideArgs } from '@/transitions/transition-utils';
 import * as RadixDialog from '@radix-ui/react-dialog';
 import { Button } from './button';
 import { CloseIcon } from './icons';
-import classNames from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
 import { useOnPathnameChange, useOnRouteChange } from '@/routing/routing-hooks';
+import { twJoin, twMerge } from 'tailwind-merge';
 
 type DrawerBodyProps = React.PropsWithChildren<{
   className?: string;
@@ -15,7 +15,7 @@ type DrawerBodyProps = React.PropsWithChildren<{
 
 export function DrawerBody({ className, children }: DrawerBodyProps) {
   return (
-    <div className={classNames('flex-1 overflow-auto px-4 py-3', className)}>
+    <div className={twMerge('flex-1 overflow-auto px-4 py-3', className)}>
       {children}
     </div>
   );
@@ -86,7 +86,7 @@ export function Drawer({
             <RadixDialog.Content asChild>
               <motion.div
                 {...slide({ from })}
-                className={classNames(
+                className={twJoin(
                   'fixed bottom-0 top-0 z-10 flex w-full max-w-xs flex-col bg-white focus:outline-none',
                   from === 'left' ? 'left-0' : 'right-0',
                 )}

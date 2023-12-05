@@ -1,10 +1,10 @@
 import { BackToTopButton } from './back-to-top-button';
 import { Container } from '@/common/container';
-import classNames from 'classnames';
 import { ButtonLink } from '@/common/button-link';
 import { APP_REPOSITORY_URL, APP_TITLE } from '@/common/common-utils';
 import { GithubIcon } from '@/common/icons';
 import { NextLink } from '@/routing/next-link';
+import { twMerge } from 'tailwind-merge';
 
 type LayoutProps = React.PropsWithChildren;
 
@@ -44,7 +44,7 @@ export function LayoutContent({ className, children }: LayoutContentProps) {
     <Container
       as="main"
       maxWidth="xl"
-      className={classNames('mt-app-header py-2 md:p-4', className)}
+      className={twMerge('mt-app-header py-2 md:p-4', className)}
     >
       {children}
     </Container>

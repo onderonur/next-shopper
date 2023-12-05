@@ -1,10 +1,12 @@
+'use client';
+
 import type { Maybe } from '@/common/common-types';
 import { SelectableGroupSkeleton } from './selectable-group-skeleton';
 import * as RadixRadioGroup from '@radix-ui/react-radio-group';
 import { Label } from './label';
 import { useId } from 'react';
 import { useSelectableItemProps } from './selectable-item-hooks';
-import classNames from 'classnames';
+import { twMerge } from 'tailwind-merge';
 
 type RadioGroupProps = React.PropsWithChildren<{
   isLoading?: boolean;
@@ -54,7 +56,7 @@ export function RadioGroupItem({ value, children }: RadioGroupItemProps) {
   return (
     <div className={rootClassName}>
       <RadixRadioGroup.Item
-        className={classNames(itemClassName, '!rounded-full')}
+        className={twMerge(itemClassName, 'rounded-full')}
         id={id}
         value={value}
       >

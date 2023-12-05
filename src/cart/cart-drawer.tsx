@@ -34,7 +34,7 @@ export async function CartDrawer() {
       <DrawerHeader>
         <h2>Cart</h2>
       </DrawerHeader>
-      <DrawerBody className="flex flex-col overflow-auto !p-0">
+      <DrawerBody className="flex flex-col overflow-auto p-0">
         <div className="p-2">
           <ClearCartButton cart={cart} />
         </div>

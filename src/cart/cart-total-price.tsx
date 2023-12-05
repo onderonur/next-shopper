@@ -1,6 +1,6 @@
 import { Price } from '@/common/price';
 import { getCart } from './cart-fetchers';
-import classNames from 'classnames';
+import { twMerge } from 'tailwind-merge';
 
 type CartTotalPriceProps = {
   className?: string;
@@ -15,10 +15,7 @@ export async function CartTotalPrice({ className }: CartTotalPriceProps) {
 
   return (
     <div
-      className={classNames(
-        'flex justify-between text-lg font-bold',
-        className,
-      )}
+      className={twMerge('flex justify-between text-lg font-bold', className)}
     >
       <span>Total</span>
       <Price value={cart.totalPrice} />

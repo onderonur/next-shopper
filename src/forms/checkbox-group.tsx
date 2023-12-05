@@ -1,3 +1,5 @@
+'use client';
+
 import { SelectableGroupSkeleton } from './selectable-group-skeleton';
 import * as RadixCheckbox from '@radix-ui/react-checkbox';
 import { Label } from './label';

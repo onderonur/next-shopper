@@ -5,7 +5,7 @@ import { NextLink } from '@/routing/next-link';
 import { routes } from '@/routing/routing-utils';
 import { CartItemActionButtons } from './cart-items-actions-buttons';
 import { getCart } from './cart-fetchers';
-import classNames from 'classnames';
+import { twJoin } from 'tailwind-merge';
 
 type CartItemListProps = {
   className?: string;
@@ -17,7 +17,7 @@ export async function CartItemList({ className, isDense }: CartItemListProps) {
 
   return (
     <List
-      className={classNames(className)}
+      className={className}
       layout
       emptyMessage={
         <div className="grid place-items-center gap-2 p-8 text-secondary-main">
@@ -35,7 +35,7 @@ export async function CartItemList({ className, isDense }: CartItemListProps) {
           <ListItem
             key={product.id}
             layout
-            className={classNames('border-b-2 p-6', isDense && 'px-4 py-3')}
+            className={twJoin('border-b-2 p-6', isDense && 'px-4 py-3')}
           >
             <div className="flex gap-4">
               <NextLink

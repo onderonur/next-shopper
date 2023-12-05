@@ -1,5 +1,5 @@
+import { twJoin, twMerge } from 'tailwind-merge';
 import type { Maybe } from './common-types';
-import classNames from 'classnames';
 
 type LoadingProps = React.PropsWithChildren<{
   className?: string;
@@ -19,15 +19,11 @@ export function Loading({
 
   return (
     <div
-      className={classNames(
-        'flex justify-center',
-        children && 'py-6',
-        className,
-      )}
+      className={twMerge('flex justify-center', children && 'py-6', className)}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className={classNames(
+        className={twJoin(
           'animate-spin text-primary-main',
           size === 'small' ? 'h-4 w-4' : 'h-12 w-12',
         )}

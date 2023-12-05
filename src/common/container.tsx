@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import { twMerge } from 'tailwind-merge';
 
 type ContainerProps = React.PropsWithChildren<{
   as?: keyof React.JSX.IntrinsicElements;
@@ -14,16 +14,18 @@ export function Container({
 }: ContainerProps) {
   const As = as;
 
+  const classNameByMaxWidth: Record<typeof maxWidth, string> = {
+    sm: 'max-w-screen-sm',
+    md: 'max-w-screen-md',
+    lg: 'max-w-screen-lg',
+    xl: 'max-w-screen-xl',
+    '2xl': 'max-w-screen-2xl',
+  };
+
   return (
     <As
-      className={classNames(
-        {
-          'max-w-screen-sm': maxWidth === 'sm',
-          'max-w-screen-md': maxWidth === 'md',
-          'max-w-screen-lg': maxWidth === 'lg',
-          'max-w-screen-xl': maxWidth === 'xl',
-          'max-w-screen-2xl': maxWidth === '2xl',
-        },
+      className={twMerge(
+        classNameByMaxWidth[maxWidth],
         'mx-auto w-full',
         className,
       )}

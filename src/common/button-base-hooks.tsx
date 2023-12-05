@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import { twMerge } from 'tailwind-merge';
 import { Loading } from './loading';
 
 export type UseButtonBasePropsArgs = React.PropsWithChildren<{
@@ -21,8 +21,7 @@ export function useButtonBaseProps({
   iconAlignment = 'left',
   children,
 }: UseButtonBasePropsArgs) {
-  const classNameArgs: classNames.ArgumentArray = [
-    className,
+  const classNameArgs: string[] = [
     'select-none font-semibold uppercase border-2 inline-grid place-items-center',
   ];
 
@@ -80,7 +79,7 @@ export function useButtonBaseProps({
 
   return {
     disabled: isDisabled,
-    className: classNames(classNameArgs),
+    className: twMerge(classNameArgs, className),
     children: content,
   };
 }

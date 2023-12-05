@@ -6,16 +6,20 @@ import {
 import { ExternalLinkIcon } from '@/common/icons';
 import { routes } from '@/routing/routing-utils';
 import { ButtonLink } from './button-link';
+import { Divider } from './divider';
 
 export function Hero() {
   return (
     <div className="bg-background-main shadow-sm">
       <div className="flex flex-col items-center gap-4 px-4 py-12 text-center">
-        <h1 className="text-3xl font-black uppercase text-primary-main sm:text-4xl lg:text-5xl">
+        <h1 className="text-5xl font-black text-primary-main sm:text-7xl lg:text-8xl">
           {APP_TITLE}
         </h1>
+        <Divider />
         <div className="flex flex-col items-center">
-          <p className="font-semibold text-primary-dark">{APP_DESCRIPTION}</p>
+          <p className="text-lg font-semibold text-primary-dark sm:text-xl">
+            {APP_DESCRIPTION}
+          </p>
           <ButtonLink
             className="mt-1"
             variant="transparent"
@@ -27,7 +31,7 @@ export function Hero() {
             Check the Source Code
           </ButtonLink>
         </div>
-        <hr className="w-24 border-t-4 border-secondary-lighter" />
+        <Divider />
         <ButtonLink href={routes.search()}>Browse Store</ButtonLink>
       </div>
     </div>

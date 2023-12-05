@@ -1,5 +1,5 @@
-import classNames from 'classnames';
 import { forwardRef } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 type FormProps = React.ComponentPropsWithoutRef<'form'>;
 
@@ -9,7 +9,7 @@ export const Form = forwardRef<React.ElementRef<'form'>, FormProps>(
       <form
         ref={ref}
         autoComplete="off"
-        className={classNames(className, 'flex flex-col gap-3')}
+        className={twMerge('flex flex-col gap-3', className)}
         {...rest}
       />
     );

@@ -4,7 +4,6 @@ import { twJoin } from 'tailwind-merge';
 export function useSelectableItemProps() {
   return {
     rootClassName: 'flex items-center gap-1',
-    // TODO: Improve focus styles
     itemClassName: twJoin(
       'h-6 w-6 flex-none rounded-md border-2 border-primary-main',
       'data-[state=checked]:bg-primary-light',

@@ -18,4 +18,10 @@
   ::-webkit-scrollbar-thumb:hover {
     @apply rounded-lg bg-scrollbar-thumb-hover;
   }
+
+  a,
+  input,
+  button {
+    @apply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary-main;
+  }
 }

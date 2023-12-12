@@ -1,5 +1,3 @@
-'use client';
-
 import type { PatternFormatProps } from 'react-number-format';
 import { PatternFormat } from 'react-number-format';
 import type { InputProps, InputRef } from './input';

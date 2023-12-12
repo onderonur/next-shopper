@@ -72,7 +72,7 @@ export function useButtonBaseProps({
   const content = (
     <span className="flex items-center gap-2">
       {iconAlignment === 'left' && buttonIcon}
-      {children && <span>{children}</span>}
+      <span className="empty:hidden">{children}</span>
       {iconAlignment === 'right' && buttonIcon}
     </span>
   );

@@ -11,23 +11,34 @@ const [SectionContext, useSectionContext] =
     displayName: 'SectionContext',
   });
 
-type SectionProps = React.ComponentPropsWithoutRef<'section'>;
+type SectionAs = keyof Pick<React.JSX.IntrinsicElements, 'section' | 'aside'>;
 
-export function Section(props: SectionProps) {
+type SectionProps<As extends SectionAs = 'section'> =
+  React.ComponentPropsWithoutRef<As> & {
+    as?: SectionAs;
+  };
+
+export function Section<As extends SectionAs = 'section'>({
+  as = 'section',
+  ...rest
+}: SectionProps<As>) {
+  const As = as;
   const headingId = useId();
 
   return (
     <SectionContext.Provider value={{ headingId }}>
-      <section {...props} aria-labelledby={headingId} />
+      <As {...rest} aria-labelledby={headingId} />
     </SectionContext.Provider>
   );
 }
 
+type SectionTitleAs = keyof Pick<
+  React.JSX.IntrinsicElements,
+  'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+>;
+
 type SectionTitleProps = React.PropsWithChildren<{
-  as: keyof Pick<
-    React.JSX.IntrinsicElements,
-    'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
-  >;
+  as: SectionTitleAs;
   srOnly?: boolean;
   actions?: React.ReactNode;
   className?: string;
@@ -45,7 +56,7 @@ export function SectionTitle({
 
   if (srOnly) {
     return (
-      <As className="sr-only" id={headingId}>
+      <As id={headingId} className="sr-only">
         {children}
       </As>
     );
@@ -54,7 +65,9 @@ export function SectionTitle({
   return (
     <MobilePadding className={className}>
       <header className="mb-1 flex items-center justify-between">
-        <As className="text-lg font-semibold text-text-light">{children}</As>
+        <As id={headingId} className="text-lg font-semibold text-text-light">
+          {children}
+        </As>
         {actions ? <div>{actions}</div> : null}
       </header>
     </MobilePadding>

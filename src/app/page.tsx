@@ -2,20 +2,16 @@ import { Container } from '@/common/container';
 import { Hero } from '@/common/hero';
 import { Categories } from '@/categories/categories';
 import { getMetadata } from '@/seo/seo-utils';
-import { Layout, LayoutFooter } from '@/layout/layout';
 
 export const metadata = getMetadata({ title: 'Home', pathname: '/' });
 
 export default function LandingPage() {
   return (
-    <Layout>
-      <main>
-        <Hero />
-        <Container maxWidth="xl" className="p-4">
-          <Categories />
-        </Container>
-      </main>
-      <LayoutFooter />
-    </Layout>
+    <main>
+      <Hero />
+      <Container maxWidth="xl" className="p-4">
+        <Categories />
+      </Container>
+    </main>
   );
 }

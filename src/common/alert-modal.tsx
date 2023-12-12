@@ -1,8 +1,10 @@
 import { Button } from '@/common/button';
 import { useOnRouteChange } from '@/routing/routing-hooks';
 import * as RadixAlertDialog from '@radix-ui/react-alert-dialog';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
+import { AnimatePresence } from '@/common/motion';
 import { fadeIn } from '@/transitions/transition-utils';
+import { twJoin } from 'tailwind-merge';
 
 type AlertModalProps = React.PropsWithChildren<{
   isOpen: boolean;
@@ -37,12 +39,22 @@ export function AlertModal({
             </RadixAlertDialog.Overlay>
             <RadixAlertDialog.Content asChild>
               <motion.div
-                initial={{ y: '-80%', x: '-50%', scale: 0.8 }}
-                animate={{ y: '-50%', scale: 1 }}
-                exit={{ y: '-80%', scale: 0.8, opacity: 0 }}
-                className="fixed left-1/2 top-1/2 z-20 w-full max-w-md focus:outline-none"
+                // Responsive Framer Motion with Tailwind CSS:
+                // https://www.youtube.com/watch?v=xSuxsfn13xg
+                className={twJoin(
+                  'fixed bottom-0 left-1/2 z-20 w-full p-6 focus:outline-none sm:bottom-auto sm:top-1/2 sm:max-w-md sm:p-2',
+                  '[--y-from:30%] [--y-to:0%] sm:[--y-from:-80%] sm:[--y-to:-50%]',
+                )}
+                initial={{
+                  y: 'var(--y-from)',
+                  x: '-50%',
+                  scale: 0.8,
+                  opacity: 0,
+                }}
+                animate={{ y: 'var(--y-to)', scale: 1, opacity: 1 }}
+                exit={{ y: 'var(--y-from)', scale: 0.8, opacity: 0 }}
               >
-                <div className="mx-2 rounded-md bg-white p-6 shadow-md ">
+                <div className="rounded-md bg-white p-6 shadow-md">
                   {children}
                 </div>
               </motion.div>

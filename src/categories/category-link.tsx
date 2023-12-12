@@ -22,7 +22,7 @@ export function CategoryLink({ href, imageSrc, title }: CategoryLinkProps) {
       />
       <div className="absolute inset-0 grid place-items-center">
         <div className="rounded-md bg-black bg-opacity-50 p-6">
-          <h2 className="mb-2 border-b-4 text-center text-3xl font-bold text-white md:text-4xl">
+          <h2 className="mb-2 border-b-4 text-center text-3xl font-bold text-text-contrast md:text-4xl">
             {title}
           </h2>
         </div>

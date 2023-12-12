@@ -36,7 +36,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
             query: { categories: [product.category.value] },
           })}
         >
-          <Chip variant="secondary">
+          <Chip>
             <ChipContent>{product.category.title}</ChipContent>
           </Chip>
         </NextLink>

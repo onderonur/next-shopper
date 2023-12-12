@@ -3,7 +3,8 @@
 import { Button } from '@/common/button';
 import { ArrowUpIcon } from '@/common/icons';
 import { fadeIn } from '@/transitions/transition-utils';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
+import { AnimatePresence } from '@/common/motion';
 import { useSyncExternalStore } from 'react';
 
 const MotionButton = motion(Button);

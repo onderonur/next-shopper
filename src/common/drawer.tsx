@@ -1,13 +1,15 @@
 'use client';
 
-import { fadeIn, slide, type SlideArgs } from '@/transitions/transition-utils';
+import { fadeIn } from '@/transitions/transition-utils';
 import * as RadixDialog from '@radix-ui/react-dialog';
 import { Button } from './button';
 import { CloseIcon } from './icons';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
+import { AnimatePresence } from '@/common/motion';
 import { useState } from 'react';
 import { useOnPathnameChange, useOnRouteChange } from '@/routing/routing-hooks';
 import { twJoin, twMerge } from 'tailwind-merge';
+import { useIsMobile } from './common-hooks';
 
 type DrawerBodyProps = React.PropsWithChildren<{
   className?: string;
@@ -15,9 +17,16 @@ type DrawerBodyProps = React.PropsWithChildren<{
 
 export function DrawerBody({ className, children }: DrawerBodyProps) {
   return (
-    <div className={twMerge('flex-1 overflow-auto px-4 py-3', className)}>
+    <motion.div
+      className={twMerge('flex-1 overflow-auto px-4 py-3', className)}
+      // To prevent drag gestures to swipe drawer inside `DrawerBody`.
+      // https://www.framer.com/motion/gestures/##propagation
+      onPointerDownCapture={(e) => {
+        e.stopPropagation();
+      }}
+    >
       {children}
-    </div>
+    </motion.div>
   );
 }
 
@@ -25,32 +34,43 @@ type DrawerHeaderProps = React.PropsWithChildren;
 
 export function DrawerHeader({ children }: DrawerHeaderProps) {
   return (
-    <div className="flex items-center justify-between px-4 py-3 shadow-sm">
-      <RadixDialog.Title className="text-lg font-semibold" asChild>
-        {children}
-      </RadixDialog.Title>
-      <RadixDialog.Close asChild>
-        <Button variant="transparent" icon={<CloseIcon />} aria-label="Close" />
-      </RadixDialog.Close>
+    <div>
+      <div className="mx-auto max-w-[4rem] pt-3 sm:hidden">
+        <div className="h-1.5 rounded-md bg-text-lighter/20" />
+      </div>
+      <div className="flex items-center justify-between px-4 py-3 shadow-sm">
+        <RadixDialog.Title className="text-lg font-semibold" asChild>
+          {children}
+        </RadixDialog.Title>
+        <RadixDialog.Close asChild>
+          <Button
+            variant="transparent"
+            icon={<CloseIcon />}
+            aria-label="Close"
+          />
+        </RadixDialog.Close>
+      </div>
     </div>
   );
 }
 
-type DrawerProps = SlideArgs &
-  React.PropsWithChildren<{
-    trigger: React.ReactNode;
-    closeOnRouteChange?: boolean;
-    closeOnPathnameChange?: boolean;
-  }>;
+type DrawerProps = React.PropsWithChildren<{
+  from?: 'left' | 'right';
+  trigger: React.ReactNode;
+  closeOnRouteChange?: boolean;
+  closeOnPathnameChange?: boolean;
+}>;
 
 export function Drawer({
-  from,
+  from = 'left',
   trigger,
   closeOnRouteChange,
   closeOnPathnameChange,
   children,
 }: DrawerProps) {
   const [isOpen, setIsOpen] = useState(false);
+
+  const isMobile = useIsMobile();
 
   useOnRouteChange(
     closeOnRouteChange
@@ -85,11 +105,34 @@ export function Drawer({
             </RadixDialog.Overlay>
             <RadixDialog.Content asChild>
               <motion.div
-                {...slide({ from })}
                 className={twJoin(
-                  'fixed bottom-0 top-0 z-10 flex w-full max-w-xs flex-col bg-white focus:outline-none',
-                  from === 'left' ? 'left-0' : 'right-0',
+                  'fixed bottom-0 z-10 flex w-full flex-col bg-background-main focus:outline-none',
+                  'max-h-[80%] rounded-t-2xl sm:top-0 sm:max-h-none sm:max-w-xs sm:rounded-none sm:rounded-l-2xl',
+                  '[--x-from:0] [--x-to:0] [--y-from:100%] [--y-to:0%] sm:[--x-to:0%] sm:[--y-from:0] sm:[--y-to:0]',
+                  from === 'left'
+                    ? 'sm:left-0 sm:[--x-from:-100%]'
+                    : 'sm:right-0 sm:[--x-from:100%]',
                 )}
+                // Normally we can use `framer-motion` in a responsive way,
+                // by using CSS variables.
+                // Responsive Framer Motion with Tailwind CSS:
+                // https://www.youtube.com/watch?v=xSuxsfn13xg
+                // But, since there is a bug about using CSS variables with drag event,
+                // we used `useMediaQuery` hook and handled this in TSX instead of CSS.
+                // https://github.com/framer/motion/issues/2390
+                initial={isMobile ? { y: '100%' } : { x: '100%' }}
+                animate={isMobile ? { y: 0 } : { x: 0 }}
+                exit={isMobile ? { y: '100%' } : { x: '100%' }}
+                transition={{ duration: 0.3 }}
+                // To swipe to dismiss
+                drag={isMobile ? 'y' : false}
+                dragConstraints={{ top: 0, bottom: 0 }}
+                dragElastic={{ top: 0, bottom: 0.5 }}
+                onDragEnd={(event, info) => {
+                  if (info.offset.y >= 100 || info.velocity.y >= 10) {
+                    setIsOpen(false);
+                  }
+                }}
               >
                 {children}
               </motion.div>

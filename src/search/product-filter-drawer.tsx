@@ -12,7 +12,6 @@ import { MobilePadding } from '@/common/mobile-padding';
 export function ProductFilterDrawer() {
   return (
     <Drawer
-      from="left"
       closeOnPathnameChange
       trigger={
         <MobilePadding className="md:hidden">

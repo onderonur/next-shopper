@@ -42,7 +42,6 @@ type LayoutContentProps = React.PropsWithChildren<{
 export function LayoutContent({ className, children }: LayoutContentProps) {
   return (
     <Container
-      as="main"
       maxWidth="xl"
       className={twMerge('mt-app-header py-2 md:p-4', className)}
     >

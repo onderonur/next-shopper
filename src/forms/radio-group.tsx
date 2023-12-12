@@ -1,5 +1,3 @@
-'use client';
-
 import type { Maybe } from '@/common/common-types';
 import { SelectableGroupSkeleton } from './selectable-group-skeleton';
 import * as RadixRadioGroup from '@radix-ui/react-radio-group';

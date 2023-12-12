@@ -2,7 +2,6 @@
 
 import { Button } from '@/common/button';
 import { Chip, ChipClose, ChipContent } from '@/common/chip';
-import { List, ListItem } from '@/common/list';
 import { MobilePadding } from '@/common/mobile-padding';
 import { routes } from '@/routing/routing-utils';
 import { useRouter } from 'next/navigation';
@@ -23,13 +22,11 @@ export function SelectedFilters() {
 
   return (
     <MobilePadding>
-      <List className="flex flex-row flex-wrap gap-1">
+      <ul className="flex flex-row flex-wrap gap-1">
         {visibleOptions.map((selectedOption) => {
           return (
-            <ListItem
-              key={`${selectedOption.filterKey}_${selectedOption.value}`}
-            >
-              <Chip variant="secondary" textAlign="left">
+            <li key={`${selectedOption.filterKey}_${selectedOption.value}`}>
+              <Chip>
                 <ChipContent>{selectedOption.title}</ChipContent>
                 <ChipClose
                   aria-label={`Remove ${selectedOption.title} filter`}
@@ -56,10 +53,10 @@ export function SelectedFilters() {
                   }}
                 />
               </Chip>
-            </ListItem>
+            </li>
           );
         })}
-        <ListItem>
+        <li>
           <Button
             className="text-sm"
             variant="transparent"
@@ -69,8 +66,8 @@ export function SelectedFilters() {
           >
             Clear Filters
           </Button>
-        </ListItem>
-      </List>
+        </li>
+      </ul>
     </MobilePadding>
   );
 }

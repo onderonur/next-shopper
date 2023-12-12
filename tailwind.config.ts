@@ -86,8 +86,8 @@ export default {
 
       matchUtilities(
         {
-          'fixed-leading': (val: string) => {
-            let lineHeight = val;
+          'fixed-leading': (value: string) => {
+            let lineHeight = value;
 
             // Some `lineHeight` values does not end with `rem` like `normal: 1.5`.
             // To handle these values, we add `em` at the end of them
@@ -128,6 +128,20 @@ export default {
             '4': 4,
             '5': 5,
           },
+        },
+      );
+    }),
+    plugin(({ matchUtilities, theme }) => {
+      matchUtilities(
+        {
+          'grid-cols-autofill': (value: string) => {
+            return {
+              gridTemplateColumns: `repeat(auto-fill, minmax(${value}, 1fr))`,
+            };
+          },
+        },
+        {
+          values: theme('spacing'),
         },
       );
     }),

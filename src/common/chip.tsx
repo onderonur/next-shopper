@@ -1,38 +1,15 @@
 import type { ButtonProps } from './button';
 import { Button } from './button';
 import { CloseIcon } from './icons';
-import { twMerge } from 'tailwind-merge';
 
-type ChipProps = React.PropsWithChildren<{
-  className?: string;
-  textAlign?: 'center' | 'left';
-  variant?: 'primary' | 'secondary';
-  filled?: boolean;
-}>;
+type ChipProps = React.PropsWithChildren;
 
-export function Chip({
-  className,
-  textAlign,
-  variant,
-  filled,
-  children,
-}: ChipProps) {
+export function Chip({ children }: ChipProps) {
   return (
     <div
-      className={twMerge(
-        'flex select-none items-center gap-1',
-        'rounded-md border-2 px-2 py-1 text-sm',
-        textAlign === 'left' ? 'text-left' : 'text-center',
-        variant === 'primary' && [
-          'border-primary-main text-primary-dark',
-          filled && 'bg-primary-lighter',
-        ],
-        variant === 'secondary' && [
-          'border-secondary-main text-secondary-dark',
-          filled && 'bg-secondary-lighter',
-        ],
-        className,
-      )}
+      className={
+        'flex select-none items-center gap-1 rounded-md border-2 border-secondary-main px-2 py-1 text-sm text-secondary-dark'
+      }
     >
       {children}
     </div>
@@ -41,11 +18,11 @@ export function Chip({
 
 type ChipCloseProps = ButtonProps;
 
-export function ChipClose({ className, ...rest }: ChipCloseProps) {
+export function ChipClose(props: ChipCloseProps) {
   return (
     <Button
-      {...rest}
-      className={twMerge('h-6 w-6', className)}
+      {...props}
+      className="h-6 w-6"
       variant="transparent"
       icon={<CloseIcon size="1.2rem" />}
     />

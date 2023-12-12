@@ -1,5 +1,4 @@
 import { createMockArray } from '@/common/common-utils';
-import { List, ListItem } from '@/common/list';
 
 type SelectableGroupSkeletonProps = {
   optionCount: number;
@@ -9,15 +8,15 @@ export function SelectableGroupSkeleton({
   optionCount,
 }: SelectableGroupSkeletonProps) {
   return (
-    <List className="flex flex-col gap-1">
+    <ul className="flex flex-col gap-1">
       {createMockArray(optionCount).map((i) => {
         return (
-          <ListItem key={i}>
+          <li key={i}>
             <SelectableItemSkeleton />
-          </ListItem>
+          </li>
         );
       })}
-    </List>
+    </ul>
   );
 }
 

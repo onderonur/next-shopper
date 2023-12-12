@@ -11,7 +11,11 @@ type ProductCardProps = {
 
 export function ProductCard({ product }: ProductCardProps) {
   return (
-    <NextLink href={routes.product({ params: { productId: product.id } })}>
+    <NextLink
+      href={routes.product({ params: { productId: product.id } })}
+      // To show outline when the link is `focus-visible`.
+      className="block"
+    >
       <article className="group flex flex-col gap-2 rounded-md border-2 p-2 md:p-4">
         <div className="p-2">
           <div className="relative aspect-[12/10] transform bg-transparent transition duration-500 ease-out group-hover:scale-110">

@@ -4,6 +4,7 @@ import { BaseSWRConfig } from '@/http-client/base-swr-config';
 import type { Viewport } from 'next';
 import { twJoin } from 'tailwind-merge';
 import { Layout, LayoutFooter } from '@/layout/layout';
+import { TooltipProvider } from '@/common/tooltip';
 
 const inter = Inter({
   variable: '--font-inter',
@@ -32,10 +33,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <head />
       <body className="bg-background-dark text-text-main">
         <BaseSWRConfig>
-          <Layout>
-            {children}
-            <LayoutFooter />
-          </Layout>
+          <TooltipProvider>
+            <Layout>
+              {children}
+              <LayoutFooter />
+            </Layout>
+          </TooltipProvider>
         </BaseSWRConfig>
       </body>
     </html>

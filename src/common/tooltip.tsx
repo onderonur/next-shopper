@@ -3,13 +3,14 @@
 import * as RadixTooltip from '@radix-ui/react-tooltip';
 import { motion } from 'framer-motion';
 
+export const TooltipProvider = RadixTooltip.Provider;
+
 type TooltipProps = React.PropsWithChildren<{
   content: React.ReactNode;
 }>;
 
 export function Tooltip({ content, children }: TooltipProps) {
   return (
-    <RadixTooltip.Provider>
       <RadixTooltip.Root>
         <RadixTooltip.Trigger asChild>{children}</RadixTooltip.Trigger>
         <RadixTooltip.Portal>
@@ -25,6 +26,5 @@ export function Tooltip({ content, children }: TooltipProps) {
           </RadixTooltip.Content>
         </RadixTooltip.Portal>
       </RadixTooltip.Root>
-    </RadixTooltip.Provider>
   );
 }

@@ -11,20 +11,20 @@ type TooltipProps = React.PropsWithChildren<{
 
 export function Tooltip({ content, children }: TooltipProps) {
   return (
-      <RadixTooltip.Root>
-        <RadixTooltip.Trigger asChild>{children}</RadixTooltip.Trigger>
-        <RadixTooltip.Portal>
-          <RadixTooltip.Content sideOffset={4} asChild>
-            <motion.div
-              initial={{ y: -2, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              className="select-none rounded-md bg-text-main px-2 py-2 text-sm font-semibold text-text-contrast shadow-md"
-            >
-              {content}
-              <RadixTooltip.Arrow className="fill-text-main" />
-            </motion.div>
-          </RadixTooltip.Content>
-        </RadixTooltip.Portal>
-      </RadixTooltip.Root>
+    <RadixTooltip.Root>
+      <RadixTooltip.Trigger asChild>{children}</RadixTooltip.Trigger>
+      <RadixTooltip.Portal>
+        <RadixTooltip.Content sideOffset={4} asChild>
+          <motion.div
+            initial={{ y: -2, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            className="select-none rounded-md bg-text-main px-2 py-2 text-sm font-semibold text-text-contrast shadow-md"
+          >
+            {content}
+            <RadixTooltip.Arrow className="fill-text-main" />
+          </motion.div>
+        </RadixTooltip.Content>
+      </RadixTooltip.Portal>
+    </RadixTooltip.Root>
   );
 }

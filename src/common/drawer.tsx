@@ -108,7 +108,7 @@ export function Drawer({
                 className={twJoin(
                   'fixed bottom-0 z-10 flex w-full flex-col bg-background-main focus:outline-none',
                   'max-h-[80%] rounded-t-2xl sm:top-0 sm:max-h-none sm:max-w-xs sm:rounded-none sm:rounded-l-2xl',
-                  '[--x-from:0] [--x-to:0] [--y-from:100%] [--y-to:0%] sm:[--x-to:0%] sm:[--y-from:0] sm:[--y-to:0]',
+                  '[--y-to:0%] [--x-from:0] [--x-to:0] [--y-from:100%] sm:[--x-to:0%] sm:[--y-from:0] sm:[--y-to:0]',
                   from === 'left'
                     ? 'sm:left-0 sm:[--x-from:-100%]'
                     : 'sm:right-0 sm:[--x-from:100%]',

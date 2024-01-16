@@ -1,8 +1,8 @@
 import {
+  Layout,
   LayoutContent,
   LayoutFooter,
   LayoutHeader,
-  Layout,
 } from '@/layout/layout';
 
 type ErrorPageProps = React.PropsWithChildren<{

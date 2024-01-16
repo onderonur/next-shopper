@@ -1,12 +1,12 @@
 'use client';
 
+import { AnimatePresence } from '@/common/motion';
 import { Price } from '@/common/price';
 import { NextLink } from '@/routing/next-link';
 import { routes } from '@/routing/routing-utils';
-import { CartItemActionButtons } from './cart-item-actions-buttons';
-import { twJoin } from 'tailwind-merge';
 import { motion } from 'framer-motion';
-import { AnimatePresence } from '@/common/motion';
+import { twJoin } from 'tailwind-merge';
+import { CartItemActionButtons } from './cart-item-actions-buttons';
 import type { CartItem } from './cart-types';
 
 export type CartItemListContentProps = {

@@ -1,6 +1,6 @@
+import { BaseImage } from '@/common/base-image';
 import type { NextLinkProps } from '@/routing/next-link';
 import { NextLink } from '@/routing/next-link';
-import { BaseImage } from '@/common/base-image';
 
 type CategoryLinkProps = Pick<NextLinkProps, 'href'> & {
   imageSrc: string;

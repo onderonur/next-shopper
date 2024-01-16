@@ -1,8 +1,8 @@
+import { forwardRef } from 'react';
 import type { PatternFormatProps } from 'react-number-format';
 import { PatternFormat } from 'react-number-format';
 import type { InputProps, InputRef } from './input';
 import { Input } from './input';
-import { forwardRef } from 'react';
 
 type PatternFormatInputProps = Pick<
   PatternFormatProps,

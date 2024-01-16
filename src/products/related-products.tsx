@@ -1,6 +1,6 @@
-import { ProductGrid } from './product-grid';
-import { getRelatedProducts } from './product-fetchers';
 import type { Id } from '@/common/common-types';
+import { getRelatedProducts } from './product-fetchers';
+import { ProductGrid } from './product-grid';
 
 type RelatedProductsProps = {
   productId: Id;

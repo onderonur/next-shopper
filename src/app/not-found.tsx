@@ -1,7 +1,7 @@
-import { StatusCodes } from 'http-status-codes';
+import { ButtonLink } from '@/common/button-link';
 import { ErrorPage } from '@/error-handling/error-page';
 import { getMetadata } from '@/seo/seo-utils';
-import { ButtonLink } from '@/common/button-link';
+import { StatusCodes } from 'http-status-codes';
 
 export const metadata = getMetadata({
   title: 'Not Found',

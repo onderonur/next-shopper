@@ -1,9 +1,5 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import type { CartDetails } from './cart-types';
-import type { Maybe } from '@/common/common-types';
-import { SubmitButton } from '@/forms/submit-button';
 import {
   AlertModal,
   AlertModalBody,
@@ -12,8 +8,12 @@ import {
   AlertModalTrigger,
 } from '@/common/alert-modal';
 import { Button } from '@/common/button';
-import { clearCart } from './cart-actions';
+import type { Maybe } from '@/common/common-types';
+import { SubmitButton } from '@/forms/submit-button';
+import { useEffect, useState } from 'react';
 import { useFormState } from 'react-dom';
+import { clearCart } from './cart-actions';
+import type { CartDetails } from './cart-types';
 
 type ClearCartButtonProps = { cart: Maybe<CartDetails> };
 

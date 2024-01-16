@@ -1,10 +1,10 @@
+import type { Omit } from '@/common/common-types';
 import { CartIcon } from '@/common/icons';
 import { getCart } from './cart-fetchers';
 import {
   CartItemListContent,
   type CartItemListContentProps,
 } from './cart-item-list-content';
-import type { Omit } from '@/common/common-types';
 
 type CartItemListProps = Omit<CartItemListContentProps, 'cartItems'> & {
   className?: string;

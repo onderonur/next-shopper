@@ -1,11 +1,4 @@
 import { Badge } from '@/common/badge';
-import { CartIcon } from '@/common/icons';
-import { Price } from '@/common/price';
-import { getCart } from './cart-fetchers';
-import { CartTotalPrice } from './cart-total-price';
-import { CartItemList } from './cart-item-list';
-import { ClearCartButton } from './clear-cart-button';
-import { CheckoutLink } from '../checkout/checkout-linkt';
 import { Button } from '@/common/button';
 import {
   Drawer,
@@ -13,6 +6,13 @@ import {
   DrawerHeader,
   DrawerTrigger,
 } from '@/common/drawer';
+import { CartIcon } from '@/common/icons';
+import { Price } from '@/common/price';
+import { CheckoutLink } from '../checkout/checkout-linkt';
+import { getCart } from './cart-fetchers';
+import { CartItemList } from './cart-item-list';
+import { CartTotalPrice } from './cart-total-price';
+import { ClearCartButton } from './clear-cart-button';
 
 export async function CartDrawer() {
   const cart = await getCart();

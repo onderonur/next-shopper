@@ -1,6 +1,6 @@
 import { Price } from '@/common/price';
-import { getCart } from './cart-fetchers';
 import { twMerge } from 'tailwind-merge';
+import { getCart } from './cart-fetchers';
 
 type CartTotalPriceProps = {
   className?: string;

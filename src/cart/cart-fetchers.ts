@@ -1,9 +1,9 @@
+import type { Maybe } from '@/common/common-types';
 import { getManyProductsByIds } from '@/products/product-fetchers';
 import { cookies } from 'next/headers';
 import { cache } from 'react';
 import type { CartDetails, CartItem } from './cart-types';
 import { cartSchema } from './cart-types';
-import type { Maybe } from '@/common/common-types';
 
 export const getCart = cache(async (): Promise<Maybe<CartDetails>> => {
   const cookieStore = cookies();

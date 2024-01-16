@@ -1,5 +1,5 @@
-import { LayoutContent, LayoutHeader } from '@/layout/layout';
 import { CartDrawer } from '@/cart/cart-drawer';
+import { LayoutContent, LayoutHeader } from '@/layout/layout';
 
 type AppLayoutProps = React.PropsWithChildren;
 

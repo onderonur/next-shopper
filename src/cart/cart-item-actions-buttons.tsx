@@ -1,11 +1,11 @@
-import type { CartItem } from './cart-types';
 import { DeleteIcon, MinusIcon, PlusIcon } from '@/common/icons';
+import { SubmitButton } from '@/forms/submit-button';
 import {
   addProductToCart,
-  removeProductFromCart,
   decreaseProductInCart,
+  removeProductFromCart,
 } from './cart-actions';
-import { SubmitButton } from '@/forms/submit-button';
+import type { CartItem } from './cart-types';
 
 type CartItemActionButtonsProps = {
   cartItem: CartItem;

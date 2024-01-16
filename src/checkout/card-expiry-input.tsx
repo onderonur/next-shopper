@@ -1,9 +1,9 @@
-import type { NumberFormatBaseProps } from 'react-number-format';
-import { NumberFormatBase } from 'react-number-format';
 import type { Omit } from '@/common/common-types';
-import { forwardRef } from 'react';
 import type { InputRef } from '@/forms/input';
 import { Input } from '@/forms/input';
+import { forwardRef } from 'react';
+import type { NumberFormatBaseProps } from 'react-number-format';
+import { NumberFormatBase } from 'react-number-format';
 
 // https://s-yadav.github.io/react-number-format/docs/customization#card-expiry-field
 function format(val: string) {

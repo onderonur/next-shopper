@@ -1,7 +1,7 @@
 import type { Config } from 'tailwindcss';
-import plugin from 'tailwindcss/plugin';
 import colors from 'tailwindcss/colors';
 import defaultTheme from 'tailwindcss/defaultTheme';
+import plugin from 'tailwindcss/plugin';
 
 const primaryColor = colors.purple;
 const secondaryColor = colors.teal;

@@ -1,13 +1,13 @@
 import { Button } from '@/common/button';
-import { FilterIcon } from '@/common/icons';
-import { ProductFilter } from './product-filter';
 import {
   Drawer,
   DrawerBody,
   DrawerHeader,
   DrawerTrigger,
 } from '@/common/drawer';
+import { FilterIcon } from '@/common/icons';
 import { MobilePadding } from '@/common/mobile-padding';
+import { ProductFilter } from './product-filter';
 
 export function ProductFilterDrawer() {
   return (

@@ -1,9 +1,9 @@
-import { SelectableGroupSkeleton } from './selectable-group-skeleton';
-import * as RadixCheckbox from '@radix-ui/react-checkbox';
-import { Label } from './label';
-import { useId } from 'react';
-import { useSelectableItemProps } from './selectable-item-hooks';
 import { createSafeContext } from '@/common/safe-context';
+import * as RadixCheckbox from '@radix-ui/react-checkbox';
+import { useId } from 'react';
+import { Label } from './label';
+import { SelectableGroupSkeleton } from './selectable-group-skeleton';
+import { useSelectableItemProps } from './selectable-item-hooks';
 
 type CheckboxGroupContextValue = {
   isDisabled?: boolean;

@@ -1,16 +1,16 @@
 import {
-  Check,
-  X,
-  Filter,
-  Minus,
-  Plus,
-  Trash,
-  ShoppingBag,
-  CheckCircle,
-  Github,
   ArrowLeft,
   ArrowUp,
+  Check,
+  CheckCircle,
   ExternalLink,
+  Filter,
+  Github,
+  Minus,
+  Plus,
+  ShoppingBag,
+  Trash,
+  X,
 } from 'lucide-react';
 
 export const MinusIcon = Minus;

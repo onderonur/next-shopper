@@ -1,17 +1,17 @@
-import {
-  getValuesOfSelectedOptions,
-  ProductFilterKey,
-  ProductSorting,
-} from '@/search/search-utils';
+import { getDb } from '@/db/db-utils';
+import type { Product } from '@/products/product-types';
 import type {
   ProductFilterArgs,
   ProductFilterOptions,
   ProductFilterResponse,
   ProductFilterSelectedOption,
 } from '@/search/search-types';
-import { getDb } from '@/db/db-utils';
+import {
+  getValuesOfSelectedOptions,
+  ProductFilterKey,
+  ProductSorting,
+} from '@/search/search-utils';
 import { cache } from 'react';
-import type { Product } from '@/products/product-types';
 
 async function getProductFilterOptions() {
   const db = await getDb();

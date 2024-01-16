@@ -1,10 +1,10 @@
 import type { Maybe } from '@/common/common-types';
-import { SelectableGroupSkeleton } from './selectable-group-skeleton';
 import * as RadixRadioGroup from '@radix-ui/react-radio-group';
-import { Label } from './label';
 import { useId } from 'react';
-import { useSelectableItemProps } from './selectable-item-hooks';
 import { twMerge } from 'tailwind-merge';
+import { Label } from './label';
+import { SelectableGroupSkeleton } from './selectable-group-skeleton';
+import { useSelectableItemProps } from './selectable-item-hooks';
 
 type RadioGroupProps = React.PropsWithChildren<{
   isLoading?: boolean;

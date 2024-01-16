@@ -4,17 +4,17 @@ import type { Maybe } from '@/common/common-types';
 import { Paper, PaperTitle } from '@/common/paper';
 import { Checkbox, CheckboxGroup } from '@/forms/checkbox-group';
 import { RadioGroup, RadioGroupItem } from '@/forms/radio-group';
+import { routes } from '@/routing/routing-utils';
+import { useFilterProducts, useProductFilterArgs } from '@/search/search-hooks';
 import type {
   ProductFilterData,
   ProductFilterOptions,
 } from '@/search/search-types';
 import {
-  getValuesOfSelectedOptions,
   ProductFilterKey,
+  getValuesOfSelectedOptions,
 } from '@/search/search-utils';
 import { useRouter } from 'next/navigation';
-import { useProductFilterArgs, useFilterProducts } from '@/search/search-hooks';
-import { routes } from '@/routing/routing-utils';
 
 // To render filter skeleton during the initial fetch.
 const defaultOptions: ProductFilterOptions = {

@@ -1,8 +1,8 @@
-import type { Omit } from './common-types';
 import type { NextLinkProps } from '@/routing/next-link';
 import { NextLink } from '@/routing/next-link';
 import type { UseButtonBasePropsArgs } from './button-base-hooks';
 import { useButtonBaseProps } from './button-base-hooks';
+import type { Omit } from './common-types';
 
 type ButtonLinkProps = NextLinkProps &
   Omit<UseButtonBasePropsArgs, 'isDisabled' | 'isLoading'>;

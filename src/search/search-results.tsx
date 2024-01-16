@@ -1,8 +1,8 @@
 'use client';
 
 import { Paper } from '@/common/paper';
-import { useFilterProducts } from '@/search/search-hooks';
 import { ProductGrid, ProductGridSkeleton } from '@/products/product-grid';
+import { useFilterProducts } from '@/search/search-hooks';
 
 export function SearchResults() {
   const { data, isValidating } = useFilterProducts();

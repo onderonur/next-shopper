@@ -1,10 +1,10 @@
-import { BackToTopButton } from './back-to-top-button';
-import { Container } from '@/common/container';
 import { ButtonLink } from '@/common/button-link';
 import { APP_REPOSITORY_URL, APP_TITLE } from '@/common/common-utils';
+import { Container } from '@/common/container';
 import { GithubIcon } from '@/common/icons';
 import { NextLink } from '@/routing/next-link';
 import { twMerge } from 'tailwind-merge';
+import { BackToTopButton } from './back-to-top-button';
 
 type LayoutProps = React.PropsWithChildren;
 

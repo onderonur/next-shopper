@@ -1,10 +1,10 @@
-import '@/styles/global.css';
-import { Inter } from 'next/font/google';
-import { BaseSWRConfig } from '@/http-client/base-swr-config';
-import type { Viewport } from 'next';
-import { twJoin } from 'tailwind-merge';
-import { Layout, LayoutFooter } from '@/layout/layout';
 import { TooltipProvider } from '@/common/tooltip';
+import { BaseSWRConfig } from '@/http-client/base-swr-config';
+import { Layout, LayoutFooter } from '@/layout/layout';
+import '@/styles/global.css';
+import type { Viewport } from 'next';
+import { Inter } from 'next/font/google';
+import { twJoin } from 'tailwind-merge';
 
 const inter = Inter({
   variable: '--font-inter',

@@ -97,7 +97,7 @@ export default {
             }
 
             return {
-              [`${cssVariableKey}`]: lineHeight,
+              [cssVariableKey]: lineHeight,
               lineHeight,
             };
           },
@@ -109,14 +109,14 @@ export default {
 
       matchUtilities(
         {
-          'fixed-line-clamp': (val) => {
+          'fixed-line-clamp': (clamp) => {
             return {
-              minHeight: `calc(var(${cssVariableKey}) * ${val})`,
+              minHeight: `calc(var(${cssVariableKey}) * ${clamp})`,
               // For line clamp
               overflow: 'hidden',
               display: '-webkit-box',
               '-webkit-box-orient': 'vertical',
-              '-webkit-line-clamp': `${val}`,
+              '-webkit-line-clamp': `${clamp}`,
             };
           },
         },

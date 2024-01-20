@@ -67,3 +67,10 @@ export const routes = {
   ),
   checkout: createRoute(() => '/checkout'),
 };
+
+// TODO: Will check the use cases for this.
+// export function createUrl(pathname: string, searchParams?: URLSearchParams) {
+//   const paramsString = searchParams?.toString();
+//   const queryString = paramsString ? `?${paramsString}` : '';
+//   return `${pathname}${queryString}`;
+// }

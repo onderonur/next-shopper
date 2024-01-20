@@ -1,11 +1,9 @@
 'use client';
 
-import type { Maybe } from '@/common/common-types';
 import { Paper, PaperTitle } from '@/common/paper';
 import { Checkbox, CheckboxGroup } from '@/forms/checkbox-group';
 import { RadioGroup, RadioGroupItem } from '@/forms/radio-group';
-import { routes } from '@/routing/routing-utils';
-import { useFilterProducts, useProductFilterArgs } from '@/search/search-hooks';
+import { useFilterProducts } from '@/search/search-hooks';
 import type {
   ProductFilterData,
   ProductFilterOptions,
@@ -14,7 +12,7 @@ import {
   ProductFilterKey,
   getValuesOfSelectedOptions,
 } from '@/search/search-utils';
-import { useRouter } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 
 // To render filter skeleton during the initial fetch.
 const defaultOptions: ProductFilterOptions = {
@@ -53,21 +51,20 @@ export function ProductFilter() {
   // and enough for the purpose of this project.
   const isDisabled = isValidating;
   const values = getValuesOfSelectedOptions(data?.selectedOptions);
-  const router = useRouter();
-  const filterArgs = useProductFilterArgs();
+  const searchParams = useSearchParams();
 
   const handleChange = (
     filterKey: ProductFilterData['filterKey'],
-    newValue: Maybe<string | string[]>,
+    newValue: string[],
   ) => {
-    router.push(
-      routes.search({
-        query: {
-          ...filterArgs,
-          [filterKey]: newValue,
-        },
-      }),
-    );
+    const params = new URLSearchParams(searchParams.toString());
+    params.delete(filterKey);
+
+    newValue.forEach((value) => {
+      params.append(filterKey, value);
+    });
+
+    window.history.pushState(null, '', `?${params.toString()}`);
   };
 
   const isFirstLoading = isLoading && !data;
@@ -106,7 +103,7 @@ export function ProductFilter() {
                 isDisabled={isDisabled}
                 value={values[filter.filterKey]}
                 onChange={(newValue) => {
-                  handleChange(filter.filterKey, newValue);
+                  handleChange(filter.filterKey, [newValue]);
                 }}
               >
                 {filter.options.map((option) => {

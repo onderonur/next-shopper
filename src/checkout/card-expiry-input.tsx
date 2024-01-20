@@ -6,13 +6,13 @@ import type { NumberFormatBaseProps } from 'react-number-format';
 import { NumberFormatBase } from 'react-number-format';
 
 // https://s-yadav.github.io/react-number-format/docs/customization#card-expiry-field
-function format(val: string) {
-  if (val === '') {
+function format(value: string) {
+  if (value === '') {
     return '';
   }
 
-  let month = val.substring(0, 2);
-  const year = val.substring(2, 4);
+  let month = value.substring(0, 2);
+  const year = value.substring(2, 4);
 
   if (month.length === 1 && Number(month[0]) > 1) {
     month = `0${month[0]}`;

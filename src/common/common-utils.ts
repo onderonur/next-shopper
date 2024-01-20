@@ -9,6 +9,6 @@ export const createMockArray = (length: number) => {
   return Array.from(Array(length).keys());
 };
 
-export const isNil = (val: unknown): val is Nil => {
-  return val === null || val === undefined;
+export const isNil = (value: unknown): value is Nil => {
+  return value === null || value === undefined;
 };

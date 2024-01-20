@@ -3,13 +3,11 @@
 import { Button } from '@/common/button';
 import { Chip, ChipClose, ChipContent } from '@/common/chip';
 import { MobilePadding } from '@/common/mobile-padding';
-import { routes } from '@/routing/routing-utils';
-import { useRouter } from 'next/navigation';
-import { useFilterProducts, useProductFilterArgs } from './search-hooks';
+import { useSearchParams } from 'next/navigation';
+import { useFilterProducts } from './search-hooks';
 
 export function SelectedFilters() {
-  const router = useRouter();
-  const filterArgs = useProductFilterArgs();
+  const searchParams = useSearchParams();
   const { data } = useFilterProducts();
 
   const visibleOptions = data?.selectedOptions.filter(
@@ -31,25 +29,21 @@ export function SelectedFilters() {
                 <ChipClose
                   aria-label={`Remove ${selectedOption.title} filter`}
                   onClick={() => {
-                    const {
-                      [selectedOption.filterKey]: currentValue,
-                      ...restQuery
-                    } = filterArgs;
+                    const params = new URLSearchParams(searchParams.toString());
+                    const currentValue = params.getAll(
+                      selectedOption.filterKey,
+                    );
+                    const newValue = currentValue.filter(
+                      (value) => value !== selectedOption.value,
+                    );
 
-                    if (Array.isArray(currentValue)) {
-                      router.push(
-                        routes.search({
-                          query: {
-                            ...restQuery,
-                            [selectedOption.filterKey]: currentValue.filter(
-                              (value) => value !== selectedOption.value,
-                            ),
-                          },
-                        }),
-                      );
-                    } else {
-                      router.push(routes.search({ query: restQuery }));
-                    }
+                    params.delete(selectedOption.filterKey);
+
+                    newValue.forEach((value) => {
+                      params.append(selectedOption.filterKey, value);
+                    });
+
+                    window.history.pushState(null, '', `?${params.toString()}`);
                   }}
                 />
               </Chip>
@@ -61,7 +55,7 @@ export function SelectedFilters() {
             className="text-sm"
             variant="transparent"
             onClick={() => {
-              router.push(routes.search());
+              window.history.pushState(null, '', '?');
             }}
           >
             Clear Filters

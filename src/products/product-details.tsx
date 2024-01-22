@@ -1,9 +1,9 @@
 import { AddProductToCartButton } from '@/cart/add-to-cart-button';
-import { BaseImage } from '@/common/base-image';
 import { Chip, ChipContent } from '@/common/chip';
 import { Price } from '@/common/price';
 import { NextLink } from '@/routing/next-link';
 import { routes } from '@/routing/routing-utils';
+import Image from 'next/image';
 import type { Product } from './product-types';
 
 type ProductDetailsProps = {
@@ -14,7 +14,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
   return (
     <div className="grid gap-6 md:grid-cols-2">
       <div className="relative mx-auto aspect-square w-full max-w-sm md:max-w-lg">
-        <BaseImage
+        <Image
           className="object-contain"
           src={product.image}
           alt={product.title}

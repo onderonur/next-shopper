@@ -1,6 +1,6 @@
-import { BaseImage } from '@/common/base-image';
 import type { NextLinkProps } from '@/routing/next-link';
 import { NextLink } from '@/routing/next-link';
+import Image from 'next/image';
 
 type CategoryLinkProps = Pick<NextLinkProps, 'href'> & {
   imageSrc: string;
@@ -13,7 +13,7 @@ export function CategoryLink({ href, imageSrc, title }: CategoryLinkProps) {
       className="group relative block h-80 w-full overflow-hidden rounded-md"
       href={href}
     >
-      <BaseImage
+      <Image
         src={imageSrc}
         alt={title}
         className="transform object-cover transition duration-700 group-hover:scale-110"

@@ -1,8 +1,8 @@
-import { BaseImage } from '@/common/base-image';
 import { Price } from '@/common/price';
 import { Tooltip } from '@/common/tooltip';
 import { NextLink } from '@/routing/next-link';
 import { routes } from '@/routing/routing-utils';
+import Image from 'next/image';
 import type { Product } from './product-types';
 
 type ProductCardProps = {
@@ -19,7 +19,7 @@ export function ProductCard({ product }: ProductCardProps) {
       <article className="group flex flex-col gap-2 rounded-md border-2 p-2 md:p-4">
         <div className="p-2">
           <div className="relative aspect-[12/10] transform bg-transparent transition duration-500 ease-out group-hover:scale-110">
-            <BaseImage
+            <Image
               className="object-contain"
               src={product.image}
               alt={product.title}

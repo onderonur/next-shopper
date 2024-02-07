@@ -108,7 +108,8 @@ export function Drawer({
                 className={twJoin(
                   'fixed bottom-0 z-10 flex w-full flex-col bg-background-main focus:outline-none',
                   'max-h-[80%] rounded-t-2xl sm:top-0 sm:max-h-none sm:max-w-xs sm:rounded-none sm:rounded-l-2xl',
-                  '[--y-to:0%] [--x-from:0] [--x-to:0] [--y-from:100%] sm:[--x-to:0%] sm:[--y-from:0] sm:[--y-to:0]',
+                  'after:absolute after:inset-x-0 after:top-full after:h-screen after:bg-background-dark sm:after:hidden',
+                  '[--x-from:0] [--x-to:0] [--y-from:100%] [--y-to:0%] sm:[--x-to:0%] sm:[--y-from:0] sm:[--y-to:0]',
                   from === 'left'
                     ? 'sm:left-0 sm:[--x-from:-100%]'
                     : 'sm:right-0 sm:[--x-from:100%]',
@@ -127,7 +128,6 @@ export function Drawer({
                 // To swipe to dismiss
                 drag={isMobile ? 'y' : false}
                 dragConstraints={{ top: 0, bottom: 0 }}
-                dragElastic={{ top: 0, bottom: 0.5 }}
                 onDragEnd={(event, info) => {
                   if (info.offset.y >= 100 || info.velocity.y >= 10) {
                     setIsOpen(false);

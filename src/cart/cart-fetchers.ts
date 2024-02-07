@@ -28,8 +28,9 @@ export const getCart = cache(async (): Promise<Maybe<CartDetails>> => {
   let totalCount = 0;
 
   cartProducts.forEach((product) => {
-    const count = cart.data.find((item) => item.productId === product.id)
-      ?.count;
+    const count = cart.data.find(
+      (item) => item.productId === product.id,
+    )?.count;
 
     if (count) {
       cartItems.push({ product, count });

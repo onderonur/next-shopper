@@ -7,9 +7,9 @@ import type {
   ProductFilterSelectedOption,
 } from '@/search/search-types';
 import {
-  getValuesOfSelectedOptions,
   ProductFilterKey,
   ProductSorting,
+  getValuesOfSelectedOptions,
 } from '@/search/search-utils';
 import { cache } from 'react';
 
@@ -91,8 +91,8 @@ async function getManyProducts(args: ProductFilterArgs) {
   let response: Product[] = [...db.products];
 
   if (args.categories?.length) {
-    response = response.filter(
-      (product) => args.categories?.includes(product.category.value),
+    response = response.filter((product) =>
+      args.categories?.includes(product.category.value),
     );
   }
 

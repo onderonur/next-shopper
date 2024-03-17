@@ -24,7 +24,7 @@ const createMediaQueryStore = (query: string) => {
   };
 };
 
-export function useMediaQuery(query: string) {
+function useMediaQuery(query: string) {
   const mediaQueryStore = useMemo(() => createMediaQueryStore(query), [query]);
 
   const matches = useSyncExternalStore(

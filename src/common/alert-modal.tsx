@@ -100,5 +100,3 @@ export function AlertModalFooter({ children }: AlertModalFooterProps) {
 }
 
 export const AlertModalTrigger = RadixAlertDialog.Trigger;
-
-export const AlertModalAction = RadixAlertDialog.Action;

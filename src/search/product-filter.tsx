@@ -3,75 +3,79 @@
 import { Paper, PaperTitle } from '@/common/paper';
 import { Checkbox, CheckboxGroup } from '@/forms/checkbox-group';
 import { RadioGroup, RadioGroupItem } from '@/forms/radio-group';
-import { useFilterProducts } from '@/search/search-hooks';
 import type {
   ProductFilterData,
-  ProductFilterOptions,
+  ProductFilterResponse,
 } from '@/search/search-types';
 import {
   ProductFilterKey,
   getValuesOfSelectedOptions,
 } from '@/search/search-utils';
-import { useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
+import { useTransition } from 'react';
+import { useSelectedOptionsContext } from './selected-options-context';
 
-// To render filter skeleton during the initial fetch.
-const defaultOptions: ProductFilterOptions = {
-  sortings: {
-    title: 'Sorting',
-    options: [],
-    filterKey: ProductFilterKey.SORTING,
-  },
-  categories: {
-    title: 'Categories',
-    options: [],
-    filterKey: ProductFilterKey.CATEGORIES,
-  },
-  priceRanges: {
-    title: 'Price',
-    options: [],
-    filterKey: ProductFilterKey.PRICE_RANGES,
-  },
+type ProductFilterProps = {
+  data: ProductFilterResponse;
 };
 
-export function ProductFilter() {
-  const { data, isLoading, isValidating } = useFilterProducts({
-    // When filter drawer is opened in mobile view, it refetches
-    // search results when they are stale.
-    // To prevent this, we don't want to revalidate this query in filter
-    // when data is stale.
-    revalidateIfStale: false,
-  });
+export function ProductFilter({ data }: ProductFilterProps) {
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
+  const { optimisticSelectedOptions, setOptimisticSelectedOptions } =
+    useSelectedOptionsContext();
 
-  // Since `values` are depending on the server response,
-  // we disable inputs during requests.
-  // Otherwise, if user clicks multiple options of a checkbox group,
-  // only the last clicked option becomes selected for some cases.
-  // We can handle this by using query params as a fallback during requests (like optimistic UI etc.).
-  // Even if this is not the best UX, it is a common pattern used by other e-commerce websites
-  // and enough for the purpose of this project.
-  const isDisabled = isValidating;
-  const values = getValuesOfSelectedOptions(data?.selectedOptions);
-  const searchParams = useSearchParams();
+  const values = getValuesOfSelectedOptions(optimisticSelectedOptions);
 
   const handleChange = (
     filterKey: ProductFilterData['filterKey'],
-    newValue: string[],
+    newValues: string[],
   ) => {
-    const params = new URLSearchParams(searchParams.toString());
-    params.delete(filterKey);
+    const newOptimisticSelectedOptions = optimisticSelectedOptions.filter(
+      (option) => option.filterKey !== filterKey,
+    );
 
-    newValue.forEach((value) => {
-      params.append(filterKey, value);
+    const filterOption = Object.values(data.filterOptions).find(
+      (filterOption) => filterOption.filterKey === filterKey,
+    );
+
+    for (const value of newValues) {
+      const option = filterOption?.options.find(
+        (option) => option.value === value,
+      );
+
+      if (!option) {
+        continue;
+      }
+
+      newOptimisticSelectedOptions.push({
+        ...option,
+        filterKey,
+        isVisible: true,
+      });
+    }
+
+    startTransition(() => {
+      setOptimisticSelectedOptions(newOptimisticSelectedOptions);
+
+      const params = new URLSearchParams();
+
+      for (const selectedOption of newOptimisticSelectedOptions) {
+        if (selectedOption.isVisible) {
+          params.append(selectedOption.filterKey, selectedOption.value);
+        }
+      }
+
+      router.push(`/search?${params.toString()}`);
     });
-
-    window.history.pushState(null, '', `?${params.toString()}`);
   };
 
-  const isFirstLoading = isLoading && !data;
-
   return (
-    <div className="flex flex-col gap-4 pb-6">
-      {Object.values(data?.filterOptions ?? defaultOptions).map((filter) => {
+    <div
+      data-pending={isPending ? true : undefined}
+      className="flex flex-col gap-4 pb-6"
+    >
+      {Object.values(data.filterOptions).map((filter) => {
         let filterInput = null;
 
         switch (filter.filterKey) {
@@ -79,8 +83,6 @@ export function ProductFilter() {
           case ProductFilterKey.PRICE_RANGES:
             filterInput = (
               <CheckboxGroup
-                isLoading={isFirstLoading}
-                isDisabled={isDisabled}
                 value={values[filter.filterKey]}
                 onChange={(newValue) => {
                   handleChange(filter.filterKey, newValue);
@@ -99,8 +101,6 @@ export function ProductFilter() {
           case ProductFilterKey.SORTING:
             filterInput = (
               <RadioGroup
-                isLoading={isFirstLoading}
-                isDisabled={isDisabled}
                 value={values[filter.filterKey]}
                 onChange={(newValue) => {
                   handleChange(filter.filterKey, [newValue]);

@@ -10,6 +10,8 @@ export type ProductFilterArgs = {
 type ProductFilterOptionItem = {
   title: string;
   value: string;
+  order: `${number}_${number}`;
+  isDefault?: boolean;
 };
 
 export type ProductFilterData = {

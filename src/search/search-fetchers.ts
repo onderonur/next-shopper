@@ -6,84 +6,31 @@ import type {
   ProductFilterResponse,
   ProductFilterSelectedOption,
 } from '@/search/search-types';
-import {
-  ProductFilterKey,
-  ProductSorting,
-  getValuesOfSelectedOptions,
-} from '@/search/search-utils';
+import { ProductFilterKey, ProductSorting } from '@/search/search-utils';
 import { cache } from 'react';
 
 async function getProductFilterOptions() {
-  const db = await getDb();
-  const { sortings, categories, priceRanges } = db;
+  const { sortings, categories, priceRanges } = await getDb();
+
   const filterOptions: ProductFilterOptions = {
     sortings: {
       title: 'Sorting',
-      options: sortings,
+      options: sortings.map((option, i) => ({ ...option, order: `0_${i}` })),
       filterKey: ProductFilterKey.SORTING,
     },
     categories: {
       title: 'Categories',
-      options: categories,
+      options: categories.map((option, i) => ({ ...option, order: `1_${i}` })),
       filterKey: ProductFilterKey.CATEGORIES,
     },
     priceRanges: {
       title: 'Price',
-      options: priceRanges,
+      options: priceRanges.map((option, i) => ({ ...option, order: `2_${i}` })),
       filterKey: ProductFilterKey.PRICE_RANGES,
     },
   };
+
   return filterOptions;
-}
-
-async function getProductFilterSelectedOptions(args: ProductFilterArgs) {
-  const db = await getDb();
-  const { sortings, categories, priceRanges } = db;
-  const selectedOptions: ProductFilterSelectedOption[] = [];
-
-  const defaultSorting = sortings.find((sorting) => sorting.isDefault);
-  let isDefaultSortingApplied = false;
-  let selectedSorting = sortings.find(
-    (sorting) => sorting.value === args.sorting,
-  );
-
-  if (!selectedSorting && defaultSorting) {
-    isDefaultSortingApplied = true;
-    selectedSorting = defaultSorting;
-  }
-
-  if (selectedSorting) {
-    selectedOptions.push({
-      value: selectedSorting.value,
-      title: selectedSorting.title,
-      isVisible: !isDefaultSortingApplied,
-      filterKey: ProductFilterKey.SORTING,
-    });
-  }
-
-  selectedOptions.push(
-    ...categories
-      .filter((category) => args.categories?.includes(category.value))
-      .map((category) => ({
-        value: category.value,
-        title: category.title,
-        isVisible: true,
-        filterKey: ProductFilterKey.CATEGORIES,
-      })),
-  );
-
-  selectedOptions.push(
-    ...priceRanges
-      .filter((priceRange) => args.priceRanges?.includes(priceRange.value))
-      .map((priceRange) => ({
-        value: priceRange.value,
-        title: priceRange.title,
-        isVisible: true,
-        filterKey: ProductFilterKey.PRICE_RANGES,
-      })),
-  );
-
-  return selectedOptions;
 }
 
 async function getManyProducts(args: ProductFilterArgs) {
@@ -127,13 +74,73 @@ async function getManyProducts(args: ProductFilterArgs) {
   return response;
 }
 
+function getProductFilterSelectedOptions({
+  filterOptions,
+  args,
+}: {
+  filterOptions: ProductFilterOptions;
+  args: ProductFilterArgs;
+}) {
+  const { sortings, categories, priceRanges } = filterOptions;
+  const selectedOptions: ProductFilterSelectedOption[] = [];
+
+  let isDefaultSortingApplied = false;
+  let selectedSorting = sortings.options.find(
+    (sorting) => sorting.value === args.sorting,
+  );
+
+  if (!selectedSorting) {
+    isDefaultSortingApplied = true;
+
+    const defaultSorting = sortings.options.find(
+      (sorting) => sorting.isDefault,
+    );
+    selectedSorting = defaultSorting;
+  }
+
+  if (selectedSorting) {
+    selectedOptions.push({
+      ...selectedSorting,
+      isVisible: !isDefaultSortingApplied,
+      filterKey: ProductFilterKey.SORTING,
+    });
+  }
+
+  for (const category of categories.options) {
+    if (args.categories?.includes(category.value)) {
+      selectedOptions.push({
+        ...category,
+        isVisible: true,
+        filterKey: ProductFilterKey.CATEGORIES,
+      });
+    }
+  }
+
+  for (const priceRange of priceRanges.options) {
+    if (args.priceRanges?.includes(priceRange.value)) {
+      selectedOptions.push({
+        ...priceRange,
+        isVisible: true,
+        filterKey: ProductFilterKey.PRICE_RANGES,
+      });
+    }
+  }
+
+  return selectedOptions;
+}
+
 export const filterProducts = cache(
   async (args: ProductFilterArgs): Promise<ProductFilterResponse> => {
-    const filterOptions = await getProductFilterOptions();
-    const selectedOptions = await getProductFilterSelectedOptions(args);
-    const products = await getManyProducts(
-      getValuesOfSelectedOptions(selectedOptions),
-    );
+    const [filterOptions, products] = await Promise.all([
+      getProductFilterOptions(),
+      getManyProducts(args),
+    ]);
+
+    const selectedOptions = getProductFilterSelectedOptions({
+      filterOptions,
+      args,
+    });
+
     return { filterOptions, selectedOptions, products };
   },
 );

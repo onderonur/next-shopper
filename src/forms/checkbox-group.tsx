@@ -2,11 +2,9 @@ import { createSafeContext } from '@/common/safe-context';
 import * as RadixCheckbox from '@radix-ui/react-checkbox';
 import { useId } from 'react';
 import { Label } from './label';
-import { SelectableGroupSkeleton } from './selectable-group-skeleton';
 import { useSelectableItemProps } from './selectable-item-hooks';
 
 type CheckboxGroupContextValue = {
-  isDisabled?: boolean;
   value: string[];
   onChange: (value: string[]) => void;
 };
@@ -16,24 +14,15 @@ const [CheckboxGroupContext, useCheckboxGroupContext] =
     displayName: 'CheckboxGroupContext',
   });
 
-type CheckboxGroupProps = CheckboxGroupContextValue &
-  React.PropsWithChildren<{
-    isLoading?: boolean;
-  }>;
+type CheckboxGroupProps = CheckboxGroupContextValue & React.PropsWithChildren;
 
 export function CheckboxGroup({
-  isLoading,
-  isDisabled,
   children,
   value,
   onChange,
 }: CheckboxGroupProps) {
-  if (isLoading) {
-    return <SelectableGroupSkeleton optionCount={5} />;
-  }
-
   return (
-    <CheckboxGroupContext.Provider value={{ isDisabled, value, onChange }}>
+    <CheckboxGroupContext.Provider value={{ value, onChange }}>
       <div role="group">
         <Checkbox value={allSymbol}>All</Checkbox>
         {children}
@@ -50,7 +39,7 @@ type CheckboxProps = React.PropsWithChildren<{
 
 export function Checkbox({ value: checkboxValue, children }: CheckboxProps) {
   const id = useId();
-  const { isDisabled, value, onChange } = useCheckboxGroupContext();
+  const { value, onChange } = useCheckboxGroupContext();
 
   const isAllOption = checkboxValue === allSymbol;
 
@@ -67,7 +56,6 @@ export function Checkbox({ value: checkboxValue, children }: CheckboxProps) {
       <RadixCheckbox.Root
         className={itemClassName}
         id={id}
-        disabled={isDisabled}
         checked={isAllOption ? !value.length : value.includes(checkboxValue)}
         onCheckedChange={() => {
           if (isAllOption) {

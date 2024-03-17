@@ -3,65 +3,85 @@
 import { Button } from '@/common/button';
 import { Chip, ChipClose, ChipContent } from '@/common/chip';
 import { MobilePadding } from '@/common/mobile-padding';
-import { useSearchParams } from 'next/navigation';
-import { useFilterProducts } from './search-hooks';
+import { useRouter } from 'next/navigation';
+import { useTransition } from 'react';
+import { useSelectedOptionsContext } from './selected-options-context';
+
+const orderComparer = Intl.Collator(undefined, { numeric: true });
 
 export function SelectedFilters() {
-  const searchParams = useSearchParams();
-  const { data } = useFilterProducts();
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
+  const { optimisticSelectedOptions, setOptimisticSelectedOptions } =
+    useSelectedOptionsContext();
 
-  const visibleOptions = data?.selectedOptions.filter(
-    (option) => option.isVisible,
-  );
-
-  if (!visibleOptions?.length) {
-    return null;
-  }
+  const visibleOptions = optimisticSelectedOptions
+    .filter((option) => option.isVisible)
+    // Sorting selected options to prevent different ordering between
+    // real and optimistic data.
+    .toSorted((a, b) => orderComparer.compare(a.order, b.order));
 
   return (
-    <MobilePadding>
-      <ul className="flex flex-row flex-wrap gap-1">
-        {visibleOptions.map((selectedOption) => {
-          return (
-            <li key={`${selectedOption.filterKey}_${selectedOption.value}`}>
-              <Chip>
-                <ChipContent>{selectedOption.title}</ChipContent>
-                <ChipClose
-                  aria-label={`Remove ${selectedOption.title} filter`}
-                  onClick={() => {
-                    const params = new URLSearchParams(searchParams.toString());
-                    const currentValue = params.getAll(
-                      selectedOption.filterKey,
-                    );
-                    const newValue = currentValue.filter(
-                      (value) => value !== selectedOption.value,
-                    );
+    <div data-pending={isPending ? true : undefined}>
+      {!!visibleOptions.length && (
+        <MobilePadding>
+          <ul className="flex flex-row flex-wrap gap-1">
+            {visibleOptions.map((selectedOption) => {
+              return (
+                <li key={`${selectedOption.filterKey}_${selectedOption.value}`}>
+                  <Chip>
+                    <ChipContent>{selectedOption.title}</ChipContent>
+                    <ChipClose
+                      aria-label={`Remove ${selectedOption.title} filter`}
+                      onClick={() => {
+                        const newOptimisticSelectedOptions =
+                          optimisticSelectedOptions.filter(
+                            (option) =>
+                              option.filterKey !== selectedOption.filterKey ||
+                              option.value !== selectedOption.value,
+                          );
 
-                    params.delete(selectedOption.filterKey);
+                        startTransition(() => {
+                          setOptimisticSelectedOptions(
+                            newOptimisticSelectedOptions,
+                          );
 
-                    newValue.forEach((value) => {
-                      params.append(selectedOption.filterKey, value);
-                    });
+                          const params = new URLSearchParams();
 
-                    window.history.pushState(null, '', `?${params.toString()}`);
-                  }}
-                />
-              </Chip>
+                          for (const selectedOption of newOptimisticSelectedOptions) {
+                            if (selectedOption.isVisible) {
+                              params.append(
+                                selectedOption.filterKey,
+                                selectedOption.value,
+                              );
+                            }
+                          }
+
+                          router.push(`/search?${params.toString()}`);
+                        });
+                      }}
+                    />
+                  </Chip>
+                </li>
+              );
+            })}
+            <li>
+              <Button
+                className="text-sm"
+                variant="transparent"
+                onClick={() => {
+                  startTransition(() => {
+                    setOptimisticSelectedOptions([]);
+                    router.push('/search');
+                  });
+                }}
+              >
+                Clear Filters
+              </Button>
             </li>
-          );
-        })}
-        <li>
-          <Button
-            className="text-sm"
-            variant="transparent"
-            onClick={() => {
-              window.history.pushState(null, '', '?');
-            }}
-          >
-            Clear Filters
-          </Button>
-        </li>
-      </ul>
-    </MobilePadding>
+          </ul>
+        </MobilePadding>
+      )}
+    </div>
   );
 }

@@ -1,5 +1,4 @@
 import { TooltipProvider } from '@/common/tooltip';
-import { BaseSWRConfig } from '@/http-client/base-swr-config';
 import { Layout, LayoutFooter } from '@/layout/layout';
 import '@/styles/global.css';
 import type { Viewport } from 'next';
@@ -32,14 +31,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
     >
       <head />
       <body className="bg-background-dark text-text-main">
-        <BaseSWRConfig>
-          <TooltipProvider>
-            <Layout>
-              {children}
-              <LayoutFooter />
-            </Layout>
-          </TooltipProvider>
-        </BaseSWRConfig>
+        <TooltipProvider>
+          <Layout>
+            {children}
+            <LayoutFooter />
+          </Layout>
+        </TooltipProvider>
       </body>
     </html>
   );

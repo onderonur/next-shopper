@@ -24,11 +24,15 @@ function getManySelectedOptionValues(
   filterKey: ProductFilterKey,
   selectedOptions: Maybe<ProductFilterSelectedOption[]>,
 ) {
-  return (
-    selectedOptions
-      ?.filter((option) => option.filterKey === filterKey)
-      .map((option) => option.value) ?? []
-  );
+  const values: string[] = [];
+
+  for (const selectedOption of selectedOptions ?? []) {
+    if (selectedOption.filterKey === filterKey) {
+      values.push(selectedOption.value);
+    }
+  }
+
+  return values;
 }
 
 export function getValuesOfSelectedOptions(

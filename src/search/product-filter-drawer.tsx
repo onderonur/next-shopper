@@ -7,9 +7,10 @@ import {
 } from '@/common/drawer';
 import { FilterIcon } from '@/common/icons';
 import { MobilePadding } from '@/common/mobile-padding';
-import { ProductFilter } from './product-filter';
 
-export function ProductFilterDrawer() {
+type ProductFilterDrawerProps = React.PropsWithChildren;
+
+export function ProductFilterDrawer({ children }: ProductFilterDrawerProps) {
   return (
     <Drawer
       closeOnPathnameChange
@@ -26,9 +27,7 @@ export function ProductFilterDrawer() {
       <DrawerHeader>
         <h2>Product Filter</h2>
       </DrawerHeader>
-      <DrawerBody>
-        <ProductFilter />
-      </DrawerBody>
+      <DrawerBody>{children}</DrawerBody>
     </Drawer>
   );
 }

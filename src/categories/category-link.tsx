@@ -10,14 +10,15 @@ type CategoryLinkProps = Pick<NextLinkProps, 'href'> & {
 export function CategoryLink({ href, imageSrc, title }: CategoryLinkProps) {
   return (
     <NextLink
-      className="group relative block h-80 w-full overflow-hidden rounded-md"
+      className="group relative block h-80 overflow-hidden rounded-md"
       href={href}
     >
       <Image
         src={imageSrc}
         alt={title}
-        className="transform object-cover transition duration-700 group-hover:scale-110"
-        fill
+        className="absolute h-full w-full transform object-cover transition duration-700 group-hover:scale-110"
+        width={1000}
+        height={667}
         priority
       />
       <div className="absolute inset-0 grid place-items-center">

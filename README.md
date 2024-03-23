@@ -9,7 +9,6 @@ This is a simple e-commerce web application built with [Next.js](https://nextjs.
 - Language: [TypeScript](https://www.typescriptlang.org/)
 - Framework: [Next.js](https://nextjs.org/)
 - Data: [Fake Store API](https://fakestoreapi.com/)
-- Data Fetching: [SWR](https://swr.vercel.app/)
 - Component Library: [Radix Primitives](https://www.radix-ui.com/primitives)
 - Styling: [Tailwind CSS](https://tailwindcss.com/)
 - Animations: [Framer Motion](https://www.framer.com/motion/)

@@ -12,7 +12,7 @@ This is a simple e-commerce web application built with [Next.js](https://nextjs.
 - Component Library: [Radix Primitives](https://www.radix-ui.com/primitives)
 - Styling: [Tailwind CSS](https://tailwindcss.com/)
 - Animations: [Framer Motion](https://www.framer.com/motion/)
-- Icons: [React Icons](https://react-icons.github.io/react-icons/)
+- Icons: [Lucide React](https://lucide.dev/guide/packages/lucide-react)
 - Linting: [ESLint](https://eslint.org/)
 - Code Formatting: [Prettier](https://prettier.io/)
 - Deployment: [Vercel](https://vercel.com/)

@@ -16,7 +16,7 @@ export async function CartItemList({ className, isDense }: CartItemListProps) {
   if (!cart?.totalCount) {
     return (
       <div className="grid place-items-center gap-2 p-8 text-secondary-main">
-        <CartIcon size={80} />
+        <CartIcon size="5rem" />
         <div className="text-center text-xl font-semibold">
           Your cart is empty
         </div>

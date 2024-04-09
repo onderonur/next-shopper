@@ -14,7 +14,7 @@ export function Loading({
   children,
 }: LoadingProps) {
   if (!isLoading) {
-    return <>{children}</>;
+    return children;
   }
 
   return (

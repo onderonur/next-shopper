@@ -26,6 +26,10 @@ module.exports = {
           'warn',
           { checksVoidReturn: false },
         ],
+        '@typescript-eslint/restrict-template-expressions': [
+          'warn',
+          { allowNumber: true },
+        ],
       },
     },
   ],

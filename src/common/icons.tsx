@@ -6,10 +6,13 @@ import {
   ExternalLink,
   Filter,
   Github,
+  Home,
   Minus,
   Plus,
+  Search,
   ShoppingBag,
   Trash,
+  Wallet,
   X,
 } from 'lucide-react';
 
@@ -27,3 +30,6 @@ export const ArrowLeftIcon = ArrowLeft;
 export const ArrowUpIcon = ArrowUp;
 export const FilterIcon = Filter;
 export const ExternalLinkIcon = ExternalLink;
+export const HomeIcon = Home;
+export const SearchIcon = Search;
+export const CheckoutIcon = Wallet;

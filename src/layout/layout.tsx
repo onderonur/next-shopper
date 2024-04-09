@@ -1,19 +1,15 @@
 import { ButtonLink } from '@/common/button-link';
 import { APP_REPOSITORY_URL, APP_TITLE } from '@/common/common-utils';
 import { Container } from '@/common/container';
-import { GithubIcon } from '@/common/icons';
+import { CheckoutIcon, GithubIcon, HomeIcon, SearchIcon } from '@/common/icons';
 import { NextLink } from '@/routing/next-link';
 import { twMerge } from 'tailwind-merge';
-import { BackToTopButton } from './back-to-top-button';
 
 type LayoutProps = React.PropsWithChildren;
 
 export function Layout({ children }: LayoutProps) {
   return (
-    <>
-      <div className="grid min-h-screen grid-rows-[1fr_auto]">{children}</div>
-      <BackToTopButton />
-    </>
+    <div className="grid min-h-screen grid-rows-[1fr_auto]">{children}</div>
   );
 }
 
@@ -50,9 +46,39 @@ export function LayoutContent({ className, children }: LayoutContentProps) {
   );
 }
 
+const mobileNavLinks = [
+  { href: '/', title: 'Home', icon: HomeIcon },
+  { href: '/search', title: 'Search', icon: SearchIcon },
+  { href: '/checkout', title: 'Checkout', icon: CheckoutIcon },
+];
+
+function MobileNav() {
+  return (
+    <nav className="fixed bottom-0 z-10 w-full border-t bg-background-main p-0.5 md:hidden">
+      <ul className="flex justify-center gap-1">
+        {mobileNavLinks.map((link) => {
+          return (
+            <li key={link.href} className="w-1/4">
+              <ButtonLink
+                href={link.href}
+                variant="transparent"
+                className="w-full py-1 text-xs"
+                icon={<link.icon size="1.65rem" />}
+                iconAlignment="top"
+              >
+                {link.title}
+              </ButtonLink>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
+  );
+}
+
 export function LayoutFooter() {
   return (
-    <footer className="bg-background-main text-text-light">
+    <footer className="bg-background-main pb-16 text-text-light md:pb-0">
       <Container
         maxWidth="xl"
         className="flex items-center justify-between px-4 py-6"
@@ -67,6 +93,7 @@ export function LayoutFooter() {
           isExternalUrl
         />
       </Container>
+      <MobileNav />
     </footer>
   );
 }

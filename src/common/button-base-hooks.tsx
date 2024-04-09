@@ -8,7 +8,7 @@ export type UseButtonBasePropsArgs = React.PropsWithChildren<{
   variant?: 'default' | 'primary' | 'secondary' | 'transparent';
   circle?: boolean;
   icon?: React.ReactNode;
-  iconAlignment?: 'left' | 'right';
+  iconAlignment?: 'left' | 'right' | 'top';
 }>;
 
 export function useButtonBaseProps({
@@ -70,8 +70,13 @@ export function useButtonBaseProps({
   }
 
   const content = (
-    <span className="flex items-center gap-2">
-      {iconAlignment === 'left' && buttonIcon}
+    <span
+      className={twMerge(
+        'flex items-center gap-2',
+        iconAlignment === 'top' && 'flex-col gap-0.5',
+      )}
+    >
+      {['left', 'top'].includes(iconAlignment) && buttonIcon}
       <span className="empty:hidden">{children}</span>
       {iconAlignment === 'right' && buttonIcon}
     </span>

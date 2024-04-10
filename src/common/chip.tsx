@@ -8,7 +8,7 @@ export function Chip({ children }: ChipProps) {
   return (
     <div
       className={
-        'flex select-none items-center gap-1 rounded-md border-2 border-secondary-main px-2 py-1 text-sm text-secondary-dark'
+        'flex select-none items-center gap-1 rounded-full border-2 border-secondary-main px-2 py-1 text-sm text-secondary-dark'
       }
     >
       {children}
@@ -24,6 +24,7 @@ export function ChipClose(props: ChipCloseProps) {
       {...props}
       className="h-6 w-6"
       variant="transparent"
+      circle
       icon={<CloseIcon size="1.2rem" />}
     />
   );

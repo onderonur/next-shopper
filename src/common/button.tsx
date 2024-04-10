@@ -1,13 +1,13 @@
 import { forwardRef } from 'react';
-import type { UseButtonBasePropsArgs } from './button-base-hooks';
-import { useButtonBaseProps } from './button-base-hooks';
+import type { GetButtonBasePropsArgs } from './button-base-utils';
+import { getButtonBaseProps } from './button-base-utils';
 import type { Omit } from './common-types';
 
 export type ButtonProps = Omit<
   React.ComponentPropsWithoutRef<'button'>,
   'disabled'
 > &
-  UseButtonBasePropsArgs;
+  GetButtonBasePropsArgs;
 
 export const Button = forwardRef<React.ElementRef<'button'>, ButtonProps>(
   function Button(
@@ -25,17 +25,22 @@ export const Button = forwardRef<React.ElementRef<'button'>, ButtonProps>(
     },
     ref,
   ) {
-    const buttonBaseProps = useButtonBaseProps({
-      className,
-      isDisabled,
-      isLoading,
-      variant,
-      circle,
-      icon,
-      iconAlignment,
-      children,
-    });
-
-    return <button ref={ref} type={type} {...rest} {...buttonBaseProps} />;
+    return (
+      <button
+        ref={ref}
+        type={type}
+        {...getButtonBaseProps({
+          className,
+          isDisabled,
+          isLoading,
+          variant,
+          circle,
+          icon,
+          iconAlignment,
+          children,
+        })}
+        {...rest}
+      />
+    );
   },
 );

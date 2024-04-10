@@ -15,7 +15,7 @@ export function ProductFilterDrawer({ children }: ProductFilterDrawerProps) {
     <Drawer
       closeOnPathnameChange
       trigger={
-        <MobilePadding className="md:hidden">
+        <MobilePadding className="flex justify-end md:hidden">
           <DrawerTrigger asChild>
             <Button variant="transparent" icon={<FilterIcon />}>
               Filter

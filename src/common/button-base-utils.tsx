@@ -1,7 +1,7 @@
 import { twMerge } from 'tailwind-merge';
 import { Loading } from './loading';
 
-export type UseButtonBasePropsArgs = React.PropsWithChildren<{
+export type GetButtonBasePropsArgs = React.PropsWithChildren<{
   className?: string;
   isDisabled?: boolean;
   isLoading?: boolean;
@@ -11,7 +11,7 @@ export type UseButtonBasePropsArgs = React.PropsWithChildren<{
   iconAlignment?: 'left' | 'right' | 'top';
 }>;
 
-export function useButtonBaseProps({
+export function getButtonBaseProps({
   className,
   isDisabled,
   isLoading,
@@ -20,9 +20,9 @@ export function useButtonBaseProps({
   icon,
   iconAlignment = 'left',
   children,
-}: UseButtonBasePropsArgs) {
+}: GetButtonBasePropsArgs) {
   const classNameArgs: string[] = [
-    'select-none font-semibold uppercase border-2 inline-grid place-items-center',
+    'select-none font-semibold border-2 inline-grid place-items-center',
   ];
 
   if (isDisabled || isLoading) {

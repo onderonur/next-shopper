@@ -1,3 +1,4 @@
+import { CartDrawer } from '@/cart/cart-drawer';
 import { TooltipProvider } from '@/common/tooltip';
 import { Layout, LayoutFooter } from '@/layout/layout';
 import '@/styles/global.css';
@@ -34,7 +35,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <TooltipProvider>
           <Layout>
             {children}
-            <LayoutFooter />
+            <LayoutFooter>
+              <CartDrawer />
+            </LayoutFooter>
           </Layout>
         </TooltipProvider>
       </body>

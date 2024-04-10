@@ -8,6 +8,8 @@ import {
 } from '@/common/drawer';
 import { CartIcon } from '@/common/icons';
 import { Price } from '@/common/price';
+import { getMobileNavButtonBaseProps } from '@/layout/layout';
+import { twJoin } from 'tailwind-merge';
 import { CheckoutLink } from '../checkout/checkout-linkt';
 import { getCart } from './cart-fetchers';
 import { CartItemList } from './cart-item-list';
@@ -24,8 +26,17 @@ export async function CartDrawer() {
       trigger={
         <Badge value={cart?.totalCount}>
           <DrawerTrigger asChild>
-            <Button aria-label="Open Cart Info" icon={<CartIcon />}>
-              <Price value={cart?.totalPrice} />
+            <Button
+              {...getMobileNavButtonBaseProps({ icon: CartIcon })}
+              aria-label="Open Cart Info"
+            >
+              <Price
+                className={twJoin(
+                  cart?.totalPrice &&
+                    'rounded-full bg-primary-main px-2 text-text-contrast',
+                )}
+                value={cart?.totalPrice}
+              />
             </Button>
           </DrawerTrigger>
         </Badge>

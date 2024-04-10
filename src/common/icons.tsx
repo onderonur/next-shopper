@@ -12,7 +12,6 @@ import {
   Search,
   ShoppingBag,
   Trash,
-  Wallet,
   X,
 } from 'lucide-react';
 
@@ -32,4 +31,3 @@ export const FilterIcon = Filter;
 export const ExternalLinkIcon = ExternalLink;
 export const HomeIcon = Home;
 export const SearchIcon = Search;
-export const CheckoutIcon = Wallet;

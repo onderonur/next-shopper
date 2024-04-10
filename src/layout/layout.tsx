@@ -1,8 +1,10 @@
+import type { ButtonLinkProps } from '@/common/button-link';
 import { ButtonLink } from '@/common/button-link';
 import { APP_REPOSITORY_URL, APP_TITLE } from '@/common/common-utils';
 import { Container } from '@/common/container';
-import { CheckoutIcon, GithubIcon, HomeIcon, SearchIcon } from '@/common/icons';
+import { GithubIcon, HomeIcon, SearchIcon } from '@/common/icons';
 import { NextLink } from '@/routing/next-link';
+import type { LucideIcon } from 'lucide-react';
 import { twMerge } from 'tailwind-merge';
 
 type LayoutProps = React.PropsWithChildren;
@@ -17,7 +19,7 @@ type LayoutHeaderProps = React.PropsWithChildren;
 
 export function LayoutHeader({ children }: LayoutHeaderProps) {
   return (
-    <header className="fixed z-10 h-app-header w-full bg-background-main shadow-sm">
+    <header className="fixed z-10 h-app-header w-full bg-background-main/75 shadow-sm backdrop-blur-md">
       <Container
         maxWidth="xl"
         className="flex h-full items-center justify-between px-4"
@@ -46,37 +48,34 @@ export function LayoutContent({ className, children }: LayoutContentProps) {
   );
 }
 
+type MobileNavButtonBaseProps = Pick<
+  ButtonLinkProps,
+  'variant' | 'className' | 'iconAlignment' | 'icon'
+>;
+
+export function getMobileNavButtonBaseProps({
+  icon,
+}: {
+  icon: LucideIcon;
+}): MobileNavButtonBaseProps {
+  const Icon = icon;
+
+  return {
+    variant: 'transparent',
+    className: 'w-full py-1 text-xs',
+    iconAlignment: 'top',
+    icon: <Icon size="1.65rem" />,
+  };
+}
+
 const mobileNavLinks = [
   { href: '/', title: 'Home', icon: HomeIcon },
   { href: '/search', title: 'Search', icon: SearchIcon },
-  { href: '/checkout', title: 'Checkout', icon: CheckoutIcon },
 ];
 
-function MobileNav() {
-  return (
-    <nav className="fixed bottom-0 z-10 w-full border-t bg-background-main p-0.5 md:hidden">
-      <ul className="flex justify-center gap-1">
-        {mobileNavLinks.map((link) => {
-          return (
-            <li key={link.href} className="w-1/4">
-              <ButtonLink
-                href={link.href}
-                variant="transparent"
-                className="w-full py-1 text-xs"
-                icon={<link.icon size="1.65rem" />}
-                iconAlignment="top"
-              >
-                {link.title}
-              </ButtonLink>
-            </li>
-          );
-        })}
-      </ul>
-    </nav>
-  );
-}
+type LayoutFooterProps = React.PropsWithChildren;
 
-export function LayoutFooter() {
+export function LayoutFooter({ children }: LayoutFooterProps) {
   return (
     <footer className="bg-background-main pb-16 text-text-light md:pb-0">
       <Container
@@ -93,7 +92,25 @@ export function LayoutFooter() {
           isExternalUrl
         />
       </Container>
-      <MobileNav />
+      <nav className="fixed bottom-0 z-10 w-full border-t bg-background-main p-1 md:hidden">
+        <ul className="flex justify-center gap-1">
+          {mobileNavLinks.map((link) => {
+            return (
+              <li key={link.href} className="w-1/4">
+                <ButtonLink
+                  href={link.href}
+                  {...getMobileNavButtonBaseProps({ icon: link.icon })}
+                >
+                  {link.title}
+                </ButtonLink>
+              </li>
+            );
+          })}
+          <li className="w-1/4">
+            <div>{children}</div>
+          </li>
+        </ul>
+      </nav>
     </footer>
   );
 }

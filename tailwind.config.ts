@@ -29,7 +29,7 @@ export default {
           dark: secondaryColor[600],
           main: secondaryColor[500],
           light: secondaryColor[300],
-          lighter: secondaryColor[100],
+          lighter: secondaryColor[50],
         },
         skeleton: gray[200],
         background: {

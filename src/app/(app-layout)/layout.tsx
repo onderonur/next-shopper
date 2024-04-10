@@ -7,7 +7,9 @@ export default function AppLayout({ children }: AppLayoutProps) {
   return (
     <>
       <LayoutHeader>
-        <CartDrawer />
+        <div className="hidden md:block">
+          <CartDrawer />
+        </div>
       </LayoutHeader>
       <LayoutContent>{children}</LayoutContent>
     </>

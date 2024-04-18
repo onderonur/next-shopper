@@ -27,8 +27,7 @@ export const Button = forwardRef<React.ElementRef<'button'>, ButtonProps>(
   ) {
     return (
       <button
-        ref={ref}
-        type={type}
+        {...rest}
         {...getButtonBaseProps({
           className,
           isDisabled,
@@ -39,7 +38,8 @@ export const Button = forwardRef<React.ElementRef<'button'>, ButtonProps>(
           iconAlignment,
           children,
         })}
-        {...rest}
+        ref={ref}
+        type={type}
       />
     );
   },

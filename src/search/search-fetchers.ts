@@ -46,28 +46,33 @@ async function getManyProducts(args: ProductFilterArgs) {
   if (args.priceRanges?.length) {
     const productsInPriceRanges: Product[] = [];
 
-    args.priceRanges.forEach((priceRange) => {
+    for (const priceRange of args.priceRanges) {
       const [minPriceText, maxPriceText] = priceRange.split('-');
       const minPrice = Number(minPriceText);
-      const maxPrice = maxPriceText === 'max' ? Infinity : Number(maxPriceText);
+      const maxPrice =
+        maxPriceText === 'max'
+          ? Number.POSITIVE_INFINITY
+          : Number(maxPriceText);
       productsInPriceRanges.push(
         ...response.filter(
           (product) => product.price >= minPrice && product.price <= maxPrice,
         ),
       );
-    });
+    }
 
     response = productsInPriceRanges;
   }
 
   if (args.sorting) {
     switch (args.sorting as ProductSorting) {
-      case ProductSorting.PRICE_ASC:
+      case ProductSorting.PRICE_ASC: {
         response.sort((a, b) => a.price - b.price);
         break;
-      case ProductSorting.PRICE_DESC:
+      }
+      case ProductSorting.PRICE_DESC: {
         response.sort((a, b) => b.price - a.price);
         break;
+      }
     }
   }
 

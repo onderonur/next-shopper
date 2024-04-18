@@ -8,7 +8,7 @@ export function Chip({ children }: ChipProps) {
   return (
     <div
       className={
-        'flex select-none items-center gap-1 rounded-full border-2 border-secondary-main px-2 py-1 text-sm text-secondary-dark'
+        'flex select-none items-center gap-1 rounded-full border-2 border-secondary px-2 py-1 text-sm text-secondary-dark'
       }
     >
       {children}

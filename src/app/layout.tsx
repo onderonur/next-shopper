@@ -31,7 +31,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       )}
     >
       <head />
-      <body className="bg-background-dark text-text-main">
+      <body className="bg-background-dark text-foreground">
         <TooltipProvider>
           <Layout>
             {children}

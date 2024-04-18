@@ -6,7 +6,8 @@ export const APP_DESCRIPTION = `${APP_TITLE} is a simple fullstack e-commerce we
 export const APP_REPOSITORY_URL = 'https://github.com/onderonur/next-shopper';
 
 export const createMockArray = (length: number) => {
-  return Array.from(Array(length).keys());
+  // eslint-disable-next-line unicorn/prefer-spread
+  return Array.from(Array.from({ length }).keys());
 };
 
 export const isNil = (value: unknown): value is Nil => {

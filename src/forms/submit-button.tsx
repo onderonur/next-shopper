@@ -10,5 +10,5 @@ type SubmitButtonProps = Omit<ButtonProps, 'type' | 'isLoading'>;
 export function SubmitButton(props: SubmitButtonProps) {
   const { pending } = useFormStatus();
 
-  return <Button type="submit" isLoading={pending} {...props} />;
+  return <Button {...props} type="submit" isLoading={pending} />;
 }

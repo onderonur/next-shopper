@@ -17,10 +17,10 @@ export function ErrorPage({ statusCode, message, children }: ErrorPageProps) {
       <LayoutContent>
         <main className="mb-12 grid h-full place-content-center gap-4">
           <h1 className="flex items-center">
-            <span className="border-r-2 p-4 text-3xl font-bold text-text-lighter">
+            <span className="border-r-2 p-4 text-3xl font-bold text-foreground-lighter">
               {statusCode}
             </span>
-            <span className="p-4 text-lg font-semibold text-text-light">
+            <span className="p-4 text-lg font-semibold text-foreground-light">
               {message}
             </span>
           </h1>

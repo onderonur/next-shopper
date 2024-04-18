@@ -80,7 +80,7 @@ export function ProductFilter({ data }: ProductFilterProps) {
 
         switch (filter.filterKey) {
           case ProductFilterKey.CATEGORIES:
-          case ProductFilterKey.PRICE_RANGES:
+          case ProductFilterKey.PRICE_RANGES: {
             filterInput = (
               <CheckboxGroup
                 value={values[filter.filterKey]}
@@ -98,7 +98,8 @@ export function ProductFilter({ data }: ProductFilterProps) {
               </CheckboxGroup>
             );
             break;
-          case ProductFilterKey.SORTING:
+          }
+          case ProductFilterKey.SORTING: {
             filterInput = (
               <RadioGroup
                 value={values[filter.filterKey]}
@@ -115,6 +116,7 @@ export function ProductFilter({ data }: ProductFilterProps) {
                 })}
               </RadioGroup>
             );
+          }
         }
 
         return (

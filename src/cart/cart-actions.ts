@@ -77,12 +77,12 @@ export async function removeProductFromCart(productId: Id) {
 
   const cartItems: Cart = [];
 
-  cart.cartItems.forEach((cartItem) => {
+  for (const cartItem of cart.cartItems) {
     const { product } = cartItem;
     if (product.id !== productId) {
       cartItems.push({ productId: product.id, count: cartItem.count });
     }
-  });
+  }
 
   const cookieStore = cookies();
 

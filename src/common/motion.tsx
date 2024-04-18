@@ -1,5 +1,3 @@
 'use client';
 
-import { AnimatePresence } from 'framer-motion';
-
-export { AnimatePresence };
+export { AnimatePresence } from 'framer-motion';

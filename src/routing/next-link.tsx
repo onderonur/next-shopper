@@ -11,8 +11,8 @@ export const NextLink = forwardRef<NextLinkRef, NextLinkProps>(
   function NextLink({ isExternalUrl, ...rest }, ref) {
     return (
       <Link
-        ref={ref}
         {...rest}
+        ref={ref}
         target={isExternalUrl ? '_blank' : undefined}
         rel={isExternalUrl ? 'noopener noreferrer' : undefined}
         prefetch={false}

@@ -19,12 +19,16 @@ export function Loading({
 
   return (
     <div
-      className={twMerge('flex justify-center', children && 'py-6', className)}
+      className={twMerge(
+        'flex justify-center',
+        !!children && 'py-6',
+        className,
+      )}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className={twJoin(
-          'animate-spin text-primary-main',
+          'animate-spin text-primary',
           size === 'small' ? 'h-4 w-4' : 'h-12 w-12',
         )}
         fill="none"

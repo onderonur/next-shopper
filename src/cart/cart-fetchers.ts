@@ -27,7 +27,7 @@ export const getCart = cache(async (): Promise<Maybe<CartDetails>> => {
   let totalPrice = 0;
   let totalCount = 0;
 
-  cartProducts.forEach((product) => {
+  for (const product of cartProducts) {
     const count = cart.data.find(
       (item) => item.productId === product.id,
     )?.count;
@@ -37,7 +37,7 @@ export const getCart = cache(async (): Promise<Maybe<CartDetails>> => {
       totalPrice += product.price * count;
       totalCount += count;
     }
-  });
+  }
 
   return { cartItems, totalPrice, totalCount };
 });

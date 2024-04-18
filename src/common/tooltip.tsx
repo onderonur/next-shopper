@@ -18,10 +18,10 @@ export function Tooltip({ content, children }: TooltipProps) {
           <motion.div
             initial={{ y: -2, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            className="select-none rounded-md bg-text-main px-2 py-2 text-sm font-semibold text-text-contrast shadow-md"
+            className="select-none rounded-md bg-foreground px-2 py-2 text-sm font-semibold text-foreground-contrast shadow-md"
           >
             {content}
-            <RadixTooltip.Arrow className="fill-text-main" />
+            <RadixTooltip.Arrow className="fill-foreground" />
           </motion.div>
         </RadixTooltip.Content>
       </RadixTooltip.Portal>

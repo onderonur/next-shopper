@@ -26,32 +26,34 @@ export function getButtonBaseProps({
   ];
 
   if (isDisabled || isLoading) {
-    classNameArgs.push(
-      'bg-disabled-main text-disabled-dark cursor-not-allowed',
-    );
+    classNameArgs.push('bg-disabled text-disabled-dark cursor-not-allowed');
   } else {
     classNameArgs.push('active:scale-95 transform transition ease-in-out');
 
     switch (variant) {
-      case 'default':
+      case 'default': {
         classNameArgs.push(
-          'hover:bg-overlay-light active:bg-overlay-main text-primary-main border-primary-main',
+          'hover:bg-overlay-light active:bg-overlay text-primary border-primary',
         );
         break;
-      case 'primary':
+      }
+      case 'primary': {
         classNameArgs.push(
-          'bg-primary-main hover:bg-primary-dark active:bg-primary-darker text-white border-primary-dark',
+          'bg-primary hover:bg-primary-dark active:bg-primary-darker text-white border-primary-dark',
         );
         break;
-      case 'secondary':
+      }
+      case 'secondary': {
         classNameArgs.push(
-          'bg-secondary-main hover:bg-secondary-dark active:bg-secondary-darker text-white border-secondary-dark',
+          'bg-secondary hover:bg-secondary-dark active:bg-secondary-darker text-white border-secondary-dark',
         );
         break;
-      default:
+      }
+      default: {
         classNameArgs.push(
-          'hover:bg-overlay-light active:bg-overlay-main text-primary-main border-none',
+          'hover:bg-overlay-light active:bg-overlay text-primary border-none',
         );
+      }
     }
   }
 

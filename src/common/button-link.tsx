@@ -18,6 +18,7 @@ export function ButtonLink({
 }: ButtonLinkProps) {
   return (
     <NextLink
+      {...rest}
       {...getButtonBaseProps({
         className,
         variant,
@@ -26,7 +27,6 @@ export function ButtonLink({
         iconAlignment,
         children,
       })}
-      {...rest}
     />
   );
 }

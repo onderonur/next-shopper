@@ -36,7 +36,7 @@ export function DrawerHeader({ children }: DrawerHeaderProps) {
   return (
     <div>
       <div className="mx-auto max-w-[4rem] pt-3 sm:hidden">
-        <div className="h-1.5 rounded-md bg-text-lighter/20" />
+        <div className="h-1.5 rounded-md bg-foreground-lighter/20" />
       </div>
       <div className="flex items-center justify-between px-4 py-3 shadow-sm">
         <RadixDialog.Title className="text-lg font-semibold" asChild>
@@ -106,7 +106,7 @@ export function Drawer({
             <RadixDialog.Content asChild>
               <motion.div
                 className={twJoin(
-                  'fixed bottom-0 z-10 flex w-full flex-col bg-background-main focus:outline-none',
+                  'fixed bottom-0 z-10 flex w-full flex-col bg-background focus:outline-none',
                   'max-h-[80%] rounded-t-2xl sm:top-0 sm:max-h-none sm:max-w-xs sm:rounded-none sm:rounded-l-2xl',
                   'after:absolute after:inset-x-0 after:top-full after:h-screen after:bg-background-dark sm:after:hidden',
                   '[--x-from:0] [--x-to:0] [--y-from:100%] [--y-to:0%] sm:[--x-to:0%] sm:[--y-from:0] sm:[--y-to:0]',

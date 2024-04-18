@@ -33,7 +33,7 @@ export async function CartDrawer() {
               <Price
                 className={twJoin(
                   cart?.totalPrice &&
-                    'rounded-full bg-primary-main px-2 text-text-contrast',
+                    'rounded-full bg-primary px-2 text-foreground-contrast',
                 )}
                 value={cart?.totalPrice}
               />

@@ -2,12 +2,13 @@ import { getCart } from '@/cart/cart-fetchers';
 import { CartItemList } from '@/cart/cart-item-list';
 import { CartTotalPrice } from '@/cart/cart-total-price';
 import { ClearCartButton } from '@/cart/clear-cart-button';
-import { CheckoutForm } from '@/checkout/checkout-form';
 import { Container } from '@/common/container';
 import { PageTitle } from '@/common/page-title';
 import { Paper } from '@/common/paper';
 import { Section, SectionTitle } from '@/common/section';
 import { getMetadata } from '@/seo/seo-utils';
+import { getManyContinents } from '@/shipping/shipping-fetchers';
+import { ShippingForm } from '@/shipping/shipping-form';
 
 export const metadata = getMetadata({
   title: 'Checkout',
@@ -15,7 +16,10 @@ export const metadata = getMetadata({
 });
 
 export default async function CheckoutPage() {
-  const cart = await getCart();
+  const [cart, continents] = await Promise.all([
+    getCart(),
+    getManyContinents(),
+  ]);
 
   return (
     <main>
@@ -32,9 +36,9 @@ export default async function CheckoutPage() {
         </Section>
         {cart ? (
           <Section>
-            <SectionTitle as="h2">Credit/Debit Card Information</SectionTitle>
+            <SectionTitle as="h2">Shipping Info</SectionTitle>
             <Paper>
-              <CheckoutForm />
+              <ShippingForm continents={continents} />
             </Paper>
           </Section>
         ) : null}

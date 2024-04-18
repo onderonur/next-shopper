@@ -200,5 +200,73 @@
     { "title": "$10,00 - $50,00", "value": "10-50" },
     { "title": "$50,00 - $100,00", "value": "50-100" },
     { "title": "More than $100,00", "value": "100-max" }
+  ],
+  "continents": [
+    {
+      "id": "middle-earth",
+      "name": "Middle-earth",
+      "series": "The Lord of the Rings",
+      "regions": [
+        {
+          "id": "gondor",
+          "name": "Gondor",
+          "cities": [
+            { "id": "minas-tirith", "name": "Minas Tirith" },
+            { "id": "osgiliath", "name": "Osgiliath" },
+            { "id": "dol-amroth", "name": "Dol Amroth" }
+          ]
+        },
+        {
+          "id": "rohan",
+          "name": "Rohan",
+          "cities": [
+            { "id": "edoras", "name": "Edoras" },
+            { "id": "helms-deep", "name": "Helm's Deep" },
+            { "id": "aldburg", "name": "Aldburg" }
+          ]
+        },
+        {
+          "id": "the-shire",
+          "name": "The Shire",
+          "cities": [
+            { "id": "hobbiton", "name": "Hobbiton" },
+            { "id": "buckland", "name": "Buckland" },
+            { "id": "tuckborough", "name": "Tuckborough" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "westeros",
+      "name": "Westeros",
+      "series": "Game of Thrones",
+      "regions": [
+        {
+          "id": "the-north",
+          "name": "The North",
+          "cities": [
+            { "id": "winterfell", "name": "Winterfell" },
+            { "id": "white-harbor", "name": "White Harbor" },
+            { "id": "castle-black", "name": "Castle Black" }
+          ]
+        },
+        {
+          "id": "the-westerlands",
+          "name": "The Westerlands",
+          "cities": [
+            { "id": "casterly-rock", "name": "Casterly Rock" },
+            { "id": "lannisport", "name": "Lannisport" }
+          ]
+        },
+        {
+          "id": "the-reach",
+          "name": "The Reach",
+          "cities": [
+            { "id": "highgarden", "name": "Highgarden" },
+            { "id": "oldtown", "name": "Oldtown" }
+          ]
+        }
+      ]
+    }
   ]
 }

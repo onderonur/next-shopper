@@ -6,15 +6,19 @@ import { Input } from './input';
 
 type PatternFormatInputProps = Pick<
   PatternFormatProps,
-  'format' | 'mask' | 'value' | 'valueIsNumericString'
+  'format' | 'mask' | 'value' | 'type'
 > &
-  Pick<
-    InputProps,
-    'id' | 'placeholder' | 'onFocus' | 'onBlur' | 'onChange' | 'name'
-  >;
+  Pick<InputProps, 'placeholder' | 'onFocus' | 'onBlur' | 'onChange' | 'name'>;
 
 export const PatternFormatInput = forwardRef<InputRef, PatternFormatInputProps>(
   function PatternFormatInput(props, ref) {
-    return <PatternFormat getInputRef={ref} {...props} customInput={Input} />;
+    return (
+      <PatternFormat
+        {...props}
+        getInputRef={ref}
+        customInput={Input}
+        allowEmptyFormatting
+      />
+    );
   },
 );

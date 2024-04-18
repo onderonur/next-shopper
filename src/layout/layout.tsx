@@ -19,12 +19,12 @@ type LayoutHeaderProps = React.PropsWithChildren;
 
 export function LayoutHeader({ children }: LayoutHeaderProps) {
   return (
-    <header className="fixed z-10 h-app-header w-full bg-background-main/75 shadow-sm backdrop-blur-md">
+    <header className="fixed z-10 h-app-header w-full bg-background/75 shadow-sm backdrop-blur-md">
       <Container
         maxWidth="xl"
         className="flex h-full items-center justify-between px-4"
       >
-        <NextLink href="/" className="text-2xl font-bold text-primary-main">
+        <NextLink href="/" className="text-2xl font-bold text-primary">
           {APP_TITLE}
         </NextLink>
         {children}
@@ -77,7 +77,7 @@ type LayoutFooterProps = React.PropsWithChildren;
 
 export function LayoutFooter({ children }: LayoutFooterProps) {
   return (
-    <footer className="bg-background-main pb-16 text-text-light md:pb-0">
+    <footer className="bg-background pb-16 text-foreground-light md:pb-0">
       <Container
         maxWidth="xl"
         className="flex items-center justify-between px-4 py-6"
@@ -87,12 +87,14 @@ export function LayoutFooter({ children }: LayoutFooterProps) {
         </p>
         <ButtonLink
           aria-label="Check the Source Code on GitHub"
+          // TODO: GitHub icon is deprecated.
+          // eslint-disable-next-line deprecation/deprecation
           icon={<GithubIcon />}
           href={APP_REPOSITORY_URL}
           isExternalUrl
         />
       </Container>
-      <nav className="fixed bottom-0 z-10 w-full border-t bg-background-main p-1 md:hidden">
+      <nav className="fixed bottom-0 z-10 w-full border-t bg-background p-1 md:hidden">
         <ul className="flex justify-center gap-1">
           {mobileNavLinks.map((link) => {
             return (

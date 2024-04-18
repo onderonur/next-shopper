@@ -13,15 +13,15 @@ function parseToSearchParams(
     }
   }
 
-  Object.entries(params ?? {}).forEach(([key, value]) => {
+  for (const [key, value] of Object.entries(params ?? {})) {
     if (Array.isArray(value)) {
-      value.forEach((valueItem) => {
+      for (const valueItem of value) {
         appendParam(key, valueItem);
-      });
+      }
     } else {
       appendParam(key, value);
     }
-  });
+  }
 
   return searchParams;
 }

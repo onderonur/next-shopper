@@ -65,7 +65,10 @@ export function SectionTitle({
   return (
     <MobilePadding className={className}>
       <header className="mb-1 flex items-center justify-between">
-        <As id={headingId} className="text-lg font-semibold text-text-light">
+        <As
+          id={headingId}
+          className="text-lg font-semibold text-foreground-light"
+        >
           {children}
         </As>
         {actions ? <div>{actions}</div> : null}

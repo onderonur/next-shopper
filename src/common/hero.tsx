@@ -10,9 +10,9 @@ import { Divider } from './divider';
 
 export function Hero() {
   return (
-    <div className="bg-background-main shadow-sm">
+    <div className="bg-background shadow-sm">
       <div className="flex flex-col items-center gap-4 px-4 py-12 text-center">
-        <h1 className="text-5xl font-black text-primary-main sm:text-7xl lg:text-8xl">
+        <h1 className="text-5xl font-black text-primary sm:text-7xl lg:text-8xl">
           {APP_TITLE}
         </h1>
         <Divider />

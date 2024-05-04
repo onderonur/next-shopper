@@ -5,7 +5,7 @@ export type GetButtonBasePropsArgs = React.PropsWithChildren<{
   className?: string;
   isDisabled?: boolean;
   isLoading?: boolean;
-  variant?: 'default' | 'primary' | 'secondary' | 'transparent';
+  variant?: 'default' | 'primary' | 'transparent';
   circle?: boolean;
   icon?: React.ReactNode;
   iconAlignment?: 'left' | 'right' | 'top';
@@ -22,45 +22,37 @@ export function getButtonBaseProps({
   children,
 }: GetButtonBasePropsArgs) {
   const classNameArgs: string[] = [
-    'select-none font-semibold border-2 inline-grid place-items-center',
+    'select-none font-semibold inline-grid place-items-center',
   ];
 
   if (isDisabled || isLoading) {
-    classNameArgs.push('bg-disabled text-disabled-dark cursor-not-allowed');
+    classNameArgs.push('bg-muted text-muted-foreground cursor-not-allowed');
   } else {
-    classNameArgs.push('active:scale-95 transform transition ease-in-out');
-
     switch (variant) {
       case 'default': {
         classNameArgs.push(
-          'hover:bg-overlay-light active:bg-overlay text-primary border-primary',
+          'border-2 hover:bg-accent-hover active:bg-accent-active border',
         );
         break;
       }
       case 'primary': {
         classNameArgs.push(
-          'bg-primary hover:bg-primary-dark active:bg-primary-darker text-white border-primary-dark',
-        );
-        break;
-      }
-      case 'secondary': {
-        classNameArgs.push(
-          'bg-secondary hover:bg-secondary-dark active:bg-secondary-darker text-white border-secondary-dark',
+          'bg-primary hover:bg-primary-hover active:bg-primary-active text-primary-foreground',
         );
         break;
       }
       default: {
         classNameArgs.push(
-          'hover:bg-overlay-light active:bg-overlay text-primary border-none',
+          'hover:bg-accent-hover active:bg-accent-active text-accent-foreground',
         );
       }
     }
   }
 
   if (circle) {
-    classNameArgs.push('rounded-full h-10 w-10');
+    classNameArgs.push('rounded-full h-9 w-9');
   } else if (icon && !children) {
-    classNameArgs.push('rounded-md h-8 w-8');
+    classNameArgs.push('rounded-md h-9 w-9');
   } else {
     classNameArgs.push('rounded-md px-4 py-2');
   }

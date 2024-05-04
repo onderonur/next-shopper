@@ -31,7 +31,6 @@ export function CartItemActionButtons({
         <SubmitButton
           aria-label={`Remove "${product.title}" From Cart`}
           className="h-8 w-8 rounded-md text-sm"
-          variant="secondary"
           icon={<DeleteIcon size="1.2rem" />}
         />
       </form>

@@ -13,7 +13,7 @@ const priceFormatter = new Intl.NumberFormat('en', {
 
 export function Price({ className, value }: PriceProps) {
   return (
-    <span className={twMerge('font-semibold', className)}>
+    <span className={twMerge('font-bold', className)}>
       {priceFormatter.format(value ?? 0)}
     </span>
   );

@@ -2,7 +2,7 @@ import { createSafeContext } from '@/common/safe-context';
 import * as RadixCheckbox from '@radix-ui/react-checkbox';
 import { useId } from 'react';
 import { Label } from './label';
-import { useSelectableItemProps } from './selectable-item-hooks';
+import { getSelectableItemProps } from './selectable-item-utils';
 
 type CheckboxGroupContextValue = {
   value: string[];
@@ -33,6 +33,14 @@ export function CheckboxGroup({
 
 const allSymbol = Symbol('all');
 
+const {
+  rootClassName,
+  itemClassName,
+  indicatorClassName,
+  icon,
+  labelClassName,
+} = getSelectableItemProps();
+
 type CheckboxProps = React.PropsWithChildren<{
   value: string | typeof allSymbol;
 }>;
@@ -42,14 +50,6 @@ export function Checkbox({ value: checkboxValue, children }: CheckboxProps) {
   const { value, onChange } = useCheckboxGroupContext();
 
   const isAllOption = checkboxValue === allSymbol;
-
-  const {
-    rootClassName,
-    itemClassName,
-    indicatorClassName,
-    icon,
-    labelClassName,
-  } = useSelectableItemProps();
 
   return (
     <div className={rootClassName}>

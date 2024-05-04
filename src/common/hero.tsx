@@ -10,19 +10,18 @@ import { Divider } from './divider';
 
 export function Hero() {
   return (
-    <div className="bg-background shadow-sm">
+    <div className="border-b">
       <div className="flex flex-col items-center gap-4 px-4 py-12 text-center">
         <h1 className="text-5xl font-black text-primary sm:text-7xl lg:text-8xl">
           {APP_TITLE}
         </h1>
         <Divider />
-        <div className="flex flex-col items-center">
-          <p className="text-lg font-semibold text-primary-dark sm:text-xl">
+        <div className="flex flex-col items-center gap-2">
+          <p className="text-lg font-semibold text-muted-foreground sm:text-xl">
             {APP_DESCRIPTION}
           </p>
           <ButtonLink
             className="mt-1"
-            variant="transparent"
             href={APP_REPOSITORY_URL}
             isExternalUrl
             icon={<ExternalLinkIcon />}
@@ -32,7 +31,9 @@ export function Hero() {
           </ButtonLink>
         </div>
         <Divider />
-        <ButtonLink href={routes.search()}>Browse Store</ButtonLink>
+        <ButtonLink variant="primary" href={routes.search()}>
+          Browse Store
+        </ButtonLink>
       </div>
     </div>
   );

@@ -165,22 +165,26 @@
     {
       "title": "Women's Clothing",
       "value": "womens-clothing",
-      "image": "/images/categories/women-fashion.jpg"
+      "image": "/images/categories/women-fashion.jpg",
+      "color": "hsl(150 50% 50%)"
     },
     {
       "title": "Men's Clothing",
       "value": "mens-clothing",
-      "image": "/images/categories/men-fashion.jpg"
+      "image": "/images/categories/men-fashion.jpg",
+      "color": "hsl(340 50% 50%)"
     },
     {
       "title": "Electronics",
       "value": "electronics",
-      "image": "/images/categories/electronics.jpg"
+      "image": "/images/categories/electronics.jpg",
+      "color": "hsl(310 50% 50%)"
     },
     {
       "title": "Jewelery",
       "value": "jewelery",
-      "image": "/images/categories/jewelery.jpg"
+      "image": "/images/categories/jewelery.jpg",
+      "color": "hsl(230 50% 50%)"
     }
   ],
   "sortings": [

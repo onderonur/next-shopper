@@ -1,4 +1,5 @@
 import { Price } from '@/common/price';
+import { Skeleton } from '@/common/skeleton';
 import { Tooltip } from '@/common/tooltip';
 import { NextLink } from '@/routing/next-link';
 import { routes } from '@/routing/routing-utils';
@@ -18,9 +19,9 @@ export function ProductCard({ product }: ProductCardProps) {
     >
       <article className="group flex flex-col gap-2 rounded-md border-2 p-2 md:p-4">
         <div className="p-2">
-          <div className="relative aspect-[12/10] transform bg-transparent transition duration-500 ease-out group-hover:scale-110">
+          <div className="relative aspect-[12/10] bg-transparent transition duration-500 ease-out group-hover:scale-110">
             <Image
-              className="object-contain"
+              className="rounded bg-white object-contain"
               src={product.image}
               alt={product.title}
               fill
@@ -34,7 +35,7 @@ export function ProductCard({ product }: ProductCardProps) {
             </h3>
           </Tooltip>
           <div>
-            <Price className="text-primary-dark" value={product.price} />
+            <Price className="text-primary" value={product.price} />
           </div>
         </div>
       </article>
@@ -44,17 +45,17 @@ export function ProductCard({ product }: ProductCardProps) {
 
 export function ProductCardSkeleton() {
   return (
-    <div className="flex animate-pulse flex-col gap-2 rounded-md border-2 p-2 md:p-4">
+    <div className="flex flex-col gap-2 rounded-md border-2 p-2 md:p-4">
       <div className="p-2">
-        <div className="aspect-[12/10] rounded-md bg-skeleton" />
+        <Skeleton className="aspect-[12/10]" />
       </div>
       <div className="flex flex-col items-center gap-3">
         <div className="flex w-full flex-col items-center gap-1">
-          <div className="h-4 w-full max-w-[theme(spacing.28)] rounded-md bg-skeleton" />
-          <div className="h-4 w-full max-w-[theme(spacing.36)] rounded-md bg-skeleton" />
-          <div className="h-4 w-full max-w-[theme(spacing.28)] rounded-md bg-skeleton" />
+          <Skeleton className="h-4 w-full max-w-[theme(spacing.28)]" />
+          <Skeleton className="h-4 w-full max-w-[theme(spacing.36)]" />
+          <Skeleton className="h-4 w-full max-w-[theme(spacing.28)]" />
         </div>
-        <div className="h-6 w-16 rounded-md bg-skeleton" />
+        <Skeleton className="h-6 w-16" />
       </div>
     </div>
   );

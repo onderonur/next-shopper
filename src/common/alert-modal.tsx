@@ -1,7 +1,7 @@
+import { AnimatePresence } from '@/animations/animate-presence';
+import { fadeIn } from '@/animations/animation-utils';
 import { Button } from '@/common/button';
-import { AnimatePresence } from '@/common/motion';
 import { useOnRouteChange } from '@/routing/routing-hooks';
-import { fadeIn } from '@/transitions/transition-utils';
 import * as RadixAlertDialog from '@radix-ui/react-alert-dialog';
 import { motion } from 'framer-motion';
 import { twJoin } from 'tailwind-merge';
@@ -34,7 +34,7 @@ export function AlertModal({
             <RadixAlertDialog.Overlay asChild>
               <motion.div
                 {...fadeIn}
-                className="fixed inset-0 z-20 bg-black/20 backdrop-blur-md"
+                className="fixed inset-0 z-20 bg-overlay/20 backdrop-blur-md"
               />
             </RadixAlertDialog.Overlay>
             <RadixAlertDialog.Content asChild>
@@ -42,8 +42,8 @@ export function AlertModal({
                 // Responsive Framer Motion with Tailwind CSS:
                 // https://www.youtube.com/watch?v=xSuxsfn13xg
                 className={twJoin(
-                  'fixed bottom-0 left-1/2 z-20 w-full p-6 focus:outline-none sm:bottom-auto sm:top-1/2 sm:max-w-md sm:p-2',
-                  '[--y-from:30%] [--y-to:0%] sm:[--y-from:-80%] sm:[--y-to:-50%]',
+                  'fixed bottom-0 left-1/2 z-20 w-full p-6 focus:outline-none md:bottom-auto md:top-1/2 md:max-w-md md:p-2',
+                  '[--y-from:30%] [--y-to:0%] md:[--y-from:-80%] md:[--y-to:-50%]',
                 )}
                 initial={{
                   y: 'var(--y-from)',
@@ -54,7 +54,7 @@ export function AlertModal({
                 animate={{ y: 'var(--y-to)', scale: 1, opacity: 1 }}
                 exit={{ y: 'var(--y-from)', scale: 0.8, opacity: 0 }}
               >
-                <div className="rounded-md bg-white p-6 shadow-md">
+                <div className="rounded-md bg-background p-6 shadow-md">
                   {children}
                 </div>
               </motion.div>

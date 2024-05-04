@@ -1,14 +1,14 @@
 'use client';
 
-import { AnimatePresence } from '@/common/motion';
+import { AnimatePresence } from '@/animations/animate-presence';
+import { fadeIn } from '@/animations/animation-utils';
 import { useOnPathnameChange, useOnRouteChange } from '@/routing/routing-hooks';
-import { fadeIn } from '@/transitions/transition-utils';
 import * as RadixDialog from '@radix-ui/react-dialog';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { twJoin, twMerge } from 'tailwind-merge';
+import { useIsMobile } from '../styles/style-hooks';
 import { Button } from './button';
-import { useIsMobile } from './common-hooks';
 import { CloseIcon } from './icons';
 
 type DrawerBodyProps = React.PropsWithChildren<{
@@ -35,8 +35,8 @@ type DrawerHeaderProps = React.PropsWithChildren;
 export function DrawerHeader({ children }: DrawerHeaderProps) {
   return (
     <div>
-      <div className="mx-auto max-w-[4rem] pt-3 sm:hidden">
-        <div className="h-1.5 rounded-md bg-foreground-lighter/20" />
+      <div className="mx-auto max-w-[4rem] pt-3 md:hidden">
+        <div className="h-1.5 rounded-md bg-accent" />
       </div>
       <div className="flex items-center justify-between px-4 py-3 shadow-sm">
         <RadixDialog.Title className="text-lg font-semibold" asChild>
@@ -100,19 +100,19 @@ export function Drawer({
             <RadixDialog.Overlay asChild>
               <motion.div
                 {...fadeIn}
-                className="fixed inset-0 z-10 bg-black/20 backdrop-blur-md"
+                className="fixed inset-0 z-10 bg-overlay/20 backdrop-blur-md"
               />
             </RadixDialog.Overlay>
             <RadixDialog.Content asChild>
               <motion.div
                 className={twJoin(
-                  'fixed bottom-0 z-10 flex w-full flex-col bg-background focus:outline-none',
-                  'max-h-[80%] rounded-t-2xl sm:top-0 sm:max-h-none sm:max-w-xs sm:rounded-none sm:rounded-l-2xl',
-                  'after:absolute after:inset-x-0 after:top-full after:h-screen after:bg-background-dark sm:after:hidden',
-                  '[--x-from:0] [--x-to:0] [--y-from:100%] [--y-to:0%] sm:[--x-to:0%] sm:[--y-from:0] sm:[--y-to:0]',
+                  'fixed bottom-0 z-10 flex w-full flex-col border bg-background focus:outline-none',
+                  'max-h-[80%] rounded-t-2xl md:top-0 md:max-h-none md:max-w-xs md:rounded-none md:rounded-l-2xl',
+                  'after:absolute after:inset-x-0 after:top-full after:h-screen after:bg-background md:after:hidden',
+                  '[--x-from:0] [--x-to:0] [--y-from:100%] [--y-to:0%] md:[--x-to:0%] md:[--y-from:0] md:[--y-to:0]',
                   from === 'left'
-                    ? 'sm:left-0 sm:[--x-from:-100%]'
-                    : 'sm:right-0 sm:[--x-from:100%]',
+                    ? 'md:left-0 md:[--x-from:-100%]'
+                    : 'md:right-0 md:[--x-from:100%]',
                 )}
                 // Normally we can use `framer-motion` in a responsive way,
                 // by using CSS variables.

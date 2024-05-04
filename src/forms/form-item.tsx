@@ -57,7 +57,7 @@ export function FormItemLabel({ children, ...rest }: FormItemLabelProps) {
   return (
     <Label
       {...rest}
-      className="block text-sm font-semibold text-foreground-light"
+      className="block text-sm font-semibold text-muted-foreground"
       htmlFor={inputId}
     >
       {children}

@@ -4,6 +4,7 @@ import { APP_REPOSITORY_URL, APP_TITLE } from '@/common/common-utils';
 import { Container } from '@/common/container';
 import { GithubIcon, HomeIcon, SearchIcon } from '@/common/icons';
 import { NextLink } from '@/routing/next-link';
+import { ThemeToggle } from '@/styles/theme-toggle';
 import type { LucideIcon } from 'lucide-react';
 import { twMerge } from 'tailwind-merge';
 
@@ -19,7 +20,7 @@ type LayoutHeaderProps = React.PropsWithChildren;
 
 export function LayoutHeader({ children }: LayoutHeaderProps) {
   return (
-    <header className="fixed z-10 h-app-header w-full bg-background/75 shadow-sm backdrop-blur-md">
+    <header className="fixed z-10 h-app-header w-full border-b bg-background/75 backdrop-blur-md">
       <Container
         maxWidth="xl"
         className="flex h-full items-center justify-between px-4"
@@ -27,7 +28,10 @@ export function LayoutHeader({ children }: LayoutHeaderProps) {
         <NextLink href="/" className="text-2xl font-bold text-primary">
           {APP_TITLE}
         </NextLink>
-        {children}
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          {children}
+        </div>
       </Container>
     </header>
   );
@@ -39,10 +43,7 @@ type LayoutContentProps = React.PropsWithChildren<{
 
 export function LayoutContent({ className, children }: LayoutContentProps) {
   return (
-    <Container
-      maxWidth="xl"
-      className={twMerge('mt-app-header py-2 md:p-4', className)}
-    >
+    <Container maxWidth="xl" className={twMerge('py-2 md:p-4', className)}>
       {children}
     </Container>
   );
@@ -77,12 +78,12 @@ type LayoutFooterProps = React.PropsWithChildren;
 
 export function LayoutFooter({ children }: LayoutFooterProps) {
   return (
-    <footer className="bg-background pb-16 text-foreground-light md:pb-0">
+    <footer className="pb-16 md:pb-0">
       <Container
         maxWidth="xl"
         className="flex items-center justify-between px-4 py-6"
       >
-        <p>
+        <p className="text-muted-foreground">
           {new Date().getFullYear()} © {APP_TITLE}
         </p>
         <ButtonLink

@@ -25,7 +25,7 @@ export function SelectedFilters() {
     <div data-pending={isPending ? true : undefined}>
       {!!visibleOptions.length && (
         <MobilePadding>
-          <ul className="flex flex-row flex-wrap gap-1">
+          <ul className="flex flex-row flex-wrap items-center gap-1">
             {visibleOptions.map((selectedOption) => {
               return (
                 <li key={`${selectedOption.filterKey}_${selectedOption.value}`}>
@@ -68,7 +68,6 @@ export function SelectedFilters() {
             <li>
               <Button
                 className="text-sm"
-                variant="transparent"
                 onClick={() => {
                   startTransition(() => {
                     setOptimisticSelectedOptions([]);

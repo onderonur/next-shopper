@@ -37,6 +37,6 @@ function useMediaQuery(query: string) {
 }
 
 export function useIsMobile() {
-  const isMobile = useMediaQuery('(max-width: 639px)');
+  const isMobile = useMediaQuery('(max-width: 767px)');
   return isMobile;
 }

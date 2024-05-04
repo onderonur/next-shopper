@@ -67,7 +67,7 @@ export function SectionTitle({
       <header className="mb-1 flex items-center justify-between">
         <As
           id={headingId}
-          className="text-lg font-semibold text-foreground-light"
+          className="text-lg font-semibold text-muted-foreground"
         >
           {children}
         </As>

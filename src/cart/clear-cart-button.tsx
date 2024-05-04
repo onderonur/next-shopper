@@ -36,9 +36,7 @@ export function ClearCartButton({ cart }: ClearCartButtonProps) {
     <AlertModal
       trigger={
         <AlertModalTrigger asChild>
-          <Button variant="transparent" className="w-full">
-            Clear Cart
-          </Button>
+          <Button className="w-full">Clear Cart</Button>
         </AlertModalTrigger>
       }
       isOpen={isAlertModalOpen}

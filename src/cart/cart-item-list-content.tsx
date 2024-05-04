@@ -1,6 +1,6 @@
 'use client';
 
-import { AnimatePresence } from '@/common/motion';
+import { AnimatePresence } from '@/animations/animate-presence';
 import { Price } from '@/common/price';
 import { NextLink } from '@/routing/next-link';
 import { routes } from '@/routing/routing-utils';
@@ -48,7 +48,7 @@ export function CartItemListContent({
                 </NextLink>
                 <div className="flex flex-col items-end">
                   <Price
-                    className="text-primary-dark"
+                    className="text-primary"
                     value={product.price * cartItem.count}
                   />
                 </div>

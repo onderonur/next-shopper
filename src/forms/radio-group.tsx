@@ -3,7 +3,7 @@ import * as RadixRadioGroup from '@radix-ui/react-radio-group';
 import { useId } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { Label } from './label';
-import { useSelectableItemProps } from './selectable-item-hooks';
+import { getSelectableItemProps } from './selectable-item-utils';
 
 type RadioGroupProps = React.PropsWithChildren<{
   value: Maybe<string>;
@@ -22,20 +22,20 @@ export function RadioGroup({ value, children, onChange }: RadioGroupProps) {
   );
 }
 
+const {
+  rootClassName,
+  itemClassName,
+  indicatorClassName,
+  icon,
+  labelClassName,
+} = getSelectableItemProps();
+
 type RadioGroupItemProps = React.PropsWithChildren<{
   value: string;
 }>;
 
 export function RadioGroupItem({ value, children }: RadioGroupItemProps) {
   const id = useId();
-
-  const {
-    rootClassName,
-    itemClassName,
-    indicatorClassName,
-    icon,
-    labelClassName,
-  } = useSelectableItemProps();
 
   return (
     <div className={rootClassName}>

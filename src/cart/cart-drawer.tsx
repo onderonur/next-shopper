@@ -9,7 +9,6 @@ import {
 import { CartIcon } from '@/common/icons';
 import { Price } from '@/common/price';
 import { getMobileNavButtonBaseProps } from '@/layout/layout';
-import { twJoin } from 'tailwind-merge';
 import { CheckoutLink } from '../checkout/checkout-linkt';
 import { getCart } from './cart-fetchers';
 import { CartItemList } from './cart-item-list';
@@ -31,10 +30,7 @@ export async function CartDrawer() {
               aria-label="Open Cart Info"
             >
               <Price
-                className={twJoin(
-                  cart?.totalPrice &&
-                    'rounded-full bg-primary px-2 text-foreground-contrast',
-                )}
+                className="rounded-full bg-muted px-2"
                 value={cart?.totalPrice}
               />
             </Button>
@@ -50,7 +46,7 @@ export async function CartDrawer() {
           <ClearCartButton cart={cart} />
         </div>
         <CartItemList isDense className="flex-grow overflow-y-auto" />
-        <div className="flex flex-col gap-3 bg-background-dark p-4">
+        <div className="flex flex-col gap-3 p-4">
           <CartTotalPrice />
           <CheckoutLink />
         </div>

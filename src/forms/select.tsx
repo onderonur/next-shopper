@@ -19,13 +19,12 @@ export const SelectItem = forwardRef<
       ref={ref}
       className={twJoin(
         'relative flex cursor-pointer select-none items-center rounded py-2 pl-1 pr-6',
-        'data-[disabled]:pointer-events-none data-[disabled]:cursor-default data-[disabled]:text-disabled',
-        'data-[highlighted]:bg-background-dark data-[highlighted]:outline-none',
+        'data-[highlighted]:bg-accent data-[highlighted]:outline-none',
         'data-[state=checked]:font-semibold',
       )}
     >
       <RadixSelect.ItemText>{children}</RadixSelect.ItemText>
-      <RadixSelect.ItemIndicator className="absolute right-2 inline-flex w-4 items-center justify-center text-primary">
+      <RadixSelect.ItemIndicator className="absolute right-2 inline-flex w-4 items-center justify-center text-muted-foreground">
         <CheckIcon />
       </RadixSelect.ItemIndicator>
     </RadixSelect.Item>
@@ -50,27 +49,27 @@ export const Select = forwardRef<
       <RadixSelect.Trigger
         ref={ref}
         id={inputId}
-        className="inline-flex items-center justify-between gap-1 rounded border bg-white px-2 py-1 hover:bg-background-dark aria-invalid:border-error data-[disabled]:bg-disabled data-[placeholder]:text-foreground-light"
+        className="inline-flex items-center justify-between gap-1 rounded border px-2 py-1 text-foreground enabled:hover:bg-accent-hover aria-invalid:border-error data-[placeholder]:text-muted-foreground data-[disabled]:opacity-50"
         aria-invalid={isInvalid}
         aria-describedby={errorMessageId}
       >
         <RadixSelect.Value placeholder={placeholder} />
-        <RadixSelect.Icon className="text-foreground-lighter">
+        <RadixSelect.Icon className="text-muted-foreground">
           <ChevronDownIcon />
         </RadixSelect.Icon>
       </RadixSelect.Trigger>
       <RadixSelect.Portal>
         <RadixSelect.Content
-          className="w-[var(--radix-select-trigger-width)] overflow-hidden rounded-md bg-white shadow-md"
+          className="w-[var(--radix-select-trigger-width)] overflow-hidden rounded-md border bg-background shadow-md"
           position="popper"
         >
-          <RadixSelect.ScrollUpButton className="flex cursor-default items-center justify-center bg-white">
+          <RadixSelect.ScrollUpButton className="flex cursor-default items-center justify-center">
             <ChevronUpIcon />
           </RadixSelect.ScrollUpButton>
           <RadixSelect.Viewport className="p-2">
             {children}
           </RadixSelect.Viewport>
-          <RadixSelect.ScrollDownButton className="flex cursor-default items-center justify-center bg-white">
+          <RadixSelect.ScrollDownButton className="flex cursor-default items-center justify-center">
             <ChevronDownIcon />
           </RadixSelect.ScrollDownButton>
         </RadixSelect.Content>

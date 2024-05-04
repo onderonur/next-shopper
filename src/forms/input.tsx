@@ -15,7 +15,7 @@ export const Input = forwardRef<InputRef, InputProps>(
         {...props}
         ref={ref}
         id={inputId}
-        className="w-full rounded-md border-2 px-2 py-1 aria-invalid:border-error"
+        className="w-full rounded-md border-2 bg-background px-2 py-1 aria-invalid:border-error"
         required={isRequired}
         aria-invalid={isInvalid}
         aria-describedby={errorMessageId}

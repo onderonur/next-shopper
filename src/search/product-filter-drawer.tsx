@@ -17,9 +17,7 @@ export function ProductFilterDrawer({ children }: ProductFilterDrawerProps) {
       trigger={
         <MobilePadding className="flex justify-end md:hidden">
           <DrawerTrigger asChild>
-            <Button variant="transparent" icon={<FilterIcon />}>
-              Filter
-            </Button>
+            <Button icon={<FilterIcon size="1.2rem" />}>Filter</Button>
           </DrawerTrigger>
         </MobilePadding>
       }

@@ -15,7 +15,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
     <div className="grid gap-6 md:grid-cols-2">
       <div className="relative mx-auto aspect-square w-full max-w-sm md:max-w-lg">
         <Image
-          className="object-contain"
+          className="rounded bg-white object-contain"
           src={product.image}
           alt={product.title}
           priority
@@ -24,9 +24,9 @@ export function ProductDetails({ product }: ProductDetailsProps) {
       </div>
       <div className="flex flex-col items-center gap-4">
         <div className="flex flex-col gap-2 text-center">
-          <div className="text-2xl font-bold">{product.title}</div>
-          <div className="text-3xl">
-            <Price className="text-primary-dark" value={product.price} />
+          <div className="text-3xl font-bold">{product.title}</div>
+          <div className="text-2xl">
+            <Price className="text-primary" value={product.price} />
           </div>
         </div>
         <AddProductToCartButton product={product} />

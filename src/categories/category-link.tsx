@@ -1,33 +1,30 @@
 import type { NextLinkProps } from '@/routing/next-link';
 import { NextLink } from '@/routing/next-link';
-import Image from 'next/image';
 
 type CategoryLinkProps = Pick<NextLinkProps, 'href'> & {
   imageSrc: string;
   title: string;
+  color: string;
 };
 
-export function CategoryLink({ href, imageSrc, title }: CategoryLinkProps) {
+export function CategoryLink({
+  href,
+  imageSrc,
+  title,
+  color,
+}: CategoryLinkProps) {
   return (
     <NextLink
       className="group relative block h-80 overflow-hidden rounded-md"
       href={href}
     >
-      <Image
-        src={imageSrc}
-        alt={title}
-        className="absolute h-full w-full transform object-cover transition duration-700 group-hover:scale-110"
-        width={1000}
-        height={667}
-        priority
+      <div
+        className="absolute inset-0 grid place-items-center bg-cover bg-center bg-blend-luminosity transition duration-700 group-hover:scale-110"
+        style={{ backgroundImage: `url(${imageSrc})`, backgroundColor: color }}
       />
-      <div className="absolute inset-0 grid place-items-center">
-        <div className="rounded-md bg-black/50 p-6 backdrop-blur-md">
-          <h2 className="mb-2 border-b-4 text-center text-3xl font-bold text-foreground-contrast md:text-4xl">
-            {title}
-          </h2>
-        </div>
-      </div>
+      <h2 className="absolute bottom-2 right-2 text-3xl font-bold text-white [text-shadow:0_0_0.5rem_#000]">
+        {title}
+      </h2>
     </NextLink>
   );
 }

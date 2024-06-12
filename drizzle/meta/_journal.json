@@ -1,0 +1,34 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1718194757224,
+      "tag": "0000_large_raza",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1718197745402,
+      "tag": "0001_oval_senator_kelly",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1718198222554,
+      "tag": "0002_sloppy_captain_britain",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1718201165265,
+      "tag": "0003_lush_puppet_master",
+      "breakpoints": true
+    }
+  ]
+}

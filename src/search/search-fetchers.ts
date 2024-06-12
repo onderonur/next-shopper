@@ -1,5 +1,4 @@
-import { getDb } from '@/db/db-utils';
-import type { Product } from '@/products/product-types';
+import type { Id } from '@/common/common-types';
 import type {
   ProductFilterArgs,
   ProductFilterOptions,
@@ -8,9 +7,12 @@ import type {
 } from '@/search/search-types';
 import { ProductFilterKey, ProductSorting } from '@/search/search-utils';
 import { cache } from 'react';
+import { db } from '../../db/drizzle';
 
 async function getProductFilterOptions() {
-  const { sortings, categories, priceRanges } = await getDb();
+  const sortings = await db.query.sortings.findMany();
+  const categories = await db.query.categories.findMany();
+  const priceRanges = await db.query.priceRanges.findMany();
 
   const filterOptions: ProductFilterOptions = {
     sortings: {
@@ -34,51 +36,68 @@ async function getProductFilterOptions() {
 }
 
 async function getManyProducts(args: ProductFilterArgs) {
-  const db = await getDb();
-  let response: Product[] = [...db.products];
+  let categoryIds: Id[] = [];
 
-  if (args.categories?.length) {
-    response = response.filter((product) =>
-      args.categories?.includes(product.category.value),
-    );
+  const categoryValues = args.categories;
+
+  if (categoryValues?.length) {
+    const categories = await db.query.categories.findMany({
+      where: (categories, { inArray }) =>
+        inArray(categories.value, categoryValues),
+    });
+
+    categoryIds = categories.map((category) => category.id);
   }
 
-  if (args.priceRanges?.length) {
-    const productsInPriceRanges: Product[] = [];
+  const products = await db.query.products.findMany({
+    where: (products, { inArray, and, or, gte, lte }) => {
+      const conditions: Parameters<typeof or> = [];
 
-    for (const priceRange of args.priceRanges) {
-      const [minPriceText, maxPriceText] = priceRange.split('-');
-      const minPrice = Number(minPriceText);
-      const maxPrice =
-        maxPriceText === 'max'
-          ? Number.POSITIVE_INFINITY
-          : Number(maxPriceText);
-      productsInPriceRanges.push(
-        ...response.filter(
-          (product) => product.price >= minPrice && product.price <= maxPrice,
-        ),
-      );
-    }
-
-    response = productsInPriceRanges;
-  }
-
-  if (args.sorting) {
-    switch (args.sorting as ProductSorting) {
-      case ProductSorting.PRICE_ASC: {
-        response.sort((a, b) => a.price - b.price);
-        break;
+      if (categoryIds.length) {
+        conditions.push(inArray(products.categoryId, categoryIds));
       }
-      case ProductSorting.PRICE_DESC: {
-        response.sort((a, b) => b.price - a.price);
-        break;
-      }
-    }
-  }
 
-  return response;
+      if (args.priceRanges?.length) {
+        const priceRangeConditions: Parameters<typeof and> = [];
+
+        for (const priceRange of args.priceRanges) {
+          const [minPriceText, maxPriceText] = priceRange.split('-');
+          const minPrice = Number(minPriceText);
+          const maxPrice =
+            maxPriceText === 'max'
+              ? Number.POSITIVE_INFINITY
+              : Number(maxPriceText);
+
+          priceRangeConditions.push(
+            and(gte(products.price, minPrice), lte(products.price, maxPrice)),
+          );
+        }
+
+        conditions.push(or(...priceRangeConditions));
+      }
+
+      return and(...conditions);
+    },
+    // TODO: Default sorting ekle json'lı version'a da.
+    orderBy: (products, { asc, desc }) => {
+      switch (args.sorting) {
+        case ProductSorting.PRICE_ASC: {
+          return [asc(products.price)];
+        }
+        case ProductSorting.PRICE_DESC: {
+          return [desc(products.price)];
+        }
+        default: {
+          return [];
+        }
+      }
+    },
+  });
+
+  return products;
 }
 
+// TODO: Filter seçip refresh yapıp sonra clear filter yapınca URL değişiyor ama ekranda filter'lar seçili kalıyor.
 function getProductFilterSelectedOptions({
   filterOptions,
   args,

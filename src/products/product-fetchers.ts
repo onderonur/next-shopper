@@ -1,20 +1,23 @@
 import type { Id } from '@/common/common-types';
-import { getDb } from '@/db/db-utils';
 import { filterProducts } from '@/search/search-fetchers';
 import { cache } from 'react';
+import { db } from '../../db/drizzle';
 
 export const getOneProductById = cache(async (productId: Id) => {
-  const db = await getDb();
-  const product = db.products.find((product) => product.id === productId);
+  const product = await db.query.products.findFirst({
+    where: (products, { eq }) => eq(products.id, productId),
+    with: { category: true },
+  });
+
   return product;
 });
 
 export const getManyProductsByIds = cache(async (productIds: Id[]) => {
-  const db = await getDb();
-  const products = db.products.filter((product) =>
-    productIds.includes(product.id),
-  );
-  return products;
+  const product = await db.query.products.findMany({
+    where: (products, { inArray }) => inArray(products.id, productIds),
+  });
+
+  return product;
 });
 
 export const getRelatedProducts = cache(async (productId: Id) => {

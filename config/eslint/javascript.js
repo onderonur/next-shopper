@@ -7,7 +7,7 @@ module.exports = {
     'object-shorthand': 'warn',
     curly: ['warn', 'multi-line'],
     eqeqeq: 'warn',
-    'no-param-reassign': 'error',
+    'no-param-reassign': 'warn',
     'prefer-template': 'warn',
     'no-nested-ternary': 'warn',
   },

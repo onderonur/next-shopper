@@ -1,8 +1,17 @@
-import { getDb } from '@/db/db-utils';
 import { cache } from 'react';
+import { db } from '../../db/drizzle';
 import type { Continent } from './shipping-types';
 
 export const getManyContinents = cache(async (): Promise<Continent[]> => {
-  const db = await getDb();
-  return db.continents;
+  const continents = await db.query.continents.findMany({
+    with: {
+      regions: {
+        with: {
+          cities: true,
+        },
+      },
+    },
+  });
+
+  return continents;
 });

@@ -1,17 +1,7 @@
-type City = {
-  id: string;
-  name: string;
-};
+import type { cities, continents, regions } from '../../db/schema';
 
-type Region = {
-  id: string;
-  name: string;
-  cities: City[];
-};
+type City = typeof cities.$inferSelect;
 
-export type Continent = {
-  id: string;
-  name: string;
-  series: string;
-  regions: Region[];
-};
+type Region = typeof regions.$inferInsert;
+
+export type Continent = typeof continents.$inferInsert;

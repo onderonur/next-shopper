@@ -24,15 +24,15 @@ export function ShippingForm({ continents }: ShippingFormProps) {
   const [state, formAction] = useFormState(completeCheckout, null);
   const fieldErrors = state?.success ? null : state?.fieldErrors;
 
-  const [continentId, setContinentId] = useState<string>('');
-  const [regionId, setRegionId] = useState<string>('');
-  const [cityId, setCityId] = useState<string>('');
+  const [continentId, setContinentId] = useState('');
+  const [regionId, setRegionId] = useState('');
+  const [cityId, setCityId] = useState('');
 
   const continent = continents.find(
-    (continent) => continent.id === continentId,
+    (continent) => continent.id.toString() === continentId,
   );
   const regions = continent?.regions;
-  const region = regions?.find((region) => region.id === regionId);
+  const region = regions?.find((region) => region.id.toString() === regionId);
   const cities = region?.cities;
 
   return (
@@ -48,6 +48,7 @@ export function ShippingForm({ continents }: ShippingFormProps) {
         formData.set('continentId', continentId);
         formData.set('regionId', regionId);
         formData.set('cityId', cityId);
+
         formAction(formData);
       }}
     >
@@ -65,7 +66,7 @@ export function ShippingForm({ continents }: ShippingFormProps) {
         >
           {continents.map((continent) => {
             return (
-              <SelectItem key={continent.id} value={continent.id}>
+              <SelectItem key={continent.id} value={continent.id.toString()}>
                 {continent.name}
               </SelectItem>
             );
@@ -88,7 +89,7 @@ export function ShippingForm({ continents }: ShippingFormProps) {
           >
             {regions?.map((region) => {
               return (
-                <SelectItem key={region.id} value={region.id}>
+                <SelectItem key={region.id} value={region.id.toString()}>
                   {region.name}
                 </SelectItem>
               );
@@ -109,7 +110,7 @@ export function ShippingForm({ continents }: ShippingFormProps) {
           >
             {cities?.map((city) => {
               return (
-                <SelectItem key={city.id} value={city.id}>
+                <SelectItem key={city.id} value={city.id.toString()}>
                   {city.name}
                 </SelectItem>
               );

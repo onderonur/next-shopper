@@ -21,9 +21,7 @@ export async function generateMetadata({
 }: ProductPageProps): Promise<Metadata> {
   const product = await getOneProductById(Number(params.productId));
 
-  if (!product) {
-    notFound();
-  }
+  if (!product) notFound();
 
   return getMetadata({
     title: product.title,
@@ -37,9 +35,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const productId = Number(params.productId);
   const product = await getOneProductById(productId);
 
-  if (!product) {
-    notFound();
-  }
+  if (!product) notFound();
 
   return (
     <div className="flex flex-col gap-4">

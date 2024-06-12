@@ -89,24 +89,21 @@ function getProductFilterSelectedOptions({
   const { sortings, categories, priceRanges } = filterOptions;
   const selectedOptions: ProductFilterSelectedOption[] = [];
 
-  let isDefaultSortingApplied = false;
   let selectedSorting = sortings.options.find(
     (sorting) => sorting.value === args.sorting,
   );
 
   if (!selectedSorting) {
-    isDefaultSortingApplied = true;
-
-    const defaultSorting = sortings.options.find(
-      (sorting) => sorting.isDefault,
+    selectedSorting = sortings.options.find(
+      (sorting) => (sorting.value as ProductSorting) === ProductSorting.DEFAULT,
     );
-    selectedSorting = defaultSorting;
   }
 
   if (selectedSorting) {
     selectedOptions.push({
       ...selectedSorting,
-      isVisible: !isDefaultSortingApplied,
+      isVisible:
+        (selectedSorting.value as ProductSorting) !== ProductSorting.DEFAULT,
       filterKey: ProductFilterKey.SORTING,
     });
   }

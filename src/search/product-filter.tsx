@@ -9,6 +9,7 @@ import type {
 } from '@/search/search-types';
 import {
   ProductFilterKey,
+  ProductSorting,
   getValuesOfSelectedOptions,
 } from '@/search/search-utils';
 import { useRouter } from 'next/navigation';
@@ -44,14 +45,12 @@ export function ProductFilter({ data }: ProductFilterProps) {
         (option) => option.value === value,
       );
 
-      if (!option) {
-        continue;
-      }
+      if (!option) continue;
 
       newOptimisticSelectedOptions.push({
         ...option,
         filterKey,
-        isVisible: true,
+        isVisible: (option.value as ProductSorting) !== ProductSorting.DEFAULT,
       });
     }
 

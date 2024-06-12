@@ -35,9 +35,7 @@ export async function addProductToCart(productId: Id) {
 export async function decreaseProductInCart(productId: Id) {
   const cart = await getCart();
 
-  if (!cart) {
-    return;
-  }
+  if (!cart) return;
 
   // TODO: Refactor typings, fix namings (cartItems etc.)
   let cartItems: Cart = cart.cartItems.map((cartItem) => ({
@@ -71,9 +69,7 @@ export async function decreaseProductInCart(productId: Id) {
 export async function removeProductFromCart(productId: Id) {
   const cart = await getCart();
 
-  if (!cart) {
-    return;
-  }
+  if (!cart) return;
 
   const cartItems: Cart = [];
 

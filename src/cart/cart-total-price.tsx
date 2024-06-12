@@ -9,9 +9,7 @@ type CartTotalPriceProps = {
 export async function CartTotalPrice({ className }: CartTotalPriceProps) {
   const cart = await getCart();
 
-  if (!cart) {
-    return null;
-  }
+  if (!cart) return null;
 
   return (
     <div

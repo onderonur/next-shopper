@@ -20,9 +20,7 @@ export const getManyProductsByIds = cache(async (productIds: Id[]) => {
 export const getRelatedProducts = cache(async (productId: Id) => {
   const product = await getOneProductById(productId);
 
-  if (!product) {
-    return [];
-  }
+  if (!product) return [];
 
   const { products } = await filterProducts({
     categories: [product.category.value],

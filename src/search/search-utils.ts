@@ -8,6 +8,7 @@ export enum ProductFilterKey {
 }
 
 export enum ProductSorting {
+  DEFAULT = 'default',
   PRICE_ASC = 'price-asc',
   PRICE_DESC = 'price-desc',
 }

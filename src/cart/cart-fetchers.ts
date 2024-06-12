@@ -14,9 +14,7 @@ export const getCart = cache(async (): Promise<Maybe<CartDetails>> => {
     cookieValue ? JSON.parse(cookieValue) : null,
   );
 
-  if (!cart.success) {
-    return null;
-  }
+  if (!cart.success) return null;
 
   const productIds = cart.data.map((item) => item.productId);
 

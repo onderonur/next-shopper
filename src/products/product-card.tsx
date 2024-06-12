@@ -29,7 +29,7 @@ export function ProductCard({ product }: ProductCardProps) {
           </div>
         </div>
         <div className="flex flex-col gap-2 text-center">
-          <Tooltip content={<div>{product.title}</div>}>
+          <Tooltip content={product.title}>
             <h3 className="text-sm font-bold fixed-leading-5 fixed-line-clamp-3">
               {product.title}
             </h3>

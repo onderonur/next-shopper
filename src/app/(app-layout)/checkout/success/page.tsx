@@ -9,9 +9,7 @@ import { redirect } from 'next/navigation';
 export default async function CheckoutSuccessPage() {
   const cart = await getCart();
 
-  if (cart) {
-    redirect('/');
-  }
+  if (cart) redirect('/');
 
   return (
     <main>

@@ -46,7 +46,7 @@ export function SelectedOptionsProvider({
             filterKey: ProductFilterKey.SORTING,
             isVisible: false,
             title: 'Sorting',
-            value: ProductSorting.PRICE_ASC,
+            value: ProductSorting.DEFAULT,
             order: '0_0',
           });
         }

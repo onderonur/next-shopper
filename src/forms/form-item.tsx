@@ -69,9 +69,7 @@ export function FormItemLabel({ children, ...rest }: FormItemLabelProps) {
 export function FormItemErrorMessage() {
   const { errorMessageId, errorMessages } = useFormItemContext();
 
-  if (!errorMessages?.length) {
-    return null;
-  }
+  if (!errorMessages?.length) return null;
 
   return (
     <div id={errorMessageId} aria-live="polite" className="text-sm text-error">

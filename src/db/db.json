@@ -189,14 +189,16 @@
   ],
   "sortings": [
     {
+      "title": "Default",
+      "value": "default"
+    },
+    {
       "title": "Price low to high",
-      "value": "price-asc",
-      "isDefault": true
+      "value": "price-asc"
     },
     {
       "title": "Price high to low",
-      "value": "price-desc",
-      "isDefault": false
+      "value": "price-desc"
     }
   ],
   "priceRanges": [

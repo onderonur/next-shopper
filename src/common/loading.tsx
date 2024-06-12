@@ -13,9 +13,7 @@ export function Loading({
   size = 'default',
   children,
 }: LoadingProps) {
-  if (!isLoading) {
-    return children;
-  }
+  if (!isLoading) return children;
 
   return (
     <div

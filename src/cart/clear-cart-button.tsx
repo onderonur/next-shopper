@@ -28,9 +28,7 @@ export function ClearCartButton({ cart }: ClearCartButtonProps) {
     }
   }, [success]);
 
-  if (!cart) {
-    return null;
-  }
+  if (!cart) return null;
 
   return (
     <AlertModal

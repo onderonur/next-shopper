@@ -1,0 +1,214 @@
+datasource db {
+    provider = "postgresql"
+    url      = env("POSTGRES_DATABASE_URL")
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+// Auth Schema - Begin
+// https://authjs.dev/getting-started/adapters/prisma#schema
+model User {
+    id            String          @id @default(cuid())
+    name          String?
+    email         String?         @unique
+    emailVerified DateTime?
+    image         String?
+    accounts      Account[]
+    sessions      Session[]
+    // Optional for WebAuthn support
+    authenticator Authenticator[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    cart      Cart[]
+    favorites Favorite[]
+    order     Order[]
+}
+
+model Account {
+    id                String  @id @default(cuid())
+    userId            String
+    type              String
+    provider          String
+    providerAccountId String
+    refresh_token     String?
+    access_token      String?
+    expires_at        Int?
+    token_type        String?
+    scope             String?
+    id_token          String?
+    session_state     String?
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@unique([provider, providerAccountId])
+}
+
+model Session {
+    id           String   @id @default(cuid())
+    sessionToken String   @unique
+    userId       String
+    expires      DateTime
+    user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model VerificationToken {
+    identifier String
+    token      String
+    expires    DateTime
+
+    @@unique([identifier, token])
+}
+
+// Optional for WebAuthn support
+model Authenticator {
+    credentialID         String  @unique
+    userId               String
+    providerAccountId    String
+    credentialPublicKey  String
+    counter              Int
+    credentialDeviceType String
+    credentialBackedUp   Boolean
+    transports           String?
+
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@id([userId, credentialID])
+}
+
+// Auth Schema - End
+
+model Product {
+    id               String             @id @default(cuid())
+    title            String
+    description      String
+    price            Float
+    image            String
+    category         Category           @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+    categoryId       String
+    productsOnCarts  ProductsOnCarts[]
+    createdAt        DateTime           @default(now())
+    updatedAt        DateTime           @updatedAt
+    favorites        Favorite[]
+    productsOnOrders ProductsOnOrders[]
+}
+
+model Category {
+    id        String    @id @default(cuid())
+    title     String
+    value     String
+    image     String
+    color     String
+    products  Product[]
+    createdAt DateTime  @default(now())
+    updatedAt DateTime  @updatedAt
+}
+
+model Sorting {
+    id        String   @id @default(cuid())
+    title     String
+    value     String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model PriceRange {
+    id        String   @id @default(cuid())
+    title     String
+    value     String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model City {
+    id        String   @id @default(cuid())
+    name      String
+    region    Region   @relation(fields: [regionId], references: [id], onDelete: Cascade)
+    regionId  String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    order     Order[]
+}
+
+model Region {
+    id          String    @id @default(cuid())
+    name        String
+    continent   Continent @relation(fields: [continentId], references: [id], onDelete: Cascade)
+    continentId String
+    cities      City[]
+    createdAt   DateTime  @default(now())
+    updatedAt   DateTime  @updatedAt
+}
+
+model Continent {
+    id        String   @id @default(cuid())
+    name      String
+    series    String
+    regions   Region[]
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Cart {
+    id              String            @id @default(cuid())
+    user            User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+    userId          String            @unique
+    productsOnCarts ProductsOnCarts[]
+    createdAt       DateTime          @default(now())
+    updatedAt       DateTime          @updatedAt
+}
+
+model ProductsOnCarts {
+    cart      Cart     @relation(fields: [cartId], references: [id], onDelete: Cascade)
+    cartId    String
+    product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+    productId String
+    count     Int
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@id([cartId, productId])
+}
+
+model Favorite {
+    product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+    productId String
+    user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+    userId    String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@id([productId, userId])
+}
+
+model Order {
+    id               String             @id @default(cuid())
+    user             User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+    userId           String
+    city             City               @relation(fields: [cityId], references: [id], onDelete: Cascade)
+    cityId           String
+    productsOnOrders ProductsOnOrders[]
+    createdAt        DateTime           @default(now())
+    updatedAt        DateTime           @updatedAt
+}
+
+model ProductsOnOrders {
+    product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+    productId String
+    order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+    orderId   String
+    count     Int
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@id([productId, orderId])
+}

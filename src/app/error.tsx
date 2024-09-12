@@ -1,9 +1,9 @@
 // Error boundaries must be Client Components:
-// https://nextjs.org/docs/app/building-your-application/routing/error-handling#error-boundaries
+// https://nextjs.org/docs/app/building-your-application/routing/error-handling
 'use client';
 
-import { Button } from '@/common/button';
-import { ErrorPage } from '@/error-handling/error-page';
+import { ErrorPage } from '@/core/errors/components/error-page';
+import { Button } from '@/core/ui/components/button';
 import { StatusCodes } from 'http-status-codes';
 
 type RootErrorPageProps = {

@@ -1,9 +1,13 @@
-import { Categories } from '@/categories/categories';
-import { Container } from '@/common/container';
-import { Hero } from '@/common/hero';
-import { getMetadata } from '@/seo/seo-utils';
+import { routes } from '@/core/routing/routing.utils';
+import { getMetadata } from '@/core/seo/seo.utils';
+import { Container } from '@/core/ui/components/container';
+import { Hero } from '@/core/ui/components/hero';
+import { Categories } from '@/features/categories/components/categories';
 
-export const metadata = getMetadata({ title: 'Home', pathname: '/' });
+export const metadata = getMetadata({
+  title: 'Home',
+  pathname: routes.home(),
+});
 
 export default function LandingPage() {
   return (

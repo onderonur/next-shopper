@@ -1,7 +1,13 @@
-import { LayoutContent } from '@/layout/layout';
+import { Container } from '@/core/ui/components/container';
 
-type AppLayoutProps = React.PropsWithChildren;
+type AppLayoutProps = {
+  children: React.ReactNode;
+};
 
 export default function AppLayout({ children }: AppLayoutProps) {
-  return <LayoutContent>{children}</LayoutContent>;
+  return (
+    <Container maxWidth="xl" className="p-2 md:p-4">
+      {children}
+    </Container>
+  );
 }

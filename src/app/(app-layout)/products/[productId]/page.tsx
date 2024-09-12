@@ -1,11 +1,12 @@
-import { PageTitle } from '@/common/page-title';
-import { Paper } from '@/common/paper';
-import { Section, SectionTitle } from '@/common/section';
-import { ProductDetails } from '@/products/product-details';
-import { getOneProductById } from '@/products/product-fetchers';
-import { ProductGridSkeleton } from '@/products/product-grid';
-import { RelatedProducts } from '@/products/related-products';
-import { getMetadata } from '@/seo/seo-utils';
+import { routes } from '@/core/routing/routing.utils';
+import { getMetadata } from '@/core/seo/seo.utils';
+import { Card, CardContent } from '@/core/ui/components/card';
+import { PageTitle } from '@/core/ui/components/page-title';
+import { Section, SectionTitle } from '@/core/ui/components/section';
+import { ProductCarouselSkeleton } from '@/features/products/components/product-carousel';
+import { ProductInfo } from '@/features/products/components/product-info';
+import { RelatedProducts } from '@/features/products/components/related-products';
+import { getOneProductById } from '@/features/products/products.data';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
@@ -17,41 +18,40 @@ export type ProductPageProps = {
 };
 
 export async function generateMetadata({
-  params,
+  params: { productId },
 }: ProductPageProps): Promise<Metadata> {
-  const product = await getOneProductById(Number(params.productId));
-
+  const product = await getOneProductById(productId);
   if (!product) notFound();
 
   return getMetadata({
     title: product.title,
     description: product.description,
-    pathname: `/products/${params.productId}`,
+    pathname: routes.product({ params: { productId } }),
     images: [{ url: product.image, alt: product.title }],
   });
 }
 
-export default async function ProductPage({ params }: ProductPageProps) {
-  const productId = Number(params.productId);
+export default async function ProductPage({
+  params: { productId },
+}: ProductPageProps) {
   const product = await getOneProductById(productId);
-
   if (!product) notFound();
 
   return (
     <div className="flex flex-col gap-4">
       <main>
         <PageTitle title={product.title} />
-        <Paper>
-          <ProductDetails product={product} />
-        </Paper>
+        <Card>
+          <CardContent>
+            <ProductInfo product={product} />
+          </CardContent>
+        </Card>
       </main>
       <Section as="aside">
         <SectionTitle as="h2">Related Products</SectionTitle>
-        <Paper>
-          <Suspense fallback={<ProductGridSkeleton itemCount={6} />}>
-            <RelatedProducts productId={productId} />
-          </Suspense>
-        </Paper>
+        <Suspense fallback={<ProductCarouselSkeleton itemCount={6} />}>
+          <RelatedProducts productId={productId} />
+        </Suspense>
       </Section>
     </div>
   );

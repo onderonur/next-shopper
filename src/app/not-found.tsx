@@ -1,6 +1,6 @@
-import { ButtonLink } from '@/common/button-link';
-import { ErrorPage } from '@/error-handling/error-page';
-import { getMetadata } from '@/seo/seo-utils';
+import { ErrorPage } from '@/core/errors/components/error-page';
+import { getMetadata } from '@/core/seo/seo.utils';
+import { ButtonLink } from '@/core/ui/components/button-link';
 import { StatusCodes } from 'http-status-codes';
 
 export const metadata = getMetadata({

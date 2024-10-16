@@ -22,8 +22,8 @@ const buttonVariants = cva(
           'border-2 bg-background hover:bg-accent-hover active:bg-accent-active border',
       },
       shape: {
-        circle: 'rounded-full h-9 w-9',
-        iconOnly: 'rounded-md h-9 w-9',
+        circle: 'rounded-full size-9',
+        iconOnly: 'rounded-md size-9',
         default: 'rounded-md px-4 py-2',
       },
     },

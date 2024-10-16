@@ -32,6 +32,7 @@ function parseToURLSearchParams(params: Maybe<SearchParams>) {
 
 // https://stackoverflow.com/a/55247867/10876256
 type RequiredKeys<T> = {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   [K in keyof T]-?: object extends { [P in K]: T[K] } ? never : K;
 }[keyof T];
 

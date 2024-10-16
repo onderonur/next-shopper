@@ -28,7 +28,7 @@ export function Loading({
         xmlns="http://www.w3.org/2000/svg"
         className={twJoin(
           'animate-spin text-primary',
-          size === 'small' ? 'h-4 w-4' : 'h-12 w-12',
+          size === 'small' ? 'size-4' : 'size-12',
         )}
         fill="none"
         viewBox="0 0 24 24"

@@ -70,7 +70,7 @@
   }
 
   ::-webkit-scrollbar {
-    @apply h-3 w-3;
+    @apply size-3;
   }
 
   ::-webkit-scrollbar-track {

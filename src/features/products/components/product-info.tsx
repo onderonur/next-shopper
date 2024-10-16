@@ -36,7 +36,7 @@ export function ProductInfo({ product }: ProductInfoProps) {
           <FavoriteButton
             productId={product.id}
             isInFavorites={product.isInFavorites}
-            className="h-10 w-10"
+            className="size-10"
           />
         </div>
         <ButtonLink

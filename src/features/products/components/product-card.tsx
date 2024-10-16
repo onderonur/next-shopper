@@ -49,7 +49,7 @@ export function ProductCard({ product }: ProductCardProps) {
         <FavoriteButton
           productId={product.id}
           isInFavorites={product.isInFavorites}
-          className="h-8 w-8"
+          className="size-8"
         />
       </div>
     </div>

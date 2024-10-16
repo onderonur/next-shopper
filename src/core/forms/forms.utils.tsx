@@ -5,7 +5,7 @@ export function getSelectableItemProps() {
   return {
     rootClassName: 'flex items-center gap-1',
     itemClassName: twJoin(
-      'h-6 w-6 flex-none rounded-md border-2 border-primary',
+      'size-6 flex-none rounded-md border-2 border-primary',
       'data-[state=checked]:bg-primary',
       'disabled:opacity-50 [&+label]:disabled:opacity-50',
       '[&:not([data-state=checked])]:enabled:hover:bg-accent-hover [&:not([data-state=checked])]:enabled:active:bg-accent-active',

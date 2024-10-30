@@ -1,5 +1,4 @@
 import { prisma } from '@/core/db/db';
-import type { Maybe } from '@/core/shared/shared.types';
 import { getUser } from '@/features/auth/auth.data';
 import type { CartDetails } from '@/features/cart/cart.types';
 import { cache } from 'react';
@@ -23,7 +22,7 @@ export const getUserCart = cache(async () => {
   return userCart;
 });
 
-export const getCart = cache(async (): Promise<Maybe<CartDetails>> => {
+export const getCart = cache(async () => {
   const user = await getUser();
   if (!user?.id) return null;
 

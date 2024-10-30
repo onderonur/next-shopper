@@ -11,7 +11,7 @@ type DropdownMenuContentProps = React.ComponentPropsWithoutRef<
 >;
 
 export const DropdownMenuContent = forwardRef<
-  React.ElementRef<typeof RadixDropdownMenu.Content>,
+  React.ComponentRef<typeof RadixDropdownMenu.Content>,
   DropdownMenuContentProps
 >(function DropdownMenuContent({ children, className, ...rest }, ref) {
   return (
@@ -42,7 +42,7 @@ type DropdownMenuItemProps = React.ComponentPropsWithoutRef<
 >;
 
 export const DropdownMenuItem = forwardRef<
-  React.ElementRef<typeof RadixDropdownMenu.Item>,
+  React.ComponentRef<typeof RadixDropdownMenu.Item>,
   DropdownMenuItemProps
 >(function DropdownMenuItem({ className, ...rest }, ref) {
   return (
@@ -62,7 +62,7 @@ type DropdownMenuLabelProps = React.ComponentPropsWithoutRef<
 >;
 
 export const DropdownMenuLabel = forwardRef<
-  React.ElementRef<typeof RadixDropdownMenu.Label>,
+  React.ComponentRef<typeof RadixDropdownMenu.Label>,
   DropdownMenuLabelProps
 >(function DropdownMenuLabel({ className, ...rest }, ref) {
   return (

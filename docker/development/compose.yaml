@@ -1,11 +1,17 @@
+# https://www.docker.com/blog/how-to-use-the-postgres-docker-official-image/
+# TODO: Naming convention'a bak bunun için
+name: next-shopper-development
+
 services:
+  # TODO: Mesela bunun adı db-1 oluyor. başka bir db isimli service olunca conflict oluyor mu?
+  # Ya da container_name kullanmak mı lazım vs vs.
   db:
     image: postgres:16.4-alpine
-    container_name: next-shopper-db
     restart: always
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
+      # TODO: Naming convention'a bak bunun için
       POSTGRES_DB: dev-db
     ports:
       - 5432:5432

@@ -5,18 +5,24 @@ import * as RadixRadioGroup from '@radix-ui/react-radio-group';
 import { useId } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-type RadioGroupProps = {
+type RadioGroupProps = React.AriaAttributes & {
   value: Maybe<string>;
   children: React.ReactNode;
   onChange: (value: string) => void;
 };
 
-export function RadioGroup({ value, children, onChange }: RadioGroupProps) {
+export function RadioGroup({
+  value,
+  children,
+  onChange,
+  ...rest
+}: RadioGroupProps) {
   return (
     <RadixRadioGroup.Root
       className="flex flex-col gap-1"
       value={value ?? ''}
       onValueChange={onChange}
+      {...rest}
     >
       {children}
     </RadixRadioGroup.Root>

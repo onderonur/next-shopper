@@ -39,14 +39,14 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
       <SelectedOptionsProvider data={data}>
         <div className="grid gap-2 md:grid-cols-[theme(spacing.72)_1fr]">
           <Section className="sticky top-20 hidden max-h-[80vh] overflow-auto px-2 md:block">
-            <SectionTitle as="h2" srOnly>
-              Filter
+            <SectionTitle asChild srOnly>
+              <h2>Filter</h2>
             </SectionTitle>
             <ProductFilter data={data} />
           </Section>
           <Section>
-            <SectionTitle as="h2" srOnly>
-              Search Results
+            <SectionTitle asChild srOnly>
+              <h2>Search Results</h2>
             </SectionTitle>
             <div className="flex flex-col gap-2">
               <SelectedFilters />

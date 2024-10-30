@@ -47,11 +47,15 @@ export default async function ProductPage({
           </CardContent>
         </Card>
       </main>
-      <Section as="aside">
-        <SectionTitle as="h2">Related Products</SectionTitle>
-        <Suspense fallback={<ProductCarouselSkeleton itemCount={6} />}>
-          <RelatedProducts productId={productId} />
-        </Suspense>
+      <Section asChild>
+        <aside>
+          <SectionTitle asChild>
+            <h2>Related Products</h2>
+          </SectionTitle>
+          <Suspense fallback={<ProductCarouselSkeleton itemCount={6} />}>
+            <RelatedProducts productId={productId} />
+          </Suspense>
+        </aside>
       </Section>
     </div>
   );

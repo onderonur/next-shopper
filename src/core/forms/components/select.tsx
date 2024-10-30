@@ -14,7 +14,7 @@ type SelectItemProps = Pick<
 >;
 
 export const SelectItem = forwardRef<
-  React.ElementRef<typeof RadixSelect.Item>,
+  React.ComponentRef<typeof RadixSelect.Item>,
   SelectItemProps
 >(function SelectItem({ children, ...rest }, ref) {
   return (
@@ -42,7 +42,7 @@ type SelectProps = Pick<
   Pick<RadixSelect.SelectValueProps, 'placeholder'>;
 
 export const Select = forwardRef<
-  React.ElementRef<typeof RadixSelect.Trigger>,
+  React.ComponentRef<typeof RadixSelect.Trigger>,
   SelectProps
 >(function Select({ placeholder, children, ...rest }, ref) {
   const { inputId, isRequired, isInvalid, errorMessageId } =

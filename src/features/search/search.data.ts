@@ -175,6 +175,12 @@ function getProductFilterSelectedOptions({
   return selectedOptions;
 }
 
+// TODO: When calling a memoized function, React will look up the input arguments to see if a result is already cached.
+// React will use `Object.is` on the arguments to determine if there is a cache hit.
+// Since `args` is an object here, there can be cache miss for different objects (different object references)
+// with same property values. This `args` usage can be improved.
+// But since we don't call this function in multiple components at the same time etc. currently,
+// this can be neglected for now.
 export const filterProducts = cache(
   async (args: ProductFilterArgs): Promise<ProductFilterResponse> => {
     const [filterOptions, products] = await Promise.all([

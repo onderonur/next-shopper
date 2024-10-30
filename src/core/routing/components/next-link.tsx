@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { forwardRef } from 'react';
 
-type NextLinkRef = React.ElementRef<typeof Link>;
+type NextLinkRef = React.ComponentRef<typeof Link>;
 
 export type NextLinkProps = React.ComponentPropsWithoutRef<typeof Link>;
 

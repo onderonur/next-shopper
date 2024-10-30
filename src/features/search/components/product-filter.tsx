@@ -77,12 +77,14 @@ export function ProductFilter({ data }: ProductFilterProps) {
     <div className="flex flex-col gap-4 pb-6">
       {Object.values(data.filterOptions).map((filter) => {
         let filterInput = null;
+        const labelId = `${filter.filterKey}_label`;
 
         switch (filter.filterKey) {
           case ProductFilterKey.CATEGORIES:
           case ProductFilterKey.PRICE_RANGES: {
             filterInput = (
               <CheckboxGroup
+                aria-labelledby={labelId}
                 value={values[filter.filterKey]}
                 onChange={(newValue) => {
                   handleChange(filter.filterKey, newValue);
@@ -102,6 +104,7 @@ export function ProductFilter({ data }: ProductFilterProps) {
           case ProductFilterKey.SORTING: {
             filterInput = (
               <RadioGroup
+                aria-labelledby={labelId}
                 value={values[filter.filterKey]}
                 onChange={(newValue) => {
                   handleChange(filter.filterKey, [newValue]);
@@ -122,7 +125,7 @@ export function ProductFilter({ data }: ProductFilterProps) {
         return (
           <div key={filter.filterKey}>
             <Card>
-              <CardHeader>{filter.title}</CardHeader>
+              <CardHeader id={labelId}>{filter.title}</CardHeader>
               <CardContent>{filterInput}</CardContent>
             </Card>
           </div>

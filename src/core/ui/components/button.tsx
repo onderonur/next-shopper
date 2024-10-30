@@ -9,7 +9,7 @@ export type ButtonProps = Omit<
 > &
   GetButtonBasePropsArgs;
 
-export const Button = forwardRef<React.ElementRef<'button'>, ButtonProps>(
+export const Button = forwardRef<React.ComponentRef<'button'>, ButtonProps>(
   function Button(
     {
       className,

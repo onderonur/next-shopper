@@ -33,8 +33,8 @@ export default async function CheckoutPage() {
       <PageTitle title="Checkout" />
       <Container maxWidth="sm" className="flex flex-col gap-6">
         <Section>
-          <SectionTitle as="h2" actions={<ClearCartButton cart={cart} />}>
-            Cart
+          <SectionTitle asChild actions={<ClearCartButton cart={cart} />}>
+            <h2>Cart</h2>
           </SectionTitle>
           <Card>
             <CardContent className="p-0 md:p-0">
@@ -47,7 +47,9 @@ export default async function CheckoutPage() {
         </Section>
         {cart ? (
           <Section>
-            <SectionTitle as="h2">Shipping Info</SectionTitle>
+            <SectionTitle asChild>
+              <h2>Shipping Info</h2>
+            </SectionTitle>
             <ShippingForm continents={continents} />
           </Section>
         ) : null}

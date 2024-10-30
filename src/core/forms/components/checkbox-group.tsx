@@ -12,18 +12,20 @@ const CheckboxGroupContext = createContext<CheckboxGroupContextValue>(
   {} as CheckboxGroupContextValue,
 );
 
-type CheckboxGroupProps = CheckboxGroupContextValue & {
-  children: React.ReactNode;
-};
+type CheckboxGroupProps = React.AriaAttributes &
+  CheckboxGroupContextValue & {
+    children: React.ReactNode;
+  };
 
 export function CheckboxGroup({
   children,
   value,
   onChange,
+  ...rest
 }: CheckboxGroupProps) {
   return (
     <CheckboxGroupContext.Provider value={{ value, onChange }}>
-      <div role="group">
+      <div role="group" {...rest}>
         <Checkbox value={allSymbol}>All</Checkbox>
         {children}
       </div>

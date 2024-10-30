@@ -19,13 +19,14 @@ export function Card({ className, children }: CardProps) {
 }
 
 type CardHeaderProps = {
+  id?: string;
   className?: string;
   children: React.ReactNode;
 };
 
-export function CardHeader({ className, children }: CardHeaderProps) {
+export function CardHeader({ id, className, children }: CardHeaderProps) {
   return (
-    <div className={twMerge('bg-muted p-3 font-semibold', className)}>
+    <div id={id} className={twMerge('bg-muted p-3 font-semibold', className)}>
       {children}
     </div>
   );

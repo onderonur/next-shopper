@@ -61,7 +61,9 @@ export default async function OrderPage({
         </Card>
         <div className="grid gap-4 md:grid-cols-2">
           <Section>
-            <SectionTitle as="h2">Shipping Info</SectionTitle>
+            <SectionTitle asChild>
+              <h2>Shipping Info</h2>
+            </SectionTitle>
             <Card>
               <CardContent>
                 <ShippingInfo
@@ -73,7 +75,9 @@ export default async function OrderPage({
             </Card>
           </Section>
           <Section>
-            <SectionTitle as="h2">Products</SectionTitle>
+            <SectionTitle>
+              <h2>Products</h2>
+            </SectionTitle>
             <Card>
               <CardContent>
                 {/* TODO: These "xOnY" namings may be improved */}

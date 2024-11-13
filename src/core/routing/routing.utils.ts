@@ -1,11 +1,25 @@
 import type { SearchParams } from '@/core/routing/routing.types';
 import type { Id, Maybe } from '@/core/shared/shared.types';
 import type { ProductFilterArgs } from '@/features/search/search.types';
+import { notFound } from 'next/navigation';
+import type { z } from 'zod';
 
 function createUrl(pathname: string, searchParams?: URLSearchParams) {
   const searchParamsString = searchParams?.toString();
   const queryString = searchParamsString ? `?${searchParamsString}` : '';
   return `${pathname}${queryString}`;
+}
+
+export function parseSearchParams<Output, Def extends z.ZodTypeDef, Input>({
+  searchParamsSchema,
+  searchParams,
+}: {
+  searchParamsSchema: z.ZodSchema<Output, Def, Input>;
+  searchParams: SearchParams;
+}) {
+  const result = searchParamsSchema.safeParse(searchParams);
+  if (!result.success) notFound();
+  return result.data;
 }
 
 function parseToURLSearchParams(params: Maybe<SearchParams>) {

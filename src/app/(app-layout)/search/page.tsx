@@ -1,9 +1,6 @@
-import {
-  multiSearchParamSchema,
-  singleSearchParamSchema,
-} from '@/core/routing/routing.schemas';
+import { searchParamParser } from '@/core/routing/routing.schemas';
 import type { SearchParams } from '@/core/routing/routing.types';
-import { routes } from '@/core/routing/routing.utils';
+import { parseSearchParams, routes } from '@/core/routing/routing.utils';
 import { getMetadata } from '@/core/seo/seo.utils';
 import { PageTitle } from '@/core/ui/components/page-title';
 import { Section, SectionTitle } from '@/core/ui/components/section';
@@ -20,18 +17,21 @@ export const metadata = getMetadata({
   pathname: routes.search(),
 });
 
-const searchParamsSchema = z.object({
-  categories: multiSearchParamSchema,
-  priceRanges: multiSearchParamSchema,
-  sorting: singleSearchParamSchema,
-});
+const searchParamsSchema = z
+  .object({
+    categories: searchParamParser.toArray(z.string()),
+    priceRanges: searchParamParser.toArray(z.string()),
+    sorting: searchParamParser.toSingle(z.string()),
+  })
+  .partial();
 
 type SearchPageProps = {
   searchParams: SearchParams;
 };
 
-export default async function SearchPage({ searchParams }: SearchPageProps) {
-  const data = await filterProducts(searchParamsSchema.parse(searchParams));
+export default async function SearchPage(props: SearchPageProps) {
+  const searchParams = parseSearchParams({ searchParamsSchema, ...props });
+  const data = await filterProducts(searchParams);
 
   return (
     <main>

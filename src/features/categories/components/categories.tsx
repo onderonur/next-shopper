@@ -12,7 +12,7 @@ export async function Categories() {
           <li key={category.value}>
             <CategoryLink
               href={routes.search({
-                query: { categories: [category.value] },
+                categories: [category.value],
               })}
               imageSrc={category.image}
               title={category.title}

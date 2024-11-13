@@ -22,67 +22,47 @@ export function parseSearchParams<Output, Def extends z.ZodTypeDef, Input>({
   return result.data;
 }
 
-function parseToURLSearchParams(params: Maybe<SearchParams>) {
-  const searchParams = new URLSearchParams();
-
-  function appendParam(key: string, value: Maybe<string>) {
-    if (value !== null && value !== undefined) {
-      searchParams.append(key, value);
-    }
-  }
-
-  for (const [key, value] of Object.entries(params ?? {})) {
-    if (Array.isArray(value)) {
-      for (const valueItem of value) {
-        appendParam(key, valueItem);
-      }
-    } else {
-      appendParam(key, value);
-    }
-  }
-
-  return searchParams;
+function isNonEmptyValue<Value extends string | number>(
+  value: Value | null | undefined,
+): value is Value {
+  return value !== null && value !== undefined && value !== '';
 }
 
-// https://stackoverflow.com/a/55247867/10876256
-type RequiredKeys<T> = {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  [K in keyof T]-?: object extends { [P in K]: T[K] } ? never : K;
-}[keyof T];
+function parseObjectToSearchParams(
+  searchParams: Maybe<
+    Record<string, string | string[] | number | undefined | null>
+  >,
+) {
+  const parsedSearchParams = new URLSearchParams();
 
-type HasRequiredField<T> = RequiredKeys<T> extends never ? false : true;
+  if (!searchParams) return parsedSearchParams;
 
-type CreateRouteArgs = {
-  params?: unknown;
-  query?: SearchParams;
-};
+  for (const [key, value] of Object.entries(searchParams)) {
+    if (Array.isArray(value)) {
+      for (const valueItem of value) {
+        if (isNonEmptyValue(valueItem)) {
+          parsedSearchParams.append(key, valueItem);
+        }
+      }
 
-type CreateRouteResult<RouteArgs extends CreateRouteArgs> = (
-  // args parameter is optional when both of params and query fields are optional
-  ...args: HasRequiredField<RouteArgs> extends true ? [RouteArgs] : [RouteArgs?]
-) => string;
+      continue;
+    }
 
-function createRoute<RouteArgs extends CreateRouteArgs>(
-  getPathname: (pathParams: RouteArgs['params']) => string,
-): CreateRouteResult<RouteArgs> {
-  return (...args) => {
-    const [routeArgs] = args;
-    const pathname = getPathname(routeArgs?.params);
-    const searchParams = parseToURLSearchParams(routeArgs?.query);
-    return createUrl(pathname, searchParams);
-  };
+    if (isNonEmptyValue(value)) {
+      parsedSearchParams.append(key, value.toString());
+    }
+  }
+
+  return parsedSearchParams;
 }
 
 export const routes = {
-  home: createRoute(() => '/'),
-  search: createRoute<{ query?: ProductFilterArgs }>(() => '/search'),
-  product: createRoute<{ params: { productId: Id } }>(
-    ({ productId }) => `/products/${productId}`,
-  ),
-  checkout: createRoute(() => '/checkout'),
-  orders: createRoute(() => '/orders'),
-  order: createRoute<{ params: { orderId: Id } }>(
-    ({ orderId }) => `/orders/${orderId}`,
-  ),
-  favorites: createRoute(() => '/products/favorites'),
+  home: () => '/',
+  search: (args?: ProductFilterArgs) =>
+    createUrl('/search', parseObjectToSearchParams(args)),
+  product: ({ productId }: { productId: Id }) => `/products/${productId}`,
+  checkout: () => '/checkout',
+  orders: () => '/orders',
+  order: ({ orderId }: { orderId: Id }) => `/orders/${orderId}`,
+  favorites: () => '/products/favorites',
 };

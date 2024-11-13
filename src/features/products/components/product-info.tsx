@@ -43,7 +43,7 @@ export function ProductInfo({ product }: ProductInfoProps) {
           variant="accent"
           className="self-start px-2 py-1 text-sm"
           href={routes.search({
-            query: { categories: [product.category.value] },
+            categories: [product.category.value],
           })}
         >
           {product.category.title}

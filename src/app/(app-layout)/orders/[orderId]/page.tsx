@@ -32,7 +32,7 @@ export async function generateMetadata({
   return getMetadata({
     title: 'Order',
     description: 'View the details of your order',
-    pathname: routes.order({ params: { orderId } }),
+    pathname: routes.order({ orderId }),
   });
 }
 

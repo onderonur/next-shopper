@@ -23,9 +23,7 @@ export function ProductBasicInfo({
       // even if `min-w-0` trick is used.
       // So, we use `grid` instead.
       className="grid grid-cols-[theme(spacing.16)_1fr] gap-2"
-      href={routes.product({
-        params: { productId: product.id },
-      })}
+      href={routes.product({ productId: product.id })}
     >
       <div className="relative block aspect-square w-16">
         <Image

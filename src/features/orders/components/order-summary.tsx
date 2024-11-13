@@ -51,9 +51,7 @@ export function OrderSummary({ order }: OrderSummaryProps) {
                 <Tooltip content={product.title}>
                   <NextLink
                     className="relative block aspect-square w-12"
-                    href={routes.product({
-                      params: { productId: product.id },
-                    })}
+                    href={routes.product({ productId: product.id })}
                   >
                     <Image
                       className="rounded bg-white object-contain p-1"
@@ -72,7 +70,7 @@ export function OrderSummary({ order }: OrderSummaryProps) {
         <div className="flex justify-end">
           <ButtonLink
             className="text-sm"
-            href={routes.order({ params: { orderId: order.id } })}
+            href={routes.order({ orderId: order.id })}
           >
             Details
           </ButtonLink>

@@ -55,5 +55,5 @@ export async function completeCheckout(
     },
   });
 
-  redirect(routes.order({ params: { orderId: order.id } }));
+  redirect(routes.order({ orderId: order.id }));
 }

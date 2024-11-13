@@ -66,9 +66,7 @@ export function ProductFilter({ data }: ProductFilterProps) {
       setOptimisticSelectedOptions(newOptimisticSelectedOptions);
 
       router.push(
-        routes.search({
-          query: getValuesOfSelectedOptions(newOptimisticSelectedOptions),
-        }),
+        routes.search(getValuesOfSelectedOptions(newOptimisticSelectedOptions)),
       );
     });
   };

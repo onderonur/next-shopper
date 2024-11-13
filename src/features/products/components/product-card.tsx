@@ -15,7 +15,7 @@ export function ProductCard({ product }: ProductCardProps) {
   return (
     <div className="relative">
       <NextLink
-        href={routes.product({ params: { productId: product.id } })}
+        href={routes.product({ productId: product.id })}
         // To show outline when the link is `focus-visible`.
         className="block"
       >

@@ -48,11 +48,9 @@ export function SelectedFilters() {
                   setOptimisticSelectedOptions(newOptimisticSelectedOptions);
 
                   router.push(
-                    routes.search({
-                      query: getValuesOfSelectedOptions(
-                        newOptimisticSelectedOptions,
-                      ),
-                    }),
+                    routes.search(
+                      getValuesOfSelectedOptions(newOptimisticSelectedOptions),
+                    ),
                   );
                 });
               }}

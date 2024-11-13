@@ -26,7 +26,7 @@ export async function generateMetadata({
   return getMetadata({
     title: product.title,
     description: product.description,
-    pathname: routes.product({ params: { productId } }),
+    pathname: routes.product({ productId }),
     images: [{ url: product.image, alt: product.title }],
   });
 }

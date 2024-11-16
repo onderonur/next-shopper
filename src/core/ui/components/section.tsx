@@ -6,9 +6,13 @@ import { Slot } from './slot';
 
 type SectionContextValue = { headingId: string };
 
-const SectionContext = createContext<SectionContextValue>(
-  {} as SectionContextValue,
-);
+const SectionContext = createContext<SectionContextValue | null>(null);
+
+function useSectionContext() {
+  const value = useContext(SectionContext);
+  if (!value) throw new Error('SectionContext not found');
+  return value;
+}
 
 type SectionProps = AsChildProps & React.ComponentProps<'section'>;
 
@@ -35,7 +39,7 @@ export function SectionTitle({
   actions,
   children,
 }: SectionTitleProps) {
-  const { headingId } = useContext(SectionContext);
+  const { headingId } = useSectionContext();
   const Component = asChild ? Slot : 'h1';
 
   if (srOnly) {

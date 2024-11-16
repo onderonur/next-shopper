@@ -10,12 +10,12 @@ type FormItemContextValue = {
   errorMessageId: string | undefined;
 };
 
-const FormItemContext = createContext<FormItemContextValue>(
-  {} as FormItemContextValue,
-);
+const FormItemContext = createContext<FormItemContextValue | null>(null);
 
 export function useFormItemContext() {
-  return useContext(FormItemContext);
+  const value = useContext(FormItemContext);
+  if (!value) throw new Error('FormItemContext not found');
+  return value;
 }
 
 type FormItemProps = Pick<

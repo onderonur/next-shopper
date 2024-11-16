@@ -8,9 +8,15 @@ type CheckboxGroupContextValue = {
   onChange: (value: string[]) => void;
 };
 
-const CheckboxGroupContext = createContext<CheckboxGroupContextValue>(
-  {} as CheckboxGroupContextValue,
+const CheckboxGroupContext = createContext<CheckboxGroupContextValue | null>(
+  null,
 );
+
+function useCheckboxGroupContext() {
+  const value = useContext(CheckboxGroupContext);
+  if (!value) throw new Error('CheckboxGroupContext not found');
+  return value;
+}
 
 type CheckboxGroupProps = React.AriaAttributes &
   CheckboxGroupContextValue & {
@@ -50,7 +56,7 @@ type CheckboxProps = {
 
 export function Checkbox({ value: checkboxValue, children }: CheckboxProps) {
   const id = useId();
-  const { value, onChange } = useContext(CheckboxGroupContext);
+  const { value, onChange } = useCheckboxGroupContext();
 
   const isAllOption = checkboxValue === allSymbol;
 

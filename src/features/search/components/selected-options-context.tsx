@@ -21,12 +21,13 @@ type SelectedOptionsContextValue = {
   startTransition: TransitionStartFunction;
 };
 
-const SelectedOptionsContext = createContext<SelectedOptionsContextValue>(
-  {} as SelectedOptionsContextValue,
-);
+const SelectedOptionsContext =
+  createContext<SelectedOptionsContextValue | null>(null);
 
 export function useSelectedOptionsContext() {
-  return useContext(SelectedOptionsContext);
+  const value = useContext(SelectedOptionsContext);
+  if (!value) throw new Error('SelectedOptionsContext not found');
+  return value;
 }
 
 type SelectedOptionsProviderProps = {

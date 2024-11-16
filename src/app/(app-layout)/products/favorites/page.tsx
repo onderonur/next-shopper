@@ -1,9 +1,9 @@
-import { routes } from '@/core/routing/routing.utils';
-import { getMetadata } from '@/core/seo/seo.utils';
+import { routes } from '@/core/routing/utils';
+import { getMetadata } from '@/core/seo/utils';
 import { PageTitle } from '@/core/ui/components/page-title';
-import { redirectToSignIn } from '@/features/auth/auth.actions';
-import { getUser } from '@/features/auth/auth.data';
-import { getFavorites } from '@/features/favorites/favorites.data';
+import { redirectToSignIn } from '@/features/auth/actions';
+import { getUser } from '@/features/auth/data';
+import { getFavorites } from '@/features/favorites/data';
 import { ProductGrid } from '@/features/products/components/product-grid';
 
 export const metadata = getMetadata({

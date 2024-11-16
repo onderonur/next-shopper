@@ -1,5 +1,5 @@
-import type { Maybe } from '@/core/shared/shared.types';
-import type { ProductFilterSelectedOption } from '@/features/search/search.types';
+import type { Maybe } from '@/core/shared/types';
+import type { ProductFilterSelectedOption } from '@/features/search/types';
 
 export enum ProductFilterKey {
   SORTING = 'sorting',

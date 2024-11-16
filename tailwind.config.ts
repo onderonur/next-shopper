@@ -1,5 +1,4 @@
 import type { Config } from 'tailwindcss';
-import defaultTheme from 'tailwindcss/defaultTheme';
 import plugin from 'tailwindcss/plugin';
 
 export default {
@@ -40,9 +39,6 @@ export default {
         border: 'hsl(var(--border) / <alpha-value>)',
         ring: 'hsl(var(--ring) / <alpha-value>)',
         favorite: 'hsl(var(--favorite) / <alpha-value>)',
-      },
-      spacing: {
-        'app-header': defaultTheme.spacing[16],
       },
       // https://tailwindcss.com/docs/hover-focus-and-other-states#aria-states
       aria: {

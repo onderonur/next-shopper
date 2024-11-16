@@ -1,4 +1,4 @@
-import { routes } from '@/core/routing/routing.utils';
+import { routes } from '@/core/routing/utils';
 import { ButtonLink } from '@/core/ui/components/button-link';
 import { CircleCheckIcon } from '@/core/ui/components/icons';
 

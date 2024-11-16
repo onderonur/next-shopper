@@ -28,9 +28,11 @@ export function SocialProfiles() {
             <ButtonLink
               aria-label={link.title}
               variant="transparent"
-              icon={<link.icon className="text-lg" />}
+              size="icon"
               href={link.href}
-            />
+            >
+              <link.icon className="text-lg" />
+            </ButtonLink>
           </li>
         );
       })}

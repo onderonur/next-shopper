@@ -1,8 +1,8 @@
 'use client';
 
 import { NextLink } from '@/core/routing/components/next-link';
-import { routes } from '@/core/routing/routing.utils';
-import type { Maybe } from '@/core/shared/shared.types';
+import { routes } from '@/core/routing/utils';
+import type { Maybe } from '@/core/shared/types';
 import { Button } from '@/core/ui/components/button';
 import {
   DropdownMenu,
@@ -13,8 +13,8 @@ import {
 } from '@/core/ui/components/dropdown-menu';
 import { UserIcon } from '@/core/ui/components/icons';
 import { Tooltip } from '@/core/ui/components/tooltip';
-import { useAutoClosable } from '@/core/ui/ui.hooks';
-import { signOut } from '@/features/auth/auth.actions';
+import { useAutoClosable } from '@/core/ui/hooks';
+import { signOut } from '@/features/auth/actions';
 import type { User } from 'next-auth';
 
 type UserMenuProps = {
@@ -31,7 +31,9 @@ export function UserMenu({ user }: UserMenuProps) {
   return (
     <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
       <DropdownMenuTrigger asChild>
-        <Button aria-label="Open user menu" icon={<UserIcon />} />
+        <Button size="icon" aria-label="Open user menu">
+          <UserIcon />
+        </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <Tooltip content={user.name}>

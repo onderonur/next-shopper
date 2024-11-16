@@ -1,7 +1,7 @@
 'use client';
 
 import { SubmitButton } from '@/core/forms/components/submit-button';
-import type { Maybe } from '@/core/shared/shared.types';
+import type { Maybe } from '@/core/shared/types';
 import {
   AlertModal,
   AlertModalBody,
@@ -10,9 +10,9 @@ import {
   AlertModalTrigger,
 } from '@/core/ui/components/alert-modal';
 import { Button } from '@/core/ui/components/button';
-import { useAutoClosable } from '@/core/ui/ui.hooks';
-import { clearCart } from '@/features/cart/cart.actions';
-import type { CartDetails } from '@/features/cart/cart.types';
+import { useAutoClosable } from '@/core/ui/hooks';
+import { clearCart } from '@/features/cart/actions';
+import type { CartDetails } from '@/features/cart/types';
 import { useEffect } from 'react';
 import { useFormState } from 'react-dom';
 

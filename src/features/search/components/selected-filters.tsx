@@ -1,10 +1,10 @@
 'use client';
 
-import { routes } from '@/core/routing/routing.utils';
+import { routes } from '@/core/routing/utils';
 import { Button } from '@/core/ui/components/button';
 import { CloseIcon } from '@/core/ui/components/icons';
 import { useSelectedOptionsContext } from '@/features/search/components/selected-options-context';
-import { getValuesOfSelectedOptions } from '@/features/search/search.utils';
+import { getValuesOfSelectedOptions } from '@/features/search/utils';
 import { useRouter } from 'next/navigation';
 
 const orderComparer = Intl.Collator(undefined, { numeric: true });
@@ -34,8 +34,6 @@ export function SelectedFilters() {
               variant="accent"
               className="px-2 py-1 text-sm"
               aria-label={`Remove ${selectedOption.title} filter`}
-              icon={<CloseIcon />}
-              iconAlignment="right"
               onClick={() => {
                 const newOptimisticSelectedOptions =
                   optimisticSelectedOptions.filter(
@@ -56,6 +54,7 @@ export function SelectedFilters() {
               }}
             >
               {selectedOption.title}
+              <CloseIcon />
             </Button>
           </li>
         );

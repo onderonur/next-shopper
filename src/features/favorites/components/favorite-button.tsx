@@ -1,12 +1,12 @@
 'use client';
 
 import { SubmitButton } from '@/core/forms/components/submit-button';
-import type { Id } from '@/core/shared/shared.types';
+import type { Id } from '@/core/shared/types';
 import { HeartOutlineIcon } from '@/core/ui/components/icons';
 import {
   addToFavorites,
   removeFromFavorites,
-} from '@/features/favorites/favorites.actions';
+} from '@/features/favorites/actions';
 import { twJoin } from 'tailwind-merge';
 
 type FavoriteButtonProps = {
@@ -35,20 +35,20 @@ export function FavoriteButton({
       }
     >
       <SubmitButton
+        size="icon"
         className={className}
         aria-label="Add product to favorites"
-        icon={
-          <HeartOutlineIcon
-            className={twJoin(
-              'text-sm',
-              isInFavorites && 'fill-favorite stroke-favorite',
-            )}
-          />
-        }
         onClick={(e) => {
           e.stopPropagation();
         }}
-      />
+      >
+        <HeartOutlineIcon
+          className={twJoin(
+            'text-sm',
+            isInFavorites && 'fill-favorite stroke-favorite',
+          )}
+        />
+      </SubmitButton>
     </form>
   );
 }

@@ -1,6 +1,6 @@
-import { routes } from '@/core/routing/routing.utils';
-import { getManyCategories } from '@/features/categories/categories.data';
+import { routes } from '@/core/routing/utils';
 import { CategoryLink } from '@/features/categories/components/category-link';
+import { getManyCategories } from '@/features/categories/data';
 
 export async function Categories() {
   const categories = await getManyCategories();

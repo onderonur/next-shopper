@@ -1,18 +1,19 @@
-import type { Omit } from '@/core/shared/shared.types';
-import { CartIcon } from '@/core/ui/components/icons';
-import { getCart } from '@/features/cart/cart.data';
-import {
-  CartItemListContent,
-  type CartItemListContentProps,
-} from '@/features/cart/components/cart-item-list-content';
+'use client';
 
-type CartItemListProps = Omit<CartItemListContentProps, 'cartItems'> & {
+import { AnimatePresence } from '@/core/animations/components/animate-presence';
+import type { Maybe } from '@/core/shared/types';
+import { CartIcon } from '@/core/ui/components/icons';
+import { ProductBasicInfo } from '@/features/products/components/product-basic-info';
+import { motion } from 'motion/react';
+import type { CartDetails } from '../types';
+import { CartItemActionButtons } from './cart-item-actions-buttons';
+
+type CartItemListProps = {
   className?: string;
+  cart: Maybe<CartDetails>;
 };
 
-export async function CartItemList({ className }: CartItemListProps) {
-  const cart = await getCart();
-
+export function CartItemList({ className, cart }: CartItemListProps) {
   if (!cart?.totalCount) {
     return (
       <div className="grid place-items-center gap-2 p-8 text-muted-foreground">
@@ -26,7 +27,30 @@ export async function CartItemList({ className }: CartItemListProps) {
 
   return (
     <ul className={className}>
-      <CartItemListContent cartItems={cart.cart} />
+      <AnimatePresence>
+        {cart.cart.productsOnCarts.map((productsOnCart) => {
+          const { product, count } = productsOnCart;
+
+          return (
+            <li key={product.id} className="border-b-2 p-4">
+              <motion.div
+                initial={{ opacity: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ duration: 0.5 }}
+              >
+                <ProductBasicInfo
+                  product={product}
+                  count={count}
+                  shouldShowCount={false}
+                />
+                <div className="mt-2">
+                  <CartItemActionButtons cartItem={productsOnCart} />
+                </div>
+              </motion.div>
+            </li>
+          );
+        })}
+      </AnimatePresence>
     </ul>
   );
 }

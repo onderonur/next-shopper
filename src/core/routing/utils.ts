@@ -1,6 +1,6 @@
-import type { SearchParams } from '@/core/routing/routing.types';
-import type { Id, Maybe } from '@/core/shared/shared.types';
-import type { ProductFilterArgs } from '@/features/search/search.types';
+import type { SearchParams } from '@/core/routing/types';
+import type { Id, Maybe } from '@/core/shared/types';
+import type { ProductFilterArgs } from '@/features/search/types';
 import { notFound } from 'next/navigation';
 import type { z } from 'zod';
 

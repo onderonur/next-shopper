@@ -1,7 +1,7 @@
-import { routes } from '@/core/routing/routing.utils';
-import { getMetadata } from '@/core/seo/seo.utils';
-import type { Id } from '@/core/shared/shared.types';
-import { getDateString } from '@/core/shared/shared.utils';
+import { routes } from '@/core/routing/utils';
+import { getMetadata } from '@/core/seo/utils';
+import type { Id } from '@/core/shared/types';
+import { getDateString } from '@/core/shared/utils';
 import { Card, CardContent, CardFooter } from '@/core/ui/components/card';
 import {
   DescriptionDetails,
@@ -13,7 +13,7 @@ import { Section, SectionTitle } from '@/core/ui/components/section';
 import { TotalPrice } from '@/core/ui/components/total-price';
 import OrderProducts from '@/features/orders/components/order-products';
 import { OrderSuccessMessage } from '@/features/orders/components/order-success-message';
-import { getOneOrderById } from '@/features/orders/orders.data';
+import { getOneOrderById } from '@/features/orders/data';
 import { ShippingInfo } from '@/features/shipping/components/shipping-info';
 import { notFound } from 'next/navigation';
 
@@ -45,7 +45,7 @@ export default async function OrderPage({
   return (
     <main>
       <PageTitle title="Order" />
-      <div className="grid gap-4">
+      <div className="flex flex-col gap-4">
         <Card>
           <CardContent className="flex flex-col gap-3">
             <DescriptionList>
@@ -75,7 +75,7 @@ export default async function OrderPage({
             </Card>
           </Section>
           <Section>
-            <SectionTitle>
+            <SectionTitle asChild>
               <h2>Products</h2>
             </SectionTitle>
             <Card>

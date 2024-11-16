@@ -8,18 +8,18 @@ import {
   RadioGroup,
   RadioGroupItem,
 } from '@/core/forms/components/radio-group';
-import { routes } from '@/core/routing/routing.utils';
+import { routes } from '@/core/routing/utils';
 import { Card, CardContent, CardHeader } from '@/core/ui/components/card';
 import { useSelectedOptionsContext } from '@/features/search/components/selected-options-context';
 import type {
   ProductFilterData,
   ProductFilterResponse,
-} from '@/features/search/search.types';
+} from '@/features/search/types';
 import {
   ProductFilterKey,
   ProductSorting,
   getValuesOfSelectedOptions,
-} from '@/features/search/search.utils';
+} from '@/features/search/utils';
 import { useRouter } from 'next/navigation';
 
 type ProductFilterProps = {

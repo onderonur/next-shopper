@@ -1,6 +1,6 @@
 import { prisma } from '@/core/db/db';
-import { getUser } from '@/features/auth/auth.data';
-import type { CartDetails } from '@/features/cart/cart.types';
+import { getUser } from '@/features/auth/data';
+import type { CartDetails } from '@/features/cart/types';
 import { cache } from 'react';
 import 'server-only';
 

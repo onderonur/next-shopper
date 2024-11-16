@@ -1,4 +1,4 @@
-import type { OrderWithProducts } from '@/features/orders/orders.types';
+import type { OrderWithProducts } from '@/features/orders/types';
 
 export function getOrderTotalPrice(order: OrderWithProducts) {
   let totalPrice = 0;

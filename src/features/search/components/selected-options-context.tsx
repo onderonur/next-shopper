@@ -3,11 +3,8 @@
 import type {
   ProductFilterResponse,
   ProductFilterSelectedOption,
-} from '@/features/search/search.types';
-import {
-  ProductFilterKey,
-  ProductSorting,
-} from '@/features/search/search.utils';
+} from '@/features/search/types';
+import { ProductFilterKey, ProductSorting } from '@/features/search/utils';
 import { produce } from 'immer';
 import type { TransitionStartFunction } from 'react';
 import { createContext, useContext, useOptimistic, useTransition } from 'react';

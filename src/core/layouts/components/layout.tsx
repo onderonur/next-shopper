@@ -1,7 +1,6 @@
 import { NextLink } from '@/core/routing/components/next-link';
-import { APP_TITLE } from '@/core/shared/shared.utils';
+import { APP_TITLE } from '@/core/shared/utils';
 import { Container } from '@/core/ui/components/container';
-import { twMerge } from 'tailwind-merge';
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -9,7 +8,9 @@ type LayoutProps = {
 
 export function Layout({ children }: LayoutProps) {
   return (
-    <div className="grid min-h-screen grid-rows-[1fr_auto]">{children}</div>
+    <div className="grid min-h-screen grid-rows-[auto_1fr_auto]">
+      {children}
+    </div>
   );
 }
 
@@ -19,7 +20,7 @@ type LayoutHeaderProps = {
 
 export function LayoutHeader({ children }: LayoutHeaderProps) {
   return (
-    <header className="fixed z-10 h-app-header w-full border-b bg-background/75 backdrop-blur">
+    <header className="sticky top-0 z-10 min-h-16 w-full border-b bg-background/75 backdrop-blur">
       <Container
         maxWidth="xl"
         className="flex h-full items-center justify-between px-4"
@@ -40,13 +41,12 @@ type LayoutContentProps = {
 export function LayoutContent({ children }: LayoutContentProps) {
   return (
     <div
-      className={twMerge(
-        'mt-app-header',
+      className={
         // Since `<Layout>` has `grid` style, components like carousels cause horizontal scroll to appear on `<body>`.
         // To prevent this, we use `min-width: 0` here.
         // https://defensivecss.dev/tip/grid-min-content-size/
-        'min-w-0',
-      )}
+        'min-w-0'
+      }
     >
       {children}
     </div>

@@ -1,7 +1,7 @@
 import { SubmitButton } from '@/core/forms/components/submit-button';
-import { redirectToSignIn } from '@/features/auth/auth.actions';
-import { getUser } from '@/features/auth/auth.data';
+import { redirectToSignIn } from '@/features/auth/actions';
 import { UserMenu } from '@/features/auth/components/user-menu';
+import { getUser } from '@/features/auth/data';
 
 export async function UserButton() {
   const user = await getUser();

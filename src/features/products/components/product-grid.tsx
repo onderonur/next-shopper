@@ -1,9 +1,9 @@
-import { createMockArray } from '@/core/shared/shared.utils';
+import { createMockArray } from '@/core/shared/utils';
 import {
   ProductCard,
   ProductCardSkeleton,
 } from '@/features/products/components/product-card';
-import type { ProductListItem } from '@/features/products/products.types';
+import type { ProductListItem } from '@/features/products/types';
 
 type ProductGridShellProps = {
   children: React.ReactNode;

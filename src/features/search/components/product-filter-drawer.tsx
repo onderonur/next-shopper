@@ -18,7 +18,10 @@ export function ProductFilterDrawer({ children }: ProductFilterDrawerProps) {
       trigger={
         <div className="flex justify-end md:hidden">
           <DrawerTrigger asChild>
-            <Button icon={<FilterIcon />}>Filter</Button>
+            <Button>
+              <FilterIcon />
+              Filter
+            </Button>
           </DrawerTrigger>
         </div>
       }

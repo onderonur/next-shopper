@@ -1,7 +1,4 @@
-import {
-  useOnPathnameChange,
-  useOnRouteChange,
-} from '@/core/routing/routing.hooks';
+import { useOnPathnameChange, useOnRouteChange } from '@/core/routing/hooks';
 import { useState } from 'react';
 
 export type UseAutoClosableArgs = {

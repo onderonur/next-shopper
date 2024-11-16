@@ -1,7 +1,7 @@
-import { searchParamParser } from '@/core/routing/routing.schemas';
-import type { SearchParams } from '@/core/routing/routing.types';
-import { parseSearchParams, routes } from '@/core/routing/routing.utils';
-import { getMetadata } from '@/core/seo/seo.utils';
+import { searchParamParser } from '@/core/routing/schemas';
+import type { SearchParams } from '@/core/routing/types';
+import { parseSearchParams, routes } from '@/core/routing/utils';
+import { getMetadata } from '@/core/seo/utils';
 import { PageTitle } from '@/core/ui/components/page-title';
 import { Section, SectionTitle } from '@/core/ui/components/section';
 import { ProductFilter } from '@/features/search/components/product-filter';
@@ -9,7 +9,7 @@ import { ProductFilterDrawer } from '@/features/search/components/product-filter
 import { SearchResults } from '@/features/search/components/search-results';
 import { SelectedFilters } from '@/features/search/components/selected-filters';
 import { SelectedOptionsProvider } from '@/features/search/components/selected-options-context';
-import { filterProducts } from '@/features/search/search.data';
+import { filterProducts } from '@/features/search/data';
 import { z } from 'zod';
 
 export const metadata = getMetadata({

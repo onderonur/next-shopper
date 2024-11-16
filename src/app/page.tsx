@@ -1,5 +1,5 @@
-import { routes } from '@/core/routing/routing.utils';
-import { getMetadata } from '@/core/seo/seo.utils';
+import { routes } from '@/core/routing/utils';
+import { getMetadata } from '@/core/seo/utils';
 import { Container } from '@/core/ui/components/container';
 import { Hero } from '@/core/ui/components/hero';
 import { Categories } from '@/features/categories/components/categories';

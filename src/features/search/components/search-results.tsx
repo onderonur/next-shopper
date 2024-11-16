@@ -5,7 +5,7 @@ import {
   ProductGridSkeleton,
 } from '@/features/products/components/product-grid';
 import { useSelectedOptionsContext } from '@/features/search/components/selected-options-context';
-import type { ProductFilterResponse } from '@/features/search/search.types';
+import type { ProductFilterResponse } from '@/features/search/types';
 
 type SearchResultsProps = {
   data: ProductFilterResponse;

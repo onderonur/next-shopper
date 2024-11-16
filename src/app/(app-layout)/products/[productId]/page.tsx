@@ -1,12 +1,12 @@
-import { routes } from '@/core/routing/routing.utils';
-import { getMetadata } from '@/core/seo/seo.utils';
+import { routes } from '@/core/routing/utils';
+import { getMetadata } from '@/core/seo/utils';
 import { Card, CardContent } from '@/core/ui/components/card';
 import { PageTitle } from '@/core/ui/components/page-title';
 import { Section, SectionTitle } from '@/core/ui/components/section';
 import { ProductCarouselSkeleton } from '@/features/products/components/product-carousel';
 import { ProductInfo } from '@/features/products/components/product-info';
 import { RelatedProducts } from '@/features/products/components/related-products';
-import { getOneProductById } from '@/features/products/products.data';
+import { getOneProductById } from '@/features/products/data';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';

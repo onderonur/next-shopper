@@ -56,6 +56,7 @@ type SlotProps<P = unknown> = {
   children: React.ReactNode;
 } & P;
 
+// TODO: Merge refs too.
 export function Slot<P = unknown>({ children, ...rest }: SlotProps<P>) {
   if (Children.count(children) !== 1) {
     throw new Error('Slot should have only one child');

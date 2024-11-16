@@ -1,17 +1,17 @@
-import { routes } from '@/core/routing/routing.utils';
-import { getMetadata } from '@/core/seo/seo.utils';
+import { routes } from '@/core/routing/utils';
+import { getMetadata } from '@/core/seo/utils';
 import { Card, CardContent, CardFooter } from '@/core/ui/components/card';
 import { Container } from '@/core/ui/components/container';
 import { PageTitle } from '@/core/ui/components/page-title';
 import { Section, SectionTitle } from '@/core/ui/components/section';
 import { TotalPrice } from '@/core/ui/components/total-price';
-import { redirectToSignIn } from '@/features/auth/auth.actions';
-import { getUser } from '@/features/auth/auth.data';
-import { getCart } from '@/features/cart/cart.data';
+import { redirectToSignIn } from '@/features/auth/actions';
+import { getUser } from '@/features/auth/data';
 import { CartItemList } from '@/features/cart/components/cart-item-list';
 import { ClearCartButton } from '@/features/cart/components/clear-cart-button';
+import { getCart } from '@/features/cart/data';
 import { ShippingForm } from '@/features/shipping/components/shipping-form';
-import { getManyContinents } from '@/features/shipping/shipping.data';
+import { getManyContinents } from '@/features/shipping/data';
 
 export const metadata = getMetadata({
   title: 'Checkout',
@@ -38,7 +38,7 @@ export default async function CheckoutPage() {
           </SectionTitle>
           <Card>
             <CardContent className="p-0 md:p-0">
-              <CartItemList />
+              <CartItemList cart={cart} />
             </CardContent>
             <CardFooter className="border-none">
               <TotalPrice value={cart?.totalPrice ?? 0} />

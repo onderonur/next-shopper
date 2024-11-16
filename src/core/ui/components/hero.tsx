@@ -1,9 +1,9 @@
-import { routes } from '@/core/routing/routing.utils';
+import { routes } from '@/core/routing/utils';
 import {
   APP_DESCRIPTION,
   APP_REPOSITORY_URL,
   APP_TITLE,
-} from '@/core/shared/shared.utils';
+} from '@/core/shared/utils';
 import { ButtonLink } from '@/core/ui/components/button-link';
 import { Divider } from '@/core/ui/components/divider';
 import { ExternalLinkIcon } from '@/core/ui/components/icons';
@@ -20,13 +20,9 @@ export function Hero() {
           <p className="text-lg font-semibold text-muted-foreground sm:text-xl">
             {APP_DESCRIPTION}
           </p>
-          <ButtonLink
-            className="mt-1"
-            href={APP_REPOSITORY_URL}
-            icon={<ExternalLinkIcon />}
-            iconAlignment="right"
-          >
+          <ButtonLink className="mt-1" href={APP_REPOSITORY_URL}>
             Check the Source Code
+            <ExternalLinkIcon />
           </ButtonLink>
         </div>
         <Divider />

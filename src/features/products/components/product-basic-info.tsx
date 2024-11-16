@@ -1,5 +1,5 @@
 import { NextLink } from '@/core/routing/components/next-link';
-import { routes } from '@/core/routing/routing.utils';
+import { routes } from '@/core/routing/utils';
 import { Price } from '@/core/ui/components/price';
 import { Tooltip } from '@/core/ui/components/tooltip';
 import type { Product } from '@prisma/client';

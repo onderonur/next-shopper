@@ -14,7 +14,7 @@ const nextConfig = {
       'src',
       'lint-staged.config.mjs',
       'postcss.config.js',
-      'prettier.config.js',
+      'prettier.config.mjs',
       'tailwind.config.ts',
     ],
   },

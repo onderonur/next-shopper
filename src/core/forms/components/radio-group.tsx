@@ -1,6 +1,6 @@
 import { Label } from '@/core/forms/components/label';
-import { getSelectableItemProps } from '@/core/forms/forms.utils';
-import type { Maybe } from '@/core/shared/shared.types';
+import { getSelectableItemProps } from '@/core/forms/utils';
+import type { Maybe } from '@/core/shared/types';
 import * as RadixRadioGroup from '@radix-ui/react-radio-group';
 import { useId } from 'react';
 import { twMerge } from 'tailwind-merge';

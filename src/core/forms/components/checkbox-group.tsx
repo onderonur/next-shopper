@@ -1,5 +1,5 @@
 import { Label } from '@/core/forms/components/label';
-import { getSelectableItemProps } from '@/core/forms/forms.utils';
+import { getSelectableItemProps } from '@/core/forms/utils';
 import * as RadixCheckbox from '@radix-ui/react-checkbox';
 import { createContext, useContext, useId } from 'react';
 

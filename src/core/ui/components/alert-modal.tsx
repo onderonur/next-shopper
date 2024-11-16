@@ -1,8 +1,8 @@
-import { fadeIn } from '@/core/animations/animations.utils';
 import { AnimatePresence } from '@/core/animations/components/animate-presence';
+import { fadeIn } from '@/core/animations/utils';
 import { Button } from '@/core/ui/components/button';
 import * as RadixAlertDialog from '@radix-ui/react-alert-dialog';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { twJoin } from 'tailwind-merge';
 
 type AlertModalProps = {
@@ -24,7 +24,7 @@ export function AlertModal({
       <AnimatePresence>
         {isOpen && (
           <RadixAlertDialog.Portal
-            // To make `framer-motion` exit animation work.
+            // To make `motion/react` exit animation work.
             forceMount
           >
             <RadixAlertDialog.Overlay asChild>

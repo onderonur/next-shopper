@@ -1,6 +1,6 @@
 import { SubmitButton } from '@/core/forms/components/submit-button';
-import type { Id } from '@/core/shared/shared.types';
-import { addProductToCart } from '@/features/cart/cart.actions';
+import type { Id } from '@/core/shared/types';
+import { addProductToCart } from '@/features/cart/actions';
 
 type AddProductToCartButtonProps = {
   className?: string;

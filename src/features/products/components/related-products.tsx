@@ -1,5 +1,5 @@
-import type { Id } from '@/core/shared/shared.types';
-import { getRelatedProducts } from '@/features/products/products.data';
+import type { Id } from '@/core/shared/types';
+import { getRelatedProducts } from '@/features/products/data';
 import { ProductCarousel } from './product-carousel';
 
 type RelatedProductsProps = {

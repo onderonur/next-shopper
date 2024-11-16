@@ -1,4 +1,4 @@
-import type { AnimationProps } from 'framer-motion';
+import type { AnimationProps } from 'motion/react';
 
 export const fadeIn: AnimationProps = {
   initial: { opacity: 0 },

@@ -1,10 +1,10 @@
-import { getMetadata } from '@/core/seo/seo.utils';
+import { getMetadata } from '@/core/seo/utils';
 import { Container } from '@/core/ui/components/container';
 import { PageTitle } from '@/core/ui/components/page-title';
-import { redirectToSignIn } from '@/features/auth/auth.actions';
-import { getUser } from '@/features/auth/auth.data';
+import { redirectToSignIn } from '@/features/auth/actions';
+import { getUser } from '@/features/auth/data';
 import { OrderSummary } from '@/features/orders/components/order-summary';
-import { getManyUserOrders } from '@/features/orders/orders.data';
+import { getManyUserOrders } from '@/features/orders/data';
 
 export const metadata = getMetadata({
   title: 'Orders',

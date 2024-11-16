@@ -1,6 +1,6 @@
 import { NextLink } from '@/core/routing/components/next-link';
-import { routes } from '@/core/routing/routing.utils';
-import { getDateString } from '@/core/shared/shared.utils';
+import { routes } from '@/core/routing/utils';
+import { getDateString } from '@/core/shared/utils';
 import { ButtonLink } from '@/core/ui/components/button-link';
 import {
   Card,
@@ -15,7 +15,7 @@ import {
 } from '@/core/ui/components/description-list';
 import { Price } from '@/core/ui/components/price';
 import { Tooltip } from '@/core/ui/components/tooltip';
-import type { OrderDetails } from '@/features/orders/orders.types';
+import type { OrderDetails } from '@/features/orders/types';
 import Image from 'next/image';
 
 type OrderSummaryProps = {

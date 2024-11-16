@@ -1,9 +1,9 @@
-import { routes } from '@/core/routing/routing.utils';
+import { routes } from '@/core/routing/utils';
 import { ButtonLink } from '@/core/ui/components/button-link';
 import { Price } from '@/core/ui/components/price';
 import { AddProductToCartButton } from '@/features/cart/components/add-to-cart-button';
 import { FavoriteButton } from '@/features/favorites/components/favorite-button';
-import type { ProductDetails } from '@/features/products/products.types';
+import type { ProductDetails } from '@/features/products/types';
 import Image from 'next/image';
 
 type ProductInfoProps = {

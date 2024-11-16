@@ -1,7 +1,7 @@
 import { prisma } from '@/core/db/db';
-import type { Id } from '@/core/shared/shared.types';
-import { getUser } from '@/features/auth/auth.data';
-import { getOrderTotalPrice } from '@/features/orders/orders.utils';
+import type { Id } from '@/core/shared/types';
+import { getUser } from '@/features/auth/data';
+import { getOrderTotalPrice } from '@/features/orders/utils';
 import { cache } from 'react';
 
 export const getManyUserOrders = cache(async () => {

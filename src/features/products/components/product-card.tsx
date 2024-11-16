@@ -1,10 +1,10 @@
 import { NextLink } from '@/core/routing/components/next-link';
-import { routes } from '@/core/routing/routing.utils';
+import { routes } from '@/core/routing/utils';
 import { Price } from '@/core/ui/components/price';
 import { Skeleton } from '@/core/ui/components/skeleton';
 import { Tooltip } from '@/core/ui/components/tooltip';
 import { FavoriteButton } from '@/features/favorites/components/favorite-button';
-import type { ProductListItem } from '@/features/products/products.types';
+import type { ProductListItem } from '@/features/products/types';
 import Image from 'next/image';
 
 type ProductCardProps = {

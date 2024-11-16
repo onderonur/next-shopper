@@ -1,14 +1,14 @@
 'use client';
 
-import { fadeIn } from '@/core/animations/animations.utils';
 import { AnimatePresence } from '@/core/animations/components/animate-presence';
-import { useIsMobile } from '@/core/styles/styles.hooks';
+import { fadeIn } from '@/core/animations/utils';
+import { useIsMobile } from '@/core/styles/hooks';
 import { Button } from '@/core/ui/components/button';
 import { CloseIcon } from '@/core/ui/components/icons';
-import type { UseAutoClosableArgs } from '@/core/ui/ui.hooks';
-import { useAutoClosable } from '@/core/ui/ui.hooks';
+import type { UseAutoClosableArgs } from '@/core/ui/hooks';
+import { useAutoClosable } from '@/core/ui/hooks';
 import * as RadixDialog from '@radix-ui/react-dialog';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { twJoin, twMerge } from 'tailwind-merge';
 
 type DrawerBodyProps = {
@@ -46,11 +46,9 @@ export function DrawerHeader({ children }: DrawerHeaderProps) {
           {children}
         </RadixDialog.Title>
         <RadixDialog.Close asChild>
-          <Button
-            variant="transparent"
-            icon={<CloseIcon />}
-            aria-label="Close"
-          />
+          <Button size="icon" variant="transparent" aria-label="Close">
+            <CloseIcon />
+          </Button>
         </RadixDialog.Close>
       </div>
     </div>
@@ -84,7 +82,7 @@ export function Drawer({
       <AnimatePresence>
         {isOpen && (
           <RadixDialog.Portal
-            // To make `framer-motion` exit animation work.
+            // To make `motion/react` exit animation work.
             forceMount
           >
             <RadixDialog.Overlay asChild>
@@ -108,7 +106,7 @@ export function Drawer({
                     ? 'md:left-0 md:[--x-from:-100%]'
                     : 'md:right-0 md:[--x-from:100%]',
                 )}
-                // Normally we can use `framer-motion` in a responsive way,
+                // Normally we can use `motion/react` in a responsive way,
                 // by using CSS variables.
                 // Responsive Framer Motion with Tailwind CSS:
                 // https://www.youtube.com/watch?v=xSuxsfn13xg

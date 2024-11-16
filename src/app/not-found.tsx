@@ -1,5 +1,5 @@
 import { ErrorPage } from '@/core/errors/components/error-page';
-import { getMetadata } from '@/core/seo/seo.utils';
+import { getMetadata } from '@/core/seo/utils';
 import { ButtonLink } from '@/core/ui/components/button-link';
 import { StatusCodes } from 'http-status-codes';
 

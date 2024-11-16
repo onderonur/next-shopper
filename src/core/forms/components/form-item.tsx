@@ -1,5 +1,5 @@
 import { Label } from '@/core/forms/components/label';
-import type { Maybe, Omit } from '@/core/shared/shared.types';
+import type { Maybe, Omit } from '@/core/shared/types';
 import { createContext, useContext, useId } from 'react';
 
 type FormItemContextValue = {

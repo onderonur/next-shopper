@@ -1,23 +1,11 @@
-import { MobileNavLink } from '@/core/layout/components/mobile-nav-link';
-import { getMobileNavButtonBaseProps } from '@/core/layout/components/mobile-nav-utils';
-import { routes } from '@/core/routing/routing.utils';
-import type { ButtonProps } from '@/core/ui/components/button';
-import { Button } from '@/core/ui/components/button';
+import { MobileNavLink } from '@/core/layouts/components/mobile-nav-link';
+import { routes } from '@/core/routing/utils';
 import {
   HeartOutlineIcon,
   HomeOutlineIcon,
   OrderIcon,
   SearchOutlineIcon,
 } from '@/core/ui/components/icons';
-
-type MobileNavButtonProps = Pick<
-  ButtonProps,
-  'aria-label' | 'icon' | 'children'
->;
-
-export function MobileNavButton({ icon, ...rest }: MobileNavButtonProps) {
-  return <Button {...getMobileNavButtonBaseProps({ icon })} {...rest} />;
-}
 
 const mobileNavLinks = [
   {
@@ -53,11 +41,8 @@ export function MobileNav({ children }: MobileNavProps) {
         {mobileNavLinks.map((link) => {
           return (
             <li key={link.href}>
-              <MobileNavLink
-                href={link.href}
-                icon={<link.icon />}
-                activeIcon={<link.icon className="fill-foreground" />}
-              >
+              <MobileNavLink href={link.href}>
+                <link.icon />
                 {link.title}
               </MobileNavLink>
             </li>

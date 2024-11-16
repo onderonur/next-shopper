@@ -1,4 +1,4 @@
-import { routes } from '@/core/routing/routing.utils';
+import { routes } from '@/core/routing/utils';
 import { Badge } from '@/core/ui/components/badge';
 import { ButtonLink } from '@/core/ui/components/button-link';
 import {
@@ -9,9 +9,9 @@ import {
 } from '@/core/ui/components/drawer';
 import { Separator } from '@/core/ui/components/separator';
 import { TotalPrice } from '@/core/ui/components/total-price';
-import { getCart } from '@/features/cart/cart.data';
 import { CartItemList } from '@/features/cart/components/cart-item-list';
 import { ClearCartButton } from '@/features/cart/components/clear-cart-button';
+import { getCart } from '@/features/cart/data';
 
 type CartDrawerProps = {
   trigger: React.ReactNode;
@@ -37,7 +37,7 @@ export async function CartDrawer({ trigger }: CartDrawerProps) {
         <div className="p-2">
           <ClearCartButton cart={cart} />
         </div>
-        <CartItemList className="flex-grow overflow-y-auto" />
+        <CartItemList className="flex-grow overflow-y-auto" cart={cart} />
         <Separator />
         {cart && (
           <div className="flex flex-col gap-3 p-4">

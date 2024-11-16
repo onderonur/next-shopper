@@ -4,8 +4,8 @@ import {
   addProductToCart,
   decreaseProductInCart,
   removeProductFromCart,
-} from '@/features/cart/cart.actions';
-import type { ProductsOnCartsWithProduct } from '@/features/cart/cart.types';
+} from '@/features/cart/actions';
+import type { ProductsOnCartsWithProduct } from '@/features/cart/types';
 
 type CartItemActionButtonsProps = {
   cartItem: ProductsOnCartsWithProduct;
@@ -29,30 +29,36 @@ export function CartItemActionButtons({
     <div className="flex items-center justify-between">
       <form action={removeProductFromCartWithId}>
         <SubmitButton
+          size="icon"
           aria-label={`Remove "${product.title}" From Cart`}
           className="size-8 rounded-md text-sm"
-          icon={<DeleteIcon />}
-        />
+        >
+          <DeleteIcon />
+        </SubmitButton>
       </form>
       <div className="flex items-center">
         <form action={decreaseProductInCartWithId}>
           <SubmitButton
+            size="icon"
             aria-label={`Decrease "${product.title}" Count in Cart`}
             className="size-8 rounded-l-md rounded-r-none text-sm"
             variant="primary"
-            icon={<MinusIcon />}
-          />
+          >
+            <MinusIcon />
+          </SubmitButton>
         </form>
         <div className="grid size-8 cursor-default select-none place-items-center border-2 text-sm">
           {count}
         </div>
         <form action={addProductToCartWithId}>
           <SubmitButton
+            size="icon"
             aria-label={`Increase "${product.title}" Count in cart`}
             className="size-8 rounded-l-none rounded-r-md text-sm"
             variant="primary"
-            icon={<PlusIcon />}
-          />
+          >
+            <PlusIcon />
+          </SubmitButton>
         </form>
       </div>
     </div>

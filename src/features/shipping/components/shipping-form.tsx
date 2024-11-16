@@ -9,8 +9,8 @@ import {
 import { Select, SelectItem } from '@/core/forms/components/select';
 import { SubmitButton } from '@/core/forms/components/submit-button';
 import { Card, CardContent, CardFooter } from '@/core/ui/components/card';
-import { completeCheckout } from '@/features/checkout/checkout.actions';
-import type { ContinentWithChildren } from '@/features/shipping/shipping.types';
+import { completeCheckout } from '@/features/checkout/actions';
+import type { ContinentWithChildren } from '@/features/shipping/types';
 import { useState } from 'react';
 import { useFormState } from 'react-dom';
 

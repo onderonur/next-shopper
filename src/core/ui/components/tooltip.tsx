@@ -1,7 +1,7 @@
 'use client';
 
 import * as RadixTooltip from '@radix-ui/react-tooltip';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 
 export const TooltipProvider = RadixTooltip.Provider;
 

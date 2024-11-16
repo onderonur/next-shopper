@@ -1,7 +1,7 @@
 import { prisma } from '@/core/db/db';
-import type { Id } from '@/core/shared/shared.types';
-import { getUser } from '@/features/auth/auth.data';
-import { filterProducts } from '@/features/search/search.data';
+import type { Id } from '@/core/shared/types';
+import { getUser } from '@/features/auth/data';
+import { filterProducts } from '@/features/search/data';
 import { cache } from 'react';
 import 'server-only';
 

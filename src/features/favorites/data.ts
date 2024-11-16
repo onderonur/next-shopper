@@ -1,6 +1,6 @@
 import { prisma } from '@/core/db/db';
-import { getUser } from '@/features/auth/auth.data';
-import type { ProductListItem } from '@/features/products/products.types';
+import { getUser } from '@/features/auth/data';
+import type { ProductListItem } from '@/features/products/types';
 import { cache } from 'react';
 
 export const getFavorites = cache(async (): Promise<ProductListItem[]> => {

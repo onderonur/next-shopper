@@ -9,13 +9,15 @@ export function GoBackButton() {
 
   return (
     <Button
+      size="icon"
+      className="rounded-full"
       aria-label="Go Back"
-      circle
       variant="transparent"
-      icon={<ArrowLeftIcon />}
       onClick={() => {
         router.back();
       }}
-    />
+    >
+      <ArrowLeftIcon />
+    </Button>
   );
 }

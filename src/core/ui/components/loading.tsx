@@ -1,35 +1,15 @@
-import type { Maybe } from '@/core/shared/shared.types';
-import { twJoin, twMerge } from 'tailwind-merge';
+import { twMerge } from 'tailwind-merge';
 
 type LoadingProps = {
   className?: string;
-  isLoading: Maybe<boolean>;
-  size?: 'default' | 'small';
-  children?: React.ReactNode;
 };
 
-export function Loading({
-  className,
-  isLoading,
-  size = 'default',
-  children,
-}: LoadingProps) {
-  if (!isLoading) return children;
-
+export function Loading({ className }: LoadingProps) {
   return (
-    <div
-      className={twMerge(
-        'flex justify-center',
-        !!children && 'py-6',
-        className,
-      )}
-    >
+    <span className={twMerge('flex items-center justify-center', className)}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className={twJoin(
-          'animate-spin text-primary',
-          size === 'small' ? 'size-4' : 'size-12',
-        )}
+        className="size-4 animate-spin text-primary"
         fill="none"
         viewBox="0 0 24 24"
       >
@@ -47,6 +27,6 @@ export function Loading({
           d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
         />
       </svg>
-    </div>
+    </span>
   );
 }

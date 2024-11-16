@@ -1,16 +1,16 @@
 'use server';
 
-import type { ServerActionState } from '@/core/actions/actions.types';
+import type { ServerActionState } from '@/core/actions/types';
 import { prisma } from '@/core/db/db';
-import { routes } from '@/core/routing/routing.utils';
-import { redirectToSignIn } from '@/features/auth/auth.actions';
-import { getUser } from '@/features/auth/auth.data';
-import { getUserCart } from '@/features/cart/cart.data';
+import { routes } from '@/core/routing/utils';
+import { redirectToSignIn } from '@/features/auth/actions';
+import { getUser } from '@/features/auth/data';
+import { getUserCart } from '@/features/cart/data';
 import { redirect } from 'next/navigation';
 import {
   completeCheckoutInputSchema,
   type CompleteCheckoutInput,
-} from './checkout.schemas';
+} from './schemas';
 
 export async function completeCheckout(
   currentState: ServerActionState<CompleteCheckoutInput, never> | null,

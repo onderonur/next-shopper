@@ -1,4 +1,4 @@
-import type { OrderDetails } from '@/features/orders/orders.types';
+import type { OrderDetails } from '@/features/orders/types';
 import { ProductBasicInfo } from '@/features/products/components/product-basic-info';
 
 type OrderProductsProps = {

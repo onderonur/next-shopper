@@ -51,7 +51,7 @@ export function SectionTitle({
   }
 
   return (
-    <header className="mb-1 flex items-end justify-between">
+    <header className="mb-2 flex items-end justify-between">
       <Component
         id={headingId}
         className="text-lg font-semibold text-muted-foreground"

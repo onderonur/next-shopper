@@ -1,9 +1,9 @@
 'use server';
 
 import { prisma } from '@/core/db/db';
-import type { Id } from '@/core/shared/shared.types';
-import { redirectToSignIn } from '@/features/auth/auth.actions';
-import { getUser } from '@/features/auth/auth.data';
+import type { Id } from '@/core/shared/types';
+import { redirectToSignIn } from '@/features/auth/actions';
+import { getUser } from '@/features/auth/data';
 import { revalidatePath } from 'next/cache';
 
 export async function addToFavorites(productId: Id) {

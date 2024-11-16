@@ -1,16 +1,13 @@
 import { prisma } from '@/core/db/db';
-import type { Id } from '@/core/shared/shared.types';
-import { getUser } from '@/features/auth/auth.data';
+import type { Id } from '@/core/shared/types';
+import { getUser } from '@/features/auth/data';
 import type {
   ProductFilterArgs,
   ProductFilterOptions,
   ProductFilterResponse,
   ProductFilterSelectedOption,
-} from '@/features/search/search.types';
-import {
-  ProductFilterKey,
-  ProductSorting,
-} from '@/features/search/search.utils';
+} from '@/features/search/types';
+import { ProductFilterKey, ProductSorting } from '@/features/search/utils';
 import { cache } from 'react';
 import 'server-only';
 

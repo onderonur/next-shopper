@@ -1,16 +1,14 @@
-import { Copyright } from '@/core/layout/components/copyright';
+import { Copyright } from '@/core/layouts/components/copyright';
 import {
   Layout,
   LayoutContent,
   LayoutFooter,
   LayoutHeader,
-} from '@/core/layout/components/layout';
-import {
-  MobileNav,
-  MobileNavButton,
-} from '@/core/layout/components/mobile-nav';
-import { SocialProfiles } from '@/core/layout/components/social-profiles';
-import { APP_REPOSITORY_URL } from '@/core/shared/shared.utils';
+} from '@/core/layouts/components/layout';
+import { MobileNav } from '@/core/layouts/components/mobile-nav';
+import { MobileNavButton } from '@/core/layouts/components/mobile-nav-button';
+import { SocialProfiles } from '@/core/layouts/components/social-profiles';
+import { APP_REPOSITORY_URL } from '@/core/shared/utils';
 import { ThemeToggle } from '@/core/styles/components/theme-toggle';
 import '@/core/styles/globals.css';
 import { Button } from '@/core/ui/components/button';
@@ -45,7 +43,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       lang="en"
       className={twJoin(
         inter.variable,
-        'font-sans',
+        'font-sans antialiased',
         // fluid font-size:
         // 14px - 16px for 640px - 1024px viewport
         'text-[clamp(0.875rem,0.667rem+0.52vw,1rem)]',
@@ -62,15 +60,19 @@ export default function RootLayout({ children }: RootLayoutProps) {
               <LayoutHeader>
                 <UserButton />
                 <ButtonLink
-                  aria-label="Check the Source Code on GitHub"
-                  icon={<GithubIcon />}
+                  size="icon"
                   href={APP_REPOSITORY_URL}
-                />
+                  aria-label="Check the Source Code on GitHub"
+                >
+                  <GithubIcon />
+                </ButtonLink>
                 <ThemeToggle />
                 <div className="hidden md:block">
                   <CartDrawer
                     trigger={
-                      <Button icon={<CartIcon />} aria-label="Open Cart Info" />
+                      <Button size="icon" aria-label="Open Cart Info">
+                        <CartIcon />
+                      </Button>
                     }
                   />
                 </div>
@@ -87,10 +89,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
                 <MobileNav>
                   <CartDrawer
                     trigger={
-                      <MobileNavButton
-                        icon={<CartIcon />}
-                        aria-label="Open Cart Info"
-                      >
+                      <MobileNavButton aria-label="Open Cart Info">
+                        <CartIcon />
                         Cart
                       </MobileNavButton>
                     }

@@ -58,15 +58,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <TooltipProvider>
             <Layout>
               <LayoutHeader>
-                <UserButton />
-                <ButtonLink
-                  size="icon"
-                  href={APP_REPOSITORY_URL}
-                  aria-label="Check the Source Code on GitHub"
-                >
-                  <GithubIcon />
-                </ButtonLink>
-                <ThemeToggle />
                 <div className="hidden md:block">
                   <CartDrawer
                     trigger={
@@ -76,6 +67,15 @@ export default function RootLayout({ children }: RootLayoutProps) {
                     }
                   />
                 </div>
+                <ButtonLink
+                  size="icon"
+                  href={APP_REPOSITORY_URL}
+                  aria-label="Check the Source Code on GitHub"
+                >
+                  <GithubIcon />
+                </ButtonLink>
+                <ThemeToggle />
+                <UserButton />
               </LayoutHeader>
               <LayoutContent>{children}</LayoutContent>
               <LayoutFooter>

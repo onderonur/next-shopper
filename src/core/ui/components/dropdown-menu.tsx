@@ -49,7 +49,7 @@ export const DropdownMenuItem = forwardRef<
     <RadixDropdownMenu.Item
       ref={ref}
       className={twMerge(
-        'cursor-pointer select-none rounded px-2 py-1 text-sm outline-none data-[disabled]:cursor-auto data-[highlighted]:bg-accent-hover data-[disabled]:text-muted',
+        'cursor-pointer select-none rounded px-2 py-1 outline-none data-[disabled]:cursor-auto data-[highlighted]:bg-accent-hover data-[disabled]:text-muted md:text-sm',
         className,
       )}
       {...rest}
@@ -69,7 +69,10 @@ export const DropdownMenuLabel = forwardRef<
     <RadixDropdownMenu.Label
       {...rest}
       ref={ref}
-      className={twMerge(className, 'px-2 py-1 text-xs font-semibold')}
+      className={twMerge(
+        className,
+        'px-2 py-1 text-sm font-semibold md:text-xs',
+      )}
     />
   );
 });

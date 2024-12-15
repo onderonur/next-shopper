@@ -5,7 +5,10 @@ import { PageTitle } from '@/core/ui/components/page-title';
 import { Section, SectionTitle } from '@/core/ui/components/section';
 import { ProductCarouselSkeleton } from '@/features/products/components/product-carousel';
 import { ProductInfo } from '@/features/products/components/product-info';
-import { RelatedProducts } from '@/features/products/components/related-products';
+import {
+  preloadRelatedProducts,
+  RelatedProducts,
+} from '@/features/products/components/related-products';
 import { getOneProductById } from '@/features/products/data';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
@@ -36,6 +39,7 @@ export async function generateMetadata(
 export default async function ProductPage(props: ProductPageProps) {
   const { productId } = await props.params;
 
+  preloadRelatedProducts(productId);
   const product = await getOneProductById(productId);
   if (!product) notFound();
 

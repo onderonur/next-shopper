@@ -11,15 +11,14 @@ import { SubmitButton } from '@/core/forms/components/submit-button';
 import { Card, CardContent, CardFooter } from '@/core/ui/components/card';
 import { completeCheckout } from '@/features/checkout/actions';
 import type { ContinentWithChildren } from '@/features/shipping/types';
-import { useState } from 'react';
-import { useFormState } from 'react-dom';
+import { useActionState, useState } from 'react';
 
 type ShippingFormProps = {
   continents: ContinentWithChildren[];
 };
 
 export function ShippingForm({ continents }: ShippingFormProps) {
-  const [state, formAction] = useFormState(completeCheckout, null);
+  const [state, formAction] = useActionState(completeCheckout, null);
   const fieldErrors = state?.success ? null : state?.fieldErrors;
 
   const [continentId, setContinentId] = useState('');

@@ -3,8 +3,7 @@ import { NextLink } from '@/core/routing/components/next-link';
 import type { ButtonProps } from './button';
 import { Button } from './button';
 
-export type ButtonLinkProps = NextLinkProps &
-  Pick<ButtonProps, 'size' | 'variant'>;
+type ButtonLinkProps = NextLinkProps & Pick<ButtonProps, 'size' | 'variant'>;
 
 export function ButtonLink({ size, variant, ...rest }: ButtonLinkProps) {
   return (

@@ -18,14 +18,14 @@ import { ShippingInfo } from '@/features/shipping/components/shipping-info';
 import { notFound } from 'next/navigation';
 
 type OrderPageProps = {
-  params: {
+  params: Promise<{
     orderId: Id;
-  };
+  }>;
 };
 
-export async function generateMetadata({
-  params: { orderId },
-}: OrderPageProps) {
+export async function generateMetadata(props: OrderPageProps) {
+  const { orderId } = await props.params;
+
   const order = await getOneOrderById(orderId);
   if (!order) notFound();
 
@@ -36,9 +36,9 @@ export async function generateMetadata({
   });
 }
 
-export default async function OrderPage({
-  params: { orderId },
-}: OrderPageProps) {
+export default async function OrderPage(props: OrderPageProps) {
+  const { orderId } = await props.params;
+
   const order = await getOneOrderById(orderId);
   if (!order) notFound();
 

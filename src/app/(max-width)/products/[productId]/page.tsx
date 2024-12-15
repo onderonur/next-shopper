@@ -12,14 +12,16 @@ import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 
 export type ProductPageProps = {
-  params: {
+  params: Promise<{
     productId: string;
-  };
+  }>;
 };
 
-export async function generateMetadata({
-  params: { productId },
-}: ProductPageProps): Promise<Metadata> {
+export async function generateMetadata(
+  props: ProductPageProps,
+): Promise<Metadata> {
+  const { productId } = await props.params;
+
   const product = await getOneProductById(productId);
   if (!product) notFound();
 
@@ -31,9 +33,9 @@ export async function generateMetadata({
   });
 }
 
-export default async function ProductPage({
-  params: { productId },
-}: ProductPageProps) {
+export default async function ProductPage(props: ProductPageProps) {
+  const { productId } = await props.params;
+
   const product = await getOneProductById(productId);
   if (!product) notFound();
 

@@ -13,8 +13,7 @@ import { Button } from '@/core/ui/components/button';
 import { useAutoClosable } from '@/core/ui/hooks';
 import { clearCart } from '@/features/cart/actions';
 import type { CartDetails } from '@/features/cart/types';
-import { useEffect } from 'react';
-import { useFormState } from 'react-dom';
+import { useActionState, useEffect } from 'react';
 
 type ClearCartButtonProps = { cart: Maybe<CartDetails> };
 
@@ -22,7 +21,7 @@ export function ClearCartButton({ cart }: ClearCartButtonProps) {
   const [isAlertModalOpen, setIsAlertModalOpen] = useAutoClosable({
     closeOnRouteChange: true,
   });
-  const [state, formAction] = useFormState(clearCart, null);
+  const [state, formAction] = useActionState(clearCart, null);
   const { success } = state ?? {};
 
   useEffect(() => {

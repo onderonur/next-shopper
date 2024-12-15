@@ -6,7 +6,7 @@ export type ProductsOnCartsWithProduct = Prisma.ProductsOnCartsGetPayload<{
   };
 }>;
 
-export type CartWithProducts = Prisma.CartGetPayload<{
+type CartWithProducts = Prisma.CartGetPayload<{
   include: { productsOnCarts: { include: { product: true } } };
 }>;
 

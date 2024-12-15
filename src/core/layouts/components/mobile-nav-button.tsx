@@ -2,7 +2,7 @@ import type { ButtonProps } from '@/core/ui/components/button';
 import { Button } from '@/core/ui/components/button';
 import { twMerge } from 'tailwind-merge';
 
-export type MobileNavButtonProps = Pick<
+type MobileNavButtonProps = Pick<
   ButtonProps,
   'asChild' | 'aria-label' | 'className' | 'children'
 >;

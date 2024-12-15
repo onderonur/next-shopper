@@ -1,7 +1,8 @@
 'use server';
 
 import { routes } from '@/core/routing/utils';
-import { signOut as authSignOut } from '@/features/auth/auth';
+import type { Maybe } from '@/core/shared/types';
+import { signOut as authSignOut, signIn } from '@/features/auth/auth';
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 
@@ -17,6 +18,18 @@ export async function redirectToSignIn() {
   // In summary, this custom redirect is added to fix this redirect issue instead of
   // using `signIn` function from `@/features/auth/auth`.
   return redirect(routes.signIn({ callbackUrl }));
+}
+
+export async function signInWithProvider({
+  providerId,
+  callbackUrl,
+}: {
+  providerId: string;
+  callbackUrl: Maybe<string>;
+}) {
+  await signIn(providerId, {
+    redirectTo: callbackUrl ?? '',
+  });
 }
 
 export async function signOut() {

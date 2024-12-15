@@ -11,7 +11,7 @@ export function ErrorPage({ statusCode, message, children }: ErrorPageProps) {
         <span className="border-r-2 p-4 text-3xl font-bold text-foreground">
           {statusCode}
         </span>
-        <span className="max-w-screen-sm p-4 text-lg font-semibold text-muted-foreground">
+        <span className="max-w-screen-sm break-words p-4 text-lg font-semibold text-muted-foreground">
           {message}
         </span>
       </h1>

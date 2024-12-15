@@ -1,48 +1,29 @@
-import { SubmitButton } from '@/core/forms/components/submit-button';
-import { searchParamParser } from '@/core/routing/schemas';
-import type { SearchParams } from '@/core/routing/types';
-import { parseSearchParams, routes } from '@/core/routing/utils';
+import { routes } from '@/core/routing/utils';
 import { getMetadata } from '@/core/seo/utils';
 import { APP_TITLE } from '@/core/shared/utils';
 import { Card, CardContent } from '@/core/ui/components/card';
 import { Container } from '@/core/ui/components/container';
 import { GithubIcon } from '@/core/ui/components/icons';
 import { PageTitle } from '@/core/ui/components/page-title';
-import { providerMap, signIn } from '@/features/auth/auth';
+import { providerMap } from '@/features/auth/auth';
+import { SignInWithProvider } from '@/features/auth/components/sign-in-with-provider';
 import { getUser } from '@/features/auth/data';
-import { AuthError } from 'next-auth';
-import Form from 'next/form';
 import { redirect } from 'next/navigation';
-import { z } from 'zod';
+import type { IconType } from 'react-icons/lib';
 
-// TODO: Change this
-const SIGNIN_ERROR_URL = '/';
+const ProviderIconsByName: Record<string, IconType> = {
+  github: GithubIcon,
+};
 
 export const metadata = getMetadata({
   title: 'Sign In',
   pathname: routes.signIn(),
 });
 
-const searchParamsSchema = z
-  .object({
-    callbackUrl: searchParamParser.toSingle(z.string()),
-  })
-  .partial();
-
-type SignInPageProps = {
-  searchParams: Promise<SearchParams>;
-};
-
-export default async function SignInPage(props: SignInPageProps) {
+export default async function SignInPage() {
   const user = await getUser();
 
   if (user) redirect('/');
-
-  const searchParams = await props.searchParams;
-  const { callbackUrl } = parseSearchParams({
-    searchParamsSchema,
-    searchParams,
-  });
 
   return (
     <main>
@@ -58,40 +39,16 @@ export default async function SignInPage(props: SignInPageProps) {
                 Sign in to your {APP_TITLE} account
               </p>
             </div>
-            {Object.values(providerMap).map((provider) => (
-              <Form
-                key={provider.id}
-                className="w-full max-w-sm"
-                action={async () => {
-                  'use server';
-                  try {
-                    await signIn(provider.id, {
-                      redirectTo: callbackUrl ?? '',
-                    });
-                  } catch (error) {
-                    // Signin can fail for a number of reasons, such as the user
-                    // not existing, or the user not having the correct role.
-                    // In some cases, you may want to redirect to a custom error
-                    if (error instanceof AuthError) {
-                      return redirect(
-                        `${SIGNIN_ERROR_URL}?error=${error.type}`,
-                      );
-                    }
+            {Object.values(providerMap).map((provider) => {
+              const Icon = ProviderIconsByName[provider.id];
 
-                    // Otherwise if a redirects happens Next.js can handle it
-                    // so you can just re-thrown the error and let Next.js handle it.
-                    // Docs:
-                    // https://nextjs.org/docs/app/api-reference/functions/redirect#server-component
-                    throw error;
-                  }
-                }}
-              >
-                <SubmitButton className="w-full">
-                  <GithubIcon />
+              return (
+                <SignInWithProvider key={provider.id} providerId={provider.id}>
+                  <Icon />
                   Sign in with {provider.name}
-                </SubmitButton>
-              </Form>
-            ))}
+                </SignInWithProvider>
+              );
+            })}
           </CardContent>
         </Card>
       </Container>

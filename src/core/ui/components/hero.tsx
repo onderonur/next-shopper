@@ -17,7 +17,7 @@ export function Hero() {
         </h1>
         <Divider />
         <div className="flex flex-col items-center gap-2">
-          <p className="text-lg font-semibold text-muted-foreground sm:text-xl">
+          <p className="max-w-2xl text-lg font-semibold text-muted-foreground sm:text-xl">
             {APP_DESCRIPTION}
           </p>
           <ButtonLink className="mt-1" href={APP_REPOSITORY_URL}>

@@ -1,0 +1,41 @@
+model Category {
+    id        String    @id @default(cuid())
+    title     String
+    value     String
+    image     String
+    color     String
+    products  Product[]
+    createdAt DateTime  @default(now())
+    updatedAt DateTime  @updatedAt
+}
+
+model Sorting {
+    id        String   @id @default(cuid())
+    title     String
+    value     String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model PriceRange {
+    id        String   @id @default(cuid())
+    title     String
+    value     String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Product {
+    id               String             @id @default(cuid())
+    title            String
+    description      String
+    price            Float
+    image            String
+    category         Category           @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+    categoryId       String
+    productsOnCarts  ProductsOnCarts[]
+    createdAt        DateTime           @default(now())
+    updatedAt        DateTime           @updatedAt
+    favorites        Favorite[]
+    productsOnOrders ProductsOnOrders[]
+}

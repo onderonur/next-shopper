@@ -1,7 +1,18 @@
 import { ButtonLink } from '@/core/ui/components/button-link';
-import { GithubIcon, LinkedinIcon, XIcon } from '@/core/ui/components/icons';
+import {
+  BlueskyIcon,
+  GithubIcon,
+  LinkedinIcon,
+  WorldIcon,
+  XIcon,
+} from '@/core/ui/components/icons';
 
 const socialProfileLinks = [
+  {
+    href: 'https://onderonur.github.io/',
+    title: 'Blog',
+    icon: WorldIcon,
+  },
   {
     href: 'https://github.com/onderonur',
     title: 'GitHub Profile',
@@ -11,6 +22,11 @@ const socialProfileLinks = [
     href: 'https://www.linkedin.com/in/onderonur/',
     title: 'LinkedIn Profile',
     icon: LinkedinIcon,
+  },
+  {
+    href: 'https://bsky.app/profile/onderonur.bsky.social',
+    title: 'Bluesky Profile',
+    icon: BlueskyIcon,
   },
   {
     href: 'https://x.com/onderonur_',

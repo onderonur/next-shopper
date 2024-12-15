@@ -1,4 +1,5 @@
 export {
+  FaBluesky as BlueskyIcon,
   FaGithub as GithubIcon,
   FaLinkedinIn as LinkedinIcon,
   FaXTwitter as XIcon,
@@ -24,3 +25,4 @@ export {
   HiOutlineSun as SunIcon,
   HiOutlineUser as UserIcon,
 } from 'react-icons/hi2';
+export { TbWorld as WorldIcon } from 'react-icons/tb';

@@ -58,6 +58,8 @@ function parseObjectToSearchParams(
 
 export const routes = {
   home: () => '/',
+  signIn: (args?: { callbackUrl: string | null }) =>
+    createUrl('/auth/sign-in', parseObjectToSearchParams(args)),
   search: (args?: ProductFilterArgs) =>
     createUrl('/search', parseObjectToSearchParams(args)),
   product: ({ productId }: { productId: Id }) => `/products/${productId}`,

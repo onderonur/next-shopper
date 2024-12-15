@@ -1,6 +1,5 @@
 'use client';
 
-import { Form } from '@/core/forms/components/form';
 import {
   FormItem,
   FormItemErrorMessage,
@@ -11,6 +10,7 @@ import { SubmitButton } from '@/core/forms/components/submit-button';
 import { Card, CardContent, CardFooter } from '@/core/ui/components/card';
 import { completeCheckout } from '@/features/checkout/actions';
 import type { ContinentWithChildren } from '@/features/shipping/types';
+import Form from 'next/form';
 import { useActionState, useState } from 'react';
 
 type ShippingFormProps = {

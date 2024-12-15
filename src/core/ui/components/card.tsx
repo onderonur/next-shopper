@@ -26,7 +26,10 @@ type CardHeaderProps = {
 
 export function CardHeader({ id, className, children }: CardHeaderProps) {
   return (
-    <div id={id} className={twMerge('bg-muted p-3 font-semibold', className)}>
+    <div
+      id={id}
+      className={twMerge('bg-muted px-4 py-2 font-semibold', className)}
+    >
       {children}
     </div>
   );
@@ -38,7 +41,7 @@ type CardContentProps = {
 };
 
 export function CardContent({ className, children }: CardContentProps) {
-  return <div className={twMerge('p-3', className)}>{children}</div>;
+  return <div className={twMerge('p-4', className)}>{children}</div>;
 }
 
 type CardFooterProps = {
@@ -47,5 +50,5 @@ type CardFooterProps = {
 };
 
 export function CardFooter({ className, children }: CardFooterProps) {
-  return <div className={twMerge('border-t p-3', className)}>{children}</div>;
+  return <div className={twMerge('border-t p-4', className)}>{children}</div>;
 }

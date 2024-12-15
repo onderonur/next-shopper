@@ -6,6 +6,7 @@ import {
   removeProductFromCart,
 } from '@/features/cart/actions';
 import type { ProductsOnCartsWithProduct } from '@/features/cart/types';
+import Form from 'next/form';
 
 type CartItemActionButtonsProps = {
   cartItem: ProductsOnCartsWithProduct;
@@ -27,7 +28,7 @@ export function CartItemActionButtons({
 
   return (
     <div className="flex items-center justify-between">
-      <form action={removeProductFromCartWithId}>
+      <Form action={removeProductFromCartWithId}>
         <SubmitButton
           size="icon"
           aria-label={`Remove "${product.title}" From Cart`}
@@ -35,9 +36,9 @@ export function CartItemActionButtons({
         >
           <DeleteIcon />
         </SubmitButton>
-      </form>
+      </Form>
       <div className="flex items-center">
-        <form action={decreaseProductInCartWithId}>
+        <Form action={decreaseProductInCartWithId}>
           <SubmitButton
             size="icon"
             aria-label={`Decrease "${product.title}" Count in Cart`}
@@ -46,11 +47,11 @@ export function CartItemActionButtons({
           >
             <MinusIcon />
           </SubmitButton>
-        </form>
+        </Form>
         <div className="grid size-8 cursor-default select-none place-items-center border-2 text-sm">
           {count}
         </div>
-        <form action={addProductToCartWithId}>
+        <Form action={addProductToCartWithId}>
           <SubmitButton
             size="icon"
             aria-label={`Increase "${product.title}" Count in cart`}
@@ -59,7 +60,7 @@ export function CartItemActionButtons({
           >
             <PlusIcon />
           </SubmitButton>
-        </form>
+        </Form>
       </div>
     </div>
   );

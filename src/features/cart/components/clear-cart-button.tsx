@@ -13,6 +13,7 @@ import { Button } from '@/core/ui/components/button';
 import { useAutoClosable } from '@/core/ui/hooks';
 import { clearCart } from '@/features/cart/actions';
 import type { CartDetails } from '@/features/cart/types';
+import Form from 'next/form';
 import { useActionState, useEffect } from 'react';
 
 type ClearCartButtonProps = { cart: Maybe<CartDetails> };
@@ -45,9 +46,9 @@ export function ClearCartButton({ cart }: ClearCartButtonProps) {
       <AlertModalTitle>Clear cart?</AlertModalTitle>
       <AlertModalBody>Are you sure to clear your cart?</AlertModalBody>
       <AlertModalFooter>
-        <form action={formAction}>
+        <Form action={formAction}>
           <SubmitButton variant="primary">Clear</SubmitButton>
-        </form>
+        </Form>
       </AlertModalFooter>
     </AlertModal>
   );

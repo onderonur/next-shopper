@@ -1,4 +1,5 @@
 import { prisma } from '@/core/db/db';
+import { routes } from '@/core/routing/utils';
 import { authConfig } from '@/features/auth/auth.config';
 import { PrismaAdapter } from '@auth/prisma-adapter';
 import NextAuth from 'next-auth';
@@ -23,6 +24,17 @@ const providers: Provider[] = [
   }),
 ];
 
+export const providerMap = providers
+  .map((provider) => {
+    if (typeof provider === 'function') {
+      const providerData = provider();
+      return { id: providerData.id, name: providerData.name };
+    }
+
+    return { id: provider.id, name: provider.name };
+  })
+  .filter((provider) => provider.id !== 'credentials');
+
 export const { handlers, signIn, signOut, auth } = NextAuth({
   ...authConfig,
   adapter: PrismaAdapter(prisma),
@@ -40,5 +52,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       session.user.id = token.id as string;
       return session;
     },
+  },
+  // https://authjs.dev/getting-started/session-management/custom-pages
+  pages: {
+    signIn: routes.signIn(),
   },
 });

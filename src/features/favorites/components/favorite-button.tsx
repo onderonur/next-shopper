@@ -7,6 +7,7 @@ import {
   addToFavorites,
   removeFromFavorites,
 } from '@/features/favorites/actions';
+import Form from 'next/form';
 import { twJoin } from 'tailwind-merge';
 
 type FavoriteButtonProps = {
@@ -27,7 +28,7 @@ export function FavoriteButton({
   );
 
   return (
-    <form
+    <Form
       action={
         isInFavorites
           ? removeFromFavoritesWithProductId
@@ -49,6 +50,6 @@ export function FavoriteButton({
           )}
         />
       </SubmitButton>
-    </form>
+    </Form>
   );
 }

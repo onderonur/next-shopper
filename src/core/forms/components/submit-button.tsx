@@ -23,7 +23,14 @@ export function SubmitButton({
       type="submit"
       disabled={pending}
     >
-      <span className={twJoin(pending && 'opacity-40')}>{children}</span>
+      <span
+        className={twJoin(
+          'inline-flex items-center gap-2',
+          pending && 'opacity-40',
+        )}
+      >
+        {children}
+      </span>
       {pending && <Loading className="absolute inset-0" />}
     </Button>
   );

@@ -1,6 +1,5 @@
 import { prisma } from '@/core/db/db';
 import { routes } from '@/core/routing/utils';
-import { authConfig } from '@/features/auth/auth.config';
 import { PrismaAdapter } from '@auth/prisma-adapter';
 import NextAuth from 'next-auth';
 import type { Provider } from 'next-auth/providers';
@@ -36,20 +35,28 @@ export const providerMap = providers
   .filter((provider) => provider.id !== 'credentials');
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
-  ...authConfig,
   adapter: PrismaAdapter(prisma),
   providers,
+  // Session expires after `maxAge`, which is 30 days by default.
+  // When session is checked while `database` strategy is being used,`expires` date gets updated
+  // if `maxAge` is not passed and `updateAge` (1 day by default) is passed. when `database` strategy is used.
+  // https://github.com/nextauthjs/next-auth/blob/main/packages/core/src/lib/actions/session.ts#L115
+  // When session is checked while `jtw` strategy is being used, `expires` date gets updated each time.
+  // https://github.com/nextauthjs/next-auth/blob/main/packages/core/src/lib/actions/session.ts#L35
+  session: {
+    // `database` is the default strategy when an adapter is used.
+    // Just added it here to make it more explicit.
+    // From the docs:
+    // If you use an adapter however, we default it to "database" instead.
+    // You can still force a JWT session by explicitly defining "jwt".
+    // https://authjs.dev/reference/nextjs#strategy
+    strategy: 'database',
+  },
+  // To have access to the user’s id with calls to auth() or useSession().
+  // https://authjs.dev/guides/extending-the-session#with-database
   callbacks: {
-    jwt({ token, user }) {
-      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-      if (user) {
-        // User is available during sign-in
-        token.id = user.id;
-      }
-      return token;
-    },
-    session({ session, token }) {
-      session.user.id = token.id as string;
+    session({ session, user }) {
+      session.user.id = user.id;
       return session;
     },
   },

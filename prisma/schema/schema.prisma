@@ -1,9 +1,13 @@
+generator client {
+    provider        = "prisma-client-js"
+    // prismaSchemaFolder: To split schema files.
+    // https://www.prisma.io/docs/orm/prisma-schema/overview/location#multi-file-prisma-schema
+    // driverAdapters: To use PrismaClient in Edge Runtime (Next.js Middleware).
+    // https://www.prisma.io/docs/orm/overview/databases/postgresql#using-the-node-postgres-driver
+    previewFeatures = ["prismaSchemaFolder", "driverAdapters"]
+}
+
 datasource db {
     provider = "postgresql"
     url      = env("POSTGRES_URL")
-}
-
-generator client {
-    provider        = "prisma-client-js"
-    previewFeatures = ["prismaSchemaFolder"]
 }

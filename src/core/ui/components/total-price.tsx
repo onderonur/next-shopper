@@ -18,7 +18,7 @@ export function TotalPrice({ className, value }: TotalPriceProps) {
       <div className="flex justify-between text-lg font-bold">
         <DescriptionTerm>Total</DescriptionTerm>
         <DescriptionDetails>
-          <Price value={value} />
+          <Price value={value} isAnimated />
         </DescriptionDetails>
       </div>
     </DescriptionList>

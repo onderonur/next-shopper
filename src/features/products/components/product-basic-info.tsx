@@ -50,6 +50,7 @@ export function ProductBasicInfo({
           <Price
             className="font-semibold text-primary"
             value={product.price * count}
+            isAnimated
           />
         </div>
         {shouldShowCount && !!count && (

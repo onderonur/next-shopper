@@ -6,6 +6,7 @@ import {
   removeProductFromCart,
 } from '@/features/cart/actions';
 import type { ProductsOnCartsWithProduct } from '@/features/cart/types';
+import NumberFlow from '@number-flow/react';
 import Form from 'next/form';
 
 type CartItemActionButtonsProps = {
@@ -48,8 +49,8 @@ export function CartItemActionButtons({
             <MinusIcon />
           </SubmitButton>
         </Form>
-        <div className="grid size-8 cursor-default select-none place-items-center border-2 text-sm">
-          {count}
+        <div className="grid h-8 min-w-8 cursor-default select-none place-items-center border-2 px-1 text-sm">
+          <NumberFlow value={count} />
         </div>
         <Form action={addProductToCartWithId}>
           <SubmitButton

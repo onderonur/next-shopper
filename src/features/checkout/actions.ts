@@ -12,10 +12,15 @@ import {
   type CompleteCheckoutInput,
 } from './schemas';
 
+type CompleteCheckoutState = ServerActionState<
+  CompleteCheckoutInput,
+  undefined
+>;
+
 export async function completeCheckout(
-  currentState: ServerActionState<CompleteCheckoutInput, never> | null,
+  currentState: CompleteCheckoutState | null,
   formData: FormData,
-): Promise<ServerActionState<CompleteCheckoutInput, never>> {
+): Promise<CompleteCheckoutState> {
   const user = await getUser();
   if (!user?.id) return await redirectToSignIn();
 

@@ -1,16 +1,14 @@
-async function handleResponse<Data>(response: Response) {
-  if (response.ok) {
-    const data = (await response.json()) as Data;
-    return data;
-  }
-
-  throw new Error(response.statusText);
+async function handleResponse<Data = unknown>(response: Response) {
+  if (!response.ok) throw new Error(response.statusText);
+  if (!response.body) return null;
+  const data = (await response.json()) as Data;
+  return data;
 }
 
 export const httpClient = {
-  get: async (url: string | URL, options: RequestInit) => {
+  get: async <Data = unknown>(url: string | URL, options?: RequestInit) => {
     const response = await fetch(url, options);
-    const data = await handleResponse(response);
+    const data = await handleResponse<Data>(response);
     return { data, headers: response.headers };
   },
 };

@@ -8,7 +8,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: dev_db
+      POSTGRES_DB: dev-db
     ports:
       - 5432:5432
     volumes:

@@ -3,8 +3,15 @@ import { NextResponse } from 'next/server';
 import setCookie from 'set-cookie-parser';
 import { httpClient } from './core/http-client/http-client';
 
-export async function middleware() {
+async function checkSession() {
   const headersList = await headers();
+
+  const requestHeaders = new Headers();
+  const cookieHeader = headersList.get('cookie');
+  if (cookieHeader) {
+    // Forwarding cookies to the route handler.
+    requestHeaders.set('cookie', cookieHeader);
+  }
 
   // TODO: We can't use `auth()` in `middleware.ts` since it is not edge compatible with database session strategy.
   // We fetch session here from a route handler to update `Expires` or `Max-Age` fields of the cookie and keep it alive,
@@ -14,29 +21,30 @@ export async function middleware() {
   const response = await httpClient.get(
     new URL('/api/auth/session', process.env.BASE_URL),
     {
-      headers: headersList,
+      headers: requestHeaders,
     },
   );
 
   const responseCookies = setCookie(response.headers.getSetCookie());
+  const cookieStore = await cookies();
 
-  if (responseCookies.length) {
-    const cookieStore = await cookies();
-    for (const cookie of responseCookies) {
-      cookieStore.set({
-        name: cookie.name,
-        value: cookie.value,
-        path: cookie.path,
-        expires: cookie.expires,
-        maxAge: cookie.maxAge,
-        httpOnly: cookie.httpOnly,
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-explicit-any
-        sameSite: cookie.sameSite as any,
-        secure: cookie.secure,
-      });
-    }
+  for (const cookie of responseCookies) {
+    cookieStore.set({
+      name: cookie.name,
+      value: cookie.value,
+      path: cookie.path,
+      expires: cookie.expires,
+      maxAge: cookie.maxAge,
+      httpOnly: cookie.httpOnly,
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-explicit-any
+      sameSite: cookie.sameSite as any,
+      secure: cookie.secure,
+    });
   }
+}
 
+export async function middleware() {
+  await checkSession();
   return NextResponse.next();
 }
 

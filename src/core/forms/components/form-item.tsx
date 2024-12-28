@@ -75,7 +75,12 @@ export function FormItemErrorMessage() {
   if (!errorMessages?.length) return null;
 
   return (
-    <div id={errorMessageId} aria-live="polite" className="text-sm text-error">
+    <div
+      id={errorMessageId}
+      aria-live="polite"
+      aria-atomic
+      className="text-sm text-error"
+    >
       {errorMessages.join(', ')}
     </div>
   );

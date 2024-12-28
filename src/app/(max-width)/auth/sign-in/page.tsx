@@ -5,7 +5,7 @@ import { Card, CardContent } from '@/core/ui/components/card';
 import { Container } from '@/core/ui/components/container';
 import { GithubIcon } from '@/core/ui/components/icons';
 import { PageTitle } from '@/core/ui/components/page-title';
-import { providerMap } from '@/features/auth/auth.config';
+import { providerMap } from '@/features/auth/auth';
 import { SignInWithProvider } from '@/features/auth/components/sign-in-with-provider';
 import { getUser } from '@/features/auth/data';
 import { redirect } from 'next/navigation';

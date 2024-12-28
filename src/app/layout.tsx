@@ -19,6 +19,7 @@ import { TooltipProvider } from '@/core/ui/components/tooltip';
 import { UserButton } from '@/features/auth/components/user-button';
 import { CartDrawer } from '@/features/cart/components/cart-drawer';
 import type { Viewport } from 'next';
+import { SessionProvider } from 'next-auth/react';
 import { ThemeProvider } from 'next-themes';
 import { Inter } from 'next/font/google';
 import { twJoin } from 'tailwind-merge';
@@ -55,50 +56,59 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <head />
       <body className="bg-background text-foreground">
         <ThemeProvider>
-          <TooltipProvider>
-            <Layout>
-              <LayoutHeader>
-                <div className="hidden md:block">
-                  <CartDrawer
-                    trigger={
-                      <Button size="icon" aria-label="Open Cart Info">
-                        <CartIcon />
-                      </Button>
-                    }
-                  />
-                </div>
-                <ButtonLink
-                  size="icon"
-                  href={APP_REPOSITORY_URL}
-                  aria-label="Check the Source Code on GitHub"
-                >
-                  <GithubIcon />
-                </ButtonLink>
-                <ThemeToggle />
-                <UserButton />
-              </LayoutHeader>
-              <LayoutContent>{children}</LayoutContent>
-              <LayoutFooter>
-                <Container
-                  maxWidth="xl"
-                  className="flex flex-col items-center justify-between gap-3 px-4 py-6"
-                >
-                  <SocialProfiles />
-                  <Copyright />
-                </Container>
-                <MobileNav>
-                  <CartDrawer
-                    trigger={
-                      <MobileNavButton aria-label="Open Cart Info">
-                        <CartIcon />
-                        Cart
-                      </MobileNavButton>
-                    }
-                  />
-                </MobileNav>
-              </LayoutFooter>
-            </Layout>
-          </TooltipProvider>
+          {/* 
+            TODO: Normally, we don't get session on client-side with `useSession` hook.
+            So, we don't need `<SessionProvider>`. But, since we can't use `auth()` function in `middleware.ts`
+            with database strategy since it is not edge compatible, we automatically fetch session on client-side
+            to update `Expires` field of the session and keep cookie alive.
+            When database strategy is edge compatible or `middleware.ts` has Node.js Runtime, we can remove this.
+          */}
+          <SessionProvider>
+            <TooltipProvider>
+              <Layout>
+                <LayoutHeader>
+                  <div className="hidden md:block">
+                    <CartDrawer
+                      trigger={
+                        <Button size="icon" aria-label="Open Cart Info">
+                          <CartIcon />
+                        </Button>
+                      }
+                    />
+                  </div>
+                  <ButtonLink
+                    size="icon"
+                    href={APP_REPOSITORY_URL}
+                    aria-label="Check the Source Code on GitHub"
+                  >
+                    <GithubIcon />
+                  </ButtonLink>
+                  <ThemeToggle />
+                  <UserButton />
+                </LayoutHeader>
+                <LayoutContent>{children}</LayoutContent>
+                <LayoutFooter>
+                  <Container
+                    maxWidth="xl"
+                    className="flex flex-col items-center justify-between gap-3 px-4 py-6"
+                  >
+                    <SocialProfiles />
+                    <Copyright />
+                  </Container>
+                  <MobileNav>
+                    <CartDrawer
+                      trigger={
+                        <MobileNavButton aria-label="Open Cart Info">
+                          <CartIcon />
+                          Cart
+                        </MobileNavButton>
+                      }
+                    />
+                  </MobileNav>
+                </LayoutFooter>
+              </Layout>
+            </TooltipProvider>
+          </SessionProvider>
         </ThemeProvider>
       </body>
     </html>

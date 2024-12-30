@@ -14,14 +14,16 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
+        default:
+          'border-2 bg-background hover:bg-accent-hover active:bg-accent-active border',
         primary:
           'bg-primary hover:bg-primary-hover active:bg-primary-active text-primary-foreground',
         transparent:
           'hover:bg-accent-hover active:bg-accent-active text-accent-foreground',
         accent:
           'bg-accent hover:bg-accent-hover active:bg-accent-active text-accent-foreground',
-        default:
-          'border-2 bg-background hover:bg-accent-hover active:bg-accent-active border',
+        danger:
+          'bg-danger hover:bg-danger-hover active:bg-danger-active text-danger-foreground',
       },
       size: {
         icon: 'rounded-md size-9',
@@ -37,7 +39,7 @@ const buttonVariants = cva(
 
 export type ButtonProps = AsChildProps &
   React.ComponentProps<'button'> & {
-    variant?: 'default' | 'primary' | 'transparent' | 'accent';
+    variant?: 'default' | 'primary' | 'transparent' | 'accent' | 'danger';
     size?: Size;
     children?: React.ReactNode;
   };

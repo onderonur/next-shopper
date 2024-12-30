@@ -29,6 +29,12 @@ export default {
           DEFAULT: 'hsl(var(--muted) / <alpha-value>)',
           foreground: 'hsl(var(--muted-foreground) / <alpha-value>)',
         },
+        danger: {
+          DEFAULT: 'hsl(var(--danger) / <alpha-value>)',
+          hover: 'hsl(var(--danger-hover) / <alpha-value>)',
+          active: 'hsl(var(--danger-active) / <alpha-value>)',
+          foreground: 'hsl(var(--danger-foreground) / <alpha-value>)',
+        },
         scrollbar: {
           thumb: 'hsl(var(--scrollbar-thumb) / <alpha-value>)',
           'thumb-hover': 'hsl(var(--scrollbar-thumb-hover) / <alpha-value>)',

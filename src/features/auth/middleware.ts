@@ -1,5 +1,6 @@
 import { cookies, headers } from 'next/headers';
 import type { NextRequest } from 'next/server';
+import { getSessionCookieName } from './utils';
 
 export async function checkIsValidAgainsCSRF() {
   const headersList = await headers();
@@ -19,12 +20,7 @@ export async function extendSessionCookieExpiration(req: NextRequest) {
   // https://github.com/lucia-auth/example-nextjs-github-oauth/blob/main/middleware.ts#L10
   if (req.method !== 'GET') return;
 
-  const isProd = process.env.NODE_ENV === 'production';
-  let cookieName = 'authjs.session-token';
-
-  if (isProd) {
-    cookieName = `__Secure-${cookieName}`;
-  }
+  const cookieName = getSessionCookieName();
 
   const cookieStore = await cookies();
   const sessionToken = cookieStore.get(cookieName)?.value;
@@ -37,6 +33,6 @@ export async function extendSessionCookieExpiration(req: NextRequest) {
     httpOnly: true,
     maxAge: 30 * 24 * 60 * 60,
     sameSite: 'lax',
-    secure: isProd,
+    secure: process.env.NODE_ENV === 'production',
   });
 }

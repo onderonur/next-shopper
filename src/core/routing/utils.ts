@@ -67,4 +67,5 @@ export const routes = {
   orders: () => '/orders',
   order: ({ orderId }: { orderId: Id }) => `/orders/${orderId}`,
   favorites: () => '/products/favorites',
+  account: () => '/account',
 };

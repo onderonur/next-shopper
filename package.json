@@ -65,8 +65,8 @@
     "eslint-plugin-unicorn": "^56.0.1",
     "husky": "^9.1.7",
     "knip": "^5.41.1",
-    "lint-staged": "^15.2.11",
-    "npm-check-updates": "^17.1.12",
+    "lint-staged": "^15.3.0",
+    "npm-check-updates": "^17.1.13",
     "postcss": "^8.4.49",
     "prettier": "^3.4.2",
     "prettier-plugin-organize-imports": "^4.1.0",
@@ -75,7 +75,7 @@
     "prisma": "^6.1.0",
     "tsx": "^4.19.2",
     "typescript": "^5.7.2",
-    "typescript-eslint": "^8.18.2"
+    "typescript-eslint": "^8.19.0"
   },
-  "packageManager": "pnpm@9.15.1"
+  "packageManager": "pnpm@9.15.2"
 }

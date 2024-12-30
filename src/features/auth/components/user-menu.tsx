@@ -42,6 +42,11 @@ export function UserMenu({ user }: UserMenuProps) {
           </DropdownMenuLabel>
         </Tooltip>
         <DropdownMenuItem asChild>
+          <NextLink className="block" href={routes.account()}>
+            Account
+          </NextLink>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild>
           <NextLink className="block" href={routes.orders()}>
             Orders
           </NextLink>

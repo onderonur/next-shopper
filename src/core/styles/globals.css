@@ -17,6 +17,11 @@
     --accent-active: 240 4.8% 90%;
     --accent-foreground: 240 4.8% 26%;
 
+    --danger: 0 84% 58%;
+    --danger-hover: 0 84% 62%;
+    --danger-active: 0 84% 66%;
+    --danger-foreground: 0 0 98%;
+
     --muted: 240 5% 96%;
     --muted-foreground: 240 5% 45%;
 
@@ -44,6 +49,11 @@
     --accent-hover: 240 5% 24%;
     --accent-active: 240 5% 28%;
     --accent-foreground: 240 5% 90%;
+
+    --danger: 0 84% 72%;
+    --danger-hover: 0 84% 76%;
+    --danger-active: 0 84% 80%;
+    --danger-foreground: 0 0 6%;
 
     --muted: 240 4% 16%;
     --muted-foreground: 240 4% 65%;

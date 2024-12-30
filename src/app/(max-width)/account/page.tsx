@@ -1,4 +1,3 @@
-import { SubmitButton } from '@/core/forms/components/submit-button';
 import { getMetadata } from '@/core/seo/utils';
 import { Card, CardContent } from '@/core/ui/components/card';
 import { Container } from '@/core/ui/components/container';
@@ -9,10 +8,9 @@ import {
 } from '@/core/ui/components/description-list';
 import { PageTitle } from '@/core/ui/components/page-title';
 import { Section, SectionTitle } from '@/core/ui/components/section';
-import { deleteAccount } from '@/features/account/actions';
+import { DeleteAccountButton } from '@/features/account/components/delete-account-button';
 import { redirectToSignIn } from '@/features/auth/actions';
 import { getUser } from '@/features/auth/data';
-import Form from 'next/form';
 
 export const metadata = getMetadata({
   title: 'Account',
@@ -53,9 +51,7 @@ export default async function OrdersPage() {
           <SectionTitle>Danger Zone</SectionTitle>
           <Card>
             <CardContent>
-              <Form action={deleteAccount}>
-                <SubmitButton variant="danger">Delete Account</SubmitButton>
-              </Form>
+              <DeleteAccountButton />
             </CardContent>
           </Card>
         </Section>

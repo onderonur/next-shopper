@@ -2,7 +2,7 @@ import { cookies, headers } from 'next/headers';
 import type { NextRequest } from 'next/server';
 import { getSessionCookieName } from './utils';
 
-export async function checkIsValidAgainsCSRF() {
+export async function checkIsValidAgainstCSRF() {
   const headersList = await headers();
   // We can also compare it against the `Origin` or `X-Forwarded-Host` header.
   // https://lucia-auth.com/sessions/cookies/

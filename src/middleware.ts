@@ -1,14 +1,14 @@
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 import {
-  checkIsValidAgainsCSRF,
+  checkIsValidAgainstCSRF,
   extendSessionCookieExpiration,
 } from './features/auth/middleware';
 
 export async function middleware(req: NextRequest) {
-  const isValidAgainsCSRF = await checkIsValidAgainsCSRF();
+  const isValidAgainstCSRF = await checkIsValidAgainstCSRF();
 
-  if (!isValidAgainsCSRF) {
+  if (!isValidAgainstCSRF) {
     return NextResponse.json(null, { status: 403 });
   }
 

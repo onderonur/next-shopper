@@ -9,7 +9,7 @@ export type UseAutoClosableArgs = {
 export function useAutoClosable({
   closeOnRouteChange,
   closeOnPathnameChange,
-}: UseAutoClosableArgs) {
+}: UseAutoClosableArgs = {}) {
   const [isOpen, setIsOpen] = useState(false);
 
   useOnRouteChange(

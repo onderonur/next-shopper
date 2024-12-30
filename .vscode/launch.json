@@ -1,4 +1,4 @@
-// https://nextjs.org/docs/pages/building-your-application/configuring/debugging#debugging-with-vs-code
+// https://nextjs.org/docs/app/building-your-application/configuring/debugging
 {
   "version": "0.2.0",
   "configurations": [

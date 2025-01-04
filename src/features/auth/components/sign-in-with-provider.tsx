@@ -1,25 +1,23 @@
 'use client';
 
 import { SubmitButton } from '@/core/forms/components/submit-button';
+import type { Maybe } from '@/core/shared/types';
 import Form from 'next/form';
-import { useSearchParams } from 'next/navigation';
 import { signInWithProvider } from '../actions';
 
 type SignInWithProviderProps = {
   providerId: string;
+  callbackUrl: Maybe<string>;
   children: React.ReactNode;
 };
 
 export function SignInWithProvider({
   providerId,
+  callbackUrl,
   children,
 }: SignInWithProviderProps) {
-  const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get('callbackUrl');
-
   return (
     <Form
-      className="w-full max-w-sm"
       action={async () => {
         await signInWithProvider({
           providerId,

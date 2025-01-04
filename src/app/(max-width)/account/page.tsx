@@ -1,6 +1,5 @@
 import { getMetadata } from '@/core/seo/utils';
 import { Card, CardContent } from '@/core/ui/components/card';
-import { Container } from '@/core/ui/components/container';
 import {
   DescriptionDetails,
   DescriptionList,
@@ -25,7 +24,7 @@ export default async function OrdersPage() {
   return (
     <main>
       <PageTitle title="Account" />
-      <Container maxWidth="sm" className="flex flex-col gap-6">
+      <div className="mx-auto flex max-w-screen-sm flex-col gap-6">
         <Section>
           <SectionTitle>Details</SectionTitle>
           <Card>
@@ -55,7 +54,7 @@ export default async function OrdersPage() {
             </CardContent>
           </Card>
         </Section>
-      </Container>
+      </div>
     </main>
   );
 }

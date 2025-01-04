@@ -33,10 +33,12 @@ export type SearchPageSearchParams = z.infer<
   typeof searchPageSearchParamsSchema
 >;
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const signInPageSearchParamsSchema = z.object({
-  callbackUrl: searchParamParser.toSingle(z.string().nullable()),
-});
+export const signInPageSearchParamsSchema = z
+  .object({
+    callbackUrl: searchParamParser.toSingle(z.string()),
+    error: searchParamParser.toSingle(z.string()),
+  })
+  .partial();
 
 export type SignInPageSearchParams = z.infer<
   typeof signInPageSearchParamsSchema

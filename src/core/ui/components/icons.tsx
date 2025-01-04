@@ -24,5 +24,6 @@ export {
   HiOutlineMagnifyingGlass as SearchOutlineIcon,
   HiOutlineSun as SunIcon,
   HiOutlineUser as UserIcon,
+  HiOutlineExclamationCircle as WarningIcon,
 } from 'react-icons/hi2';
 export { TbWorld as WorldIcon } from 'react-icons/tb';

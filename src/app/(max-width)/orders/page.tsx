@@ -1,5 +1,4 @@
 import { getMetadata } from '@/core/seo/utils';
-import { Container } from '@/core/ui/components/container';
 import { PageTitle } from '@/core/ui/components/page-title';
 import { redirectToSignIn } from '@/features/auth/actions';
 import { getUser } from '@/features/auth/data';
@@ -19,7 +18,7 @@ export default async function OrdersPage() {
   return (
     <main>
       <PageTitle title="Orders" />
-      <Container maxWidth="sm">
+      <div className="mx-auto max-w-screen-sm">
         {orders.length ? (
           <ul className="flex flex-col gap-2">
             {orders.map((order) => {
@@ -33,7 +32,7 @@ export default async function OrdersPage() {
         ) : (
           <p>Nothing has been found...</p>
         )}
-      </Container>
+      </div>
     </main>
   );
 }

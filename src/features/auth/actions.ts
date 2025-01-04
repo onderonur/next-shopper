@@ -1,5 +1,6 @@
 'use server';
 
+import type { SignInPageSearchParams } from '@/core/routing/schemas';
 import { routes } from '@/core/routing/utils';
 import type { Maybe } from '@/core/shared/types';
 import { signOut as authSignOut, signIn } from '@/features/auth/auth';
@@ -9,6 +10,13 @@ import { redirect } from 'next/navigation';
 export async function redirectToSignIn() {
   const headersList = await headers();
   const callbackUrl = headersList.get('referer');
+
+  const searchParams: SignInPageSearchParams = {};
+
+  if (callbackUrl) {
+    searchParams.callbackUrl = callbackUrl;
+  }
+
   // Normally, using `signIn` from `@/features/auth/auth` redirects user to the sign in page too.
   // But, it redirects to default sign in page (`/api/auth/signin`), instead of the custom page (`/auth/sign-in`).
   // It still shows the custom page. But it does not work and throws `MissingCSRF` error when "Sign in with ..."
@@ -17,7 +25,7 @@ export async function redirectToSignIn() {
   // But it redirects to the wrong page when "Add to Cart" button is clicked while not signed in for example.
   // In summary, this custom redirect is added to fix this redirect issue instead of
   // using `signIn` function from `@/features/auth/auth`.
-  return redirect(routes.signIn({ callbackUrl }));
+  return redirect(routes.signIn(searchParams));
 }
 
 export async function signInWithProvider({

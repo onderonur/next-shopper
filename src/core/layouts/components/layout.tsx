@@ -1,6 +1,5 @@
 import { NextLink } from '@/core/routing/components/next-link';
 import { APP_TITLE } from '@/core/shared/utils';
-import { Container } from '@/core/ui/components/container';
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -21,15 +20,12 @@ type LayoutHeaderProps = {
 export function LayoutHeader({ children }: LayoutHeaderProps) {
   return (
     <header className="sticky top-0 z-10 min-h-16 w-full border-b bg-background/75 backdrop-blur">
-      <Container
-        maxWidth="xl"
-        className="flex h-full items-center justify-between px-4"
-      >
+      <div className="mx-auto flex h-full max-w-screen-xl items-center justify-between px-4">
         <NextLink href="/" className="text-2xl font-bold text-primary">
           {APP_TITLE}
         </NextLink>
         <div className="flex items-center gap-2">{children}</div>
-      </Container>
+      </div>
     </header>
   );
 }

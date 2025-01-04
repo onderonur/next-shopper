@@ -1,7 +1,6 @@
 import { routes } from '@/core/routing/utils';
 import { getMetadata } from '@/core/seo/utils';
 import { Card, CardContent, CardFooter } from '@/core/ui/components/card';
-import { Container } from '@/core/ui/components/container';
 import { PageTitle } from '@/core/ui/components/page-title';
 import { Section, SectionTitle } from '@/core/ui/components/section';
 import { TotalPrice } from '@/core/ui/components/total-price';
@@ -31,7 +30,7 @@ export default async function CheckoutPage() {
   return (
     <main>
       <PageTitle title="Checkout" />
-      <Container maxWidth="sm" className="flex flex-col gap-6">
+      <div className="mx-auto flex max-w-screen-sm flex-col gap-6">
         <Section>
           <SectionTitle asChild actions={<ClearCartButton cart={cart} />}>
             <h2>Cart</h2>
@@ -53,7 +52,7 @@ export default async function CheckoutPage() {
             <ShippingForm continents={continents} />
           </Section>
         ) : null}
-      </Container>
+      </div>
     </main>
   );
 }

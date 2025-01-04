@@ -13,7 +13,6 @@ import { ThemeToggle } from '@/core/styles/components/theme-toggle';
 import '@/core/styles/globals.css';
 import { Button } from '@/core/ui/components/button';
 import { ButtonLink } from '@/core/ui/components/button-link';
-import { Container } from '@/core/ui/components/container';
 import { CartIcon, GithubIcon } from '@/core/ui/components/icons';
 import { TooltipProvider } from '@/core/ui/components/tooltip';
 import { UserButton } from '@/features/auth/components/user-button';
@@ -79,13 +78,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
               </LayoutHeader>
               <LayoutContent>{children}</LayoutContent>
               <LayoutFooter>
-                <Container
-                  maxWidth="xl"
-                  className="flex flex-col items-center justify-between gap-3 px-4 py-6"
-                >
+                <div className="flex flex-col items-center justify-between gap-3 px-4 py-6">
                   <SocialProfiles />
                   <Copyright />
-                </Container>
+                </div>
                 <MobileNav>
                   <CartDrawer
                     trigger={

@@ -1,12 +1,6 @@
 import type { ProductListItem } from '@/features/products/types';
 import type { ProductFilterKey } from '@/features/search/utils';
 
-export type ProductFilterArgs = {
-  [ProductFilterKey.SORTING]?: string;
-  [ProductFilterKey.CATEGORIES]?: string[];
-  [ProductFilterKey.PRICE_RANGES]?: string[];
-};
-
 type ProductFilterOptionItem = {
   title: string;
   value: string;

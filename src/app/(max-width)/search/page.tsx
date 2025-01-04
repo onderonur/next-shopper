@@ -1,4 +1,4 @@
-import { searchParamParser } from '@/core/routing/schemas';
+import { searchPageSearchParamsSchema } from '@/core/routing/schemas';
 import type { SearchParams } from '@/core/routing/types';
 import { parseSearchParams, routes } from '@/core/routing/utils';
 import { getMetadata } from '@/core/seo/utils';
@@ -10,20 +10,11 @@ import { SearchResults } from '@/features/search/components/search-results';
 import { SelectedFilters } from '@/features/search/components/selected-filters';
 import { SelectedOptionsProvider } from '@/features/search/components/selected-options-context';
 import { filterProducts } from '@/features/search/data';
-import { z } from 'zod';
 
 export const metadata = getMetadata({
   title: 'Search Products',
   pathname: routes.search(),
 });
-
-const searchParamsSchema = z
-  .object({
-    categories: searchParamParser.toArray(z.string()),
-    priceRanges: searchParamParser.toArray(z.string()),
-    sorting: searchParamParser.toSingle(z.string()),
-  })
-  .partial();
 
 type SearchPageProps = {
   searchParams: Promise<SearchParams>;
@@ -32,7 +23,7 @@ type SearchPageProps = {
 export default async function SearchPage(props: SearchPageProps) {
   const searchParams = await props.searchParams;
   const parsedSearchParams = parseSearchParams({
-    searchParamsSchema,
+    schema: searchPageSearchParamsSchema,
     searchParams,
   });
   const data = await filterProducts(parsedSearchParams);

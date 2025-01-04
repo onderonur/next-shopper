@@ -1,8 +1,8 @@
 import { prisma } from '@/core/db/db';
+import type { SearchPageSearchParams } from '@/core/routing/schemas';
 import type { Id } from '@/core/shared/types';
 import { getUser } from '@/features/auth/data';
 import type {
-  ProductFilterArgs,
   ProductFilterOptions,
   ProductFilterResponse,
   ProductFilterSelectedOption,
@@ -39,7 +39,7 @@ async function getProductFilterOptions() {
   return filterOptions;
 }
 
-async function getManyProducts(args: ProductFilterArgs) {
+async function getManyProducts(args: SearchPageSearchParams) {
   let categoryIds: Id[] = [];
 
   const categoryValues = args.categories;
@@ -125,7 +125,7 @@ function getProductFilterSelectedOptions({
   args,
 }: {
   filterOptions: ProductFilterOptions;
-  args: ProductFilterArgs;
+  args: SearchPageSearchParams;
 }) {
   const { sortings, categories, priceRanges } = filterOptions;
   const selectedOptions: ProductFilterSelectedOption[] = [];
@@ -179,7 +179,7 @@ function getProductFilterSelectedOptions({
 // But since we don't call this function in multiple components at the same time etc. currently,
 // this can be neglected for now.
 export const filterProducts = cache(
-  async (args: ProductFilterArgs): Promise<ProductFilterResponse> => {
+  async (args: SearchPageSearchParams): Promise<ProductFilterResponse> => {
     const [filterOptions, products] = await Promise.all([
       getProductFilterOptions(),
       getManyProducts(args),

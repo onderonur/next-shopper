@@ -1,23 +1,17 @@
 import type { SearchParams } from '@/core/routing/types';
-import type { Id, Maybe } from '@/core/shared/types';
-import type { ProductFilterArgs } from '@/features/search/types';
+import type { Id, Maybe, ValueOf } from '@/core/shared/types';
 import { notFound } from 'next/navigation';
 import type { z } from 'zod';
-
-function createUrl(pathname: string, searchParams?: URLSearchParams) {
-  const searchParamsString = searchParams?.toString();
-  const queryString = searchParamsString ? `?${searchParamsString}` : '';
-  return `${pathname}${queryString}`;
-}
+import type { SearchPageSearchParams, SignInPageSearchParams } from './schemas';
 
 export function parseSearchParams<Output, Def extends z.ZodTypeDef, Input>({
-  searchParamsSchema,
+  schema,
   searchParams,
 }: {
-  searchParamsSchema: z.ZodSchema<Output, Def, Input>;
+  schema: z.ZodSchema<Output, Def, Input>;
   searchParams: SearchParams;
 }) {
-  const result = searchParamsSchema.safeParse(searchParams);
+  const result = schema.safeParse(searchParams);
   if (!result.success) notFound();
   return result.data;
 }
@@ -28,11 +22,13 @@ function isNonEmptyValue<Value extends string | number>(
   return value !== null && value !== undefined && value !== '';
 }
 
-function parseObjectToSearchParams(
-  searchParams: Maybe<
-    Record<string, string | string[] | number | undefined | null>
-  >,
-) {
+// To accept `number`, `number[]` and `null` as `SearchParams` values.
+type ExtendedSearchParams = Record<
+  keyof SearchParams,
+  ValueOf<SearchParams> | number | number[] | null
+>;
+
+function parseObjectToSearchParams(searchParams: Maybe<ExtendedSearchParams>) {
   const parsedSearchParams = new URLSearchParams();
 
   if (!searchParams) return parsedSearchParams;
@@ -41,7 +37,7 @@ function parseObjectToSearchParams(
     if (Array.isArray(value)) {
       for (const valueItem of value) {
         if (isNonEmptyValue(valueItem)) {
-          parsedSearchParams.append(key, valueItem);
+          parsedSearchParams.append(key, valueItem.toString());
         }
       }
 
@@ -56,16 +52,21 @@ function parseObjectToSearchParams(
   return parsedSearchParams;
 }
 
+function createUrl(pathname: string, searchParams?: ExtendedSearchParams) {
+  const urlSearchParams = parseObjectToSearchParams(searchParams);
+  const urlSearchParamsString = urlSearchParams.toString();
+  const queryString = urlSearchParamsString ? `?${urlSearchParamsString}` : '';
+  return `${pathname}${queryString}`;
+}
+
 export const routes = {
   home: () => '/',
-  signIn: (args?: { callbackUrl: string | null }) =>
-    createUrl('/auth/sign-in', parseObjectToSearchParams(args)),
-  search: (args?: ProductFilterArgs) =>
-    createUrl('/search', parseObjectToSearchParams(args)),
-  product: ({ productId }: { productId: Id }) => `/products/${productId}`,
+  signIn: (args?: SignInPageSearchParams) => createUrl('/auth/sign-in', args),
+  search: (args?: SearchPageSearchParams) => createUrl('/search', args),
+  product: (args: { productId: Id }) => `/products/${args.productId}`,
   checkout: () => '/checkout',
   orders: () => '/orders',
-  order: ({ orderId }: { orderId: Id }) => `/orders/${orderId}`,
+  order: (args: { orderId: Id }) => `/orders/${args.orderId}`,
   favorites: () => '/products/favorites',
   account: () => '/account',
 };

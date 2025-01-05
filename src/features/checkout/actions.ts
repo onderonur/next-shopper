@@ -18,7 +18,7 @@ type CompleteCheckoutState = ServerActionState<
 >;
 
 export async function completeCheckout(
-  currentState: CompleteCheckoutState | null,
+  currentState: CompleteCheckoutState,
   formData: FormData,
 ): Promise<CompleteCheckoutState> {
   const user = await getUser();
@@ -36,7 +36,7 @@ export async function completeCheckout(
   const inputResult = completeCheckoutInputSchema.safeParse(input);
 
   if (!inputResult.success) {
-    return { success: false, fieldErrors: inputResult.error.format() };
+    return { status: 'error', fieldErrors: inputResult.error.format() };
   }
 
   const { data } = inputResult;

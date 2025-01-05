@@ -18,8 +18,10 @@ type ShippingFormProps = {
 };
 
 export function ShippingForm({ continents }: ShippingFormProps) {
-  const [state, formAction] = useActionState(completeCheckout, null);
-  const fieldErrors = state?.success ? null : state?.fieldErrors;
+  const [state, formAction] = useActionState(completeCheckout, {
+    status: 'idle',
+  });
+  const fieldErrors = state.status === 'error' ? state.fieldErrors : null;
 
   const [continentId, setContinentId] = useState('');
   const [regionId, setRegionId] = useState('');

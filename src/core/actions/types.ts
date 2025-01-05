@@ -1,9 +1,10 @@
 import type { z } from 'zod';
 
 export type ServerActionState<Input, Data> =
-  | { success: true; data: Data }
+  | { status: 'idle' }
+  | { status: 'success'; data: Data }
   | {
-      success: false;
+      status: 'error';
       error?: string;
       fieldErrors?: z.ZodFormattedError<Input>;
     };

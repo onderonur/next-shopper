@@ -14,7 +14,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 
-export type ProductPageProps = {
+type ProductPageProps = {
   params: Promise<{
     productId: string;
   }>;
@@ -40,6 +40,7 @@ export default async function ProductPage(props: ProductPageProps) {
   const { productId } = await props.params;
 
   preloadRelatedProducts(productId);
+
   const product = await getOneProductById(productId);
   if (!product) notFound();
 

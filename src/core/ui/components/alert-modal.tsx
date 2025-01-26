@@ -30,7 +30,7 @@ export function AlertModal({
             <RadixAlertDialog.Overlay asChild>
               <motion.div
                 {...fadeIn}
-                className="fixed inset-0 z-20 bg-overlay/20 backdrop-blur"
+                className="bg-overlay/20 fixed inset-0 z-20 backdrop-blur-sm"
               />
             </RadixAlertDialog.Overlay>
             <RadixAlertDialog.Content asChild>
@@ -38,7 +38,7 @@ export function AlertModal({
                 // Responsive Framer Motion with Tailwind CSS:
                 // https://www.youtube.com/watch?v=xSuxsfn13xg
                 className={twJoin(
-                  'fixed bottom-0 left-1/2 z-20 w-full p-6 focus:outline-none md:bottom-auto md:top-1/2 md:max-w-md md:p-2',
+                  'fixed bottom-0 left-1/2 z-20 w-full p-6 focus:outline-hidden md:top-1/2 md:bottom-auto md:max-w-md md:p-2',
                   '[--y-from:30%] [--y-to:0%] md:[--y-from:-80%] md:[--y-to:-50%]',
                 )}
                 initial={{
@@ -50,7 +50,7 @@ export function AlertModal({
                 animate={{ y: 'var(--y-to)', scale: 1, opacity: 1 }}
                 exit={{ y: 'var(--y-from)', scale: 0.8, opacity: 0 }}
               >
-                <div className="rounded-md border bg-background p-6 shadow-md">
+                <div className="bg-background rounded-md border p-6 shadow-md">
                   {children}
                 </div>
               </motion.div>
@@ -80,7 +80,7 @@ type AlertModalBodyProps = {
 
 export function AlertModalBody({ children }: AlertModalBodyProps) {
   return (
-    <RadixAlertDialog.Description className="text-md mb-5 mt-4">
+    <RadixAlertDialog.Description className="text-md mt-4 mb-5">
       {children}
     </RadixAlertDialog.Description>
   );

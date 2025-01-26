@@ -11,7 +11,7 @@ type ProductGridShellProps = {
 
 function ProductGridShell({ children }: ProductGridShellProps) {
   return (
-    <ul className="grid gap-2 grid-cols-autofill-44 md:gap-4">{children}</ul>
+    <ul className="grid-cols-autofill-44 grid gap-2 md:gap-4">{children}</ul>
   );
 }
 

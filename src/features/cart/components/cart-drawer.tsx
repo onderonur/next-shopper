@@ -37,7 +37,7 @@ export async function CartDrawer({ trigger }: CartDrawerProps) {
         <div className="p-2">
           <ClearCartButton cart={cart} />
         </div>
-        <CartItemList className="flex-grow overflow-y-auto" cart={cart} />
+        <CartItemList className="grow overflow-y-auto" cart={cart} />
         <Separator />
         {cart && (
           <div className="flex flex-col gap-3 p-4">

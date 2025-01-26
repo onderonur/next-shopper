@@ -22,7 +22,7 @@ export function CategoryLink({
         className="absolute inset-0 grid place-items-center bg-cover bg-center bg-blend-luminosity transition duration-700 group-hover:scale-110"
         style={{ backgroundImage: `url(${imageSrc})`, backgroundColor: color }}
       />
-      <h2 className="absolute bottom-2 right-2 text-3xl font-bold text-white [text-shadow:0_0_0.5rem_#000]">
+      <h2 className="absolute right-2 bottom-2 text-3xl font-bold text-white [text-shadow:0_0_0.5rem_#000]">
         {title}
       </h2>
     </NextLink>

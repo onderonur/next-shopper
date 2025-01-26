@@ -15,7 +15,7 @@ export function ProductInfo({ product }: ProductInfoProps) {
     <div className="grid gap-6 md:grid-cols-2">
       <div className="relative mx-auto aspect-square w-full max-w-sm md:max-w-lg">
         <Image
-          className="rounded bg-white object-contain p-6"
+          className="rounded-sm bg-white object-contain p-6"
           src={product.image}
           alt={product.title}
           priority
@@ -26,7 +26,7 @@ export function ProductInfo({ product }: ProductInfoProps) {
         <div className="flex flex-col gap-2">
           <div className="text-2xl font-bold">{product.title}</div>
           <Price
-            className="text-2xl font-semibold text-primary"
+            className="text-primary text-2xl font-semibold"
             value={product.price}
           />
         </div>

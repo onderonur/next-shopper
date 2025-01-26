@@ -27,7 +27,7 @@ export function ProductBasicInfo({
     >
       <div className="relative block aspect-square w-16">
         <Image
-          className="rounded bg-white object-contain p-1"
+          className="rounded-sm bg-white object-contain p-1"
           src={product.image}
           alt={product.title}
           fill
@@ -48,13 +48,13 @@ export function ProductBasicInfo({
             <div className="truncate font-semibold">{product.title}</div>
           </Tooltip>
           <Price
-            className="font-semibold text-primary"
+            className="text-primary font-semibold"
             value={product.price * count}
             isAnimated
           />
         </div>
         {shouldShowCount && !!count && (
-          <div className="rounded bg-accent px-2 py-1 text-sm font-bold text-accent-foreground">
+          <div className="bg-accent text-accent-foreground rounded-sm px-2 py-1 text-sm font-bold">
             {count}
           </div>
         )}

@@ -4,7 +4,7 @@ import { CircleCheckIcon } from '@/core/ui/components/icons';
 
 export function OrderSuccessMessage() {
   return (
-    <div className="grid place-items-center gap-4 text-success">
+    <div className="text-success grid place-items-center gap-4">
       <CircleCheckIcon className="text-7xl" />
       <div className="text-center text-2xl font-semibold">
         Your order has been received

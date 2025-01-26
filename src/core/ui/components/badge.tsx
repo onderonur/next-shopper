@@ -1,5 +1,7 @@
+'use client';
+
 import type { Maybe } from '@/core/shared/types';
-import NumberFlow from '@number-flow/react';
+import { AnimatedNumber } from './animated-number';
 
 type BadgeProps = {
   value: Maybe<number>;
@@ -13,8 +15,8 @@ export function Badge({ value, children }: BadgeProps) {
     <div className="relative">
       {children}
       {!!value && (
-        <div className="absolute -top-1 right-1/2 min-w-4 translate-x-6 select-none rounded-full bg-primary px-1 text-center text-xs text-primary-foreground">
-          <NumberFlow
+        <div className="bg-primary text-primary-foreground absolute -top-1 right-1/2 min-w-4 translate-x-6 rounded-full px-1 text-center text-xs select-none">
+          <AnimatedNumber
             value={didExceedThreshold ? 9 : value}
             suffix={didExceedThreshold ? '+' : undefined}
           />

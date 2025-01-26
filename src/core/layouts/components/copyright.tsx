@@ -1,6 +1,6 @@
 export function Copyright() {
   return (
-    <p className="text-sm text-muted-foreground">
+    <p className="text-muted-foreground text-sm">
       {new Date().getFullYear()} © All rights reserved
     </p>
   );

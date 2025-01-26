@@ -73,8 +73,8 @@ export default async function SignInPage(props: SignInPageProps) {
             </Alert>
           )}
           <div className="text-center">
-            <p className="mb-1 text-4xl font-black text-primary">{APP_TITLE}</p>
-            <p className="text-lg font-semibold text-muted-foreground">
+            <p className="text-primary mb-1 text-4xl font-black">{APP_TITLE}</p>
+            <p className="text-muted-foreground text-lg font-semibold">
               Sign in to your {APP_TITLE} account
             </p>
           </div>

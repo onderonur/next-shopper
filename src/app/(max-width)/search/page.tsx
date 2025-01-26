@@ -32,7 +32,7 @@ export default async function SearchPage(props: SearchPageProps) {
     <main>
       <PageTitle title="Search Products" srOnly />
       <SelectedOptionsProvider data={data}>
-        <div className="grid gap-2 md:grid-cols-[theme(spacing.72)_1fr]">
+        <div className="grid gap-2 md:grid-cols-[--spacing(72)_1fr]">
           <Section className="sticky top-20 hidden max-h-[80vh] overflow-auto px-2 md:block">
             <SectionTitle asChild srOnly>
               <h2>Filter</h2>

@@ -9,7 +9,7 @@ export function Loading({ className }: LoadingProps) {
     <span className={twMerge('flex items-center justify-center', className)}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="size-4 animate-spin text-primary"
+        className="text-primary size-4 animate-spin"
         fill="none"
         viewBox="0 0 24 24"
       >

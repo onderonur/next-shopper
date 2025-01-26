@@ -36,7 +36,7 @@ type MobileNavProps = {
 
 export function MobileNav({ children }: MobileNavProps) {
   return (
-    <nav className="fixed bottom-0 z-10 w-full border-t bg-background p-1 md:hidden">
+    <nav className="bg-background fixed bottom-0 z-10 w-full border-t p-1 md:hidden">
       <ul className="grid grid-cols-5 gap-1">
         {mobileNavLinks.map((link) => {
           return (

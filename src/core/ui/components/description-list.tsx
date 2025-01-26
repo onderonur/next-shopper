@@ -22,7 +22,7 @@ type DescriptionTermProps = {
 };
 
 export function DescriptionTerm({ children }: DescriptionTermProps) {
-  return <dt className="font-bold text-muted-foreground">{children}</dt>;
+  return <dt className="text-muted-foreground font-bold">{children}</dt>;
 }
 
 type DescriptionDetailsProps = {

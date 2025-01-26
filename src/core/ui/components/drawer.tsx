@@ -39,9 +39,9 @@ export function DrawerHeader({ children }: DrawerHeaderProps) {
   return (
     <div>
       <div className="mx-auto max-w-[4rem] pt-3 md:hidden">
-        <div className="h-1.5 rounded-md bg-accent" />
+        <div className="bg-accent h-1.5 rounded-md" />
       </div>
-      <div className="flex items-center justify-between px-4 py-3 shadow-sm">
+      <div className="flex items-center justify-between px-4 py-3 shadow-xs">
         <RadixDialog.Title className="text-lg font-semibold" asChild>
           {children}
         </RadixDialog.Title>
@@ -88,7 +88,7 @@ export function Drawer({
             <RadixDialog.Overlay asChild>
               <motion.div
                 {...fadeIn}
-                className="fixed inset-0 z-10 bg-overlay/20 backdrop-blur"
+                className="bg-overlay/20 fixed inset-0 z-10 backdrop-blur-sm"
               />
             </RadixDialog.Overlay>
             <RadixDialog.Content
@@ -98,13 +98,10 @@ export function Drawer({
             >
               <motion.div
                 className={twJoin(
-                  'fixed bottom-0 z-10 flex w-full flex-col border bg-background focus:outline-none',
+                  'bg-background fixed bottom-0 z-10 flex w-full flex-col border focus:outline-hidden',
                   'max-h-[80%] rounded-t-2xl md:top-0 md:max-h-none md:max-w-xs md:rounded-none md:rounded-l-2xl',
-                  'after:absolute after:inset-x-0 after:top-full after:h-screen after:bg-background md:after:hidden',
-                  '[--x-from:0] [--x-to:0] [--y-from:100%] [--y-to:0%] md:[--x-to:0%] md:[--y-from:0] md:[--y-to:0]',
-                  from === 'left'
-                    ? 'md:left-0 md:[--x-from:-100%]'
-                    : 'md:right-0 md:[--x-from:100%]',
+                  'after:bg-background after:absolute after:inset-x-0 after:top-full after:h-screen md:after:hidden',
+                  from === 'left' ? 'md:left-0' : 'md:right-0',
                 )}
                 // Normally we can use `motion/react` in a responsive way,
                 // by using CSS variables.

@@ -1,72 +1,120 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+/* To make Tailwind work with `next-themes`. */
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+/* https://tailwindcss.com/docs/hover-focus-and-other-states#aria-states */
+@custom-variant aria-invalid (&[aria-invalid="true"]);
+
+/* https://tailwindcss.com/docs/theme#referencing-other-variables */
+@theme inline {
+  --font-sans: var(--font-inter);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-active: var(--primary-active);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-active: var(--accent-active);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-danger: var(--danger);
+  --color-danger-hover: var(--danger-hover);
+  --color-danger-active: var(--danger-active);
+  --color-danger-foreground: var(--danger-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-scrollbar-thumb: var(--scrollbar-thumb);
+  --color-scrollbar-thumb-hover: var(--bar-thumb-hove);
+
+  --color-success: var(--success);
+  --color-error: var(--error);
+  --color-overlay: var(--overlay);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --color-favorite: var(--favorite);
+}
+
+/* https://tailwindcss.com/docs/adding-custom-styles#functional-utilities */
+@utility grid-cols-autofill-* {
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(min(100%, calc(var(--spacing) * --value(integer))), 1fr)
+  );
+}
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 0%;
+    --background: hsl(0 0% 100%);
+    --foreground: hsl(0 0% 0%);
 
-    --primary: 149 85% 28%;
-    --primary-hover: 149 85% 32%;
-    --primary-active: 149 85% 36%;
-    --primary-foreground: 0 0% 100%;
+    --primary: hsl(149 85% 28%);
+    --primary-hover: hsl(149 85% 32%);
+    --primary-active: hsl(149 85% 36%);
+    --primary-foreground: hsl(0 0% 100%);
 
-    --accent: 240 4.8% 96%;
-    --accent-hover: 240 4.8% 93%;
-    --accent-active: 240 4.8% 90%;
-    --accent-foreground: 240 4.8% 26%;
+    --accent: hsl(240 4.8% 96%);
+    --accent-hover: hsl(240 4.8% 93%);
+    --accent-active: hsl(240 4.8% 90%);
+    --accent-foreground: hsl(240 4.8% 26%);
 
-    --danger: 0 84% 58%;
-    --danger-hover: 0 84% 62%;
-    --danger-active: 0 84% 66%;
-    --danger-foreground: 0 0 98%;
+    --danger: hsl(0 84% 58%);
+    --danger-hover: hsl(0 84% 62%);
+    --danger-active: hsl(0 84% 66%);
+    --danger-foreground: hsl(0 0 98%);
 
-    --muted: 240 5% 96%;
-    --muted-foreground: 240 5% 45%;
+    --muted: hsl(240 5% 96%);
+    --muted-foreground: hsl(240 5% 45%);
 
-    --scrollbar-thumb: 240 4.8% 76%;
-    --scrollbar-thumb-hover: 240 4.8% 70%;
+    --scrollbar-thumb: hsl(240 4.8% 76%);
+    --scrollbar-thumb-hover: hsl(240 4.8% 70%);
 
-    --success: 142 71% 40%;
-    --error: 0 100% 35%;
-    --overlay: 0 0% 0%;
-    --border: 240 6% 90%;
-    --ring: 192 84% 40%;
-    --favorite: 0 84% 60%;
+    --success: hsl(142 71% 40%);
+    --error: hsl(0 100% 35%);
+    --overlay: hsl(0 0% 0%);
+    --border: hsl(240 6% 90%);
+    --ring: hsl(192 84% 40%);
+    --favorite: hsl(0 84% 60%);
   }
 
   [data-theme='dark'] {
-    --background: 0 0% 0%;
-    --foreground: 0 0% 100%;
+    --background: hsl(0 0% 0%);
+    --foreground: hsl(0 0% 100%);
 
-    --primary: 149 85% 52%;
-    --primary-hover: 149 85% 46%;
-    --primary-active: 149 85% 42%;
-    --primary-foreground: 0 0% 10%;
+    --primary: hsl(149 85% 52%);
+    --primary-hover: hsl(149 85% 46%);
+    --primary-active: hsl(149 85% 42%);
+    --primary-foreground: hsl(0 0% 10%);
 
-    --accent: 240 5% 20%;
-    --accent-hover: 240 5% 24%;
-    --accent-active: 240 5% 28%;
-    --accent-foreground: 240 5% 90%;
+    --accent: hsl(240 5% 20%);
+    --accent-hover: hsl(240 5% 24%);
+    --accent-active: hsl(240 5% 28%);
+    --accent-foreground: hsl(240 5% 90%);
 
-    --danger: 0 84% 72%;
-    --danger-hover: 0 84% 76%;
-    --danger-active: 0 84% 80%;
-    --danger-foreground: 0 0 6%;
+    --danger: hsl(0 84% 72%);
+    --danger-hover: hsl(0 84% 76%);
+    --danger-active: hsl(0 84% 80%);
+    --danger-foreground: hsl(0 0 6%);
 
-    --muted: 240 4% 16%;
-    --muted-foreground: 240 4% 65%;
+    --muted: hsl(240 4% 16%);
+    --muted-foreground: hsl(240 4% 65%);
 
-    --scrollbar-thumb: 240 5% 30%;
-    --scrollbar-thumb-hover: 240 5% 34%;
+    --scrollbar-thumb: hsl(240 5% 30%);
+    --scrollbar-thumb-hover: hsl(240 5% 34%);
 
-    --success: 142 71% 56%;
-    --error: 0 80% 76%;
-    --overlay: 0 0% 0%;
-    --border: 240 4% 16%;
-    --ring: 192 84% 70%;
-    --favorite: 0 91% 71%;
+    --success: hsl(142 71% 56%);
+    --error: hsl(0 80% 76%);
+    --overlay: hsl(0 0% 0%);
+    --border: hsl(240 4% 16%);
+    --ring: hsl(192 84% 70%);
+    --favorite: hsl(0 91% 71%);
   }
 
   * {
@@ -76,7 +124,7 @@
   a,
   input,
   button {
-    @apply focus-visible:outline-offset-2 focus-visible:outline-ring;
+    @apply focus-visible:outline-ring focus-visible:outline-offset-2;
   }
 
   ::-webkit-scrollbar {
@@ -88,6 +136,6 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply rounded-lg border-2 border-solid border-transparent bg-scrollbar-thumb bg-clip-content hover:bg-scrollbar-thumb-hover;
+    @apply bg-scrollbar-thumb hover:bg-scrollbar-thumb-hover rounded-lg border-2 border-solid border-transparent bg-clip-content;
   }
 }

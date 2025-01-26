@@ -1,5 +1,7 @@
+'use client';
+
 import type { Maybe } from '@/core/shared/types';
-import NumberFlow from '@number-flow/react';
+import { AnimatedNumber } from './animated-number';
 
 const format = {
   style: 'currency',
@@ -18,7 +20,7 @@ export function Price({ className, value, isAnimated }: PriceProps) {
   if (isAnimated) {
     return (
       <span className={className}>
-        <NumberFlow value={value ?? 0} format={format} continuous />
+        <AnimatedNumber value={value ?? 0} format={format} />
       </span>
     );
   }

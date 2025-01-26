@@ -16,7 +16,7 @@ type CartItemListProps = {
 export function CartItemList({ className, cart }: CartItemListProps) {
   if (!cart?.totalCount) {
     return (
-      <div className="grid place-items-center gap-2 p-8 text-muted-foreground">
+      <div className="text-muted-foreground grid place-items-center gap-2 p-8">
         <CartIcon className="text-7xl" />
         <div className="text-center text-xl font-semibold">
           Your cart is empty

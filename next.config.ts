@@ -19,7 +19,6 @@ const nextConfig: NextConfig = {
       'next.config.ts',
       'postcss.config.js',
       'prettier.config.mjs',
-      'tailwind.config.ts',
     ],
   },
 };

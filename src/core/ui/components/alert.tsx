@@ -5,7 +5,7 @@ type AlertProps = {
 
 export function Alert({ icon, children }: AlertProps) {
   return (
-    <div className="flex gap-2 rounded border border-error p-3 text-error">
+    <div className="border-error text-error flex gap-2 rounded-sm border p-3">
       <div className="text-2xl">{icon}</div>
       <div>{children}</div>
     </div>

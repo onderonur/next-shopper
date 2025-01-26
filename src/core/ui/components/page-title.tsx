@@ -15,7 +15,7 @@ export function PageTitle({ srOnly, title }: PageTitleProps) {
       <div className="flex-none">
         <GoBackButton />
       </div>
-      <h1 className="line-clamp-2 border-l pl-4 font-bold text-muted-foreground">
+      <h1 className="text-muted-foreground line-clamp-2 border-l pl-4 font-bold">
         {title}
       </h1>
     </div>

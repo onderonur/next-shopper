@@ -21,7 +21,7 @@ export function ProductCard({ product }: ProductCardProps) {
       >
         <article className="group flex flex-col gap-2 rounded-md border-2 p-2 md:p-4">
           <div className="p-2">
-            <div className="relative aspect-[12/10] overflow-hidden rounded">
+            <div className="relative aspect-[12/10] overflow-hidden rounded-sm">
               <Image
                 className="bg-white object-contain p-4 transition duration-500 ease-out group-hover:scale-110"
                 src={product.image}
@@ -38,14 +38,14 @@ export function ProductCard({ product }: ProductCardProps) {
             </Tooltip>
             <div>
               <Price
-                className="font-semibold text-primary"
+                className="text-primary font-semibold"
                 value={product.price}
               />
             </div>
           </div>
         </article>
       </NextLink>
-      <div className="absolute right-3 top-3">
+      <div className="absolute top-3 right-3">
         <FavoriteButton
           productId={product.id}
           isInFavorites={product.isInFavorites}

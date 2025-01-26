@@ -54,7 +54,7 @@ export function OrderSummary({ order }: OrderSummaryProps) {
                     href={routes.product({ productId: product.id })}
                   >
                     <Image
-                      className="rounded bg-white object-contain p-1"
+                      className="rounded-sm bg-white object-contain p-1"
                       src={product.image}
                       alt={product.title}
                       fill

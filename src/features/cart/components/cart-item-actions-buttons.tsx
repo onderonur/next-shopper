@@ -1,4 +1,5 @@
 import { SubmitButton } from '@/core/forms/components/submit-button';
+import { AnimatedNumber } from '@/core/ui/components/animated-number';
 import { DeleteIcon, MinusIcon, PlusIcon } from '@/core/ui/components/icons';
 import {
   addProductToCart,
@@ -6,7 +7,6 @@ import {
   removeProductFromCart,
 } from '@/features/cart/actions';
 import type { ProductsOnCartsWithProduct } from '@/features/cart/types';
-import NumberFlow from '@number-flow/react';
 import Form from 'next/form';
 
 type CartItemActionButtonsProps = {
@@ -49,8 +49,8 @@ export function CartItemActionButtons({
             <MinusIcon />
           </SubmitButton>
         </Form>
-        <div className="grid h-8 min-w-8 cursor-default select-none place-items-center border-2 px-1 text-sm">
-          <NumberFlow value={count} />
+        <div className="grid h-8 min-w-8 cursor-default place-items-center border-2 px-1 text-sm select-none">
+          <AnimatedNumber value={count} />
         </div>
         <Form action={addProductToCartWithId}>
           <SubmitButton

@@ -60,7 +60,7 @@ export function FormItemLabel({ children, ...rest }: FormItemLabelProps) {
   return (
     <Label
       {...rest}
-      className="block text-sm font-semibold text-muted-foreground"
+      className="text-muted-foreground block text-sm font-semibold"
       htmlFor={inputId}
     >
       {children}
@@ -79,7 +79,7 @@ export function FormItemErrorMessage() {
       id={errorMessageId}
       aria-live="polite"
       aria-atomic
-      className="text-sm text-error"
+      className="text-error text-sm"
     >
       {errorMessages.join(', ')}
     </div>

@@ -9,7 +9,7 @@ export function Card({ className, children }: CardProps) {
   return (
     <div
       className={twMerge(
-        'overflow-hidden rounded-lg border bg-background shadow-sm',
+        'bg-background overflow-hidden rounded-lg border shadow-xs',
         className,
       )}
     >

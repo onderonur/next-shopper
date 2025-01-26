@@ -19,7 +19,7 @@ export function Tooltip({ content, children }: TooltipProps) {
           <motion.div
             initial={{ y: -2, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            className="z-50 select-none rounded-md bg-muted px-2 py-2 text-xs font-semibold text-muted-foreground shadow-md"
+            className="bg-muted text-muted-foreground z-50 rounded-md px-2 py-2 text-xs font-semibold shadow-md select-none"
           >
             {content}
             <RadixTooltip.Arrow className="fill-muted" />

@@ -1,6 +1,9 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
+  experimental: {
+    viewTransition: true,
+  },
   images: {
     // We set image as `unoptimized` to not exceed the
     // fair usage policy of vercel about image optimization.

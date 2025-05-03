@@ -2,7 +2,7 @@ import { NextLink } from '@/core/routing/components/next-link';
 import { routes } from '@/core/routing/utils';
 import { Price } from '@/core/ui/components/price';
 import { Tooltip } from '@/core/ui/components/tooltip';
-import type { Product } from '@prisma/client';
+import type { Product } from '@/generated/prisma';
 import Image from 'next/image';
 import { twJoin } from 'tailwind-merge';
 

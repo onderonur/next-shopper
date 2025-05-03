@@ -19,6 +19,9 @@ const config = [
       onlyWarn,
     },
   },
+  {
+    ignores: ['src/generated'],
+  },
   ...nextConfig,
 ];
 

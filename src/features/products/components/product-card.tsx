@@ -6,6 +6,7 @@ import { Tooltip } from '@/core/ui/components/tooltip';
 import { FavoriteButton } from '@/features/favorites/components/favorite-button';
 import type { ProductListItem } from '@/features/products/types';
 import Image from 'next/image';
+import { unstable_ViewTransition as ViewTransition } from 'react';
 
 type ProductCardProps = {
   product: ProductListItem;
@@ -21,14 +22,16 @@ export function ProductCard({ product }: ProductCardProps) {
       >
         <article className="group flex flex-col gap-2 rounded-md border-2 p-2 md:p-4">
           <div className="p-2">
-            <div className="relative aspect-[12/10] overflow-hidden rounded-sm">
-              <Image
-                className="bg-white object-contain p-4 transition duration-500 ease-out group-hover:scale-110"
-                src={product.image}
-                alt={product.title}
-                fill
-              />
-            </div>
+            <ViewTransition name={`product-${product.id}`}>
+              <div className="relative aspect-[12/10] overflow-hidden rounded-sm">
+                <Image
+                  className="bg-white object-contain p-4 transition duration-500 ease-out group-hover:scale-110"
+                  src={product.image}
+                  alt={product.title}
+                  fill
+                />
+              </div>
+            </ViewTransition>
           </div>
           <div className="flex flex-col gap-2 text-center">
             <Tooltip content={product.title}>

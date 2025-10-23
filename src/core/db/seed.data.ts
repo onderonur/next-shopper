@@ -231,7 +231,7 @@ export const data = {
   sortings: [
     {
       title: 'Default',
-      value: '',
+      value: 'default',
     },
     {
       title: 'Price low to high',

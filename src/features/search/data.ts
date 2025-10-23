@@ -143,8 +143,6 @@ function getProductFilterSelectedOptions({
   if (selectedSorting) {
     selectedOptions.push({
       ...selectedSorting,
-      isVisible:
-        (selectedSorting.value as ProductSorting) !== ProductSorting.DEFAULT,
       filterKey: ProductFilterKey.SORTING,
     });
   }
@@ -153,7 +151,6 @@ function getProductFilterSelectedOptions({
     if (args.categories?.includes(category.value)) {
       selectedOptions.push({
         ...category,
-        isVisible: true,
         filterKey: ProductFilterKey.CATEGORIES,
       });
     }
@@ -163,7 +160,6 @@ function getProductFilterSelectedOptions({
     if (args.priceRanges?.includes(priceRange.value)) {
       selectedOptions.push({
         ...priceRange,
-        isVisible: true,
         filterKey: ProductFilterKey.PRICE_RANGES,
       });
     }

@@ -4,7 +4,11 @@ import { routes } from '@/core/routing/utils';
 import { Button } from '@/core/ui/components/button';
 import { CloseIcon } from '@/core/ui/components/icons';
 import { useSelectedOptionsContext } from '@/features/search/components/selected-options-context';
-import { getValuesOfSelectedOptions } from '@/features/search/utils';
+import {
+  getValuesOfSelectedOptions,
+  ProductFilterKey,
+  ProductSorting,
+} from '@/features/search/utils';
 import { useRouter } from 'next/navigation';
 
 const orderComparer = Intl.Collator(undefined, { numeric: true });
@@ -18,7 +22,13 @@ export function SelectedFilters() {
   } = useSelectedOptionsContext();
 
   const visibleOptions = optimisticSelectedOptions
-    .filter((option) => option.isVisible)
+    .filter(
+      (option) =>
+        !(
+          option.filterKey === ProductFilterKey.SORTING &&
+          (option.value as ProductSorting) === ProductSorting.DEFAULT
+        ),
+    )
     // Sorting selected options to prevent different ordering between
     // real and optimistic data.
     .toSorted((a, b) => orderComparer.compare(a.order, b.order));

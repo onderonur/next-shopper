@@ -19,7 +19,6 @@ export type ProductFilterOptions = Record<
 >;
 
 export type ProductFilterSelectedOption = ProductFilterOptionItem & {
-  isVisible: boolean;
   filterKey: ProductFilterKey;
 };
 

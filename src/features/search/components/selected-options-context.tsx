@@ -50,7 +50,6 @@ export function SelectedOptionsProvider({
         if (!hasSorting) {
           draft.selectedOptions.push({
             filterKey: ProductFilterKey.SORTING,
-            isVisible: false,
             title: 'Sorting',
             value: ProductSorting.DEFAULT,
             order: '0_0',

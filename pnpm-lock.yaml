@@ -90,6 +90,12 @@ importers:
         specifier: ^3.24.3
         version: 3.24.3
     devDependencies:
+      '@eslint/eslintrc':
+        specifier: ^3.3.1
+        version: 3.3.1
+      '@eslint/js':
+        specifier: ^9.38.0
+        version: 9.38.0
       '@types/node':
         specifier: ^22.15.3
         version: 22.15.3
@@ -377,6 +383,10 @@ packages:
 
   '@eslint/js@9.19.0':
     resolution: {integrity: sha512-rbq9/g38qjfqFLOVPvwjIvFFdNziEC5S65jmjPw5r6A//QH+W91akh9irMwjDN8zKUTak6W9EsAv4m/7Wnw0UQ==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@eslint/js@9.38.0':
+    resolution: {integrity: sha512-UZ1VpFvXf9J06YG9xQBdnzU+kthors6KjhMAl6f4gH4usHyh31rUf2DLGInT8RFYIReYXNSydgPY0V2LuWgl7A==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
   '@eslint/object-schema@2.1.6':
@@ -3304,6 +3314,8 @@ snapshots:
       - supports-color
 
   '@eslint/js@9.19.0': {}
+
+  '@eslint/js@9.38.0': {}
 
   '@eslint/object-schema@2.1.6': {}
 

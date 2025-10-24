@@ -11,8 +11,9 @@ import { ClearCartButton } from '@/features/cart/components/clear-cart-button';
 import { getCart } from '@/features/cart/data';
 import { ShippingForm } from '@/features/shipping/components/shipping-form';
 import { getManyContinents } from '@/features/shipping/data';
+import type { Metadata } from 'next';
 
-export const metadata = getMetadata({
+export const metadata: Metadata = getMetadata({
   title: 'Checkout',
   pathname: routes.checkout(),
 });
@@ -30,7 +31,7 @@ export default async function CheckoutPage() {
   return (
     <main>
       <PageTitle title="Checkout" />
-      <div className="mx-auto flex max-w-screen-sm flex-col gap-6">
+      <div className="mx-auto flex max-w-(--breakpoint-sm) flex-col gap-6">
         <Section>
           <SectionTitle asChild actions={<ClearCartButton cart={cart} />}>
             <h2>Cart</h2>

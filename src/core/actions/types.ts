@@ -6,5 +6,5 @@ export type ServerActionState<Input, Data> =
   | {
       status: 'error';
       error?: string;
-      fieldErrors?: z.ZodFormattedError<Input>;
+      fieldErrors?: z.core.$ZodErrorTree<Input>;
     };

@@ -1,5 +1,4 @@
 import { signInPageSearchParamsSchema } from '@/core/routing/schemas';
-import type { SearchParams } from '@/core/routing/types';
 import { parseSearchParams, routes } from '@/core/routing/utils';
 import { getMetadata } from '@/core/seo/utils';
 import { APP_TITLE } from '@/core/shared/utils';
@@ -14,6 +13,7 @@ import { PageTitle } from '@/core/ui/components/page-title';
 import { providerMap } from '@/features/auth/auth';
 import { SignInWithProvider } from '@/features/auth/components/sign-in-with-provider';
 import { getUser } from '@/features/auth/data';
+import type { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import type { IconType } from 'react-icons/lib';
 
@@ -39,16 +39,12 @@ const providerIconsByName: Record<string, IconType> = {
   google: GithubIcon,
 };
 
-type SignInPageProps = {
-  searchParams: Promise<SearchParams>;
-};
-
-export const metadata = getMetadata({
+export const metadata: Metadata = getMetadata({
   title: 'Sign In',
   pathname: routes.signIn(),
 });
 
-export default async function SignInPage(props: SignInPageProps) {
+export default async function SignInPage(props: PageProps<'/auth/sign-in'>) {
   const user = await getUser();
 
   if (user) redirect('/');

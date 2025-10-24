@@ -10,21 +10,22 @@ import { Section, SectionTitle } from '@/core/ui/components/section';
 import { DeleteAccountButton } from '@/features/account/components/delete-account-button';
 import { redirectToSignIn } from '@/features/auth/actions';
 import { getUser } from '@/features/auth/data';
+import type { Metadata } from 'next';
 
-export const metadata = getMetadata({
+export const metadata: Metadata = getMetadata({
   title: 'Account',
   description: 'View your account details',
   pathname: '/account',
 });
 
-export default async function OrdersPage() {
+export default async function AccountPage() {
   const user = await getUser();
   if (!user) return await redirectToSignIn();
 
   return (
     <main>
       <PageTitle title="Account" />
-      <div className="mx-auto flex max-w-screen-sm flex-col gap-6">
+      <div className="mx-auto flex max-w-(--breakpoint-sm) flex-col gap-6">
         <Section>
           <SectionTitle>Details</SectionTitle>
           <Card>

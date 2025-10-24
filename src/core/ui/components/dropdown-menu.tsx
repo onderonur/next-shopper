@@ -49,7 +49,7 @@ export const DropdownMenuItem = forwardRef<
     <RadixDropdownMenu.Item
       ref={ref}
       className={twMerge(
-        'data-[highlighted]:bg-accent-hover data-[disabled]:text-muted cursor-pointer rounded-sm px-2 py-1 outline-hidden select-none data-[disabled]:cursor-auto md:text-sm',
+        'data-highlighted:bg-accent-hover data-disabled:text-muted cursor-pointer rounded-sm px-2 py-1 outline-hidden select-none data-disabled:cursor-auto md:text-sm',
         className,
       )}
       {...rest}

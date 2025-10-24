@@ -4,7 +4,7 @@ import { prisma } from '@/core/db/db';
 import type { Id } from '@/core/shared/types';
 import { redirectToSignIn } from '@/features/auth/actions';
 import { getUser } from '@/features/auth/data';
-import { revalidatePath } from 'next/cache';
+import { refresh } from 'next/cache';
 
 export async function addToFavorites(productId: Id) {
   const user = await getUser();
@@ -17,7 +17,7 @@ export async function addToFavorites(productId: Id) {
     },
   });
 
-  revalidatePath('/');
+  refresh();
 }
 
 export async function removeFromFavorites(productId: Id) {
@@ -33,5 +33,5 @@ export async function removeFromFavorites(productId: Id) {
     },
   });
 
-  revalidatePath('/');
+  refresh();
 }

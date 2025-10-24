@@ -5,8 +5,9 @@ import { redirectToSignIn } from '@/features/auth/actions';
 import { getUser } from '@/features/auth/data';
 import { getFavorites } from '@/features/favorites/data';
 import { ProductGrid } from '@/features/products/components/product-grid';
+import type { Metadata } from 'next';
 
-export const metadata = getMetadata({
+export const metadata: Metadata = getMetadata({
   title: 'Favorites',
   description: 'See all your favorites',
   pathname: routes.favorites(),

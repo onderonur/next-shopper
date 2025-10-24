@@ -20,7 +20,7 @@ type LayoutHeaderProps = {
 export function LayoutHeader({ children }: LayoutHeaderProps) {
   return (
     <header className="bg-background/75 sticky top-0 z-10 min-h-16 w-full border-b backdrop-blur-sm">
-      <div className="mx-auto flex h-full max-w-screen-xl items-center justify-between px-4">
+      <div className="mx-auto flex h-full max-w-(--breakpoint-xl) items-center justify-between px-4">
         <NextLink href="/" className="text-primary text-2xl font-bold">
           {APP_TITLE}
         </NextLink>

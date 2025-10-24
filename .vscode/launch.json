@@ -1,4 +1,4 @@
-// https://nextjs.org/docs/app/building-your-application/configuring/debugging
+// https://nextjs.org/docs/app/guides/debugging
 {
   "version": "0.2.0",
   "configurations": [
@@ -16,13 +16,17 @@
     },
     {
       "name": "Next.js: debug full stack",
-      "type": "node-terminal",
+      "type": "node",
       "request": "launch",
-      "command": "pnpm dev",
+      "program": "${workspaceFolder}/node_modules/next/dist/bin/next",
+      "runtimeArgs": ["--inspect"],
+      "skipFiles": ["<node_internals>/**"],
       "serverReadyAction": {
+        "action": "debugWithChrome",
+        "killOnServerStop": true,
         "pattern": "- Local:.+(https?://.+)",
         "uriFormat": "%s",
-        "action": "debugWithChrome"
+        "webRoot": "${workspaceFolder}"
       }
     }
   ]

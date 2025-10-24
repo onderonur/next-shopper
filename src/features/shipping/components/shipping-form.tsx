@@ -28,10 +28,10 @@ export function ShippingForm({ continents }: ShippingFormProps) {
   const [cityId, setCityId] = useState('');
 
   const continent = continents.find(
-    (continent) => continent.id.toString() === continentId,
+    (continent) => continent.id === continentId,
   );
   const regions = continent?.regions;
-  const region = regions?.find((region) => region.id.toString() === regionId);
+  const region = regions?.find((region) => region.id === regionId);
   const cities = region?.cities;
 
   return (
@@ -54,7 +54,7 @@ export function ShippingForm({ continents }: ShippingFormProps) {
         <CardContent className="flex flex-col gap-3">
           <FormItem
             isRequired
-            errorMessages={fieldErrors?.continentId?._errors}
+            errorMessages={fieldErrors?.properties?.continentId?.errors}
           >
             <FormItemLabel>Continent</FormItemLabel>
             <Select
@@ -69,10 +69,7 @@ export function ShippingForm({ continents }: ShippingFormProps) {
             >
               {continents.map((continent) => {
                 return (
-                  <SelectItem
-                    key={continent.id}
-                    value={continent.id.toString()}
-                  >
+                  <SelectItem key={continent.id} value={continent.id}>
                     {continent.name}
                   </SelectItem>
                 );
@@ -81,7 +78,10 @@ export function ShippingForm({ continents }: ShippingFormProps) {
             <FormItemErrorMessage />
           </FormItem>
           <div className="flex gap-2">
-            <FormItem isRequired errorMessages={fieldErrors?.regionId?._errors}>
+            <FormItem
+              isRequired
+              errorMessages={fieldErrors?.properties?.regionId?.errors}
+            >
               <FormItemLabel>Region</FormItemLabel>
               <Select
                 name="regionId"
@@ -95,7 +95,7 @@ export function ShippingForm({ continents }: ShippingFormProps) {
               >
                 {regions?.map((region) => {
                   return (
-                    <SelectItem key={region.id} value={region.id.toString()}>
+                    <SelectItem key={region.id} value={region.id}>
                       {region.name}
                     </SelectItem>
                   );
@@ -103,7 +103,10 @@ export function ShippingForm({ continents }: ShippingFormProps) {
               </Select>
               <FormItemErrorMessage />
             </FormItem>
-            <FormItem isRequired errorMessages={fieldErrors?.cityId?._errors}>
+            <FormItem
+              isRequired
+              errorMessages={fieldErrors?.properties?.cityId?.errors}
+            >
               <FormItemLabel>City</FormItemLabel>
               <Select
                 name="cityId"
@@ -116,7 +119,7 @@ export function ShippingForm({ continents }: ShippingFormProps) {
               >
                 {cities?.map((city) => {
                   return (
-                    <SelectItem key={city.id} value={city.id.toString()}>
+                    <SelectItem key={city.id} value={city.id}>
                       {city.name}
                     </SelectItem>
                   );

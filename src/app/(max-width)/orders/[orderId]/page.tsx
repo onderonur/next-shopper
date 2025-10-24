@@ -1,6 +1,5 @@
 import { routes } from '@/core/routing/utils';
 import { getMetadata } from '@/core/seo/utils';
-import type { Id } from '@/core/shared/types';
 import { getDateString } from '@/core/shared/utils';
 import { Card, CardContent, CardFooter } from '@/core/ui/components/card';
 import {
@@ -15,15 +14,12 @@ import OrderProducts from '@/features/orders/components/order-products';
 import { OrderSuccessMessage } from '@/features/orders/components/order-success-message';
 import { getOneOrderById } from '@/features/orders/data';
 import { ShippingInfo } from '@/features/shipping/components/shipping-info';
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-type OrderPageProps = {
-  params: Promise<{
-    orderId: Id;
-  }>;
-};
-
-export async function generateMetadata(props: OrderPageProps) {
+export async function generateMetadata(
+  props: PageProps<'/orders/[orderId]'>,
+): Promise<Metadata> {
   const { orderId } = await props.params;
 
   const order = await getOneOrderById(orderId);
@@ -36,7 +32,7 @@ export async function generateMetadata(props: OrderPageProps) {
   });
 }
 
-export default async function OrderPage(props: OrderPageProps) {
+export default async function OrderPage(props: PageProps<'/orders/[orderId]'>) {
   const { orderId } = await props.params;
 
   const order = await getOneOrderById(orderId);

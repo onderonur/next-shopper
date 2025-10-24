@@ -6,7 +6,6 @@ import { Tooltip } from '@/core/ui/components/tooltip';
 import { FavoriteButton } from '@/features/favorites/components/favorite-button';
 import type { ProductListItem } from '@/features/products/types';
 import Image from 'next/image';
-import { unstable_ViewTransition as ViewTransition } from 'react';
 
 type ProductCardProps = {
   product: ProductListItem;
@@ -22,16 +21,16 @@ export function ProductCard({ product }: ProductCardProps) {
       >
         <article className="group flex flex-col gap-2 rounded-md border-2 p-2 md:p-4">
           <div className="p-2">
-            <ViewTransition name={`product-${product.id}`}>
-              <div className="relative aspect-[12/10] overflow-hidden rounded-sm">
-                <Image
-                  className="bg-white object-contain p-4 transition duration-500 ease-out group-hover:scale-110"
-                  src={product.image}
-                  alt={product.title}
-                  fill
-                />
-              </div>
-            </ViewTransition>
+            {/* TODO: Removed ViewTransition from here and <ProductInfo> because it moves these images
+            in front of favorite buttons. Will look into it later. */}
+            <div className="relative aspect-12/10 overflow-hidden rounded-sm">
+              <Image
+                className="bg-white object-contain p-4 transition duration-500 ease-out group-hover:scale-110"
+                src={product.image}
+                alt={product.title}
+                fill
+              />
+            </div>
           </div>
           <div className="flex flex-col gap-2 text-center">
             <Tooltip content={product.title}>
@@ -63,13 +62,13 @@ export function ProductCardSkeleton() {
   return (
     <div className="flex flex-col gap-2 rounded-md border-2 p-2 md:p-4">
       <div className="p-2">
-        <Skeleton className="aspect-[12/10]" />
+        <Skeleton className="aspect-12/10" />
       </div>
       <div className="flex flex-col items-center gap-3">
         <div className="flex w-full flex-col items-center gap-1">
-          <Skeleton className="h-4 w-full max-w-[theme(spacing.28)]" />
-          <Skeleton className="h-4 w-full max-w-[theme(spacing.36)]" />
-          <Skeleton className="h-4 w-full max-w-[theme(spacing.28)]" />
+          <Skeleton className="max-w-28] h-4 w-full" />
+          <Skeleton className="h-4 w-full max-w-36" />
+          <Skeleton className="h-4 w-full max-w-28" />
         </div>
         <Skeleton className="h-6 w-16" />
       </div>

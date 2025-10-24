@@ -4,8 +4,9 @@ import { redirectToSignIn } from '@/features/auth/actions';
 import { getUser } from '@/features/auth/data';
 import { OrderSummary } from '@/features/orders/components/order-summary';
 import { getManyUserOrders } from '@/features/orders/data';
+import type { Metadata } from 'next';
 
-export const metadata = getMetadata({
+export const metadata: Metadata = getMetadata({
   title: 'Orders',
   description: 'View your orders',
   pathname: '/orders',
@@ -18,7 +19,7 @@ export default async function OrdersPage() {
   return (
     <main>
       <PageTitle title="Orders" />
-      <div className="mx-auto max-w-screen-sm">
+      <div className="mx-auto max-w-(--breakpoint-sm)">
         {orders.length ? (
           <ul className="flex flex-col gap-2">
             {orders.map((order) => {

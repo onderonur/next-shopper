@@ -5,7 +5,7 @@ import type { Id } from '@/core/shared/types';
 import { redirectToSignIn } from '@/features/auth/actions';
 import { getUser } from '@/features/auth/data';
 import { getUserCart } from '@/features/cart/data';
-import { revalidatePath } from 'next/cache';
+import { refresh } from 'next/cache';
 
 export async function addProductToCart(productId: Id) {
   const user = await getUser();
@@ -43,7 +43,7 @@ export async function addProductToCart(productId: Id) {
     });
   }
 
-  revalidatePath('/');
+  refresh();
 }
 
 export async function decreaseProductInCart(productId: Id) {
@@ -86,7 +86,7 @@ export async function decreaseProductInCart(productId: Id) {
     });
   }
 
-  revalidatePath('/');
+  refresh();
 }
 
 export async function removeProductFromCart(productId: Id) {
@@ -105,7 +105,7 @@ export async function removeProductFromCart(productId: Id) {
     },
   });
 
-  revalidatePath('/');
+  refresh();
 }
 
 export async function clearCart() {
@@ -121,7 +121,7 @@ export async function clearCart() {
     },
   });
 
-  revalidatePath('/');
+  refresh();
 
   return { success: true };
 }

@@ -13,7 +13,7 @@ export async function checkIsValidAgainstCSRF() {
 
 // When a user has a `sessionToken` cookie, we optimistically assume they are authenticated.
 // Database checks for sessions in middleware can end up having performance issues.
-// https://nextjs.org/docs/app/building-your-application/authentication#optimistic-checks-with-middleware-optional
+// https://nextjs.org/docs/app/guides/authentication#optimistic-checks-with-middleware-optional
 export async function extendSessionCookieExpiration(req: NextRequest) {
   // Only extend cookie expiration on GET requests since we can be sure
   // a new session wasn't set when handling the request.

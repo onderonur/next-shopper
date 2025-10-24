@@ -1,28 +1,31 @@
-import onlyWarn from 'eslint-plugin-only-warn';
+import nextVitals from 'eslint-config-next/core-web-vitals';
+import nextTs from 'eslint-config-next/typescript';
+import 'eslint-plugin-only-warn';
+import { defineConfig, globalIgnores } from 'eslint/config';
 import { importConfig } from './config/eslint/import.mjs';
 import { javascriptConfig } from './config/eslint/javascript.mjs';
-import { nextConfig } from './config/eslint/next.mjs';
 import { prettierConfig } from './config/eslint/prettier.mjs';
 import { typescriptConfig } from './config/eslint/typescript.mjs';
 import { unicornConfig } from './config/eslint/unicorn.mjs';
 
-// https://nextjs.org/docs/app/api-reference/config/eslint#additional-configurations
-/** @type {import("eslint").Linter.Config} */
-const config = [
+const eslintConfig = defineConfig([
   ...javascriptConfig,
   ...typescriptConfig,
   ...importConfig,
   ...unicornConfig,
   ...prettierConfig,
-  {
-    plugins: {
-      onlyWarn,
-    },
-  },
-  {
-    ignores: ['src/generated'],
-  },
-  ...nextConfig,
-];
+  ...nextVitals,
+  ...nextTs,
+  // Override default ignores of eslint-config-next.
+  globalIgnores([
+    // Default ignores of eslint-config-next:
+    '.next/**',
+    'out/**',
+    'build/**',
+    'next-env.d.ts',
+    // Ignore generated Prisma files
+    'src/generated/**',
+  ]),
+]);
 
-export default config;
+export default eslintConfig;

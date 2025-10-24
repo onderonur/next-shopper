@@ -1,10 +1,10 @@
-// https://nextjs.org/docs/app/building-your-application/configuring/eslint#lint-staged
+// https://nextjs.org/docs/app/api-reference/config/eslint#lint-staged
 import path from 'node:path';
 
 const buildEslintCommand = (filenames) =>
-  `next lint --max-warnings 0 --fix --file ${filenames
-    .map((f) => path.relative(process.cwd(), f))
-    .join(' --file ')}`;
+  `eslint --max-warnings 0 --fix ${filenames
+    .map((f) => `"${path.relative(process.cwd(), f)}"`)
+    .join(' ')}`;
 
 const config = {
   '*': 'prettier --write --ignore-unknown',

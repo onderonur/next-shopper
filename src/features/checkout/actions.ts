@@ -7,6 +7,7 @@ import { redirectToSignIn } from '@/features/auth/actions';
 import { getUser } from '@/features/auth/data';
 import { getUserCart } from '@/features/cart/data';
 import { redirect } from 'next/navigation';
+import z from 'zod';
 import {
   completeCheckoutInputSchema,
   type CompleteCheckoutInput,
@@ -36,7 +37,10 @@ export async function completeCheckout(
   const inputResult = completeCheckoutInputSchema.safeParse(input);
 
   if (!inputResult.success) {
-    return { status: 'error', fieldErrors: inputResult.error.format() };
+    return {
+      status: 'error',
+      fieldErrors: z.treeifyError(inputResult.error),
+    };
   }
 
   const { data } = inputResult;

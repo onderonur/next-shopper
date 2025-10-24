@@ -2,7 +2,7 @@ import eslintPluginUnicorn from 'eslint-plugin-unicorn';
 
 /** @type {import("eslint").Linter.Config} */
 export const unicornConfig = [
-  eslintPluginUnicorn.configs['flat/recommended'],
+  eslintPluginUnicorn.configs.recommended,
   // https://github.com/sindresorhus/eslint-plugin-unicorn/tree/main?tab=readme-ov-file#rules
   {
     rules: {

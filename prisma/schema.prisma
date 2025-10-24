@@ -1,9 +1,6 @@
 generator client {
     provider        = "prisma-client-js"
     output          = "../src/generated/prisma"
-    // driverAdapters: To use PrismaClient in Edge Runtime (Next.js Middleware).
-    // https://www.prisma.io/docs/orm/overview/databases/postgresql#using-the-node-postgres-driver
-    previewFeatures = ["driverAdapters"]
 }
 
 datasource db {

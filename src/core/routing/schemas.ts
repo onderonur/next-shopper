@@ -1,18 +1,14 @@
 import { z } from 'zod';
 
 const searchParamParser = {
-  toSingle: <Output, Def extends z.ZodTypeDef, Input>(
-    valueSchema: z.ZodType<Output, Def, Input>,
-  ) => {
+  toSingle: <T extends z.ZodType>(valueSchema: T) => {
     const finalSchema = valueSchema.or(
       z.array(valueSchema).transform((val) => val[0]),
     );
 
     return finalSchema;
   },
-  toArray: <Output, Def extends z.ZodTypeDef, Input>(
-    valueSchema: z.ZodType<Output, Def, Input>,
-  ) => {
+  toArray: <T extends z.ZodType>(valueSchema: T) => {
     const finalSchema = valueSchema
       .transform((val) => [val])
       .or(z.array(valueSchema));

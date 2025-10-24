@@ -14,14 +14,8 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 
-type ProductPageProps = {
-  params: Promise<{
-    productId: string;
-  }>;
-};
-
 export async function generateMetadata(
-  props: ProductPageProps,
+  props: PageProps<'/products/[productId]'>,
 ): Promise<Metadata> {
   const { productId } = await props.params;
 
@@ -36,7 +30,9 @@ export async function generateMetadata(
   });
 }
 
-export default async function ProductPage(props: ProductPageProps) {
+export default async function ProductPage(
+  props: PageProps<'/products/[productId]'>,
+) {
   const { productId } = await props.params;
 
   preloadRelatedProducts(productId);

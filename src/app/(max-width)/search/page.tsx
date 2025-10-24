@@ -1,5 +1,4 @@
 import { searchPageSearchParamsSchema } from '@/core/routing/schemas';
-import type { SearchParams } from '@/core/routing/types';
 import { parseSearchParams, routes } from '@/core/routing/utils';
 import { getMetadata } from '@/core/seo/utils';
 import { PageTitle } from '@/core/ui/components/page-title';
@@ -10,17 +9,14 @@ import { SearchResults } from '@/features/search/components/search-results';
 import { SelectedFilters } from '@/features/search/components/selected-filters';
 import { SelectedOptionsProvider } from '@/features/search/components/selected-options-context';
 import { filterProducts } from '@/features/search/data';
+import type { Metadata } from 'next';
 
-export const metadata = getMetadata({
+export const metadata: Metadata = getMetadata({
   title: 'Search Products',
   pathname: routes.search(),
 });
 
-type SearchPageProps = {
-  searchParams: Promise<SearchParams>;
-};
-
-export default async function SearchPage(props: SearchPageProps) {
+export default async function SearchPage(props: PageProps<'/search'>) {
   const searchParams = await props.searchParams;
   const parsedSearchParams = parseSearchParams({
     schema: searchPageSearchParamsSchema,

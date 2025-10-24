@@ -23,7 +23,7 @@ export const SelectItem = forwardRef<
       ref={ref}
       className={twJoin(
         'relative flex cursor-pointer items-center rounded-sm py-2 pr-6 pl-1 select-none',
-        'data-[highlighted]:bg-accent data-[highlighted]:outline-hidden',
+        'data-highlighted:bg-accent data-highlighted:outline-hidden',
         'data-[state=checked]:font-semibold',
       )}
     >
@@ -53,7 +53,7 @@ export const Select = forwardRef<
       <RadixSelect.Trigger
         ref={ref}
         id={inputId}
-        className="text-foreground enabled:hover:bg-accent-hover aria-invalid:border-error data-[placeholder]:text-muted-foreground inline-flex items-center justify-between gap-1 rounded-sm border px-2 py-1 data-[disabled]:opacity-50"
+        className="text-foreground enabled:hover:bg-accent-hover aria-invalid:border-error data-placeholder:text-muted-foreground inline-flex items-center justify-between gap-1 rounded-sm border px-2 py-1 data-disabled:opacity-50"
         aria-invalid={isInvalid}
         aria-describedby={errorMessageId}
       >

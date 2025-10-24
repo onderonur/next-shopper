@@ -5,7 +5,6 @@ import { AddProductToCartButton } from '@/features/cart/components/add-to-cart-b
 import { FavoriteButton } from '@/features/favorites/components/favorite-button';
 import type { ProductDetails } from '@/features/products/types';
 import Image from 'next/image';
-import { unstable_ViewTransition as ViewTransition } from 'react';
 
 type ProductInfoProps = {
   product: ProductDetails;
@@ -14,17 +13,15 @@ type ProductInfoProps = {
 export function ProductInfo({ product }: ProductInfoProps) {
   return (
     <div className="grid gap-6 md:grid-cols-2">
-      <ViewTransition name={`product-${product.id}`}>
-        <div className="relative mx-auto aspect-square w-full max-w-sm md:max-w-lg">
-          <Image
-            className="rounded-sm bg-white object-contain p-6"
-            src={product.image}
-            alt={product.title}
-            priority
-            fill
-          />
-        </div>
-      </ViewTransition>
+      <div className="relative mx-auto aspect-square w-full max-w-sm md:max-w-lg">
+        <Image
+          className="rounded-sm bg-white object-contain p-6"
+          src={product.image}
+          alt={product.title}
+          priority
+          fill
+        />
+      </div>
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-2">
           <div className="text-2xl font-bold">{product.title}</div>

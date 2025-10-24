@@ -4,11 +4,11 @@ import { notFound } from 'next/navigation';
 import type { z } from 'zod';
 import type { SearchPageSearchParams, SignInPageSearchParams } from './schemas';
 
-export function parseSearchParams<Output, Def extends z.ZodTypeDef, Input>({
+export function parseSearchParams<T extends z.ZodType>({
   schema,
   searchParams,
 }: {
-  schema: z.ZodSchema<Output, Def, Input>;
+  schema: T;
   searchParams: SearchParams;
 }) {
   const result = schema.safeParse(searchParams);

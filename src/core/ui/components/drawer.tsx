@@ -38,7 +38,7 @@ type DrawerHeaderProps = {
 export function DrawerHeader({ children }: DrawerHeaderProps) {
   return (
     <div>
-      <div className="mx-auto max-w-[4rem] pt-3 md:hidden">
+      <div className="mx-auto max-w-16 pt-3 md:hidden">
         <div className="bg-accent h-1.5 rounded-md" />
       </div>
       <div className="flex items-center justify-between px-4 py-3 shadow-xs">

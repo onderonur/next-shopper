@@ -8,7 +8,7 @@ type DescriptionListProps = {
 export function DescriptionList({ className, ...rest }: DescriptionListProps) {
   return (
     <dl
-      // When `flex` is used, `break-words` does not work here,
+      // When `flex` is used, `wrap-break-word` does not work here,
       // even if `min-w-0` trick is used.
       // So, we use `grid` instead.
       className={twMerge('grid gap-2', className)}

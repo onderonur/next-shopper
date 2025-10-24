@@ -8,7 +8,6 @@ export const typescriptConfig = [
     languageOptions: {
       parserOptions: {
         projectService: true,
-        tsconfigRootDir: import.meta.dirname,
       },
     },
   },
@@ -26,7 +25,7 @@ export const typescriptConfig = [
       ],
     },
   },
-  // https://typescript-eslint.io/getting-started/typed-linting/#how-can-i-disable-type-aware-linting-for-a-subset-of-files
+  // https://typescript-eslint.io/troubleshooting/typed-linting/#how-can-i-disable-type-aware-linting-for-a-set-of-files
   {
     files: ['**/*.{js,mjs}'],
     ...tseslint.configs.disableTypeChecked,

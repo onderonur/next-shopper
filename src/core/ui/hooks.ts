@@ -12,21 +12,15 @@ export function useAutoClosable({
 }: UseAutoClosableArgs = {}) {
   const [isOpen, setIsOpen] = useState(false);
 
-  useOnRouteChange(
-    closeOnRouteChange
-      ? () => {
-          setIsOpen(false);
-        }
-      : null,
-  );
+  useOnRouteChange(() => {
+    if (!closeOnRouteChange) return;
+    setIsOpen(false);
+  });
 
-  useOnPathnameChange(
-    closeOnPathnameChange
-      ? () => {
-          setIsOpen(false);
-        }
-      : null,
-  );
+  useOnPathnameChange(() => {
+    if (!closeOnPathnameChange) return;
+    setIsOpen(false);
+  });
 
   return [isOpen, setIsOpen] as const;
 }

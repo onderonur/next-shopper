@@ -23,7 +23,7 @@ export async function CartDrawer({ trigger }: CartDrawerProps) {
   return (
     <Drawer
       from="right"
-      closeOnPathnameChange
+      closeOnRouteChange
       trigger={
         <Badge value={cart?.totalCount}>
           <DrawerTrigger asChild>{trigger}</DrawerTrigger>

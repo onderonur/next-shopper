@@ -22,7 +22,7 @@ export function ProductBasicInfo({
       // When `flex` is used, `truncate` does not work for product title
       // even if `min-w-0` trick is used.
       // So, we use `grid` instead.
-      className="grid grid-cols-(--spacing-16_1fr) gap-2"
+      className="grid grid-cols-[--spacing(16)_1fr] gap-2"
       href={routes.product({ productId: product.id })}
     >
       <div className="relative block aspect-square w-16">

@@ -1,7 +1,7 @@
 import { preload } from '@/core/data/utils';
 import type { Id } from '@/core/shared/types';
 import { getRelatedProducts } from '@/features/products/data';
-import { ProductCarousel } from './product-carousel';
+import { ProductCarousel, ProductCarouselSkeleton } from './product-carousel';
 
 export const preloadRelatedProducts = preload(getRelatedProducts);
 
@@ -13,4 +13,8 @@ export async function RelatedProducts({ productId }: RelatedProductsProps) {
   const relatedProducts = await getRelatedProducts(productId);
 
   return <ProductCarousel products={relatedProducts} />;
+}
+
+export function RelatedProductsSkeleton() {
+  return <ProductCarouselSkeleton itemCount={6} />;
 }

@@ -1,6 +1,7 @@
 import type { Prisma, Product } from '@/generated/prisma';
 
-export type ProductDetails = Prisma.ProductGetPayload<{
+// TODO: Find a better name
+export type ProductDetailsData = Prisma.ProductGetPayload<{
   include: { category: true };
 }> & { isInFavorites: boolean };
 

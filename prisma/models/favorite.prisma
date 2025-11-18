@@ -7,4 +7,5 @@ model Favorite {
     updatedAt DateTime @updatedAt
 
     @@id([productId, userId])
+    @@map("favorite")
 }

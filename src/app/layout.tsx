@@ -15,6 +15,7 @@ import { Button } from '@/core/ui/components/button';
 import { ButtonLink } from '@/core/ui/components/button-link';
 import { CartIcon, GithubIcon } from '@/core/ui/components/icons';
 import { TooltipProvider } from '@/core/ui/components/tooltip';
+import { SessionRefresher } from '@/features/auth/components/session-refresher';
 import { UserButton } from '@/features/auth/components/user-button';
 import { CartDrawer } from '@/features/cart/components/cart-drawer';
 import type { Viewport } from 'next';
@@ -53,6 +54,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
     >
       <head />
       <body className="bg-background text-foreground">
+        <SessionRefresher />
         <ThemeProvider>
           <TooltipProvider>
             <Layout>

@@ -6,6 +6,8 @@ model City {
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
     order     Order[]
+
+    @@map("city")
 }
 
 model Region {
@@ -16,6 +18,8 @@ model Region {
     cities      City[]
     createdAt   DateTime  @default(now())
     updatedAt   DateTime  @updatedAt
+
+    @@map("region")
 }
 
 model Continent {
@@ -25,6 +29,8 @@ model Continent {
     regions   Region[]
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
+
+    @@map("continent")
 }
 
 model Order {
@@ -36,6 +42,8 @@ model Order {
     productsOnOrders ProductsOnOrders[]
     createdAt        DateTime           @default(now())
     updatedAt        DateTime           @updatedAt
+
+    @@map("order")
 }
 
 model ProductsOnOrders {
@@ -48,4 +56,5 @@ model ProductsOnOrders {
     updatedAt DateTime @updatedAt
 
     @@id([productId, orderId])
+    @@map("products_on_orders")
 }

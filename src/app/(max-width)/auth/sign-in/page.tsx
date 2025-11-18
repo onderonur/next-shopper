@@ -10,14 +10,14 @@ import {
 import { Card, CardContent } from '@/core/ui/components/card';
 import { GithubIcon, WarningIcon } from '@/core/ui/components/icons';
 import { PageTitle } from '@/core/ui/components/page-title';
-import { providerMap } from '@/features/auth/auth';
+import { SOCIAL_PROVIDERS } from '@/features/auth/auth';
 import { SignInWithProvider } from '@/features/auth/components/sign-in-with-provider';
 import { getUser } from '@/features/auth/data';
 import type { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import type { IconType } from 'react-icons/lib';
 
-// https://github.com/nextauthjs/next-auth/blob/60db749f62f478e306b9539ebb940ad00a90493e/packages/core/src/lib/pages/signin.tsx#L17
+// TODO: Error handling will be changes for better-auth. This was for next-auth.
 const signInErrors: Record<string, string> = {
   default: 'Unable to sign in.',
   Signin: 'Try signing in with a different account.',
@@ -75,7 +75,7 @@ export default async function SignInPage(props: PageProps<'/auth/sign-in'>) {
             </p>
           </div>
           <div className="flex w-full max-w-sm flex-col gap-3">
-            {Object.values(providerMap).map((provider) => {
+            {Object.values(SOCIAL_PROVIDERS).map((provider) => {
               const Icon = providerIconsByName[provider.id];
 
               return (

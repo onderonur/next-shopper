@@ -1,73 +1,64 @@
-// https://authjs.dev/getting-started/adapters/prisma#schema
+// https://www.better-auth.com/docs/installation#create-database-tables
 model User {
-    id            String          @id @default(cuid())
-    name          String?
-    email         String          @unique
-    emailVerified DateTime?
+    id            String    @id
+    name          String
+    email         String
+    emailVerified Boolean   @default(false)
     image         String?
-    accounts      Account[]
+    createdAt     DateTime  @default(now())
+    updatedAt     DateTime  @default(now()) @updatedAt
     sessions      Session[]
-    // Optional for WebAuthn support
-    authenticator Authenticator[]
+    accounts      Account[]
 
-    createdAt DateTime   @default(now())
-    updatedAt DateTime   @updatedAt
-    cart      Cart?
-    favorite  Favorite[]
-    order     Order[]
-}
+    cart     Cart?
+    favorite Favorite[]
+    order    Order[]
 
-model Account {
-    userId            String
-    type              String
-    provider          String
-    providerAccountId String
-    refresh_token     String?
-    access_token      String?
-    expires_at        Int?
-    token_type        String?
-    scope             String?
-    id_token          String?
-    session_state     String?
-
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-
-    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-    @@id([provider, providerAccountId])
+    @@unique([email])
+    @@map("user")
 }
 
 model Session {
-    sessionToken String   @unique
-    userId       String
-    expires      DateTime
-    user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
+    id        String   @id
+    expiresAt DateTime
+    token     String
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
+    ipAddress String?
+    userAgent String?
+    userId    String
+    user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@unique([token])
+    @@map("session")
 }
 
-model VerificationToken {
+model Account {
+    id                    String    @id
+    accountId             String
+    providerId            String
+    userId                String
+    user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+    accessToken           String?
+    refreshToken          String?
+    idToken               String?
+    accessTokenExpiresAt  DateTime?
+    refreshTokenExpiresAt DateTime?
+    scope                 String?
+    password              String?
+    createdAt             DateTime  @default(now())
+    updatedAt             DateTime  @updatedAt
+
+    @@map("account")
+}
+
+model Verification {
+    id         String   @id
     identifier String
-    token      String
-    expires    DateTime
+    value      String
+    expiresAt  DateTime
+    createdAt  DateTime @default(now())
+    updatedAt  DateTime @default(now()) @updatedAt
 
-    @@id([identifier, token])
-}
-
-// Optional for WebAuthn support
-model Authenticator {
-    credentialID         String  @unique
-    userId               String
-    providerAccountId    String
-    credentialPublicKey  String
-    counter              Int
-    credentialDeviceType String
-    credentialBackedUp   Boolean
-    transports           String?
-
-    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-    @@id([userId, credentialID])
+    @@map("verification")
 }

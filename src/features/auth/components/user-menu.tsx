@@ -14,14 +14,16 @@ import {
 import { UserIcon } from '@/core/ui/components/icons';
 import { Tooltip } from '@/core/ui/components/tooltip';
 import { useAutoClosable } from '@/core/ui/hooks';
-import { signOut } from '@/features/auth/actions';
-import type { User } from 'next-auth';
+import type { User } from 'better-auth';
+import { useRouter } from 'next/navigation';
+import { authClient } from '../auth-client';
 
 type UserMenuProps = {
   user: Maybe<User>;
 };
 
 export function UserMenu({ user }: UserMenuProps) {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useAutoClosable({
     closeOnRouteChange: true,
   });
@@ -56,7 +58,15 @@ export function UserMenu({ user }: UserMenuProps) {
             Favorites
           </NextLink>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => signOut()}>Sign Out</DropdownMenuItem>
+        <DropdownMenuItem
+          onClick={async () => {
+            const response = await authClient.signOut();
+            if (!response.data?.success) return;
+            router.refresh();
+          }}
+        >
+          Sign Out
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

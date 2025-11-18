@@ -1,18 +1,12 @@
-import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
-import {
-  checkIsValidAgainstCSRF,
-  extendSessionCookieExpiration,
-} from './features/auth/proxy';
+import { checkIsValidAgainstCSRF } from './features/auth/proxy';
 
-export async function proxy(req: NextRequest) {
+export async function proxy() {
   const isValidAgainstCSRF = await checkIsValidAgainstCSRF();
 
   if (!isValidAgainstCSRF) {
     return NextResponse.json(null, { status: 403 });
   }
-
-  await extendSessionCookieExpiration(req);
 
   return NextResponse.next();
 }

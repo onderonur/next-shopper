@@ -3,7 +3,7 @@
 import { SubmitButton } from '@/core/forms/components/submit-button';
 import type { Maybe } from '@/core/shared/types';
 import Form from 'next/form';
-import { signInWithProvider } from '../actions';
+import { authClient } from '../auth-client';
 
 type SignInWithProviderProps = {
   providerId: string;
@@ -19,9 +19,9 @@ export function SignInWithProvider({
   return (
     <Form
       action={async () => {
-        await signInWithProvider({
-          providerId,
-          callbackUrl,
+        await authClient.signIn.social({
+          provider: providerId,
+          callbackURL: callbackUrl ?? '',
         });
       }}
     >

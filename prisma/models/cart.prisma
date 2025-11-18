@@ -5,6 +5,8 @@ model Cart {
     productsOnCarts ProductsOnCarts[]
     createdAt       DateTime          @default(now())
     updatedAt       DateTime          @updatedAt
+
+    @@map("cart")
 }
 
 model ProductsOnCarts {
@@ -17,4 +19,5 @@ model ProductsOnCarts {
     updatedAt DateTime @updatedAt
 
     @@id([cartId, productId])
+    @@map("products_on_carts")
 }

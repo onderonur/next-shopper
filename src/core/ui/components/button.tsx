@@ -1,5 +1,4 @@
 import { cva } from 'class-variance-authority';
-import { forwardRef } from 'react';
 import { twMerge } from 'tailwind-merge';
 import type { AsChildProps } from './slot';
 import { Slot } from './slot';
@@ -44,38 +43,32 @@ export type ButtonProps = AsChildProps &
     children?: React.ReactNode;
   };
 
-export const Button = forwardRef<React.ComponentRef<'button'>, ButtonProps>(
-  function Button(
-    {
-      asChild,
-      className,
-      disabled,
-      size = 'default',
-      variant = 'default',
-      type = 'button',
-      children,
-      ...rest
-    },
-    ref,
-  ) {
-    const Component = asChild ? Slot : 'button';
+export function Button({
+  asChild,
+  className,
+  disabled,
+  size = 'default',
+  variant = 'default',
+  type = 'button',
+  children,
+  ...rest
+}: ButtonProps) {
+  const Component = asChild ? Slot : 'button';
 
-    return (
-      <Component
-        {...rest}
-        ref={ref}
-        type={type}
-        disabled={disabled}
-        className={twMerge(
-          buttonVariants({
-            variant,
-            size,
-            className,
-          }),
-        )}
-      >
-        {children}
-      </Component>
-    );
-  },
-);
+  return (
+    <Component
+      {...rest}
+      type={type}
+      disabled={disabled}
+      className={twMerge(
+        buttonVariants({
+          variant,
+          size,
+          className,
+        }),
+      )}
+    >
+      {children}
+    </Component>
+  );
+}

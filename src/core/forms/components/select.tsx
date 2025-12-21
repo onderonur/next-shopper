@@ -5,22 +5,18 @@ import {
   ChevronUpIcon,
 } from '@/core/ui/components/icons';
 import * as RadixSelect from '@radix-ui/react-select';
-import React, { forwardRef } from 'react';
+import React from 'react';
 import { twJoin } from 'tailwind-merge';
 
 type SelectItemProps = Pick<
   RadixSelect.SelectItemProps,
   'value' | 'disabled' | 'children'
->;
+> & { ref?: React.Ref<HTMLDivElement> };
 
-export const SelectItem = forwardRef<
-  React.ComponentRef<typeof RadixSelect.Item>,
-  SelectItemProps
->(function SelectItem({ children, ...rest }, ref) {
+export function SelectItem({ children, ...rest }: SelectItemProps) {
   return (
     <RadixSelect.Item
       {...rest}
-      ref={ref}
       className={twJoin(
         'relative flex cursor-pointer items-center rounded-sm py-2 pr-6 pl-1 select-none',
         'data-highlighted:bg-accent data-highlighted:outline-hidden',
@@ -33,18 +29,17 @@ export const SelectItem = forwardRef<
       </RadixSelect.ItemIndicator>
     </RadixSelect.Item>
   );
-});
+}
 
 type SelectProps = Pick<
   RadixSelect.SelectProps,
   'value' | 'onValueChange' | 'defaultValue' | 'disabled' | 'name' | 'children'
 > &
-  Pick<RadixSelect.SelectValueProps, 'placeholder'>;
+  Pick<RadixSelect.SelectValueProps, 'placeholder'> & {
+    ref?: React.Ref<HTMLButtonElement>;
+  };
 
-export const Select = forwardRef<
-  React.ComponentRef<typeof RadixSelect.Trigger>,
-  SelectProps
->(function Select({ placeholder, children, ...rest }, ref) {
+export function Select({ ref, placeholder, children, ...rest }: SelectProps) {
   const { inputId, isRequired, isInvalid, errorMessageId } =
     useFormItemContext();
 
@@ -80,4 +75,4 @@ export const Select = forwardRef<
       </RadixSelect.Portal>
     </RadixSelect.Root>
   );
-});
+}

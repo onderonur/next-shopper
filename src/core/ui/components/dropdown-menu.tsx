@@ -1,6 +1,6 @@
 import * as RadixDropdownMenu from '@radix-ui/react-dropdown-menu';
 import { motion } from 'motion/react';
-import React, { forwardRef } from 'react';
+import React from 'react';
 import { twMerge } from 'tailwind-merge';
 
 export const DropdownMenu = RadixDropdownMenu.Root;
@@ -8,17 +8,19 @@ export const DropdownMenuTrigger = RadixDropdownMenu.Trigger;
 
 type DropdownMenuContentProps = React.ComponentPropsWithoutRef<
   typeof RadixDropdownMenu.Content
->;
+> & {
+  ref?: React.Ref<HTMLDivElement>;
+};
 
-export const DropdownMenuContent = forwardRef<
-  React.ComponentRef<typeof RadixDropdownMenu.Content>,
-  DropdownMenuContentProps
->(function DropdownMenuContent({ children, className, ...rest }, ref) {
+export function DropdownMenuContent({
+  children,
+  className,
+  ...rest
+}: DropdownMenuContentProps) {
   return (
     <RadixDropdownMenu.Portal>
       <RadixDropdownMenu.Content
         {...rest}
-        ref={ref}
         className={twMerge(
           'bg-background z-50 min-w-32 rounded-md border p-1 shadow-md',
           className,
@@ -35,19 +37,20 @@ export const DropdownMenuContent = forwardRef<
       </RadixDropdownMenu.Content>
     </RadixDropdownMenu.Portal>
   );
-});
+}
 
 type DropdownMenuItemProps = React.ComponentPropsWithoutRef<
   typeof RadixDropdownMenu.Item
->;
+> & {
+  ref?: React.Ref<HTMLDivElement>;
+};
 
-export const DropdownMenuItem = forwardRef<
-  React.ComponentRef<typeof RadixDropdownMenu.Item>,
-  DropdownMenuItemProps
->(function DropdownMenuItem({ className, ...rest }, ref) {
+export function DropdownMenuItem({
+  className,
+  ...rest
+}: DropdownMenuItemProps) {
   return (
     <RadixDropdownMenu.Item
-      ref={ref}
       className={twMerge(
         'data-highlighted:bg-accent-hover data-disabled:text-muted cursor-pointer rounded-sm px-2 py-1 outline-hidden select-none data-disabled:cursor-auto md:text-sm',
         className,
@@ -55,24 +58,25 @@ export const DropdownMenuItem = forwardRef<
       {...rest}
     />
   );
-});
+}
 
 type DropdownMenuLabelProps = React.ComponentPropsWithoutRef<
   typeof RadixDropdownMenu.Label
->;
+> & {
+  ref?: React.Ref<HTMLDivElement>;
+};
 
-export const DropdownMenuLabel = forwardRef<
-  React.ComponentRef<typeof RadixDropdownMenu.Label>,
-  DropdownMenuLabelProps
->(function DropdownMenuLabel({ className, ...rest }, ref) {
+export function DropdownMenuLabel({
+  className,
+  ...rest
+}: DropdownMenuLabelProps) {
   return (
     <RadixDropdownMenu.Label
       {...rest}
-      ref={ref}
       className={twMerge(
         className,
         'px-2 py-1 text-sm font-semibold md:text-xs',
       )}
     />
   );
-});
+}

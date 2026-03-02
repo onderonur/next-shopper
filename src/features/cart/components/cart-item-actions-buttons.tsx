@@ -17,15 +17,15 @@ export function CartItemActionButtons({
   cartItem,
 }: CartItemActionButtonsProps) {
   const { product, count } = cartItem;
-  const addProductToCartWithId = addProductToCart.bind(null, product.id);
-  const decreaseProductInCartWithId = decreaseProductInCart.bind(
-    null,
-    product.id,
-  );
-  const removeProductFromCartWithId = removeProductFromCart.bind(
-    null,
-    product.id,
-  );
+  const addProductToCartWithId = addProductToCart.bind(null, {
+    productId: product.id,
+  });
+  const decreaseProductInCartWithId = decreaseProductInCart.bind(null, {
+    productId: product.id,
+  });
+  const removeProductFromCartWithId = removeProductFromCart.bind(null, {
+    productId: product.id,
+  });
 
   return (
     <div className="flex items-center justify-between">

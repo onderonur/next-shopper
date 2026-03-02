@@ -22,11 +22,10 @@ export function FavoriteButton({
   isInFavorites,
   className,
 }: FavoriteButtonProps) {
-  const addToFavoritesWithProductId = addToFavorites.bind(null, productId);
-  const removeFromFavoritesWithProductId = removeFromFavorites.bind(
-    null,
+  const addToFavoritesWithProductId = addToFavorites.bind(null, { productId });
+  const removeFromFavoritesWithProductId = removeFromFavorites.bind(null, {
     productId,
-  );
+  });
 
   const [optimisticIsInFavorites, toggleOptimisticIsInFavorites] =
     useOptimistic(isInFavorites, (state) => {

@@ -1,18 +1,26 @@
 'use server';
 
 import { prisma } from '@/core/db/db';
-import type { Id } from '@/core/shared/types';
 import { redirectToSignIn } from '@/features/auth/actions';
 import { getUser } from '@/features/auth/data';
 import { refresh } from 'next/cache';
+import {
+  addToFavoritesInputSchema,
+  removeFromFavoritesInputSchema,
+  type AddToFavoritesInput,
+  type RemoveFromFavoritesInput,
+} from './schemas';
 
-export async function addToFavorites(productId: Id) {
+export async function addToFavorites(input: AddToFavoritesInput) {
+  const parsedInput = addToFavoritesInputSchema.safeParse(input);
+  if (!parsedInput.success) return;
+
   const user = await getUser();
   if (!user?.id) return await redirectToSignIn();
 
   await prisma.favorite.create({
     data: {
-      productId,
+      productId: parsedInput.data.productId,
       userId: user.id,
     },
   });
@@ -20,14 +28,17 @@ export async function addToFavorites(productId: Id) {
   refresh();
 }
 
-export async function removeFromFavorites(productId: Id) {
+export async function removeFromFavorites(input: RemoveFromFavoritesInput) {
+  const parsedInput = removeFromFavoritesInputSchema.safeParse(input);
+  if (!parsedInput.success) return;
+
   const user = await getUser();
   if (!user?.id) return await redirectToSignIn();
 
   await prisma.favorite.delete({
     where: {
       productId_userId: {
-        productId,
+        productId: parsedInput.data.productId,
         userId: user.id,
       },
     },

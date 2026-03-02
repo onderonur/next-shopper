@@ -22,33 +22,31 @@ export async function completeCheckout(
   currentState: CompleteCheckoutState,
   formData: FormData,
 ): Promise<CompleteCheckoutState> {
-  const user = await getUser();
-  if (!user?.id) return await redirectToSignIn();
-
-  const userCart = await getUserCart();
-  if (!userCart) return await redirectToSignIn();
-
   const input = {
     continentId: formData.get('continentId'),
     regionId: formData.get('regionId'),
     cityId: formData.get('cityId'),
   };
 
-  const inputResult = completeCheckoutInputSchema.safeParse(input);
+  const parsedInput = completeCheckoutInputSchema.safeParse(input);
 
-  if (!inputResult.success) {
+  if (!parsedInput.success) {
     return {
       status: 'error',
-      fieldErrors: z.treeifyError(inputResult.error),
+      fieldErrors: z.treeifyError(parsedInput.error),
     };
   }
 
-  const { data } = inputResult;
+  const user = await getUser();
+  if (!user?.id) return await redirectToSignIn();
+
+  const userCart = await getUserCart();
+  if (!userCart) return await redirectToSignIn();
 
   const order = await prisma.order.create({
     data: {
       userId: user.id,
-      cityId: data.cityId,
+      cityId: parsedInput.data.cityId,
       productsOnOrders: {
         create: userCart.productsOnCarts.map((productOnCarts) => ({
           productId: productOnCarts.productId,

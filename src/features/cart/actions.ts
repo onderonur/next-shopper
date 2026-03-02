@@ -1,13 +1,23 @@
 'use server';
 
 import { prisma } from '@/core/db/db';
-import type { Id } from '@/core/shared/types';
 import { redirectToSignIn } from '@/features/auth/actions';
 import { getUser } from '@/features/auth/data';
 import { getUserCart } from '@/features/cart/data';
 import { refresh } from 'next/cache';
+import {
+  addProductToCartInputSchema,
+  decreaseProductInCartInputSchema,
+  removeProductFromCartInputSchema,
+  type AddProductToCartInput,
+  type DecreaseProductInCartInput,
+  type RemoveProductFromCartInput,
+} from './schema';
 
-export async function addProductToCart(productId: Id) {
+export async function addProductToCart(input: AddProductToCartInput) {
+  const parsedInput = addProductToCartInputSchema.safeParse(input);
+  if (!parsedInput.success) return;
+
   const user = await getUser();
   if (!user) await redirectToSignIn();
 
@@ -17,7 +27,7 @@ export async function addProductToCart(productId: Id) {
   const productsOnCarts = await prisma.productsOnCarts.findFirst({
     where: {
       cartId: userCart.id,
-      productId,
+      productId: parsedInput.data.productId,
     },
   });
 
@@ -26,7 +36,7 @@ export async function addProductToCart(productId: Id) {
       where: {
         cartId_productId: {
           cartId: userCart.id,
-          productId,
+          productId: parsedInput.data.productId,
         },
       },
       data: {
@@ -37,7 +47,7 @@ export async function addProductToCart(productId: Id) {
     await prisma.productsOnCarts.create({
       data: {
         cartId: userCart.id,
-        productId,
+        productId: parsedInput.data.productId,
         count: 1,
       },
     });
@@ -46,7 +56,10 @@ export async function addProductToCart(productId: Id) {
   refresh();
 }
 
-export async function decreaseProductInCart(productId: Id) {
+export async function decreaseProductInCart(input: DecreaseProductInCartInput) {
+  const parsedInput = decreaseProductInCartInputSchema.safeParse(input);
+  if (!parsedInput.success) return;
+
   const user = await getUser();
   if (!user) await redirectToSignIn();
 
@@ -57,7 +70,7 @@ export async function decreaseProductInCart(productId: Id) {
   const productsOnCart = await prisma.productsOnCarts.findFirst({
     where: {
       cartId: userCart.id,
-      productId,
+      productId: parsedInput.data.productId,
     },
   });
 
@@ -68,7 +81,7 @@ export async function decreaseProductInCart(productId: Id) {
       where: {
         cartId_productId: {
           cartId: userCart.id,
-          productId,
+          productId: parsedInput.data.productId,
         },
       },
       data: {
@@ -80,7 +93,7 @@ export async function decreaseProductInCart(productId: Id) {
       where: {
         cartId_productId: {
           cartId: userCart.id,
-          productId,
+          productId: parsedInput.data.productId,
         },
       },
     });
@@ -89,7 +102,10 @@ export async function decreaseProductInCart(productId: Id) {
   refresh();
 }
 
-export async function removeProductFromCart(productId: Id) {
+export async function removeProductFromCart(input: RemoveProductFromCartInput) {
+  const parsedInput = removeProductFromCartInputSchema.safeParse(input);
+  if (!parsedInput.success) return;
+
   const user = await getUser();
   if (!user) await redirectToSignIn();
 
@@ -100,7 +116,7 @@ export async function removeProductFromCart(productId: Id) {
     where: {
       cartId_productId: {
         cartId: userCart.id,
-        productId,
+        productId: parsedInput.data.productId,
       },
     },
   });

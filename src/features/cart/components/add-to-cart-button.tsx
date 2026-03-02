@@ -12,7 +12,7 @@ type AddProductToCartButtonProps = {
 export function AddProductToCartButton({
   productId,
 }: AddProductToCartButtonProps) {
-  const addProductToCartWithId = addProductToCart.bind(null, productId);
+  const addProductToCartWithId = addProductToCart.bind(null, { productId });
 
   return (
     <Form action={addProductToCartWithId} className="w-full max-w-xs">

@@ -6,7 +6,7 @@ type FormItemContextValue = {
   inputId: string;
   isRequired?: boolean;
   isInvalid: boolean | undefined;
-  errorMessages: Maybe<string[]>;
+  errorMessage: Maybe<string>;
   errorMessageId: string | undefined;
 };
 
@@ -20,19 +20,19 @@ export function useFormItemContext() {
 
 type FormItemProps = Pick<
   FormItemContextValue,
-  'isRequired' | 'errorMessages'
+  'isRequired' | 'errorMessage'
 > & {
   children: React.ReactNode;
 };
 
 export function FormItem({
   isRequired,
-  errorMessages,
+  errorMessage,
   children,
 }: FormItemProps) {
   const inputId = useId();
   const errorMessageId = useId();
-  const isInvalid = errorMessages?.length ? true : undefined;
+  const isInvalid = errorMessage ? true : undefined;
 
   return (
     <FormItemContext.Provider
@@ -40,7 +40,7 @@ export function FormItem({
         inputId,
         isRequired,
         isInvalid,
-        errorMessages,
+        errorMessage,
         errorMessageId: isInvalid ? errorMessageId : undefined,
       }}
     >
@@ -70,9 +70,9 @@ export function FormItemLabel({ children, ...rest }: FormItemLabelProps) {
 }
 
 export function FormItemErrorMessage() {
-  const { errorMessageId, errorMessages } = useFormItemContext();
+  const { errorMessageId, errorMessage } = useFormItemContext();
 
-  if (!errorMessages?.length) return null;
+  if (!errorMessage) return null;
 
   return (
     <div
@@ -81,7 +81,7 @@ export function FormItemErrorMessage() {
       aria-atomic
       className="text-error text-sm"
     >
-      {errorMessages.join(', ')}
+      {errorMessage}
     </div>
   );
 }

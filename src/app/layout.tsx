@@ -21,6 +21,7 @@ import { CartDrawer } from '@/features/cart/components/cart-drawer';
 import type { Viewport } from 'next';
 import { ThemeProvider } from 'next-themes';
 import { Inter } from 'next/font/google';
+import { Toaster } from 'sonner';
 import { twJoin } from 'tailwind-merge';
 
 const inter = Inter({
@@ -54,6 +55,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
     >
       <head />
       <body className="bg-background text-foreground">
+        <Toaster />
         <SessionRefresher />
         <ThemeProvider>
           <TooltipProvider>

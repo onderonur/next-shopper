@@ -1,10 +1,4 @@
-import type { z } from 'zod';
-
-export type ServerActionState<Input = unknown, Data = unknown> =
+export type ServerActionState<Data = unknown> =
   | { status: 'idle' }
   | { status: 'success'; data: Data }
-  | {
-      status: 'error';
-      error?: string;
-      fieldErrors?: z.core.$ZodErrorTree<Input>;
-    };
+  | { status: 'error'; error: string };

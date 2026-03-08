@@ -6,34 +6,24 @@ import { routes } from '@/core/routing/utils';
 import { redirectToSignIn } from '@/features/auth/actions';
 import { getUser } from '@/features/auth/data';
 import { getUserCart } from '@/features/cart/data';
+import { refresh } from 'next/cache';
 import { redirect } from 'next/navigation';
-import z from 'zod';
 import {
   completeCheckoutInputSchema,
   type CompleteCheckoutInput,
 } from './schemas';
 
-type CompleteCheckoutState = ServerActionState<
-  CompleteCheckoutInput,
-  undefined
->;
+type CompleteCheckoutState = ServerActionState;
 
 export async function completeCheckout(
-  currentState: CompleteCheckoutState,
-  formData: FormData,
+  input: CompleteCheckoutInput,
 ): Promise<CompleteCheckoutState> {
-  const input = {
-    continentId: formData.get('continentId'),
-    regionId: formData.get('regionId'),
-    cityId: formData.get('cityId'),
-  };
-
   const parsedInput = completeCheckoutInputSchema.safeParse(input);
 
   if (!parsedInput.success) {
     return {
       status: 'error',
-      fieldErrors: z.treeifyError(parsedInput.error),
+      error: 'Invalid input',
     };
   }
 
@@ -42,6 +32,13 @@ export async function completeCheckout(
 
   const userCart = await getUserCart();
   if (!userCart) return await redirectToSignIn();
+
+  if (!userCart.productsOnCarts.length) {
+    return {
+      status: 'error',
+      error: 'Cart is empty',
+    };
+  }
 
   const order = await prisma.order.create({
     data: {
@@ -61,6 +58,8 @@ export async function completeCheckout(
       id: userCart.id,
     },
   });
+
+  refresh();
 
   redirect(routes.order({ orderId: order.id }));
 }

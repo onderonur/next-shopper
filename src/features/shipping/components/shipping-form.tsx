@@ -9,124 +9,125 @@ import { Select, SelectItem } from '@/core/forms/components/select';
 import { SubmitButton } from '@/core/forms/components/submit-button';
 import { Card, CardContent, CardFooter } from '@/core/ui/components/card';
 import { completeCheckout } from '@/features/checkout/actions';
+import {
+  completeCheckoutInputSchema,
+  type CompleteCheckoutInput,
+} from '@/features/checkout/schemas';
 import type { ContinentWithChildren } from '@/features/shipping/types';
+import { zodResolver } from '@hookform/resolvers/zod';
 import Form from 'next/form';
-import { useActionState, useState } from 'react';
+import { useActionState } from 'react';
+import { Controller, useForm, useWatch } from 'react-hook-form';
+import { toast } from 'sonner';
 
 type ShippingFormProps = {
   continents: ContinentWithChildren[];
 };
 
 export function ShippingForm({ continents }: ShippingFormProps) {
-  const [state, formAction] = useActionState(completeCheckout, {
-    status: 'idle',
+  const form = useForm<CompleteCheckoutInput>({
+    resolver: zodResolver(completeCheckoutInputSchema),
+    defaultValues: { continentId: '', regionId: '', cityId: '' },
+    mode: 'onChange',
   });
-  const fieldErrors = state.status === 'error' ? state.fieldErrors : null;
 
-  const [continentId, setContinentId] = useState('');
-  const [regionId, setRegionId] = useState('');
-  const [cityId, setCityId] = useState('');
+  const [, formAction] = useActionState(async () => {
+    const valid = await form.trigger();
+    if (!valid) return;
+    const result = await completeCheckout(form.getValues());
+    if (result.status === 'error') {
+      toast.error(result.error);
+    }
+  }, null);
 
-  const continent = continents.find(
-    (continent) => continent.id === continentId,
-  );
+  const continentId = useWatch({ control: form.control, name: 'continentId' });
+  const regionId = useWatch({ control: form.control, name: 'regionId' });
+
+  const continent = continents.find((c) => c.id === continentId);
   const regions = continent?.regions;
-  const region = regions?.find((region) => region.id === regionId);
+  const region = regions?.find((r) => r.id === regionId);
   const cities = region?.cities;
 
   return (
-    <Form
-      action={(formData) => {
-        // Normally we don't need these.
-        // But Radix `Select` sets its first `SelectItem` as the value
-        // in the `formData` when its `value` prop is an empty string
-        // or when it's not in the `SelectItem` values.
-        // This issue does not occur when the components are uncontrolled.
-        // So, we change the values in `formData` here as a hack.
-        formData.set('continentId', continentId);
-        formData.set('regionId', regionId);
-        formData.set('cityId', cityId);
-
-        formAction(formData);
-      }}
-    >
+    <Form action={formAction}>
       <Card>
         <CardContent className="flex flex-col gap-3">
-          <FormItem
-            isRequired
-            errorMessages={fieldErrors?.properties?.continentId?.errors}
-          >
-            <FormItemLabel>Continent</FormItemLabel>
-            <Select
-              name="continentId"
-              placeholder="Continent"
-              value={continentId}
-              onValueChange={(value) => {
-                setContinentId(value);
-                setRegionId('');
-                setCityId('');
-              }}
-            >
-              {continents.map((continent) => {
-                return (
-                  <SelectItem key={continent.id} value={continent.id}>
-                    {continent.name}
-                  </SelectItem>
-                );
-              })}
-            </Select>
-            <FormItemErrorMessage />
-          </FormItem>
+          <Controller
+            control={form.control}
+            name="continentId"
+            render={({ field, fieldState }) => (
+              <FormItem isRequired errorMessage={fieldState.error?.message}>
+                <FormItemLabel>Continent</FormItemLabel>
+                <Select
+                  name={field.name}
+                  placeholder="Continent"
+                  value={field.value}
+                  onValueChange={(value) => {
+                    field.onChange(value);
+                    form.setValue('regionId', '');
+                    form.setValue('cityId', '');
+                  }}
+                >
+                  {continents.map((continent) => (
+                    <SelectItem key={continent.id} value={continent.id}>
+                      {continent.name}
+                    </SelectItem>
+                  ))}
+                </Select>
+                <FormItemErrorMessage />
+              </FormItem>
+            )}
+          />
           <div className="flex gap-2">
-            <FormItem
-              isRequired
-              errorMessages={fieldErrors?.properties?.regionId?.errors}
-            >
-              <FormItemLabel>Region</FormItemLabel>
-              <Select
-                name="regionId"
-                placeholder="Region"
-                disabled={!continentId}
-                value={regionId}
-                onValueChange={(value) => {
-                  setRegionId(value);
-                  setCityId('');
-                }}
-              >
-                {regions?.map((region) => {
-                  return (
-                    <SelectItem key={region.id} value={region.id}>
-                      {region.name}
-                    </SelectItem>
-                  );
-                })}
-              </Select>
-              <FormItemErrorMessage />
-            </FormItem>
-            <FormItem
-              isRequired
-              errorMessages={fieldErrors?.properties?.cityId?.errors}
-            >
-              <FormItemLabel>City</FormItemLabel>
-              <Select
-                name="cityId"
-                placeholder="City"
-                disabled={!regionId}
-                value={cityId}
-                onValueChange={(value) => {
-                  setCityId(value);
-                }}
-              >
-                {cities?.map((city) => {
-                  return (
-                    <SelectItem key={city.id} value={city.id}>
-                      {city.name}
-                    </SelectItem>
-                  );
-                })}
-              </Select>
-              <FormItemErrorMessage />
-            </FormItem>
+            <Controller
+              control={form.control}
+              name="regionId"
+              render={({ field, fieldState }) => (
+                <FormItem isRequired errorMessage={fieldState.error?.message}>
+                  <FormItemLabel>Region</FormItemLabel>
+                  <Select
+                    name={field.name}
+                    placeholder="Region"
+                    disabled={!continentId}
+                    value={field.value}
+                    onValueChange={(value) => {
+                      field.onChange(value);
+                      form.setValue('cityId', '');
+                    }}
+                  >
+                    {regions?.map((region) => (
+                      <SelectItem key={region.id} value={region.id}>
+                        {region.name}
+                      </SelectItem>
+                    ))}
+                  </Select>
+                  <FormItemErrorMessage />
+                </FormItem>
+              )}
+            />
+            <Controller
+              control={form.control}
+              name="cityId"
+              render={({ field, fieldState }) => (
+                <FormItem isRequired errorMessage={fieldState.error?.message}>
+                  <FormItemLabel>City</FormItemLabel>
+                  <Select
+                    name={field.name}
+                    placeholder="City"
+                    disabled={!regionId}
+                    value={field.value}
+                    onValueChange={field.onChange}
+                  >
+                    {cities?.map((city) => (
+                      <SelectItem key={city.id} value={city.id}>
+                        {city.name}
+                      </SelectItem>
+                    ))}
+                  </Select>
+                  <FormItemErrorMessage />
+                </FormItem>
+              )}
+            />
           </div>
         </CardContent>
         <CardFooter>

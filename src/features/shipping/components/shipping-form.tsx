@@ -16,7 +16,6 @@ import {
 import type { ContinentWithChildren } from '@/features/shipping/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Form from 'next/form';
-import { useActionState } from 'react';
 import { Controller, useForm, useWatch } from 'react-hook-form';
 import { toast } from 'sonner';
 
@@ -31,15 +30,6 @@ export function ShippingForm({ continents }: ShippingFormProps) {
     mode: 'onChange',
   });
 
-  const [, formAction] = useActionState(async () => {
-    const valid = await form.trigger();
-    if (!valid) return;
-    const result = await completeCheckout(form.getValues());
-    if (result.status === 'error') {
-      toast.error(result.error);
-    }
-  }, null);
-
   const continentId = useWatch({ control: form.control, name: 'continentId' });
   const regionId = useWatch({ control: form.control, name: 'regionId' });
 
@@ -49,7 +39,16 @@ export function ShippingForm({ continents }: ShippingFormProps) {
   const cities = region?.cities;
 
   return (
-    <Form action={formAction}>
+    <Form
+      action={async () => {
+        await form.handleSubmit(async () => {
+          const result = await completeCheckout(form.getValues());
+          if (result.status === 'error') {
+            toast.error(result.error);
+          }
+        })();
+      }}
+    >
       <Card>
         <CardContent className="flex flex-col gap-3">
           <Controller

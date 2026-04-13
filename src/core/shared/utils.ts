@@ -3,6 +3,8 @@ export const APP_TITLE = 'next-shopper';
 export const APP_DESCRIPTION = `A fullstack e-commerce website demo built with Next.js to showcase various tech tools`;
 export const APP_REPOSITORY_URL = 'https://github.com/onderonur/next-shopper';
 
+export const SKELETON_IMAGE = '/images/skeleton.png';
+
 export function createMockArray(length: number) {
   // eslint-disable-next-line unicorn/prefer-spread
   return Array.from(Array.from({ length }).keys());

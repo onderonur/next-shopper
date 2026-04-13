@@ -1,23 +1,17 @@
 import { Card, CardContent } from '@/core/ui/components/card';
 import { Section, SectionTitle } from '@/core/ui/components/section';
 
-type ProductShellProps = {
-  title: React.ReactNode;
-  productInfo: React.ReactNode;
-  relatedProducts: React.ReactNode;
-};
-
-export function ProductShell({
+export default function ProductPageLayout({
   title,
-  productInfo,
   relatedProducts,
-}: ProductShellProps) {
+  children,
+}: LayoutProps<'/products/[productId]'>) {
   return (
     <div className="flex flex-col gap-4">
       <main>
         {title}
         <Card>
-          <CardContent>{productInfo}</CardContent>
+          <CardContent>{children}</CardContent>
         </Card>
       </main>
       <Section asChild>

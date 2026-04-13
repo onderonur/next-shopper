@@ -1,19 +1,25 @@
 import { NextLink } from '@/core/routing/components/next-link';
 import { routes } from '@/core/routing/utils';
+import { SKELETON_IMAGE } from '@/core/shared/utils';
+import {
+  BetterSkeleton,
+  SkeletonText,
+} from '@/core/ui/components/better-skeleton';
 import { Price } from '@/core/ui/components/price';
-import { Skeleton } from '@/core/ui/components/skeleton';
 import { Tooltip } from '@/core/ui/components/tooltip';
 import { FavoriteButton } from '@/features/favorites/components/favorite-button';
 import type { ProductListItem } from '@/features/products/types';
 import Image from 'next/image';
+import { twMerge } from 'tailwind-merge';
 
 type ProductCardProps = {
   product: ProductListItem;
+  className?: string;
 };
 
-export function ProductCard({ product }: ProductCardProps) {
+export function ProductCard({ product, className }: ProductCardProps) {
   return (
-    <div className="relative">
+    <div className={twMerge('relative', className)}>
       <NextLink
         href={routes.product({ productId: product.id })}
         // To show outline when the link is `focus-visible`.
@@ -34,9 +40,11 @@ export function ProductCard({ product }: ProductCardProps) {
           </div>
           <div className="flex flex-col gap-2 text-center">
             <Tooltip content={product.title}>
-              <h3 className="line-clamp-3 min-h-[3lh] text-sm font-bold">
-                {product.title}
-              </h3>
+              <div className="min-h-[3lh]">
+                <h3 className="line-clamp-3 text-sm font-bold">
+                  <SkeletonText>{product.title}</SkeletonText>
+                </h3>
+              </div>
             </Tooltip>
             <div>
               <Price
@@ -58,20 +66,22 @@ export function ProductCard({ product }: ProductCardProps) {
   );
 }
 
+const mockProduct: ProductCardProps['product'] = {
+  id: '0',
+  title: 'Placeholder title',
+  categoryId: '0',
+  description: '',
+  image: SKELETON_IMAGE,
+  isInFavorites: false,
+  price: 9.99,
+  createdAt: new Date(),
+  updatedAt: new Date(),
+};
+
 export function ProductCardSkeleton() {
   return (
-    <div className="flex flex-col gap-2 rounded-md border-2 p-2 md:p-4">
-      <div className="p-2">
-        <Skeleton className="aspect-12/10" />
-      </div>
-      <div className="flex flex-col items-center gap-3">
-        <div className="flex w-full flex-col items-center gap-1">
-          <Skeleton className="max-w-28] h-4 w-full" />
-          <Skeleton className="h-4 w-full max-w-36" />
-          <Skeleton className="h-4 w-full max-w-28" />
-        </div>
-        <Skeleton className="h-6 w-16" />
-      </div>
-    </div>
+    <BetterSkeleton>
+      <ProductCard product={mockProduct} />
+    </BetterSkeleton>
   );
 }

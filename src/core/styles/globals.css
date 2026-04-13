@@ -40,6 +40,18 @@
   --color-border: var(--border);
   --color-ring: var(--ring);
   --color-favorite: var(--favorite);
+
+  --animate-shimmer: shimmer 2s infinite ease-in-out;
+
+  @keyframes shimmer {
+    from {
+      background-position: 100%;
+    }
+
+    to {
+      background-position: 0%;
+    }
+  }
 }
 
 /* https://tailwindcss.com/docs/adding-custom-styles#functional-utilities */
@@ -48,6 +60,18 @@
     auto-fill,
     minmax(min(100%, calc(var(--spacing) * --value(integer))), 1fr)
   );
+}
+
+@utility skeleton-bg {
+  @apply animate-shimmer;
+
+  background: linear-gradient(
+    to right,
+    var(--muted) 33%,
+    color-mix(in srgb, var(--muted), white 8%),
+    var(--muted) 66%
+  );
+  background-size: 300%;
 }
 
 @layer base {

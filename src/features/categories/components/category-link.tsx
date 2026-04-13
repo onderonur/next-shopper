@@ -1,5 +1,6 @@
 import type { NextLinkProps } from '@/core/routing/components/next-link';
 import { NextLink } from '@/core/routing/components/next-link';
+import { SkeletonText } from '@/core/ui/components/better-skeleton';
 
 type CategoryLinkProps = Pick<NextLinkProps, 'href'> & {
   imageSrc: string;
@@ -23,7 +24,7 @@ export function CategoryLink({
         style={{ backgroundImage: `url(${imageSrc})`, backgroundColor: color }}
       />
       <h2 className="absolute right-2 bottom-2 text-3xl font-bold text-white [text-shadow:0_0_0.5rem_#000]">
-        {title}
+        <SkeletonText>{title}</SkeletonText>
       </h2>
     </NextLink>
   );

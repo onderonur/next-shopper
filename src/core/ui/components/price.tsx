@@ -1,6 +1,7 @@
 'use client';
 
 import type { Maybe } from '@/core/shared/types';
+import { SkeletonText } from '@/core/ui/components/better-skeleton';
 import { AnimatedNumber } from './animated-number';
 
 const format = {
@@ -25,5 +26,9 @@ export function Price({ className, value, isAnimated }: PriceProps) {
     );
   }
 
-  return <span className={className}>{priceFormatter.format(value ?? 0)}</span>;
+  return (
+    <span className={className}>
+      <SkeletonText>{priceFormatter.format(value ?? 0)}</SkeletonText>
+    </span>
+  );
 }

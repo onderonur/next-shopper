@@ -1,6 +1,5 @@
 import { SubmitButton } from '@/core/forms/components/submit-button';
 import type { Id } from '@/core/shared/types';
-import { Skeleton } from '@/core/ui/components/skeleton';
 import { addProductToCart } from '@/features/cart/actions';
 import Form from 'next/form';
 
@@ -21,8 +20,4 @@ export function AddProductToCartButton({
       </SubmitButton>
     </Form>
   );
-}
-
-export function AddProductToCartButtonSkeleton() {
-  return <Skeleton className="h-10 w-full max-w-xs" />;
 }

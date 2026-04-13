@@ -1,5 +1,6 @@
 'use client';
 
+import { useIsSkeleton } from '@/core/ui/components/better-skeleton';
 import * as RadixTooltip from '@radix-ui/react-tooltip';
 import { motion } from 'motion/react';
 
@@ -11,6 +12,10 @@ type TooltipProps = {
 };
 
 export function Tooltip({ content, children }: TooltipProps) {
+  const isSkeleton = useIsSkeleton();
+
+  if (isSkeleton) return children;
+
   return (
     <RadixTooltip.Root>
       <RadixTooltip.Trigger asChild>{children}</RadixTooltip.Trigger>
